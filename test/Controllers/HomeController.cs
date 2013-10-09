@@ -11,7 +11,14 @@ namespace test.Controllers
     {
         public ActionResult Index()
         {
-            ViewData["Message"] = "Welcome to ASP.NET MVC!";
+            if (Request.IsAuthenticated)
+            {
+                ViewData["Message"] = "youre logged in";
+            }
+            else
+            {
+                ViewData["Message"] = "youre NOT logged in";
+            }
 
             return View();
         }
