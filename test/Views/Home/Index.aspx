@@ -4,8 +4,8 @@
     Home Page
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>
-        <%: ViewData["Message"] %></h2>
+    <h2><%: ViewData["Message"] %></h2>
+    <div id="logindisplay"><% Html.RenderPartial("LogOnUserControl"); %></div> 
     <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sagittis tristique
         mauris id cursus. Donec lobortis posuere gravida. Vestibulum non augue consequat,
