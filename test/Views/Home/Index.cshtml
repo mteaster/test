@@ -4,71 +4,78 @@
     ViewBag.Title = "hi kids";
 }
 
-@section featured {
-    <section class="featured">
-        <div class="content-wrapper">
-            <hgroup class="title">
-                <h1>@ViewBag.Title.</h1>
-                <h2>@ViewBag.Message</h2>
-            </hgroup>
-        </div>
+@if (Request.IsAuthenticated)
+{
+    @Html.Partial("_LoggedInPartial")
+}
+else
+{
+
+    @section featured {
+        <section class="featured">
+            <div class="content-wrapper">
+                <hgroup class="title">
+                    <h1>@ViewBag.Title.</h1>
+                    <h2>@ViewBag.Message</h2>
+                </hgroup>
+            </div>
+        </section>
+    }
+
+    <section class="half">
+
+        <hgroup class="title">
+            <h1>Hello</h1>
+            <h2>I am a goose.</h2>
+        </hgroup>
+
+        <h3>We suggest the following:</h3>
+        <ol class="round">
+            <li class="one">
+                <h5>shut up</h5>
+                you're dumb
+            </li>
+
+            <li class="two">
+                <h5>go away</h5>
+                you're dumb
+            </li>
+
+            <li class="three">
+                <h5>never come back</h5>
+                we hate you
+            </li>
+        </ol>
+    </section>
+
+    <section class="half">
+        <hgroup class="title">
+            <h1>Register</h1>
+            <h2>Create a new account.</h2>
+        </hgroup>
+
+        @using (Html.BeginForm("Register", "Account")) {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary()
+
+            <fieldset>
+                <legend>Registration Form</legend>
+                <ol>
+                    <li>
+                        @Html.LabelFor(m => m.UserName)
+                        @Html.TextBoxFor(m => m.UserName)
+                    </li>
+                    <li>
+                        @Html.LabelFor(m => m.Password)
+                        @Html.PasswordFor(m => m.Password)
+                    </li>
+                    <li>
+                        @Html.LabelFor(m => m.ConfirmPassword)
+                        @Html.PasswordFor(m => m.ConfirmPassword)
+                    </li>
+                </ol>
+                <input type="submit" value="Register" />
+            </fieldset>
+        }
     </section>
 }
-
-<section class="half">
-
-    <hgroup class="title">
-        <h1>Hello</h1>
-        <h2>I am a goose.</h2>
-    </hgroup>
-
-    <h3>We suggest the following:</h3>
-    <ol class="round">
-        <li class="one">
-            <h5>shut up</h5>
-            you're dumb
-        </li>
-
-        <li class="two">
-            <h5>go away</h5>
-            you're dumb
-        </li>
-
-        <li class="three">
-            <h5>never come back</h5>
-            we hate you
-        </li>
-    </ol>
-</section>
-
-<section class="half">
-    <hgroup class="title">
-        <h1>Register</h1>
-        <h2>Create a new account.</h2>
-    </hgroup>
-
-    @using (Html.BeginForm("Register", "Account")) {
-        @Html.AntiForgeryToken()
-        @Html.ValidationSummary()
-
-        <fieldset>
-            <legend>Registration Form</legend>
-            <ol>
-                <li>
-                    @Html.LabelFor(m => m.UserName)
-                    @Html.TextBoxFor(m => m.UserName)
-                </li>
-                <li>
-                    @Html.LabelFor(m => m.Password)
-                    @Html.PasswordFor(m => m.Password)
-                </li>
-                <li>
-                    @Html.LabelFor(m => m.ConfirmPassword)
-                    @Html.PasswordFor(m => m.ConfirmPassword)
-                </li>
-            </ol>
-            <input type="submit" value="Register" />
-        </fieldset>
-    }
-</section>
-
