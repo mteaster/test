@@ -9,7 +9,8 @@ namespace test.Controllers
 {
     public class HomeController : Controller
     {
-        private UsersContext db = new UsersContext();
+        private UsersContext usersContext = new UsersContext();
+        private BandsContext bandsContext = new BandsContext();
 
         public ActionResult Index()
         {
@@ -20,14 +21,12 @@ namespace test.Controllers
 
         public ActionResult About()
         {
-            return View(db.UserProfiles.ToList());
+            return View(usersContext.UserProfiles.ToList());
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            return View(bandsContext.BandProfiles.ToList());
         }
     }
 }
