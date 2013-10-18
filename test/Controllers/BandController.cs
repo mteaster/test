@@ -16,6 +16,7 @@ namespace test.Controllers
         //
         // GET: /Band/AllBands/
 
+        [ChildActionOnly]
         public ActionResult AllBands()
         {
             return PartialView("_BandsPartial", db.BandProfiles.ToList());

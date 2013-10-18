@@ -16,9 +16,9 @@ namespace test.Controllers
         //
         // GET: /User/AllUsers
 
+        [ChildActionOnly]
         public ActionResult AllUsers()
         {
-            List<UserProfile> ok = db.UserProfiles.ToList();
             return PartialView("_UsersPartial", db.UserProfiles.ToList());
         }
     }
