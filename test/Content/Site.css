@@ -330,7 +330,6 @@ aside {
 
 /* login page */
 #loginForm {
-    border-right: solid 2px #c8c8c8;
     float: left;
     width: 55%;
 }
@@ -753,4 +752,16 @@ tr.pager td {
         footer p {
             margin: 0;
         }
+}
+
+
+/* MIKE'S CSS ADDITIONS */
+
+/* note: probably breaks mobile */
+
+section.half
+{
+    margin-left: 40px;
+    float: left;
+    width: 40%;
 }
