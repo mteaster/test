@@ -19,7 +19,7 @@
 @if (Request.IsAuthenticated)
 {
     <p>lalalalalalala</p>
-    @Html.Action("AllBands", "Band")
+    @{ Html.RenderAction("AllBands", "Band"); }
 }
 else
 {
