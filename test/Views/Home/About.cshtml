@@ -1,6 +1,11 @@
-﻿<section class="half">
+﻿@{
+    ViewBag.Title = "About";
+}
+
+
+<section class="half">
     <hgroup class="title">
-        <h1>Bands</h1>
+        <h1>Bands.</h1>
         <h2>Here are all the bands.</h2>
     </hgroup>
 
@@ -9,8 +14,9 @@
 
 <section class="half">
     <hgroup class="title">
-        <h1>Users</h1>
+        <h1>Users.</h1>
         <h2>Here are all the users.</h2>
     </hgroup>
 
+    @{ Html.RenderAction("AllBands", "Band"); }
 </section>
