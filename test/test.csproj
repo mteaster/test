@@ -292,7 +292,7 @@
     <Content Include="Views\Home\_BandsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Home\_FrontPartial.cshtml" />
+    <Content Include="Views\Home\_LandingPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_RegisterPartial.cshtml" />
