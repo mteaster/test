@@ -1,0 +1,39 @@
+﻿@model test.Models.RegisterModel
+
+@{
+    ViewBag.Title = "_InitialPartial";
+}
+
+<section class="half">
+    <hgroup class="title">
+        <h1>Hello</h1>
+        <h2>I am a goose.</h2>
+    </hgroup>
+
+    <h3>We suggest the following:</h3>
+    <ol class="round">
+        <li class="one">
+            <h5>shut up</h5>
+            you're dumb
+        </li>
+
+        <li class="two">
+            <h5>go away</h5>
+            you're dumb
+        </li>
+
+        <li class="three">
+            <h5>never come back</h5>
+            we hate you
+        </li>
+    </ol>
+</section>
+
+<section class="half">
+    @Html.Partial("_RegisterPartial")
+</section>
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
