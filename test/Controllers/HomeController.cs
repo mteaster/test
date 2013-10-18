@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using test.Models;
 
 namespace test.Controllers
 {
     public class HomeController : Controller
     {
+        private UsersContext db = new UsersContext();
+
         public ActionResult Index()
         {
             ViewBag.Message = "welcome to our dumb website";
@@ -17,9 +20,7 @@ namespace test.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your app description page.";
-
-            return View();
+            return View(db.UserProfiles.ToList());
         }
 
         public ActionResult Contact()

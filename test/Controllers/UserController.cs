@@ -18,6 +18,7 @@ namespace test.Controllers
 
         public ActionResult AllUsers()
         {
+            List<UserProfile> ok = db.UserProfiles.ToList();
             return PartialView("_UsersPartial", db.UserProfiles.ToList());
         }
     }
