@@ -754,3 +754,13 @@ tr.pager td {
             margin: 0;
         }
 }
+
+
+/* MIKE'S CSS ADDITIONS */
+
+section.half
+{
+    margin-left: 40px;
+    float: left;
+    width: 40%;
+}
