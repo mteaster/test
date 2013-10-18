@@ -18,7 +18,7 @@ namespace test.Controllers
 
         public ActionResult AllBands()
         {
-            return PartialView("_BandsPartial");
+            return PartialView("_BandsPartial", db.BandProfiles.ToList());
         }
     }
 }
