@@ -757,6 +757,8 @@ tr.pager td {
 
 /* MIKE'S CSS ADDITIONS */
 
+/* note: probably breaks mobile */
+
 section.half
 {
     margin-left: 40px;
