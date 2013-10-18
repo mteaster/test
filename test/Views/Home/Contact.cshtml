@@ -2,19 +2,11 @@
 
 <h2>Bands</h2>
 
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.BandName)
-        </th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.BandName)
-        </td>
-    </tr>
+<ol>
+@foreach (var item in Model) 
+{
+    <li>
+        @Html.DisplayFor(modelItem => item.BandName)
+    </li>
 }
-
-</table>
+</ol>
