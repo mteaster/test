@@ -7,28 +7,4 @@
     <h2>@ViewBag.Message</h2>
 </hgroup>
 
-<article>
-    <p>
-        Create and Join a stupid band.
-    </p>
-
-    <p>
-        Manage it.
-    </p>
-
-    <p>
-        Git it done.
-    </p>
-</article>
-
-<aside>
-    <h3>Aside Title</h3>
-    <p>
-        Use this area to provide additional information.
-    </p>
-    <ul>
-        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-        <li>@Html.ActionLink("About", "About", "Home")</li>
-        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-    </ul>
-</aside>
+@Html.Action("AllUsers", "User")
