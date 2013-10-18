@@ -18,7 +18,7 @@
 
 @if (Request.IsAuthenticated)
 {
-    @Html.Partial("_LoggedInPartial")
+    <h3>WHOA YOU'RE LOGGED IN</h3>
 }
 else
 {
@@ -55,7 +55,8 @@ else
             <h2>Create a new account.</h2>
         </hgroup>
 
-        @using (Html.BeginForm("Register", "Account")) {
+        @using (Html.BeginForm("Register", "Account"))
+        {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary()
 
