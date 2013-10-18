@@ -18,8 +18,7 @@
 
 @if (Request.IsAuthenticated)
 {
-    <p>lalalalalalala</p>
-    @{ Html.RenderAction("AllBands", "Band"); }
+    @Html.Partial("BandsPartial");
 }
 else
 {
