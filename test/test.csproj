@@ -292,7 +292,7 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Home\_BandsPartial.cshtml" />
+    <Content Include="Views\Shared\_BandsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\_LandingPartial.cshtml" />

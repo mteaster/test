@@ -1,12 +1,1 @@
-﻿@model IEnumerable<test.Models.UserProfile>
-
-<h2>Users</h2>
-
-<ol>
-@foreach (var item in Model) 
-{
-    <li>
-        @Html.DisplayFor(modelItem => item.UserName)
-    </li>
-}
-</ol>
+﻿@{ Html.RenderAction("AllBands", "Home"); }

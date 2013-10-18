@@ -21,12 +21,17 @@ namespace test.Controllers
 
         public ActionResult About()
         {
-            return View(usersContext.UserProfiles.ToList());
+            return View();
         }
 
         public ActionResult Contact()
         {
             return View(bandsContext.BandProfiles.ToList());
+        }
+
+        public ActionResult AllBands()
+        {
+            return PartialView("_BandsPartial", bandsContext.BandProfiles.ToList());
         }
     }
 }
