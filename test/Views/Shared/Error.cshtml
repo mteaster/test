@@ -12,19 +12,5 @@
 
 <h3>@Model.ControllerName / @Model.ActionName</h3>
 
-<ol class="round">
-    <li class="one">
-        <h5>@Model.Exception.TargetSite</h5>
-        @Model.Exception.Message
-    </li>
-
-    <li class="two">
-        <h5>@Model.Exception.InnerException.TargetSite</h5>
-        @Model.Exception.InnerException.Message
-    </li>
-
-    <li class="three">
-        <h5>@Model.Exception.InnerException.InnerException.TargetSite</h5>
-        @Model.Exception.InnerException.InnerException.Message
-    </li>
-</ol>
+<h4>@Model.Exception.TargetSite</h4>
+<p>@Model.Exception.Message</p>
