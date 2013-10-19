@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Globalization;
 using System.Web.Mvc;
 using System.Web.Security;
+using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace test.Models
 {
@@ -16,6 +17,12 @@ namespace test.Models
         }
 
         public DbSet<UserProfile> UserProfiles { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+        }
     }
 
     [Table("UserProfile")]

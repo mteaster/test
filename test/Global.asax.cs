@@ -23,6 +23,9 @@ namespace test
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
+
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<UsersContext, MigrationConfiguration>());
+            new UsersContext().UserProfiles.Find(1);
         }
     }
 }
