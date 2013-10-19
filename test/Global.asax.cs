@@ -29,6 +29,7 @@ namespace test
 
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<UsersContext, MigrationConfiguration>());
             new UsersContext().UserProfiles.Find(1);
+            new BandsContext().BandProfiles.Find(1);
         }
     }
 }
