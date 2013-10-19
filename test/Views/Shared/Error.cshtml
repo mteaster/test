@@ -10,24 +10,21 @@
     <h2 class="error">An error occurred while processing your request.</h2>
 </hgroup>
 
-<ol>
-    <li>
-        <h5>Controller</h5>
-        @Model.ControllerName
-    </li>
+<h3>@Model.ControllerName / @Model.ActionName</h3>
 
-    <li>
-        <h5>Action</h5>
-        @Model.ActionName
-    </li>
-
-    <li>
-        <h5>Exception Message</h5>
+<ol class="round">
+    <li class="one">
+        <h5>@Model.Exception.TargetSite</h5>
         @Model.Exception.Message
     </li>
 
-    <li>
-        <h5>Inner Exception Message</h5>
+    <li class="two">
+        <h5>@Model.Exception.InnerException.TargetSite</h5>
         @Model.Exception.InnerException.Message
+    </li>
+
+    <li class="three">
+        <h5>@Model.Exception.InnerException.InnerException.TargetSite</h5>
+        @Model.Exception.InnerException.InnerException.Message
     </li>
 </ol>
