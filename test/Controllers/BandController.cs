@@ -20,7 +20,7 @@ namespace test.Controllers
             return PartialView("_BandsPartial", db.BandProfiles.ToList());
         }
 
-        //
+ /*       //
         // POST: /Band/Register
 
         [ChildActionOnly]
@@ -54,5 +54,6 @@ namespace test.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+  */
     }
 }
