@@ -25,6 +25,7 @@ namespace test.Models
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int UserId { get; set; }
         public string UserName { get; set; }
+        public string DisplayName { get; set; }
     }
 
     public class LocalPasswordModel
@@ -63,6 +64,10 @@ namespace test.Models
 
     public class RegisterModel
     {
+        [Required]
+        [Display(Name = "Display name")]
+        public string DisplayName { get; set; }
+
         [Required]
         [Display(Name = "User name")]
         public string UserName { get; set; }

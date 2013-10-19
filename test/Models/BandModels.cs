@@ -25,5 +25,6 @@ namespace test.Models
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int BandId { get; set; }
         public string BandName { get; set; }
+        public int Creator { get; set; }
     }
 }
