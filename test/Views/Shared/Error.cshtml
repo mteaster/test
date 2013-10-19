@@ -22,7 +22,12 @@
     </li>
 
     <li>
-        <h5>Exception string</h5>
-        @Model.Exception.ToString()
+        <h5>Exception Message</h5>
+        @Model.Exception.Message
+    </li>
+
+    <li>
+        <h5>Inner Exception Message</h5>
+        @Model.Exception.InnerException.Message
     </li>
 </ol>
