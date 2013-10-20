@@ -8,9 +8,6 @@ namespace test.Models
     [Table("BandProfile")]
     public class BandProfile
     {
-        public BandProfile()
-        {}
-
         public BandProfile(string BandName, int CreatorId, string Password)
         {
             this.BandName = BandName;
@@ -37,9 +34,6 @@ namespace test.Models
     [Table("BandMembership")]
     public class BandMembership
     {
-        public BandMembership()
-        {}
-
         public BandMembership(string BandName, int MemberId)
         {
             this.BandName = BandName;
