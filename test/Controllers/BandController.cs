@@ -21,7 +21,7 @@ namespace test.Controllers
             {
                 BandDisplayModel bandDisplay = new BandDisplayModel();
                 bandDisplay.BandName = bandProfile.BandName;
-                bandDisplay.CreatorName = db.BandProfiles.Find(bandProfile.CreatorId).BandName
+                bandDisplay.CreatorName = db.BandProfiles.Find(bandProfile.CreatorId).BandName;
                 bandDisplays.Add(bandDisplay);
             }
 
