@@ -1,10 +1,17 @@
 ﻿@model IEnumerable<test.Models.UserProfile>
 
-<ol>
+<table>
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.UserName)</th>
+        <th>@Html.DisplayNameFor(model => model.DisplayName)</th>
+    </tr>
+
 @foreach (var item in Model)
 {
-    <li>
-        @Html.DisplayFor(modelItem => item.UserName) - @Html.DisplayFor(modelItem => item.DisplayName)
-    </li>
+    <tr>
+        <td>@Html.DisplayFor(modelItem => item.UserName)</tr>
+        <td>@Html.DisplayFor(modelItem => item.DisplayName)</tr>
+    </tr>
 }
-</ol>
+
+</table>
