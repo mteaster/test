@@ -24,6 +24,15 @@ namespace test.Models
         public string Password { get; set; }
     }
 
+    public class BandDisplayModel
+    {
+        [Required]
+        public string BandName;
+
+        [Required]
+        public string CreatorName;
+    }
+
     public class RegisterBandModel
     {
         [Required]

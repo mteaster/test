@@ -1,10 +1,13 @@
-﻿@model IEnumerable<test.Models.BandProfile>
+﻿@model IEnumerable<test.Models.BandDisplayModel>
 
 <ol>
 @foreach (var item in Model)
 {
     <li>
         @Html.DisplayFor(modelItem => item.BandName)
+    </li>
+    <li>
+        @Html.DisplayFor(modelItem => item.CreatorName
     </li>
 }
 </ol>

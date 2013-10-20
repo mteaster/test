@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using test.Models;
 using System.Web.Helpers;
 using WebMatrix.WebData;
+using System.Collections.Generic;
 
 namespace test.Controllers
 {
@@ -13,7 +14,18 @@ namespace test.Controllers
         [ChildActionOnly]
         public ActionResult AllBands()
         {
-            return PartialView("_BandsPartial", db.BandProfiles.ToList());
+            List<BandProfile> bandProfiles = db.BandProfiles.ToList();
+            List<BandDisplayModel> bandDisplays = new List<BandDisplayModel>();
+
+            foreach (BandProfile bandProfile in bandProfiles)
+            {
+                BandDisplayModel bandDisplay = new BandDisplayModel();
+                bandDisplay.BandName = bandProfile.BandName;
+                bandDisplay.CreatorName = bandProfile.CreatorProfile.UserName;
+                bandDisplays.Add(bandDisplay);
+            }
+
+            return PartialView("_BandsPartial", bandDisplays);
         }
 
         // POST: /Band/Register
@@ -39,6 +51,9 @@ namespace test.Controllers
                     band.Password = Crypto.HashPassword(model.Password);
 
                     db.BandProfiles.Add(band);
+
+                    // need to add as member now
+
                     db.SaveChanges();
 
                     // todo: send them somewhere nice
