@@ -21,7 +21,16 @@ namespace test.Controllers
             {
                 BandDisplayModel bandDisplay = new BandDisplayModel();
                 bandDisplay.BandName = bandProfile.BandName;
-                bandDisplay.CreatorName = bandProfile.CreatorProfile.UserName;
+
+                if (bandProfile.CreatorProfile == null)
+                {
+                    bandDisplay.CreatorName = "BROKEN";
+                }
+                else
+                {
+                    bandDisplay.CreatorName = bandProfile.CreatorProfile.UserName;
+                }
+   
                 bandDisplays.Add(bandDisplay);
             }
 
