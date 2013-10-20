@@ -1,31 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
-using System.Globalization;
-using System.Web.Mvc;
-using System.Web.Security;
 using System.Data.Entity.ModelConfiguration.Conventions;
-using test.Config;
+using System.Web.Mvc;
 
 namespace test.Models
 {
-    public class UsersContext : DbContext
-    {
-        public UsersContext() : base("DefaultConnection")
-        {
-        }
-
-        public DbSet<UserProfile> UserProfiles { get; set; }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-        }
-    }
-
     [Table("UserProfile")]
     public class UserProfile
     {

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
 using test.Models;
 
@@ -11,7 +6,7 @@ namespace test.Controllers
 {
     public class UserController : Controller
     {
-        private UsersContext db = new UsersContext();
+        private DatabaseContext database = new DatabaseContext();
 
         //
         // GET: /User/AllUsers
@@ -19,7 +14,7 @@ namespace test.Controllers
         [ChildActionOnly]
         public ActionResult AllUsers()
         {
-            return PartialView("_UsersPartial", db.UserProfiles.ToList());
+            return PartialView("_UsersPartial", database.UserProfiles.ToList());
         }
     }
 }

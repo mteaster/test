@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
 using test.Models;
 
@@ -9,8 +6,7 @@ namespace test.Controllers
 {
     public class HomeController : Controller
     {
-        private UsersContext usersContext = new UsersContext();
-        private BandsContext bandsContext = new BandsContext();
+        private DatabaseContext database = new DatabaseContext();
 
         public ActionResult Index()
         {
@@ -26,12 +22,12 @@ namespace test.Controllers
 
         public ActionResult Contact()
         {
-            return View(bandsContext.BandProfiles.ToList());
+            return View(database.BandProfiles.ToList());
         }
 
         public ActionResult AllBands()
         {
-            return PartialView("_BandsPartial", bandsContext.BandProfiles.ToList());
+            return PartialView("_BandsPartial", database.BandProfiles.ToList());
         }
     }
 }

@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Data.Entity;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using System.Data.Entity;
-using test.Models;
 using test.Config;
+using test.Models;
 
 namespace test
 {
@@ -27,11 +23,8 @@ namespace test
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
 
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<UsersContext, MigrationConfiguration>());
-            new UsersContext().Database.Initialize(false);
-
-            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<BandsContext>());
-            new BandsContext().Database.Initialize(false);
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<DatabaseContext, MigrationConfiguration>());
+            new DatabaseContext().Database.Initialize(false);
         }
     }
 }
