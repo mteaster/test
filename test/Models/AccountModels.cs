@@ -14,6 +14,7 @@ namespace test.Models
     {
         public UsersContext() : base("DefaultConnection")
         {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<UsersContext, MigrationConfiguration>());
         }
 
         public DbSet<UserProfile> UserProfiles { get; set; }

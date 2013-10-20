@@ -13,6 +13,7 @@ namespace test.Models
     {
         public BandsContext() : base("DefaultConnection")
         {
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<BandsContext>());
         }
 
         public DbSet<BandProfile> BandProfiles { get; set; }
