@@ -8,10 +8,14 @@ namespace test.Models
     [Table("BandProfile")]
     public class BandProfile
     {
-        [Key]
-        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public int BandId { get; set; }
+        public BandProfile(string BandName, int CreatorId, string Password)
+        {
+            this.BandName = BandName;
+            this.CreatorId = CreatorId;
+            this.Password = Password;
+        }
 
+        [Key]
         [Required]
         public string BandName { get; set; }
 
@@ -24,6 +28,26 @@ namespace test.Models
         public string Password { get; set; }
     }
 
+    [Table("BandMembership")]
+    public class BandMembership
+    {
+        public BandMembership(string BandName, int MemberId)
+        {
+            this.BandName = BandName;
+            this.MemberId = MemberId;
+        }
+
+        [Required]
+        public string BandName { get; set; }
+        [ForeignKey("BandName")]
+        public virtual BandProfile BandProfile { get; set; }
+
+        [Required]
+        public int MemberId { get; set; }
+        [ForeignKey("MemberId")]
+        public virtual UserProfile MemberProfile { get; set; }
+    }
+
     public class BandDisplayModel
     {
         [Required]
@@ -33,6 +57,10 @@ namespace test.Models
         [Required]
         [Display(Name = "Creator")]
         public string CreatorName { get; set; }
+
+        [Required]
+        [Display(Name = "Members")]
+        public string Members { get; set; }
     }
 
     public class RegisterBandModel

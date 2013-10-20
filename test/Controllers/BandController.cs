@@ -22,6 +22,7 @@ namespace test.Controllers
                 BandDisplayModel bandDisplay = new BandDisplayModel();
                 bandDisplay.BandName = bandProfile.BandName;
                 bandDisplay.CreatorName = db.UserProfiles.Find(bandProfile.CreatorId).UserName;
+                bandDisplay.Members = "TODO";
                 bandDisplays.Add(bandDisplay);
             }
 
@@ -45,15 +46,13 @@ namespace test.Controllers
                 }
                 else
                 {
-                    BandProfile band = new BandProfile();
-                    band.BandName = model.BandName;
-                    band.CreatorId = WebSecurity.CurrentUserId;
-                    band.Password = Crypto.HashPassword(model.Password);
-
+                    BandProfile band = new BandProfile(model.BandName,
+                        WebSecurity.CurrentUserId,
+                        Crypto.HashPassword(model.Password));
                     db.BandProfiles.Add(band);
 
-                    // need to add as member now
-
+                    BandMembership membership = new BandMembership(model.BandName, WebSecurity.CurrentUserId);
+                    db.BandMemberships.Add(membership);
                     db.SaveChanges();
 
                     // todo: send them somewhere nice
