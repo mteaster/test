@@ -37,17 +37,17 @@ namespace test.Models
     {
         public BandMembership() {}
 
-        public BandMembership(string BandName, int MemberId)
+        public BandMembership(string BandId, int MemberId)
         {
-            this.BandName = BandName;
+            this.BandId= BandId;
             this.MemberId = MemberId;
         }
 
         [Required]
         [Key]
         [Column(Order=0)]
-        public string BandName { get; set; }
-        [ForeignKey("BandName")]
+        public string BandId { get; set; }
+        [ForeignKey("BandId")]
         public virtual BandProfile BandProfile { get; set; }
 
         [Required]
