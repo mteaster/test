@@ -12,7 +12,7 @@ namespace test.Config
     {
         public MigrationConfiguration()
         {
-            this.AutomaticMigrationsEnabled = false;  // This is important as it will fail in some environments (like Azure) by default
+            this.AutomaticMigrationsEnabled = true;  // This is important as it will fail in some environments (like Azure) by default
             this.AutomaticMigrationDataLossAllowed = true;
         }
 
