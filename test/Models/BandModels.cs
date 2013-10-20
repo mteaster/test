@@ -18,7 +18,7 @@ namespace test.Models
         [Required]
         public int CreatorId { get; set; }
         [ForeignKey("CreatorId")]
-        public UserProfile CreatorProfile { get; set; }
+        public virtual UserProfile CreatorProfile { get; set; }
 
         [Required]
         public string Password { get; set; }

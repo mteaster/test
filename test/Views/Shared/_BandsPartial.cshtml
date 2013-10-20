@@ -4,10 +4,7 @@
 @foreach (var item in Model)
 {
     <li>
-        @Html.DisplayFor(modelItem => item.BandName)
-    </li>
-    <li>
-        @Html.DisplayFor(modelItem => item.CreatorName)
+        @Html.DisplayFor(modelItem => item.BandName) - @Html.DisplayFor(modelItem => item.CreatorName)
     </li>
 }
 </ol>
