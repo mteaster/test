@@ -27,11 +27,11 @@ namespace test.Models
     public class BandDisplayModel
     {
         [Required]
-        [Display(Name = "Band name")]
+        [Display(Name = "Band")]
         public string BandName;
 
         [Required]
-        [Display(Name = "Creator name")]
+        [Display(Name = "Creator")]
         public string CreatorName;
     }
 
