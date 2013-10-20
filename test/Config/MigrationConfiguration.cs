@@ -20,7 +20,7 @@ namespace test.Config
         {
             WebSecurity.InitializeDatabaseConnection("DefaultConnection", "UserProfile", "UserId", "UserName", autoCreateTables: true);
            
-            context.Database.ExecuteSqlCommand("CREATE CLUSTERED INDEX myIndex ON BandMembership (BandName, MemberId)");
+            //context.Database.ExecuteSqlCommand("CREATE CLUSTERED INDEX myIndex ON BandMembership (BandName, MemberId)");
         }
     }
 }
