@@ -5,6 +5,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using test.Config;
 using test.Models;
+using WebMatrix.WebData;
 
 namespace test
 {
@@ -23,7 +24,10 @@ namespace test
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
 
-            Database.SetInitializer<DatabaseContext>(null);
+            using (var db = new DatabaseContext())
+            {
+                db.Database.Initialize(false);
+            }
             WebSecurity.InitializeDatabaseConnection("DefaultConnection", "UserProfile", "UserId", "UserName", autoCreateTables: false);
         }
     }
