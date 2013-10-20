@@ -28,11 +28,11 @@ namespace test.Models
     {
         [Required]
         [Display(Name = "Band")]
-        public string BandName;
+        public string BandName { get; set; }
 
         [Required]
         [Display(Name = "Creator")]
-        public string CreatorName;
+        public string CreatorName { get; set; }
     }
 
     public class RegisterBandModel
