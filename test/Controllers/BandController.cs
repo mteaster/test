@@ -9,28 +9,33 @@ namespace test.Controllers
 {
     public class BandController : Controller
     {
-        private DatabaseContext db = new DatabaseContext();
+        private DatabaseContext database = new DatabaseContext();
 
         [ChildActionOnly]
         public ActionResult AllBands()
         {
-            List<BandProfile> bandProfiles = db.BandProfiles.ToList();
+            List<BandProfile> bandProfiles = database.BandProfiles.ToList();
             List<BandDisplayModel> bandDisplays = new List<BandDisplayModel>();
 
             foreach (BandProfile bandProfile in bandProfiles)
             {
                 BandDisplayModel bandDisplay = new BandDisplayModel();
                 bandDisplay.BandName = bandProfile.BandName;
-                bandDisplay.CreatorName = db.UserProfiles.Find(bandProfile.CreatorId).UserName;
+                bandDisplay.CreatorName = database.UserProfiles.Find(bandProfile.CreatorId).UserName;
 
-                List<BandMembership> memberships = db.BandMemberships.Where(b => b.BandId == bandProfile.BandId).ToList();
+                var res = from b in database.BandMemberships
+                          join u in database.UserProfiles 
+                          on b.MemberId equals u.UserId
+                          where b.BandId == bandProfile.BandId
+                          select u.UserName;
 
-                string members = "";
-                foreach (BandMembership membership in memberships)
-                {
-                    members += membership.BandId + " ";
-                }
-                bandDisplay.Members = members;
+                bandDisplay.Members = res.ToString();
+
+                //SELECT UserName
+                //FROM BandMembership
+                //INNER JOIN UserProfile
+                //ON BandMembership.MemberId = UserProfile.UserId
+                //WHERE BandId = bandProfile.BandId;
 
                 bandDisplays.Add(bandDisplay);
             }
@@ -49,7 +54,7 @@ namespace test.Controllers
 
             if (ModelState.IsValid)
             {
-                if (db.BandProfiles.Where(x => x.BandName == model.BandName).Count() > 0)
+                if (database.BandProfiles.Where(x => x.BandName == model.BandName).Count() > 0)
                 {
                     ModelState.AddModelError("", "band name taken idiot");
                 }
@@ -58,11 +63,11 @@ namespace test.Controllers
                     BandProfile band = new BandProfile(model.BandName,
                         WebSecurity.CurrentUserId,
                         Crypto.HashPassword(model.Password));
-                    db.BandProfiles.Add(band);
+                    database.BandProfiles.Add(band);
 
                     BandMembership membership = new BandMembership(band.BandId, WebSecurity.CurrentUserId);
-                    db.BandMemberships.Add(membership);
-                    db.SaveChanges();
+                    database.BandMemberships.Add(membership);
+                    database.SaveChanges();
 
                     // todo: send them somewhere nice
                     return RedirectToAction("Index", "Home");

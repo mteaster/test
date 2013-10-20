@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Data.Entity.Migrations;
+﻿using System.Data.Entity.Migrations;
 using test.Models;
 using WebMatrix.WebData;
 
@@ -19,7 +15,7 @@ namespace test.Config
         protected override void Seed(DatabaseContext context)
         {
             WebSecurity.InitializeDatabaseConnection("DefaultConnection", "UserProfile", "UserId", "UserName", autoCreateTables: true);
-           
+
             //context.Database.ExecuteSqlCommand("CREATE CLUSTERED INDEX myIndex ON BandMembership (BandName, MemberId)");
         }
     }
