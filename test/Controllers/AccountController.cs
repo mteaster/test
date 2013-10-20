@@ -8,7 +8,6 @@ using WebMatrix.WebData;
 namespace test.Controllers
 {
     [Authorize]
-    //[InitializeSimpleMembership]
     public class AccountController : Controller
     {
         //

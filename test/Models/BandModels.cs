@@ -12,5 +12,7 @@ namespace test.Models
         public int BandId { get; set; }
         public string BandName { get; set; }
         public int Creator { get; set; }
+
+        // todo
     }
 }

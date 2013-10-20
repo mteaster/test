@@ -4,7 +4,7 @@
 @foreach (var item in Model)
 {
     <li>
-        @Html.DisplayFor(modelItem => item.UserName)
+        @Html.DisplayFor(modelItem => item.UserName) - @Html.DisplayFor(modelItem => item.DisplayName)
     </li>
 }
 </ol>
