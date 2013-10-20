@@ -13,6 +13,7 @@ namespace test.Config
         public MigrationConfiguration()
         {
             this.AutomaticMigrationsEnabled = true;  // This is important as it will fail in some environments (like Azure) by default
+            this.AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(DatabaseContext context)
