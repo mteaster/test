@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using test.Models;
+using System.Web.Helpers;
+using WebMatrix.WebData;
 
 namespace test.Controllers
 {
@@ -14,7 +16,6 @@ namespace test.Controllers
             return PartialView("_BandsPartial", db.BandProfiles.ToList());
         }
 
- /*       //
         // POST: /Band/Register
 
         [ChildActionOnly]
@@ -35,7 +36,8 @@ namespace test.Controllers
                 {
                     BandProfile band = new BandProfile();
                     band.BandName = model.BandName;
-                    band.HashedPassword = Crypto.HashPassword(model.Password);
+                    band.CreatorId = WebSecurity.CurrentUserId;
+                    band.Password = Crypto.HashPassword(model.Password);
 
                     db.BandProfiles.Add(band);
                     db.SaveChanges();
@@ -48,6 +50,5 @@ namespace test.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-  */
     }
 }

@@ -18,7 +18,7 @@
 
 @if (Request.IsAuthenticated)
 {
-    <h3>band screen goes here</h3>
+    @Html.Partial("_RegisterBandPartial")
 }
 else
 {
