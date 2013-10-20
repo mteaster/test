@@ -19,6 +19,8 @@ namespace test.Config
         protected override void Seed(DatabaseContext context)
         {
             WebSecurity.InitializeDatabaseConnection("DefaultConnection", "UserProfile", "UserId", "UserName", autoCreateTables: true);
+           
+            context.Database.ExecuteSqlCommand("CREATE CLUSTERED INDEX myIndex ON BandMembership (BandName, MemberId)");
         }
     }
 }
