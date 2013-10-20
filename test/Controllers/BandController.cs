@@ -18,7 +18,6 @@ namespace test.Controllers
 
         // POST: /Band/Register
 
-        [ChildActionOnly]
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
