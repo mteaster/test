@@ -5,9 +5,7 @@ namespace test.Models
 {
     public class DatabaseContext : DbContext
     {
-        public DatabaseContext() : base("DefaultConnection")
-        {
-        }
+        public DatabaseContext() : base("DefaultConnection") {}
 
         public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<BandProfile> BandProfiles { get; set; }
@@ -15,8 +13,10 @@ namespace test.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();   
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }
