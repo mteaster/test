@@ -38,11 +38,13 @@ namespace test.Models
         }
 
         [Required]
+        [Key]
         public string BandName { get; set; }
         [ForeignKey("BandName")]
         public virtual BandProfile BandProfile { get; set; }
 
         [Required]
+        [Key]
         public int MemberId { get; set; }
         [ForeignKey("MemberId")]
         public virtual UserProfile MemberProfile { get; set; }
