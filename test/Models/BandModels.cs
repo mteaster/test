@@ -39,12 +39,14 @@ namespace test.Models
 
         [Required]
         [Key]
+        [Column(Order=0)]
         public string BandName { get; set; }
         [ForeignKey("BandName")]
         public virtual BandProfile BandProfile { get; set; }
 
         [Required]
         [Key]
+        [Column(Order = 1)]
         public int MemberId { get; set; }
         [ForeignKey("MemberId")]
         public virtual UserProfile MemberProfile { get; set; }
