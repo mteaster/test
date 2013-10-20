@@ -29,7 +29,7 @@ namespace test.Controllers
                           where b.BandId == bandProfile.BandId
                           select u.UserName;
 
-                bandDisplay.Members = res.ToString();
+                bandDisplay.Members = res.ToList().ToString();
 
                 //SELECT UserName
                 //FROM BandMembership
