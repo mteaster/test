@@ -4,6 +4,7 @@ using test.Models;
 using System.Web.Helpers;
 using WebMatrix.WebData;
 using System.Collections.Generic;
+using System.Text;
 
 namespace test.Controllers
 {
@@ -23,13 +24,13 @@ namespace test.Controllers
                 bandDisplay.BandName = bandProfile.BandName;
                 bandDisplay.CreatorName = database.UserProfiles.Find(bandProfile.CreatorId).UserName;
 
-                var res = from b in database.BandMemberships
+                var members = from b in database.BandMemberships
                           join u in database.UserProfiles 
                           on b.MemberId equals u.UserId
                           where b.BandId == bandProfile.BandId
                           select u.UserName;
 
-                bandDisplay.Members = res.ToList().ToString();
+                bandDisplay.Members = string.Join(", ", members.ToArray());
 
                 //SELECT UserName
                 //FROM BandMembership
