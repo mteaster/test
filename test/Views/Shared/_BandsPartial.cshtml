@@ -4,6 +4,7 @@
     <tr>
         <th>@Html.DisplayNameFor(model => model.BandName)</th>
         <th>@Html.DisplayNameFor(model => model.CreatorName)</th>
+        <th>Members</th>
     </tr>
 
 @foreach (var item in Model)
@@ -11,6 +12,7 @@
     <tr>
         <td>@Html.DisplayFor(modelItem => item.BandName)</td>
         <td>@Html.DisplayFor(modelItem => item.CreatorName)</td>
+        <td>@Html.DisplayFor(modelItem => item.Members)</td>
     </tr>
 }
 </table>
