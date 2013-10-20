@@ -14,9 +14,11 @@ namespace test.Models
         public int UserId { get; set; }
 
         [Required]
+        [Display(Name = "User name")]
         public string UserName { get; set; }
 
         [Required]
+        [Display(Name = "Display name")]
         public string DisplayName { get; set; }
     }
 

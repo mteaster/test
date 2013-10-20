@@ -27,9 +27,11 @@ namespace test.Models
     public class BandDisplayModel
     {
         [Required]
+        [Display(Name = "Band name")]
         public string BandName;
 
         [Required]
+        [Display(Name = "Creator name")]
         public string CreatorName;
     }
 
