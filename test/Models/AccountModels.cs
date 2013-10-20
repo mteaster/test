@@ -10,6 +10,7 @@ namespace test.Models
     public class UserProfile
     {
         [Key]
+        [Display(Name = "ID")]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int UserId { get; set; }
 

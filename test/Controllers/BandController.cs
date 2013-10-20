@@ -22,7 +22,16 @@ namespace test.Controllers
                 BandDisplayModel bandDisplay = new BandDisplayModel();
                 bandDisplay.BandName = bandProfile.BandName;
                 bandDisplay.CreatorName = db.UserProfiles.Find(bandProfile.CreatorId).UserName;
-                bandDisplay.Members = "TODO";
+
+                List<BandMembership> memberships = db.BandMemberships.Where(b => b.BandId == bandProfile.BandId).ToList();
+
+                string members = "";
+                foreach (BandMembership membership in memberships)
+                {
+                    members += membership.BandId + " ";
+                }
+                bandDisplay.Members = members;
+
                 bandDisplays.Add(bandDisplay);
             }
 

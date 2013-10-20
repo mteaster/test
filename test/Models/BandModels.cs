@@ -60,6 +60,15 @@ namespace test.Models
 
     public class BandDisplayModel
     {
+        public BandDisplayModel() {}
+
+        public BandDisplayModel(string BandName, string CreatorName, string Members)
+        {
+            this.BandName = BandName;
+            this.CreatorName = CreatorName;
+            this.Members = Members;
+        }
+
         [Required]
         [Display(Name = "Band")]
         public string BandName { get; set; }
