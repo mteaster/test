@@ -51,8 +51,8 @@ namespace test.Controllers
                         Crypto.HashPassword(model.Password));
                     db.BandProfiles.Add(band);
 
-                    BandMembership membership = new BandMembership(model.BandName, WebSecurity.CurrentUserId);
-                    db.BandMemberships.Add(membership);
+                    //BandMembership membership = new BandMembership(model.BandName, WebSecurity.CurrentUserId);
+                    //db.BandMemberships.Add(membership);
                     db.SaveChanges();
 
                     // todo: send them somewhere nice
