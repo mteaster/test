@@ -23,8 +23,8 @@ namespace test
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
 
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<DatabaseContext, MigrationConfiguration>());
-            new DatabaseContext().Database.Initialize(false);
+            Database.SetInitializer<DatabaseContext>(null);
+            WebSecurity.InitializeDatabaseConnection("DefaultConnection", "UserProfile", "UserId", "UserName", autoCreateTables: false);
         }
     }
 }
