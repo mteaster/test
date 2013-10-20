@@ -14,8 +14,11 @@ namespace test.Models
             this.CreatorId = CreatorId;
             this.Password = Password;
         }
-
+        
         [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        public int BandId { get; set; }
+
         [Required]
         public string BandName { get; set; }
 
