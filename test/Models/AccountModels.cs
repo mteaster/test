@@ -7,6 +7,7 @@ using System.Globalization;
 using System.Web.Mvc;
 using System.Web.Security;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using test.Config;
 
 namespace test.Models
 {
