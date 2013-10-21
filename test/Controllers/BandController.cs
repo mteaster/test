@@ -82,13 +82,22 @@ namespace test.Controllers
         [Authorize]
         public ActionResult Join(string id)
         {
-            //database.BandProfiles.Find(id);
+            BandProfile bandProfile = database.BandProfiles.Find(id);
+
+            if (bandProfile == null)
+            {
+                ViewBag.BandId = "FAILED TO FIND A BAND WITH no band with id " + id;
+            }
+            else
+            {
+                ViewBag.BandId = "found the band with id " + id;
+            }
 
             //BandMembership membership = new BandMembership(band.BandId, WebSecurity.CurrentUserId);
             //database.BandMemberships.Add(membership);
             //database.SaveChanges();
 
-            ViewBag.BandId = id;
+            //ViewBag.BandId = id;
 
             return View();
         }
