@@ -78,5 +78,11 @@ namespace test.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+
+        public ActionResult Join(string id)
+        {
+            ViewBag.BandId = id;
+            return View();
+        }
     }
 }

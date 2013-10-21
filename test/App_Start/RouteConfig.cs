@@ -18,6 +18,12 @@ namespace test
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "JoinBand",
+                url: "Band/Join/{id}",
+                defaults: new { controller = "Band", action = "Join", id = "" }
+            );
         }
     }
 }
