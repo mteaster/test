@@ -83,37 +83,30 @@ namespace test.Controllers
         [Authorize]
         public ActionResult Join(string bandId)
         {
-            ViewBag.BandId = bandId;
-            return View();
-
             int idAsInt;
 
             try
             {
                 idAsInt = Convert.ToInt32(bandId);
-
-                ViewBag.BandId = bandId + " | " + idAsInt;
-
-                return View();
             }
             catch (FormatException fe)
             {
-                ViewBag.BandId = "format exception for id " + bandId;
+                ViewBag.StatusMessage= "format exception for id " + bandId;
                 return View();
             }
             catch (OverflowException oe)
             {
-                ViewBag.BandId = "overflow exception for id " + bandId;
+                ViewBag.StatusMessage = "overflow exception for id " + bandId;
                 return View();
             }
 
             if (database.BandProfiles.Find(idAsInt) == null)
             {
-                ViewBag.BandId = "couldn't find band with id " + idAsInt;
+                ViewBag.StatusMessage = "couldn't find band with id " + idAsInt;
             }
             else
             {
-                ViewBag.BandId = "found the band with id " + idAsInt;
+                ViewBag.StatusMessage = "found the band with id " + idAsInt;
             }
 
             //BandMembership membership = new BandMembership(band.BandId, WebSecurity.CurrentUserId);
