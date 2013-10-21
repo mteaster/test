@@ -83,27 +83,27 @@ namespace test.Controllers
         [Authorize]
         public ActionResult Join(string bandId)
         {
-            ViewBag.BandId = id;
+            ViewBag.BandId = bandId;
             return View();
 
             int idAsInt;
 
             try
             {
-               idAsInt = Convert.ToInt32(id);
+                idAsInt = Convert.ToInt32(bandId);
 
-                ViewBag.BandId = id + " | " + idAsInt;
+                ViewBag.BandId = bandId + " | " + idAsInt;
 
                 return View();
             }
             catch (FormatException fe)
             {
-                ViewBag.BandId = "format exception for id " + id;
+                ViewBag.BandId = "format exception for id " + bandId;
                 return View();
             }
             catch (OverflowException oe)
             {
-                ViewBag.BandId = "overflow exception for id " + id;
+                ViewBag.BandId = "overflow exception for id " + bandId;
                 return View();
             }
 
