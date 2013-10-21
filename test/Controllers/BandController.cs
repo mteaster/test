@@ -102,11 +102,11 @@ namespace test.Controllers
 
             if (database.BandProfiles.Find(idAsInt) == null)
             {
-                ViewBag.BandId = "couldn't find band with id " + id;
+                ViewBag.BandId = "couldn't find band with id " + idAsInt;
             }
             else
             {
-                ViewBag.BandId = "found the band with id " + id;
+                ViewBag.BandId = "found the band with id " + idAsInt;
             }
 
             //BandMembership membership = new BandMembership(band.BandId, WebSecurity.CurrentUserId);
