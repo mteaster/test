@@ -82,6 +82,13 @@ namespace test.Models
         public string Members { get; set; }
     }
 
+    public class BandSearchModel
+    {
+        [Required]
+        [Display(Name = "Band name")]
+        public string BandName { get; set; }
+    }
+
     public class RegisterBandModel
     {
         [Required]
