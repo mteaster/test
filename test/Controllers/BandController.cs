@@ -106,14 +106,12 @@ namespace test.Controllers
             }
             else
             {
-                ViewBag.StatusMessage = "found the band with id " + idAsInt;
+                BandMembership membership = new BandMembership(idAsInt, WebSecurity.CurrentUserId);
+                database.BandMemberships.Add(membership);
+                database.SaveChanges();
+
+                ViewBag.StatusMessage = "you joined the band with id " + idAsInt;
             }
-
-            //BandMembership membership = new BandMembership(band.BandId, WebSecurity.CurrentUserId);
-            //database.BandMemberships.Add(membership);
-            //database.SaveChanges();
-
-            //ViewBag.BandId = id;
 
             return View();
         }
