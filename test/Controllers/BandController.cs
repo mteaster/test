@@ -82,6 +82,12 @@ namespace test.Controllers
         [Authorize]
         public ActionResult Join(string id)
         {
+            //database.BandProfiles.Find(id);
+
+            //BandMembership membership = new BandMembership(band.BandId, WebSecurity.CurrentUserId);
+            //database.BandMemberships.Add(membership);
+            //database.SaveChanges();
+
             ViewBag.BandId = id;
 
             return View();
