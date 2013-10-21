@@ -22,7 +22,7 @@ namespace test
             routes.MapRoute(
                 name: "JoinBand",
                 url: "Band/Join/{bandId}",
-                defaults: new { controller = "Band", action = "Join" }
+                defaults: new { controller = "Band", action = "Join", bandId = "" }
             );
         }
     }
