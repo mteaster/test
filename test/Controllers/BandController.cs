@@ -87,9 +87,9 @@ namespace test.Controllers
 
             try
             {
-                idAsInt = Convert.ToInt32(id);
+               idAsInt = Convert.ToInt32(id);
 
-                ViewBag.BandId = idAsInt;
+                ViewBag.BandId = id + " | " + idAsInt;
 
                 return View();
             }
