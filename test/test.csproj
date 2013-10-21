@@ -321,6 +321,10 @@
     <Content Include="Views\Band\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Views\Band\Update.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_UpdateBandPartial.cshtml" />
     <Content Include="Views\Calendar\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
