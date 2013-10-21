@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Dasboard";
+}
+
+<h2>Band Management Dashboard Screen</h2>
+<div><h5>Message Board</h5>
+    <p>@ViewBag.Message</p>
+    <textarea id="txtMsgBoard" cols="20" rows="2"></textarea><input id="btnMsgSubmit" type="submit" value="submit" />
+</div>
+<hr />
+<div>
+    <table style="width: 100%;">
+        <tr>
+            <td>@Html.ActionLink("Rolodex", "Index", "Rolodex")</td>
+            <td>&nbsp;</td>
+            <td>@Html.ActionLink("Calendar", "Index", "Calendar")</td>
+        </tr>
+        <tr>
+            <td>@Html.ActionLink("FileCabinet", "Index", "FileCabinet")</td>
+            <td>@Html.ActionLink("Online", "Index", "Online")</td>
+            <td>@Html.ActionLink("Budget", "Index", "Budget")</td>
+        </tr>
+     
+    </table>
+</div>
