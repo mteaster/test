@@ -100,7 +100,7 @@ namespace test.Controllers
                 return View();
             }
 
-            if (database.BandProfiles.Find() == null)
+            if (database.BandProfiles.Find(idAsInt) == null)
             {
                 ViewBag.BandId = "couldn't find band with id " + id;
             }
