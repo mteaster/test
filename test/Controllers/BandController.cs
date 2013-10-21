@@ -88,6 +88,10 @@ namespace test.Controllers
             try
             {
                 idAsInt = Convert.ToInt32(id);
+
+                ViewBag.BandId = idAsInt;
+
+                return View();
             }
             catch (FormatException fe)
             {
