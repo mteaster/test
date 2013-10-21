@@ -116,7 +116,7 @@ namespace test.Controllers
             original.DisplayName = model.DisplayName;
             database.SaveChanges();
 
-            return RedirectToAction("Manage", new { Message = ManageMessageId.SetPasswordSuccess });
+            return RedirectToAction("Manage", new { Message = ManageMessageId.ChangeDisplayNameSuccess });
         }
         
 
