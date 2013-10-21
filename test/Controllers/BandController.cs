@@ -5,6 +5,7 @@ using System.Web.Helpers;
 using WebMatrix.WebData;
 using System.Collections.Generic;
 using System.Text;
+using System;
 
 namespace test.Controllers
 {
@@ -82,11 +83,26 @@ namespace test.Controllers
         [Authorize]
         public ActionResult Join(string id)
         {
-            BandProfile bandProfile = database.BandProfiles.Find(id);
+            int idAsInt;
 
-            if (bandProfile == null)
+            try
             {
-                ViewBag.BandId = "FAILED TO FIND A BAND WITH no band with id " + id;
+                idAsInt = Convert.ToInt32(id);
+            }
+            catch (FormatException fe)
+            {
+                ViewBag.BandId = "format exception for id " + id;
+                return View();
+            }
+            catch (OverflowException oe)
+            {
+                ViewBag.BandId = "overflow exception for id " + id;
+                return View();
+            }
+
+            if (database.BandProfiles.Find() == null)
+            {
+                ViewBag.BandId = "couldn't find band with id " + id;
             }
             else
             {
