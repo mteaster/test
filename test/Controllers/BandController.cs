@@ -5,6 +5,7 @@ using System.Web.Helpers;
 using WebMatrix.WebData;
 using System.Collections.Generic;
 using System.Text;
+using System.Data;
 
 namespace test.Controllers
 {
@@ -100,6 +101,51 @@ namespace test.Controllers
             //ViewBag.BandId = id;
 
             return View();
+        }
+
+        [Authorize]
+        public ActionResult Update(int id, UpdateBandModel updateBandModel)
+        {
+            bool updateName = false;
+            bool updatePassword = false;
+            // Load the current band profile by id
+            BandProfile bandProfile = database.BandProfiles.Find(id);
+
+            if (bandProfile == null)
+            {
+                // Could not find the band. This shouldn't happen
+                ViewBag.UpdateError = "Unexpected Error: Could not update profile.";
+                return View();
+            }
+            else
+            {
+                // update band name, if new one provided
+                if (!string.IsNullOrWhiteSpace(updateBandModel.NewBandName))
+                {
+                    bandProfile.BandName = updateBandModel.NewBandName;
+                    updateName = true;
+                }
+
+                // update band password, if new one provided
+                if (!string.IsNullOrWhiteSpace(updateBandModel.NewPassword))
+                {
+                    bandProfile.Password = Crypto.HashPassword(updateBandModel.NewPassword);
+                    updatePassword = true;
+                }
+
+                if (updatePassword || updateName)
+                {
+                    database.Entry(bandProfile).State = EntityState.Modified;
+                    database.SaveChanges();
+                    return View("Home");
+                }
+                else
+                {
+                    ViewBag.UpdateError = "No changes detected.";
+                    return View();
+                }
+            }
+
         }
     }
 }
