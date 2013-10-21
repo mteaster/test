@@ -10,6 +10,8 @@ namespace test.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        private DatabaseContext database = new DatabaseContext();
+
         //
         // GET: /Account/Login
 
@@ -95,11 +97,28 @@ namespace test.Controllers
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
                 : message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
+                : message == ManageMessageId.ChangeDisplayNameSuccess ? "Your display name has been changed."
                 : "";
             ViewBag.HasLocalPassword = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
             ViewBag.ReturnUrl = Url.Action("Manage");
             return View();
         }
+
+
+        //
+        // POST: /Account/ChangeDisplayName
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangeDisplayName(DisplayNameModel model)
+        {
+            UserProfile original = database.UserProfiles.Find(WebSecurity.CurrentUserId);
+            original.DisplayName = model.DisplayName;
+            database.SaveChanges();
+
+            return RedirectToAction("Manage", new { Message = ManageMessageId.SetPasswordSuccess });
+        }
+        
 
         //
         // POST: /Account/Manage
@@ -182,6 +201,7 @@ namespace test.Controllers
             ChangePasswordSuccess,
             SetPasswordSuccess,
             RemoveLoginSuccess,
+            ChangeDisplayNameSuccess
         }
 
         private static string ErrorCodeToString(MembershipCreateStatus createStatus)

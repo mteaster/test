@@ -81,7 +81,7 @@ namespace test.Controllers
         }
 
         [Authorize]
-        public ActionResult Join(string id)
+        public ActionResult Join(string bandId)
         {
             ViewBag.BandId = id;
             return View();

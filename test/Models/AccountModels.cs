@@ -42,6 +42,13 @@ namespace test.Models
         public string ConfirmPassword { get; set; }
     }
 
+    public class DisplayNameModel
+    {
+        [Required]
+        [Display(Name = "Display name")]
+        public string DisplayName { get; set; }
+    }
+
     public class LoginModel
     {
         [Required]
