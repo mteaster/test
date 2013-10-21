@@ -79,9 +79,11 @@ namespace test.Controllers
             return View(model);
         }
 
+        [Authorize]
         public ActionResult Join(string id)
         {
             ViewBag.BandId = id;
+
             return View();
         }
     }
