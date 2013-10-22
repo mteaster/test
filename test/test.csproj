@@ -357,7 +357,7 @@
     <Content Include="Views\Band\_SearchResultsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Home\_BandsPartial.cshtml" />
+    <Content Include="Views\Shared\_BandsPartial.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
