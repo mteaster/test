@@ -311,7 +311,7 @@
     <Content Include="Views\Shared\_UserListPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\_RegisterBandPartial.cshtml" />
+    <Content Include="Views\Band\_RegisterBandPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Band\Join.cshtml" />
@@ -323,7 +323,7 @@
     <Content Include="Views\Band\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\_UpdateBandPartial.cshtml" />
+    <Content Include="Views\Band\_UpdateBandPartial.cshtml" />
     <Content Include="Views\Calendar\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -351,10 +351,10 @@
     <Content Include="Views\Home\_BandManagementPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\_SearchBandPartial.cshtml" />
+    <Content Include="Views\Band\_SearchBandPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\_SearchResultsPartial.cshtml" />
+    <Content Include="Views\Band\_SearchResultsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_BandsPartial.cshtml" />
