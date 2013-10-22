@@ -42,6 +42,13 @@ namespace test.Models
         public string ConfirmPassword { get; set; }
     }
 
+    public class DisplayNameModel
+    {
+        [Required]
+        [Display(Name = "Display name")]
+        public string DisplayName { get; set; }
+    }
+
     public class LoginModel
     {
         [Required]
@@ -65,6 +72,8 @@ namespace test.Models
 
         [Required]
         [Display(Name = "User name")]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 3)]
+        [RegularExpression(@"(\S)+", ErrorMessage = "Your {0} can't contain spaces.")]
         public string UserName { get; set; }
 
         [Required]

@@ -21,8 +21,8 @@ namespace test
 
             routes.MapRoute(
                 name: "JoinBand",
-                url: "Band/Join/{id}",
-                defaults: new { controller = "Band", action = "Join", id = "" }
+                url: "Band/Join/{bandId}",
+                defaults: new { controller = "Band", action = "Join", bandId = "" }
             );
         }
     }

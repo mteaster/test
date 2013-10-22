@@ -5,7 +5,7 @@ using System.Web.Helpers;
 using WebMatrix.WebData;
 using System.Collections.Generic;
 using System.Text;
-using System.Data;
+using System;
 
 namespace test.Controllers
 {
@@ -81,71 +81,39 @@ namespace test.Controllers
         }
 
         [Authorize]
-        public ActionResult Join(string id)
+        public ActionResult Join(string bandId)
         {
-            BandProfile bandProfile = database.BandProfiles.Find(id);
+            int idAsInt;
 
-            if (bandProfile == null)
+            try
             {
-                ViewBag.BandId = "FAILED TO FIND A BAND WITH no band with id " + id;
+                idAsInt = Convert.ToInt32(bandId);
             }
-            else
+            catch (FormatException fe)
             {
-                ViewBag.BandId = "found the band with id " + id;
-            }
-
-            //BandMembership membership = new BandMembership(band.BandId, WebSecurity.CurrentUserId);
-            //database.BandMemberships.Add(membership);
-            //database.SaveChanges();
-
-            //ViewBag.BandId = id;
-
-            return View();
-        }
-
-        [Authorize]
-        public ActionResult Update(int id, UpdateBandModel updateBandModel)
-        {
-            bool updateName = false;
-            bool updatePassword = false;
-            // Load the current band profile by id
-            BandProfile bandProfile = database.BandProfiles.Find(id);
-
-            if (bandProfile == null)
-            {
-                // Could not find the band. This shouldn't happen
-                ViewBag.UpdateError = "Unexpected Error: Could not update profile.";
+                ViewBag.StatusMessage= "format exception for id " + bandId;
                 return View();
             }
-            else
+            catch (OverflowException oe)
             {
-                // update band name, if new one provided
-                if (!string.IsNullOrWhiteSpace(updateBandModel.NewBandName))
-                {
-                    bandProfile.BandName = updateBandModel.NewBandName;
-                    updateName = true;
-                }
-
-                // update band password, if new one provided
-                if (!string.IsNullOrWhiteSpace(updateBandModel.NewPassword))
-                {
-                    bandProfile.Password = Crypto.HashPassword(updateBandModel.NewPassword);
-                    updatePassword = true;
-                }
-
-                if (updatePassword || updateName)
-                {
-                    database.Entry(bandProfile).State = EntityState.Modified;
-                    database.SaveChanges();
-                    return View("Home");
-                }
-                else
-                {
-                    ViewBag.UpdateError = "No changes detected.";
-                    return View();
-                }
+                ViewBag.StatusMessage = "overflow exception for id " + bandId;
+                return View();
             }
 
+            if (database.BandProfiles.Find(idAsInt) == null)
+            {
+                ViewBag.StatusMessage = "couldn't find band with id " + idAsInt;
+            }
+            else
+            {
+                BandMembership membership = new BandMembership(idAsInt, WebSecurity.CurrentUserId);
+                database.BandMemberships.Add(membership);
+                database.SaveChanges();
+
+                ViewBag.StatusMessage = "you joined the band with id " + idAsInt;
+            }
+
+            return View();
         }
     }
 }
