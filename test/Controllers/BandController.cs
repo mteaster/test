@@ -41,10 +41,12 @@ namespace test.Controllers
             return PartialView("_BandListPartial", bandDisplays);
         }
 
+        //
+        // GET: /Band/Register
+
         [ChildActionOnly]
         public ActionResult Bands()
         {
-            List<BandProfile> bandProfiles = database.BandProfiles.ToList();
             List<BandDisplayModel> bandDisplays = new List<BandDisplayModel>();
 
             // this probably needs to be optimized, i feel like im doing something really dumb
@@ -107,6 +109,50 @@ namespace test.Controllers
                     // todo: send them somewhere nice
                     return RedirectToAction("Index", "Home");
                 }
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+        //
+        // GET: /Band/Search
+
+        public ActionResult Search()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Band/Register
+
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Search(SearchBandModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                List<BandDisplayModel> bandDisplays = new List<BandDisplayModel>();
+
+                var results = from b in database.BandProfiles
+                              join u in database.UserProfiles
+                              on b.CreatorId equals u.UserId
+                              where b.BandName.Contains(model.BandName)
+                              select new { b.BandId, b.BandName, u.UserName };
+
+                // again, this is seems dumb
+                foreach (var row in results)
+                {
+                    BandDisplayModel bandDisplay = new BandDisplayModel();
+                    bandDisplay.BandId = row.BandId;
+                    bandDisplay.BandName = row.BandName;
+                    bandDisplay.CreatorName = row.UserName;
+
+                    bandDisplays.Add(bandDisplay);
+                }
+
+                return View("Join", bandDisplays);
             }
 
             // If we got this far, something failed, redisplay form

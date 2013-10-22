@@ -1,5 +1,10 @@
 ﻿@{
-    ViewBag.Title = "Search";
+    ViewBag.Title = "Search for bands";
 }
 
-<h2>Search</h2>
+@Html.Partial("_SearchBandPartial")
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
