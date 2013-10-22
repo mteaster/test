@@ -129,8 +129,11 @@ namespace test.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Search(SearchViewModel model)
+        public ActionResult Search(SearchBandModel model)
         {
+            SearchViewModel svm = new SearchViewModel();
+            svm.searchModel = model;
+
             if (ModelState.IsValid)
             {
                 List<BandDisplayModel> bandDisplays = new List<BandDisplayModel>();
@@ -138,7 +141,7 @@ namespace test.Controllers
                 var results = from b in database.BandProfiles
                               join u in database.UserProfiles
                               on b.CreatorId equals u.UserId
-                              where b.BandName.Contains(model.searchModel.BandName)
+                              where b.BandName.Contains(model.BandName)
                               select new { b.BandId, b.BandName, u.UserName };
 
                 // again, this is seems dumb
@@ -152,12 +155,13 @@ namespace test.Controllers
                     bandDisplays.Add(bandDisplay);
                 }
 
-                model.resultsModel = bandDisplays;
-                return View(model);
+                svm.resultsModel = bandDisplays;
+
+                return View(svm);
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return View(svm);
         }
 
         [Authorize]
