@@ -1,10 +1,15 @@
-﻿@{
+﻿@model IEnumerable<test.Models.BandDisplayModel>
+
+@{
     ViewBag.Title = "Search for bands";
 }
 
 @Html.Partial("_SearchBandPartial")
 
+@Html.Partial("_SearchResultsPartial");
+
 @section Scripts
 {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
