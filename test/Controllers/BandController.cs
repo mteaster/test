@@ -70,6 +70,11 @@ namespace test.Controllers
             return PartialView("_BandsPartial", bandDisplays);
         }
 
+        public ActionResult Register()
+        {
+            return View();
+        }
+
         // POST: /Band/Register
 
         [Authorize]
