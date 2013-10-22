@@ -23,6 +23,7 @@ namespace test.Controllers
             foreach (BandProfile bandProfile in bandProfiles)
             {
                 BandDisplayModel bandDisplay = new BandDisplayModel();
+                bandDisplay.BandId = bandProfile.BandId;
                 bandDisplay.BandName = bandProfile.BandName;
                 bandDisplay.CreatorName = database.UserProfiles.Find(bandProfile.CreatorId).UserName;
 
@@ -34,11 +35,34 @@ namespace test.Controllers
 
                 bandDisplay.Members = string.Join(", ", members.ToArray());
 
-                //SELECT UserName
-                //FROM BandMembership
-                //INNER JOIN UserProfile
-                //ON BandMembership.MemberId = UserProfile.UserId
-                //WHERE BandId = bandProfile.BandId;
+                bandDisplays.Add(bandDisplay);
+            }
+
+            return PartialView("_BandListPartial", bandDisplays);
+        }
+
+        [ChildActionOnly]
+        public ActionResult Bands()
+        {
+            List<BandProfile> bandProfiles = database.BandProfiles.ToList();
+            List<BandDisplayModel> bandDisplays = new List<BandDisplayModel>();
+
+            // this probably needs to be optimized, i feel like im doing something really dumb
+
+            var results = from m in database.BandMemberships
+                        join p in database.BandProfiles
+                        on m.BandId equals p.BandId
+                        join u in database.UserProfiles
+                        on p.CreatorId equals u.UserId
+                        where m.MemberId == WebSecurity.CurrentUserId
+                        select new { p.BandId, p.BandName, u.UserName };
+
+            foreach(var row in results)
+            {
+                BandDisplayModel bandDisplay = new BandDisplayModel();
+                bandDisplay.BandId = row.BandId;
+                bandDisplay.BandName = row.BandName;
+                bandDisplay.CreatorName = row.UserName;
 
                 bandDisplays.Add(bandDisplay);
             }
@@ -90,12 +114,12 @@ namespace test.Controllers
             {
                 idAsInt = Convert.ToInt32(bandId);
             }
-            catch (FormatException fe)
+            catch (FormatException)
             {
                 ViewBag.StatusMessage= "format exception for id " + bandId;
                 return View();
             }
-            catch (OverflowException oe)
+            catch (OverflowException)
             {
                 ViewBag.StatusMessage = "overflow exception for id " + bandId;
                 return View();

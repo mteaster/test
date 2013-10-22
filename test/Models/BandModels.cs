@@ -62,12 +62,17 @@ namespace test.Models
     {
         public BandDisplayModel() {}
 
-        public BandDisplayModel(string BandName, string CreatorName, string Members)
+        public BandDisplayModel(int BandId, string BandName, string CreatorName, string Members)
         {
+            this.BandId = BandId;
             this.BandName = BandName;
             this.CreatorName = CreatorName;
             this.Members = Members;
         }
+
+        [Required]
+        [Display(Name = "ID")]
+        public int BandId { get; set; }
 
         [Required]
         [Display(Name = "Band")]
@@ -82,7 +87,7 @@ namespace test.Models
         public string Members { get; set; }
     }
 
-    public class BandSearchModel
+    public class SearchBandModel
     {
         [Required]
         [Display(Name = "Band name")]
