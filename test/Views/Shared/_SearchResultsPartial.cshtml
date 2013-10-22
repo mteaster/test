@@ -1,16 +1,21 @@
 ﻿@model IEnumerable<test.Models.BandDisplayModel>
 
-<table>
-    <tr>
-        <th>@Html.DisplayNameFor(model => model.BandName)</th>
-        <th>@Html.DisplayNameFor(model => model.CreatorName)</th>
-    </tr>
 
-@foreach (var item in Model)
+@if (Model != null)
 {
-    <tr>
-        <td>@Html.ActionLink(item.BandName, "Join", "Band", new { bandId = item.BandId }, null)</td>
-        <td>@Html.DisplayFor(modelItem => item.CreatorName)</td>
-    </tr>
+    <table>
+        <tr>
+            <th>Html.DisplayNameFor(model => model.BandName)</th>
+            <th>Html.DisplayNameFor(model => model.CreatorName)</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.ActionLink(item.BandName, "Join", "Band", new { bandId = item.BandId }, null)</td>
+                <td>@Html.DisplayFor(modelItem => item.CreatorName)</td>
+            </tr>
+        }
+    }
+    </table>
 }
-</table>

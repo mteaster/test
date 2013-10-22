@@ -124,7 +124,7 @@ namespace test.Controllers
         }
 
         //
-        // POST: /Band/Register
+        // POST: /Band/Search
 
         [Authorize]
         [HttpPost]
@@ -152,7 +152,7 @@ namespace test.Controllers
                     bandDisplays.Add(bandDisplay);
                 }
 
-                return PartialView("_SearchResultsPartial", bandDisplays);
+                return View(bandDisplays);
             }
 
             // If we got this far, something failed, redisplay form
