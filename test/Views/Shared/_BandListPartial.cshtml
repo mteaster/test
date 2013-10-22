@@ -1,0 +1,20 @@
+﻿@model IEnumerable<test.Models.BandDisplayModel>
+
+<table>
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.BandId)</th>
+        <th>@Html.DisplayNameFor(model => model.BandName)</th>
+        <th>@Html.DisplayNameFor(model => model.CreatorName)</th>
+        <th>@Html.DisplayNameFor(model => model.Members)</th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <th>@Html.DisplayFor(modelItem => item.BandId)</th>
+        <td>@Html.DisplayFor(modelItem => item.BandName)</td>
+        <td>@Html.DisplayFor(modelItem => item.CreatorName)</td>
+        <td>@Html.DisplayFor(modelItem => item.Members)</td>
+    </tr>
+}
+</table>

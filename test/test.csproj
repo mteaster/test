@@ -299,7 +299,7 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\_BandsPartial.cshtml" />
+    <Content Include="Views\Shared\_BandListPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\_LandingPartial.cshtml" />
@@ -308,7 +308,7 @@
     <Content Include="Views\Shared\_RegisterPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\_UsersPartial.cshtml" />
+    <Content Include="Views\Shared\_UserListPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_RegisterBandPartial.cshtml" />
@@ -342,7 +342,7 @@
     <Content Include="Views\Budget\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\_ChangeDisplayNamePartial.cshtml" />
+    <Content Include="Views\Account\_ChangeDisplayNamePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Band\Search.cshtml" />
@@ -352,6 +352,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_SearchBandPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_SearchResultsPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_BandsPartial.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
