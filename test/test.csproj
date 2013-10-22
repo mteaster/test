@@ -170,7 +170,6 @@
     <Compile Include="Controllers\BandController.cs" />
     <Compile Include="Controllers\BudgetController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
-    <Compile Include="Controllers\Copy of BandController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\FileCabinetController.cs" />
     <Compile Include="Controllers\OnlineController.cs" />
