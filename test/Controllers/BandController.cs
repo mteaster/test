@@ -120,7 +120,7 @@ namespace test.Controllers
 
         public ActionResult Search()
         {
-            return View();
+            return View(new SearchViewModel());
         }
 
         //
