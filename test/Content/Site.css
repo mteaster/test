@@ -752,6 +752,14 @@ tr.pager td {
         footer p {
             margin: 0;
         }
+
+    /* MOBILE ADDITIONs */
+
+    section.half
+    {
+        float: left;
+        width: 100%;
+    }
 }
 
 
@@ -761,7 +769,6 @@ tr.pager td {
 
 section.half
 {
-    margin-left: 40px;
     float: left;
     width: 40%;
 }
