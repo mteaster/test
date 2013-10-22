@@ -3,10 +3,10 @@
 
 @if (Model != null)
 {
-    <table>
+    <table class="pretty" border="0" cellpadding="0" cellspacing="0">
         <tr>
-            <th>Html.DisplayNameFor(model => model.BandName)</th>
-            <th>Html.DisplayNameFor(model => model.CreatorName)</th>
+            <th>@Html.DisplayNameFor(model => model.BandName)</th>
+            <th>@Html.DisplayNameFor(model => model.CreatorName)</th>
         </tr>
 
         @foreach (var item in Model)
