@@ -19,9 +19,6 @@
 @if (Request.IsAuthenticated)
 {
     Html.RenderAction("Bands", "Band");
-
-    Html.ActionLink("Create a band", "Register", "Band");
-    Html.ActionLink("Search for a band to join", "Search");
 }
 else
 {
