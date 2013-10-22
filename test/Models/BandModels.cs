@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Web.Mvc;
+using System.Collections.Generic;
 
 namespace test.Models
 {
@@ -85,6 +86,12 @@ namespace test.Models
         [Required]
         [Display(Name = "Members")]
         public string Members { get; set; }
+    }
+
+    public class SearchViewModel
+    {
+        public SearchBandModel searchModel { get; set; }
+        public IEnumerable<test.Models.BandDisplayModel> resultsModel { get; set; }
     }
 
     public class SearchBandModel

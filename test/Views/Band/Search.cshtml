@@ -1,10 +1,12 @@
-﻿@{
+﻿@model test.Models.SearchViewModel
+
+@{
     ViewBag.Title = "Search for bands";
 }
 
-@Html.Partial("_SearchBandPartial", new test.Models.SearchBandModel())
+@Html.Partial("_SearchBandPartial", Model.searchModel)
 
-@Html.Partial("_SearchResultsPartial")
+@Html.Partial("_SearchResultsPartial", Model.resultsModel)
 
 @section Scripts
 {
