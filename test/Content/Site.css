@@ -585,6 +585,38 @@ tr.pager td {
     padding: 0 0.25em 0 0;
 }
 
+/* MIKE'S CSS ADDITIONS */
+
+section.half
+{
+    float: left;
+    width: 50%;
+}
+
+table.pretty
+{
+    background-color: #FFFFFF;
+    border: 1px solid #C3C3C3;
+    border-collapse: collapse;
+}
+
+table.pretty td
+{
+    border: 1px solid #C3C3C3;
+    padding: 5px;
+    vertical-align: top;
+}
+
+table.pretty th
+{
+    border: 1px solid #C3C3C3;
+    padding: 5px;
+    vertical-align: top;
+	text-align: left;
+	font-weight: bold;
+}
+
+
 
 /********************
 *   Mobile Styles   *
@@ -753,45 +785,11 @@ tr.pager td {
             margin: 0;
         }
 
-    /* MOBILE ADDITIONs */
+    /* MIKE'S MOBILE ADDITIONS */
 
     section.half
     {
         float: left;
         width: 100%;
     }
-}
-
-
-/* MIKE'S CSS ADDITIONS */
-
-/* note: probably breaks mobile */
-
-section.half
-{
-    float: left;
-    width: 40%;
-}
-
-table.pretty
-{
-    background-color: #FFFFFF;
-    border: 1px solid #C3C3C3;
-    border-collapse: collapse;
-}
-
-table.pretty td
-{
-    border: 1px solid #C3C3C3;
-    padding: 5px;
-    vertical-align: top;
-}
-
-table.pretty th
-{
-    border: 1px solid #C3C3C3;
-    padding: 5px;
-    vertical-align: top;
-	text-align: left;
-	font-weight: bold;
 }
