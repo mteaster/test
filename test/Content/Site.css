@@ -598,6 +598,8 @@ table.pretty
     background-color: #FFFFFF;
     border: 1px solid #C3C3C3;
     border-collapse: collapse;
+    margin-top: 0.75em;
+    margin-bottom: 0.75em;
 }
 
 table.pretty td
@@ -615,7 +617,6 @@ table.pretty th
 	text-align: left;
 	font-weight: bold;
 }
-
 
 
 /********************
