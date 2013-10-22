@@ -776,14 +776,14 @@ table.pretty
 table.pretty td
 {
     border: 1px solid #C3C3C3;
-    padding: 3px;
+    padding: 5px;
     vertical-align: top;
 }
 
 table.pretty th
 {
     border: 1px solid #C3C3C3;
-    padding: 3px;
+    padding: 5px;
     vertical-align: top;
 	text-align: left;
 	font-weight: bold;
