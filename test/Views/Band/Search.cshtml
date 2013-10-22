@@ -4,9 +4,9 @@
     ViewBag.Title = "Search for bands";
 }
 
-@Html.Partial("_SearchBandPartial", Model.searchModel)
+@Html.Partial("_SearchBandPartial", new ViewDataDictionary { Model = Model.searchModel })
 
-@Html.Partial("_SearchResultsPartial", Model.resultsModel)
+@Html.Partial("_SearchResultsPartial", new ViewDataDictionary { Model = Model.resultsModel })
 
 @section Scripts
 {
