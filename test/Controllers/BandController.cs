@@ -169,26 +169,9 @@ namespace test.Controllers
         // GET: /Band/Join
 
         [Authorize]
-        public ActionResult Join(string bandId)
+        public ActionResult Join(int bandId)
         {
-            int idAsInt;
-
-            try
-            {
-                idAsInt = Convert.ToInt32(bandId);
-            }
-            catch (FormatException)
-            {
-                ViewBag.StatusMessage = "Invalid band ID (format exception)" + bandId;
-                return View("Status");
-            }
-            catch (OverflowException)
-            {
-                ViewBag.StatusMessage = "Invalid band ID (overflow exception)" + bandId;
-                return View("Status");
-            }
-
-            BandProfile bandProfile = database.BandProfiles.Find(idAsInt);
+            BandProfile bandProfile = database.BandProfiles.Find(bandId);
 
             if (bandProfile == null)
             {
