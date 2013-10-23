@@ -293,8 +293,10 @@ namespace test.Controllers
         [Authorize]
         public ActionResult Delete(int id)
         {
+            List<BandMembership> bandMembershipList;
             // Load the current band profile by id
             BandProfile bandProfile = database.BandProfiles.Find(id);
+
 
             if (bandProfile == null)
             {
@@ -306,6 +308,11 @@ namespace test.Controllers
             {
                 // Delete the band
                 database.BandProfiles.Remove(bandProfile);
+                bandMembershipList = database.BandMemberships.Where(m => m.BandId == id).ToList();
+                foreach (BandMembership bm in bandMembershipList)
+                {
+                    database.BandMemberships.Remove(bm);
+                }
                 database.SaveChanges();
                 return View("~/Views/Home/About.cshtml");
             }
