@@ -221,10 +221,13 @@ namespace test.Controllers
                     BandMembership membership = new BandMembership(bandIdAsInt, WebSecurity.CurrentUserId);
                     database.BandMemberships.Add(membership);
                     database.SaveChanges();
+
+                    ViewBag.StatusMessage = "You joined " + bandProfile.BandName;
+                    return View(model);
+
                 }
                 else
                 {
-                    ViewBag.BandName = bandProfile.BandName;
                     ModelState.AddModelError("", "Invalid band password");
                     return View(model);
                 }
