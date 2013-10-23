@@ -29,13 +29,13 @@ namespace band.Controllers
             if (ModelState.IsValid)
             {
                 ViewBag.StatusMessage = "let's pretend you posted a message, even though you didn't";
-                RedirectToAction("Index");
+                View("Index");
             }
 
             ViewBag.StatusMessage = "let's pretend you posted a message, even though you didn't";
 
             // If we got this far, something failed, redisplay form
-            RedirectToAction("Index");
+            View("Index");
         }
 
         public String getMsg()
