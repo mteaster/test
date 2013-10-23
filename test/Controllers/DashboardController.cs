@@ -19,7 +19,7 @@ namespace band.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post(MessageBoardPost m)
+        public ActionResult Post(MessageBoardModels m)
         {
             if (ModelState.IsValid)
             {
