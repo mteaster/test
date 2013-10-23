@@ -1,1 +1,18 @@
-﻿<h2>@ViewBag.StatusMessage</h2>
+﻿@model test.Models.JoinBandModel
+
+@using (Html.BeginForm("Join", "Band", new { BandId = ViewBag.BandId }, FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <fieldset>
+        <legend>Search Form</legend>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.Password)
+                @Html.PasswordFor(m => m.Password)
+            </li>
+        </ol>
+        <input type="submit" value="Search" />
+    </fieldset>
+}

@@ -76,6 +76,7 @@ namespace test.Controllers
                 {
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password, new { DisplayName = model.DisplayName } );
                     WebSecurity.Login(model.UserName, model.Password);
+
                     return RedirectToAction("Index", "Home");
                 }
                 catch (MembershipCreateUserException e)

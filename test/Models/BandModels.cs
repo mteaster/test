@@ -101,6 +101,14 @@ namespace test.Models
         public string BandName { get; set; }
     }
 
+    public class JoinBandModel
+    {
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "Password")]
+        public string Password { get; set; }
+    }
+
     public class RegisterBandModel
     {
         [Required]

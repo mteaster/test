@@ -80,6 +80,7 @@ namespace test.Controllers
             return View();
         }
 
+        //
         // POST: /Band/Register
 
         [Authorize]
@@ -164,8 +165,29 @@ namespace test.Controllers
             return View(svm);
         }
 
+        //
+        // GET: /Band/Join
+
         [Authorize]
         public ActionResult Join(string bandId)
+        {
+            BandProfile bandProfile = database.BandProfiles.Find(bandId);
+
+            if (bandProfile == null)
+            {
+                ViewBag.StatusMessage = "band doesn't exist LOL";
+                return View("Status");
+            }
+
+            return View(bandProfile.BandName);
+        }
+
+        //
+        // POST: /Band/Join
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult Join(string bandId, JoinBandModel model)
         {
             int idAsInt;
 
