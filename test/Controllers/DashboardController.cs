@@ -23,8 +23,7 @@ namespace band.Controllers
         {
             if (ModelState.IsValid)
             {
-                //code to post here ??
-                
+                //code to post here ?                
                 //return RedirectToAction("Index");
             }
             return View();
