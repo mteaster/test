@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using test.Models;
 
 namespace band.Controllers
 {
@@ -15,6 +16,17 @@ namespace band.Controllers
         {
             ViewBag.Message = getMsg();
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Post(MessageBoardPost m)
+        {
+            if (ModelState.IsValid)
+            {
+                //code to post here ??
+                return RedirectToAction("Index");
+            }
+            return View("Index");
         }
 
         public String getMsg()
