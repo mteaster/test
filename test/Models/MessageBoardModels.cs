@@ -3,15 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace test.Models
 {
-    public class MessageBoardModels
+    [Table("MessageBoardPost")]
+    public class MessageBoardPost
     {
-        public int ID { get; set; }
-        public int BandID { get; set; }
-        public string UserName { get; set; }
+        [Key]
+        [Required]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        public int PostId { get; set; }
+
+        [Required]
+        public int BandId { get; set; }
+        [ForeignKey("BandId")]
+        public virtual BandProfile BandProfile { get; set; }
+
+        [Required]
+        public int PosterId { get; set; }
+        [ForeignKey("PosterId")]
+        public virtual UserProfile PosterProfile { get; set; }
+
+        [Required]
         public DateTime PostTime { get; set; }
+
+        [Required]
         [DataType(DataType.MultilineText)]
         public string Content { get; set; }
     }
