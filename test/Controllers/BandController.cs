@@ -175,7 +175,7 @@ namespace test.Controllers
 
             if (!Int32.TryParse(bandId, out bandIdAsInt))
             {
-                ViewBag.StatusMessage = "Invalid band ID (format exception)" + bandId;
+                ViewBag.StatusMessage = "Invalid band ID (format)";
                 return View("Status");
             }
 
@@ -204,7 +204,7 @@ namespace test.Controllers
 
             if (!Int32.TryParse(bandId, out bandIdAsInt))
             {
-                ViewBag.StatusMessage = "Invalid band ID (format exception)" + bandId;
+                ViewBag.StatusMessage = "Invalid band ID (format)";
                 return View("Status");
             }
 
