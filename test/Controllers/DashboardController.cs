@@ -20,19 +20,22 @@ namespace band.Controllers
             return View();
         }
 
+        //
+        // POST: /Dashboard/Post
+
         [HttpPost]
         public ActionResult Post(string bandId, PostMessageModel model)
         {
             if (ModelState.IsValid)
             {
                 ViewBag.StatusMessage = "let's pretend you posted a message, even though you didn't";
-                return View(model);
+                RedirectToAction("Index");
             }
 
             ViewBag.StatusMessage = "let's pretend you posted a message, even though you didn't";
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            RedirectToAction("Index");
         }
 
         public String getMsg()
