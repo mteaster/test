@@ -224,6 +224,7 @@ namespace test.Controllers
                 }
                 else
                 {
+                    ViewBag.BandName = bandProfile.BandName;
                     ModelState.AddModelError("", "Invalid band password");
                     return View(model);
                 }
