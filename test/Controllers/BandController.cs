@@ -306,6 +306,7 @@ namespace test.Controllers
             {
                 // Delete the band
                 database.BandProfiles.Remove(bandProfile);
+                database.SaveChanges();
                 return View("~/Views/Home/About.cshtml");
             }
         }
