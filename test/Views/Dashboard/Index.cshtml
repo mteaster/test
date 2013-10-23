@@ -8,6 +8,8 @@
 
 <h5>Message Board</h5>
 
+ViewBag.StatusMessage
+
 @using (Html.BeginForm("Post", "Dashboard", new { bandId = ViewBag.BandId }, FormMethod.Post))
 {
     @Html.AntiForgeryToken()
