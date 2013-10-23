@@ -291,7 +291,6 @@ namespace test.Controllers
         }
 
         [Authorize]
-        [HttpPost]
         public ActionResult Delete(int id)
         {
             // Load the current band profile by id
