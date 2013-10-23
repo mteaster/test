@@ -217,6 +217,7 @@ namespace test.Controllers
             else
             {
                 ViewBag.BandName = bandProfile.BandName;
+                ViewBag.BandId = bandId;
 
                 string hash = Crypto.HashPassword(model.Password);
                 if (hash == bandProfile.Password)
