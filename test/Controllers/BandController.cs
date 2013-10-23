@@ -216,7 +216,8 @@ namespace test.Controllers
             }
             else
             {
-                if (Crypto.HashPassword(model.Password).Equals(bandProfile.Password))
+                string hash = Crypto.HashPassword(model.Password);
+                if (hash == bandProfile.Password)
                 {
                     BandMembership membership = new BandMembership(bandIdAsInt, WebSecurity.CurrentUserId);
                     database.BandMemberships.Add(membership);
@@ -229,7 +230,7 @@ namespace test.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Invalid band password");
+                    ModelState.AddModelError("", "Invalid band password (" + hash + ", " + bandProfile.Password + ")");
                     return View(model);
                 }
             }
