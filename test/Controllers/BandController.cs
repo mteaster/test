@@ -216,6 +216,8 @@ namespace test.Controllers
             }
             else
             {
+                ViewBag.BandName = bandProfile.BandName;
+
                 string hash = Crypto.HashPassword(model.Password);
                 if (hash == bandProfile.Password)
                 {
@@ -223,7 +225,6 @@ namespace test.Controllers
                     database.BandMemberships.Add(membership);
                     database.SaveChanges();
 
-                    ViewBag.BandName = bandProfile.BandName;
                     ViewBag.StatusMessage = "You joined " + bandProfile.BandName;
                     return View(model);
 
