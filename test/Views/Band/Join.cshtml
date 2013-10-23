@@ -1,12 +1,17 @@
 ﻿@model test.Models.JoinBandModel
 
+<hgroup class="title">
+    <h1>Join "@ViewBag.BandName"</h1>
+    <h2>You're dumb.</h2>
+</hgroup>
+
 @using (Html.BeginForm("Join", "Band", new { BandId = ViewBag.BandId }, FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
 
     <fieldset>
-        <legend>Search Form</legend>
+        <legend>Join Band Form</legend>
         <ol>
             <li>
                 @Html.LabelFor(m => m.Password)

@@ -179,12 +179,12 @@ namespace test.Controllers
             }
             catch (FormatException)
             {
-                ViewBag.StatusMessage = "Invalid band ID" + bandId;
+                ViewBag.StatusMessage = "Invalid band ID (format exception)" + bandId;
                 return View("Status");
             }
             catch (OverflowException)
             {
-                ViewBag.StatusMessage = "Invalid band ID" + bandId;
+                ViewBag.StatusMessage = "Invalid band ID (overflow exception)" + bandId;
                 return View("Status");
             }
 
@@ -192,7 +192,7 @@ namespace test.Controllers
 
             if (bandProfile == null)
             {
-                ViewBag.StatusMessage = "Invalid band ID";
+                ViewBag.StatusMessage = "Invalid band ID (not in database)";
                 return View("Status");
             }
 
@@ -216,18 +216,20 @@ namespace test.Controllers
             }
             catch (FormatException)
             {
-                ViewBag.StatusMessage= "format exception for id " + bandId;
+                ViewBag.StatusMessage = "Invalid band ID (format exception)";
                 return View();
             }
             catch (OverflowException)
             {
-                ViewBag.StatusMessage = "overflow exception for id " + bandId;
+                ViewBag.StatusMessage = "Invalid band ID (overflow exception)";
                 return View();
             }
 
-            if (database.BandProfiles.Find(idAsInt) == null)
+            BandProfile bandProfile = database.BandProfiles.Find(idAsInt);
+
+            if (bandProfile == null)
             {
-                ViewBag.StatusMessage = "couldn't find band with id " + idAsInt;
+                ViewBag.StatusMessage = "Invalid band ID (not in database)" + idAsInt;
             }
             else
             {
@@ -235,10 +237,10 @@ namespace test.Controllers
                 database.BandMemberships.Add(membership);
                 database.SaveChanges();
 
-                ViewBag.StatusMessage = "you joined the band with id " + idAsInt;
+                ViewBag.StatusMessage = "You joined " + bandProfile.BandName;
             }
 
-            return View();
+            return View("Status");
         }
 
         [Authorize]
