@@ -12,14 +12,15 @@ namespace band.Controllers
         //
         // GET: /Dashboard/
 
-        public ActionResult Index()
+        public ActionResult Index(string bandId)
         {
+            ViewBag.BandId = bandId;
             ViewBag.Message = getMsg();
             return View();
         }
 
         [HttpPost]
-        public ActionResult Post(MessageBoardModels m)
+        public ActionResult Post(string bandId, PostMessageModel model)
         {
             if (ModelState.IsValid)
             {
