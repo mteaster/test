@@ -169,9 +169,17 @@ namespace test.Controllers
         // GET: /Band/Join
 
         [Authorize]
-        public ActionResult Join(int bandId)
+        public ActionResult Join(string bandId)
         {
-            BandProfile bandProfile = database.BandProfiles.Find(bandId);
+            int bandIdAsInt;
+
+            if (!Int32.TryParse(bandId, out bandIdAsInt))
+            {
+                ViewBag.StatusMessage = "Invalid band ID (format exception)" + bandId;
+                return View("Status");
+            }
+
+            BandProfile bandProfile = database.BandProfiles.Find(bandIdAsInt);
 
             if (bandProfile == null)
             {
@@ -192,32 +200,23 @@ namespace test.Controllers
         [HttpPost]
         public ActionResult Join(string bandId, JoinBandModel model)
         {
-            int idAsInt;
+            int bandIdAsInt;
 
-            try
+            if (!Int32.TryParse(bandId, out bandIdAsInt))
             {
-                idAsInt = Convert.ToInt32(bandId);
-            }
-            catch (FormatException)
-            {
-                ViewBag.StatusMessage = "Invalid band ID (format exception)";
-                return View();
-            }
-            catch (OverflowException)
-            {
-                ViewBag.StatusMessage = "Invalid band ID (overflow exception)";
-                return View();
+                ViewBag.StatusMessage = "Invalid band ID (format exception)" + bandId;
+                return View("Status");
             }
 
-            BandProfile bandProfile = database.BandProfiles.Find(idAsInt);
+            BandProfile bandProfile = database.BandProfiles.Find(bandIdAsInt);
 
             if (bandProfile == null)
             {
-                ViewBag.StatusMessage = "Invalid band ID (not in database)" + idAsInt;
+                ViewBag.StatusMessage = "Invalid band ID (not in database)" + bandId;
             }
             else
             {
-                BandMembership membership = new BandMembership(idAsInt, WebSecurity.CurrentUserId);
+                BandMembership membership = new BandMembership(bandIdAsInt, WebSecurity.CurrentUserId);
                 database.BandMemberships.Add(membership);
                 database.SaveChanges();
 
