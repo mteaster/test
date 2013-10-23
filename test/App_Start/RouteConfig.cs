@@ -14,15 +14,15 @@ namespace test
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}",
-                defaults: new { controller = "Home", action = "Index" }
+                name: "Join",
+                url: "Band/Join/{bandId}",
+                defaults: new { controller = "Band", action = "Join", bandId = "" }
             );
 
             routes.MapRoute(
-                name: "JoinBand",
-                url: "Band/Join/{bandId}",
-                defaults: new { controller = "Band", action = "Join", bandId = "" }
+                name: "Default",
+                url: "{controller}/{action}",
+                defaults: new { controller = "Home", action = "Index" }
             );
         }
     }
