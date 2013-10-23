@@ -4,9 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using test.Models;
+using WebMatrix.WebData;
 
 namespace band.Controllers
 {
+    [Authorize]
     public class DashboardController : Controller
     {
         //
@@ -22,6 +24,7 @@ namespace band.Controllers
 
         //
         // POST: /Dashboard/Post
+
 
         [HttpPost]
         public ActionResult Post(string bandId, PostMessageModel model)
@@ -42,8 +45,5 @@ namespace band.Controllers
         {
             return "Code will go here to query DB for messages";
         }
-
-
-
     }
 }
