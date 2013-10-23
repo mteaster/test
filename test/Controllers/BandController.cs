@@ -216,11 +216,17 @@ namespace test.Controllers
             }
             else
             {
-                BandMembership membership = new BandMembership(bandIdAsInt, WebSecurity.CurrentUserId);
-                database.BandMemberships.Add(membership);
-                database.SaveChanges();
-
-                ViewBag.StatusMessage = "You joined " + bandProfile.BandName;
+                if (Crypto.HashPassword(model.Password) == bandProfile.Password)
+                {
+                    BandMembership membership = new BandMembership(bandIdAsInt, WebSecurity.CurrentUserId);
+                    database.BandMemberships.Add(membership);
+                    database.SaveChanges();
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Invalid band password");
+                    return View(model);
+                }
             }
 
             return View("Status");
