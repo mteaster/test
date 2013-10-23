@@ -196,10 +196,9 @@ namespace test.Controllers
                 return View("Status");
             }
 
-            ViewBag.StatusMessage = "you joined " + bandProfile.BandName;
+            ViewBag.BandName = bandProfile.BandName;
 
-
-            return View("Status");
+            return View();
         }
 
         //
