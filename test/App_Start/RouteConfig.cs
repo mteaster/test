@@ -20,6 +20,12 @@ namespace test
             );
 
             routes.MapRoute(
+                name: "Post",
+                url: "Dashboard/Post/{bandId}",
+                defaults: new { controller = "Dashboard", action = "Post", bandId = "" }
+            );
+
+            routes.MapRoute(
                 name: "Dashboard",
                 url: "Dashboard/{bandId}",
                 defaults: new { controller = "Dashboard", action = "Index", bandId = "" }
