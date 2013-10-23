@@ -179,20 +179,20 @@ namespace test.Controllers
             }
             catch (FormatException)
             {
-                ViewBag.StatusMessage = "format exception for id " + bandId;
-                return View();
+                ViewBag.StatusMessage = "Invalid band ID" + bandId;
+                return View("Status");
             }
             catch (OverflowException)
             {
-                ViewBag.StatusMessage = "overflow exception for id " + bandId;
-                return View();
+                ViewBag.StatusMessage = "Invalid band ID" + bandId;
+                return View("Status");
             }
 
             BandProfile bandProfile = database.BandProfiles.Find(idAsInt);
 
             if (bandProfile == null)
             {
-                ViewBag.StatusMessage = "band doesn't exist LOL";
+                ViewBag.StatusMessage = "Invalid band ID";
                 return View("Status");
             }
 
