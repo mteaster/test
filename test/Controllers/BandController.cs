@@ -196,6 +196,7 @@ namespace test.Controllers
                 return View("Status");
             }
 
+            ViewBag.BandId = bandId;
             ViewBag.BandName = bandProfile.BandName;
 
             return View();
