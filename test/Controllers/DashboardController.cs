@@ -16,6 +16,7 @@ namespace band.Controllers
         {
             ViewBag.BandId = bandId;
             ViewBag.Message = getMsg();
+            ViewBag.StatusMessage = "hello";
             return View();
         }
 
@@ -27,6 +28,8 @@ namespace band.Controllers
                 ViewBag.StatusMessage = "let's pretend you posted a message, even though you didn't";
                 return View(model);
             }
+
+            ViewBag.StatusMessage = "let's pretend you posted a message, even though you didn't";
 
             // If we got this far, something failed, redisplay form
             return View(model);
