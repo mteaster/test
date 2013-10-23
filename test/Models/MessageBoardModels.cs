@@ -32,5 +32,11 @@ namespace test.Models
         [DataType(DataType.MultilineText)]
         public string Content { get; set; }
     }
-   
+
+    public class PostMessageModel
+    {
+        [Required]
+        [DataType(DataType.MultilineText)]
+        public string Content { get; set; }
+    }
 }
