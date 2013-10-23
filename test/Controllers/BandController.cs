@@ -289,5 +289,27 @@ namespace test.Controllers
                 }
             }
         }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            // Load the current band profile by id
+            BandProfile bandProfile = database.BandProfiles.Find(id);
+
+            if (bandProfile == null)
+            {
+                // Could not find the band. This shouldn't happen
+                ViewBag.UpdateError = "Unexpected Error: Could not delete profile.";
+                return View("Update");
+            }
+            else
+            {
+                // Delete the band
+                database.BandProfiles.Remove(bandProfile);
+                return View("~/Views/Home/About.cshtml");
+            }
+        }
+
     }
 }
