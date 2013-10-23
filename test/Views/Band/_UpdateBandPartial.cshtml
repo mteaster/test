@@ -2,7 +2,7 @@
 
 <hgroup class="title">
     <h1>Update "@ViewBag.BandName"</h1>
-    @Html.ActionLink("Delete", "Delete", new { id = ViewBag.id }, FormMethod.Post)
+    @Html.ActionLink("Delete", "Delete", new { id = ViewBag.id })
 </hgroup>
 
 @using (Html.BeginForm("Update", "Band", new { id = ViewBag.id }, FormMethod.Post))
