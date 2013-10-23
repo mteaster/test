@@ -6,6 +6,7 @@
         <th>@Html.DisplayNameFor(model => model.BandName)</th>
         <th>@Html.DisplayNameFor(model => model.CreatorName)</th>
         <th>@Html.DisplayNameFor(model => model.Members)</th>
+        <th>Update Test</th>
     </tr>
 
 @foreach (var item in Model)
@@ -15,6 +16,7 @@
         <td>@Html.DisplayFor(modelItem => item.BandName)</td>
         <td>@Html.DisplayFor(modelItem => item.CreatorName)</td>
         <td>@Html.DisplayFor(modelItem => item.Members)</td>
+        <td>@Html.ActionLink("Update", "Update", new {id = item.BandId})</td>
     </tr>
 }
 </table>

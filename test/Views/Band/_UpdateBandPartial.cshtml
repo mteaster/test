@@ -1,1 +1,23 @@
-﻿
+﻿@model test.Models.UpdateBandModel
+
+@using (Html.BeginForm("Update", "Band", new { id = ViewBag.id }, FormMethod.Post))
+{
+    
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <fieldset>
+        <legend>Update Band Form</legend>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.NewBandName)
+                @Html.TextAreaFor(m => m.NewBandName)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.NewPassword)
+                @Html.PasswordFor(m => m.NewPassword)
+            </li>
+        </ol>
+    </fieldset>
+
+}

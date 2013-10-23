@@ -226,7 +226,27 @@ namespace test.Controllers
             return View("Status");
         }
 
+
         [Authorize]
+        public ActionResult Update(int id)
+        {
+            BandProfile bandProfile = database.BandProfiles.Find(id);
+
+            if (bandProfile == null)
+            {
+                ViewBag.error = "Band not in database.";
+                return View("Status");
+            }
+            else
+            {
+                ViewBag.id = bandProfile.BandId;
+                ViewBag.bandName = bandProfile.BandName;
+                return View();
+            }
+        }
+
+        [Authorize]
+        [HttpPost]
         public ActionResult Update(int id, UpdateBandModel updateBandModel)
         {
             bool updateName = false;
