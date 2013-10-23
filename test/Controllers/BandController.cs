@@ -240,7 +240,7 @@ namespace test.Controllers
             else
             {
                 ViewBag.id = bandProfile.BandId;
-                ViewBag.bandName = bandProfile.BandName;
+                ViewBag.BandName = bandProfile.BandName;
                 return View();
             }
         }
