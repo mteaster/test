@@ -219,22 +219,20 @@ namespace test.Controllers
                 ViewBag.BandName = bandProfile.BandName;
                 ViewBag.BandId = bandId;
 
-                string hash = Crypto.HashPassword(model.Password);
-                if (hash == bandProfile.Password)
-                {
+                //string hash = Crypto.HashPassword(model.Password);
+                //if (hash == bandProfile.Password)
+                //{
                     BandMembership membership = new BandMembership(bandIdAsInt, WebSecurity.CurrentUserId);
                     database.BandMemberships.Add(membership);
                     database.SaveChanges();
 
                     ViewBag.StatusMessage = "You joined " + bandProfile.BandName;
-                    return View(model);
-
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Invalid band password (" + hash + ", " + bandProfile.Password + ")");
-                    return View(model);
-                }
+                //}
+                //else
+                //{
+                //    ModelState.AddModelError("", "Invalid band password (" + hash + ", " + bandProfile.Password + ")");
+                //    return View(model);
+                //}
             }
 
             return View("Status");
