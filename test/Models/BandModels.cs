@@ -18,6 +18,7 @@ namespace test.Models
         }
         
         [Key]
+        [Required]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int BandId { get; set; }
 
