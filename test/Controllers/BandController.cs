@@ -280,7 +280,7 @@ namespace test.Controllers
                 {
                     database.Entry(bandProfile).State = EntityState.Modified;
                     database.SaveChanges();
-                    return View("~/Views/Home/About");
+                    return View("~/Views/Home/About.cshtml");
                 }
                 else
                 {
