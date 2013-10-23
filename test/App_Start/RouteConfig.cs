@@ -20,7 +20,7 @@ namespace test
             );
 
             routes.MapRoute(
-                name: "Join",
+                name: "Dashboard",
                 url: "Dashboard/{bandId}",
                 defaults: new { controller = "Dashboard", action = "Index", bandId = "" }
             );
