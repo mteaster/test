@@ -24,10 +24,12 @@ namespace band.Controllers
         {
             if (ModelState.IsValid)
             {
-                //code to post here ?                
-                //return RedirectToAction("Index");
+                ViewBag.StatusMessage = "let's pretend you posted a message, even though you didn't";
+                return View(model);
             }
-            return View();
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
         }
 
         public String getMsg()
