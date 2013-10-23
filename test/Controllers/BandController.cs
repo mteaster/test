@@ -216,12 +216,13 @@ namespace test.Controllers
             }
             else
             {
-                if (Crypto.HashPassword(model.Password) == bandProfile.Password)
+                if (Crypto.HashPassword(model.Password).Equals(bandProfile.Password))
                 {
                     BandMembership membership = new BandMembership(bandIdAsInt, WebSecurity.CurrentUserId);
                     database.BandMemberships.Add(membership);
                     database.SaveChanges();
 
+                    ViewBag.BandName = bandProfile.BandName;
                     ViewBag.StatusMessage = "You joined " + bandProfile.BandName;
                     return View(model);
 
