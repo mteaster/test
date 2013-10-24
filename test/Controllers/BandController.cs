@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Text;
 using System;
 using System.Data;
+using test.Stuff;
 
 namespace test.Controllers
 {
@@ -206,6 +207,13 @@ namespace test.Controllers
             {
                 ViewBag.StatusMessage = "Invalid band ID (format)";
                 return View("Status");
+            }
+
+            if (!BandManager.UserInBand(WebSecurity.CurrentUserId, bandIdAsInt))
+            {
+                                ViewBag.StatusMessage = "Invalid band ID (format)";
+                return View("Status");
+
             }
 
             BandProfile bandProfile = database.BandProfiles.Find(bandIdAsInt);

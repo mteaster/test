@@ -8,9 +8,9 @@ namespace test.Stuff
 {
     public static class BandManager
     {
-        private DatabaseContext database = new DatabaseContext();
+        private static DatabaseContext database = new DatabaseContext();
 
-        public bool UserInBand(int userId, int bandId)
+        public static bool UserInBand(int userId, int bandId)
         {
             return database.BandMemberships.Find(bandId, userId) != null;
         }

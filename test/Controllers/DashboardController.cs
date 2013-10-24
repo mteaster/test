@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using test.Models;
+using test.Stuff;
 using WebMatrix.WebData;
 
 namespace band.Controllers
@@ -12,11 +13,27 @@ namespace band.Controllers
     [Authorize]
     public class DashboardController : Controller
     {
+        DatabaseContext database = new DatabaseContext();
         //
         // GET: /Dashboard/
 
         public ActionResult Index(string bandId)
         {
+            int bandIdAsInt;
+
+            if (!Int32.TryParse(bandId, out bandIdAsInt))
+            {
+                ViewBag.StatusMessage = "Invalid band ID (format)";
+                return View("Status");
+            }
+
+            if (!BandManager.UserInBand(WebSecurity.CurrentUserId, bandIdAsInt))
+            {
+                ViewBag.BandId = bandId;
+                ViewBag.BandName = database.BandProfiles.Find(bandIdAsInt).BandName;
+                return View("Join");
+            }
+
             ViewBag.BandId = bandId;
             ViewBag.Message = getMsg();
             ViewBag.StatusMessage = "hello";
@@ -25,7 +42,6 @@ namespace band.Controllers
 
         //
         // POST: /Dashboard/Post
-
 
         [HttpPost]
         public ActionResult Post(string bandId, PostMessageModel model)
