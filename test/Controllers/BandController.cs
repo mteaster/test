@@ -242,9 +242,9 @@ namespace test.Controllers
         // Get: /Band/Update
 
         [Authorize]
-        public ActionResult Update(int id)
+        public ActionResult Update(int bandId)
         {
-            BandProfile bandProfile = database.BandProfiles.Find(id);
+            BandProfile bandProfile = database.BandProfiles.Find(bandId);
 
             if (bandProfile == null)
             {
@@ -264,12 +264,12 @@ namespace test.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult Update(int id, UpdateBandModel updateBandModel)
+        public ActionResult Update(int bandId, UpdateBandModel updateBandModel)
         {
             bool updateName = false;
             bool updatePassword = false;
             // Load the current band profile by id
-            BandProfile bandProfile = database.BandProfiles.Find(id);
+            BandProfile bandProfile = database.BandProfiles.Find(bandId);
 
             if (bandProfile == null)
             {
@@ -308,11 +308,11 @@ namespace test.Controllers
         }
 
         [Authorize]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int bandId)
         {
             List<BandMembership> bandMembershipList;
             // Load the current band profile by id
-            BandProfile bandProfile = database.BandProfiles.Find(id);
+            BandProfile bandProfile = database.BandProfiles.Find(bandId);
 
 
             if (bandProfile == null)
@@ -325,7 +325,7 @@ namespace test.Controllers
             {
                 // Delete the band
                 database.BandProfiles.Remove(bandProfile);
-                bandMembershipList = database.BandMemberships.Where(m => m.BandId == id).ToList();
+                bandMembershipList = database.BandMemberships.Where(m => m.BandId == bandId).ToList();
                 foreach (BandMembership bm in bandMembershipList)
                 {
                     database.BandMemberships.Remove(bm);
