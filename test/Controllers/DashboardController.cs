@@ -14,6 +14,7 @@ namespace band.Controllers
     public class DashboardController : Controller
     {
         DatabaseContext database = new DatabaseContext();
+
         //
         // GET: /Dashboard/
 
@@ -60,10 +61,9 @@ namespace band.Controllers
                 return View("Index");
             }
 
-            ViewBag.StatusMessage = "let's pretend you posted a message, even though you didn't";
-
             // If we got this far, something failed, redisplay form
-            return View("Index");
+            ViewBag.StatusMessage = "something was wrong with your message";
+            return View("Status");
         }
 
         public String getMsg()
