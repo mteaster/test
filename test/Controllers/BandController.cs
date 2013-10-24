@@ -209,13 +209,6 @@ namespace test.Controllers
                 return View("Status");
             }
 
-            if (!BandManager.UserInBand(WebSecurity.CurrentUserId, bandIdAsInt))
-            {
-                                ViewBag.StatusMessage = "Invalid band ID (format)";
-                return View("Status");
-
-            }
-
             BandProfile bandProfile = database.BandProfiles.Find(bandIdAsInt);
 
             if (bandProfile == null)
