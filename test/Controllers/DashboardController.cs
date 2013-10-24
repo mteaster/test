@@ -27,11 +27,19 @@ namespace band.Controllers
                 return View("Status");
             }
 
+            BandProfile bandProfile = database.BandProfiles.Find(bandIdAsInt);
+
+            if (bandProfile == null)
+            {
+                ViewBag.StatusMessage = "band doesn't exist";
+                return View("Status");
+            }
+
             if (!BandManager.UserInBand(WebSecurity.CurrentUserId, bandIdAsInt))
             {
                 ViewBag.BandId = bandId;
-                ViewBag.BandName = database.BandProfiles.Find(bandIdAsInt).BandName;
-                return View("Join");
+                ViewBag.BandName = bandProfile.BandName;
+                return RedirectToAction("Join", "Band", new { bandId = bandId } );
             }
 
             ViewBag.BandId = bandId;
