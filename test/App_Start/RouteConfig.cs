@@ -27,6 +27,12 @@ namespace test
 
             routes.MapRoute(
                 name: "Delete",
+                url: "Band/Update/{bandId}",
+                defaults: new { controller = "Band", action = "Update", bandId = "" }
+            );
+
+            routes.MapRoute(
+                name: "Delete",
                 url: "Band/Delete/{bandId}",
                 defaults: new { controller = "Band", action = "Delete", bandId = "" }
             );
