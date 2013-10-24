@@ -4,6 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 using test.Models.Band;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Web.Mvc;
+
 
 namespace test.Models.Calendar
 {
@@ -91,6 +93,7 @@ namespace test.Models.Calendar
         [Required]
         [Display(Name = "Period (AM or PM)")]
         public string EventPeriod { get; set; }
+
     }
 
     public class MonthModel

@@ -34,8 +34,15 @@
                 @Html.TextBoxFor(m => m.EventYear)
             </li>
             <li>
-                @Html.LabelFor(m => m.EventHour)
-                @Html.TextBoxFor(m => m.EventHour)
+                @{
+        
+                List<SelectListItem> items = new List<SelectListItem>();
+                items.Add(new SelectListItem { Text = "1", Value = "1", Selected = true});
+        
+                }
+                
+               
+                @Html.DropDownListFor(m => m.EventHour, items)
             </li>
             <li>
                 @Html.LabelFor(m => m.EventMinute)
