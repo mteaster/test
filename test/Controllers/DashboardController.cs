@@ -18,17 +18,9 @@ namespace band.Controllers
         //
         // GET: /Dashboard/
 
-        public ActionResult Index(string bandId)
+        public ActionResult Index(int bandId)
         {
-            int bandIdAsInt;
-
-            if (!Int32.TryParse(bandId, out bandIdAsInt))
-            {
-                ViewBag.StatusMessage = "Invalid band ID (format)";
-                return View("Status");
-            }
-
-            BandProfile bandProfile = database.BandProfiles.Find(bandIdAsInt);
+            BandProfile bandProfile = database.BandProfiles.Find(bandId);
 
             if (bandProfile == null)
             {
@@ -36,7 +28,7 @@ namespace band.Controllers
                 return View("Status");
             }
 
-            if (!BandManager.UserInBand(WebSecurity.CurrentUserId, bandIdAsInt))
+            if (!BandManager.UserInBand(WebSecurity.CurrentUserId, bandId))
             {
                 ViewBag.BandId = bandId;
                 ViewBag.BandName = bandProfile.BandName;

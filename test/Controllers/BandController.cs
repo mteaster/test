@@ -170,17 +170,9 @@ namespace test.Controllers
         // GET: /Band/Join
 
         [Authorize]
-        public ActionResult Join(string bandId)
+        public ActionResult Join(int bandId)
         {
-            int bandIdAsInt;
-
-            if (!Int32.TryParse(bandId, out bandIdAsInt))
-            {
-                ViewBag.StatusMessage = "Invalid band ID (format): " + bandId;
-                return View("Status");
-            }
-
-            BandProfile bandProfile = database.BandProfiles.Find(bandIdAsInt);
+            BandProfile bandProfile = database.BandProfiles.Find(bandId);
 
             if (bandProfile == null)
             {
@@ -199,17 +191,9 @@ namespace test.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult Join(string bandId, JoinBandModel model)
+        public ActionResult Join(int bandId, JoinBandModel model)
         {
-            int bandIdAsInt;
-
-            if (!Int32.TryParse(bandId, out bandIdAsInt))
-            {
-                ViewBag.StatusMessage = "Invalid band ID (format): " + bandId;
-                return View("Status");
-            }
-
-            BandProfile bandProfile = database.BandProfiles.Find(bandIdAsInt);
+            BandProfile bandProfile = database.BandProfiles.Find(bandId);
 
             if (bandProfile == null)
             {
@@ -223,7 +207,7 @@ namespace test.Controllers
                 //string hash = Crypto.HashPassword(model.Password);
                 //if (hash == bandProfile.Password)
                 //{
-                    BandMembership membership = new BandMembership(bandIdAsInt, WebSecurity.CurrentUserId);
+                    BandMembership membership = new BandMembership(bandId, WebSecurity.CurrentUserId);
                     database.BandMemberships.Add(membership);
                     database.SaveChanges();
 
