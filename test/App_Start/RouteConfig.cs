@@ -26,7 +26,7 @@ namespace test
             );
 
             routes.MapRoute(
-                name: "Delete",
+                name: "Update",
                 url: "Band/Update/{bandId}",
                 defaults: new { controller = "Band", action = "Update", bandId = "" }
             );
