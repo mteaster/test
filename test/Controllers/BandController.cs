@@ -274,7 +274,7 @@ namespace test.Controllers
             if (bandProfile == null)
             {
                 // Could not find the band. This shouldn't happen
-                ViewBag.UpdateError = "Unexpected Error: Could not update profile.";
+                ViewBag.StatusMessage = "Unexpected Error: Could not update profile.";
                 return View();
             }
             else
@@ -314,12 +314,11 @@ namespace test.Controllers
             // Load the current band profile by id
             BandProfile bandProfile = database.BandProfiles.Find(bandId);
 
-
             if (bandProfile == null)
             {
                 // Could not find the band. This shouldn't happen
-                ViewBag.UpdateError = "Unexpected Error: Could not delete profile.";
-                return View("Update");
+                ViewBag.StatusMessage = "Unexpected Error: Could not delete profile.";
+                return View("Status");
             }
             else
             {
