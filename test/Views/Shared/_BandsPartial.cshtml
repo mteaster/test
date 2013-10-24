@@ -17,7 +17,7 @@
 @foreach (var item in Model)
 {
     <tr>
-        <td>@Html.DisplayFor(modelItem => item.BandName)</td>
+        <td>@Html.ActionLink(item.BandName, "Dashboard", "Index", new { bandId = item.BandId }, null)</td>
         <td>@Html.DisplayFor(modelItem => item.CreatorName)</td>
     </tr>
 }
