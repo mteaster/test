@@ -2,10 +2,10 @@
 
 <hgroup class="title">
     <h1>Update "@ViewBag.BandName"</h1>
-    @Html.ActionLink("Delete", "Delete", new { id = ViewBag.id })
+    @Html.ActionLink("Delete", "Delete", new { bandId = ViewBag.BandId })
 </hgroup>
 
-@using (Html.BeginForm("Update", "Band", new { id = ViewBag.id }, FormMethod.Post))
+@using (Html.BeginForm("Update", "Band", new { bandId = ViewBag.BandId }, FormMethod.Post))
 {
     
     @Html.AntiForgeryToken()
@@ -16,7 +16,7 @@
         <ol>
             <li>
                 @Html.LabelFor(m => m.NewBandName)
-                @Html.TextAreaFor(m => m.NewBandName)
+                @Html.TextBoxFor(m => m.NewBandName)
             </li>
             <li>
                 @Html.LabelFor(m => m.NewPassword)

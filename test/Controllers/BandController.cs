@@ -238,6 +238,8 @@ namespace test.Controllers
             return View("Status");
         }
 
+        //
+        // Get: /Band/Update
 
         [Authorize]
         public ActionResult Update(int id)
@@ -246,16 +248,19 @@ namespace test.Controllers
 
             if (bandProfile == null)
             {
-                ViewBag.error = "Band not in database.";
+                ViewBag.StatusMessage = "Band not in database.";
                 return View("Status");
             }
             else
             {
-                ViewBag.id = bandProfile.BandId;
+                ViewBag.BandId = bandProfile.BandId;
                 ViewBag.BandName = bandProfile.BandName;
                 return View();
             }
         }
+
+        //
+        // Post: /Band/Update
 
         [Authorize]
         [HttpPost]
