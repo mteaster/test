@@ -68,6 +68,7 @@ namespace test.Stuff
         {
             using (DatabaseContext database = new DatabaseContext())
             {
+                database.BandProfiles.Find(profile.BandId);
                 profile.BandName = Crypto.HashPassword(password);
                 database.Entry(profile).State = EntityState.Modified;
                 database.SaveChanges();
