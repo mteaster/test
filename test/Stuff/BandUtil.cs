@@ -54,23 +54,24 @@ namespace test.Stuff
             //return false;
         }
 
-        public static void ChangeBandName(BandProfile profile, string bandName)
+        public static void ChangeBandName(int bandId, string bandName)
         {
             using (DatabaseContext database = new DatabaseContext())
             {
+                BandProfile profile = database.BandProfiles.Find(bandId);
                 profile.BandName = bandName;
                 database.Entry(profile).State = EntityState.Modified;
                 database.SaveChanges();
             }
         }
 
-        public static void ChangeBandPassword(BandProfile profile, string password)
+        public static void ChangeBandPassword(int bandId, string password)
         {
             using (DatabaseContext database = new DatabaseContext())
             {
-                BandProfile profile2 = database.BandProfiles.Find(profile.BandId);
-                profile2.BandName = Crypto.HashPassword(password);
-                database.Entry(profile2).State = EntityState.Modified;
+                BandProfile profile = database.BandProfiles.Find(bandId);
+                profile.Password = Crypto.HashPassword(password);
+                database.Entry(profile).State = EntityState.Modified;
                 database.SaveChanges();
             }
         }
@@ -82,7 +83,6 @@ namespace test.Stuff
 
         public static string MembersFor(int bandId)
         {
-
             using (DatabaseContext database = new DatabaseContext())
             {
                 var memberUsernames = from b in database.BandMemberships

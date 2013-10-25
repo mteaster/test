@@ -185,9 +185,9 @@ namespace test.Controllers
                 return View("Status");
             }
 
-            BandUtil.ChangeBandName(bandProfile, model.BandName);
+            BandUtil.ChangeBandName(bandId, model.BandName);
 
-            return RedirectToAction("Manage", new { bandId = bandProfile.BandId, Message = ManageMessageId.ChangeBandNameSuccess } );
+            return RedirectToAction("Manage", new { bandId = bandId, Message = ManageMessageId.ChangeBandNameSuccess } );
         }
 
         //
@@ -205,9 +205,9 @@ namespace test.Controllers
                 return View("Status");
             }
 
-            BandUtil.ChangeBandPassword(bandProfile, model.NewPassword);
+            BandUtil.ChangeBandPassword(bandId, model.NewPassword);
 
-            return RedirectToAction("Manage", new { bandId = bandProfile.BandId, Message = ManageMessageId.ChangePasswordSuccess });
+            return RedirectToAction("Manage", new { bandId = bandId, Message = ManageMessageId.ChangePasswordSuccess });
         }
 
         [Authorize]
