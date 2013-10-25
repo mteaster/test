@@ -60,11 +60,11 @@ namespace test.Models
         public virtual UserProfile MemberProfile { get; set; }
     }
 
-    public class BandDisplayModel
+    public class BandModel
     {
-        public BandDisplayModel() {}
+        public BandModel() {}
 
-        public BandDisplayModel(int BandId, string BandName, string CreatorName, string Members)
+        public BandModel(int BandId, string BandName, string CreatorName, string Members)
         {
             this.BandId = BandId;
             this.BandName = BandName;
@@ -92,7 +92,7 @@ namespace test.Models
     public class SearchViewModel
     {
         public SearchBandModel searchModel { get; set; }
-        public IEnumerable<test.Models.BandDisplayModel> resultsModel { get; set; }
+        public IEnumerable<test.Models.BandModel> resultsModel { get; set; }
     }
 
     public class SearchBandModel

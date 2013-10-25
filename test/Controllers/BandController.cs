@@ -18,59 +18,16 @@ namespace test.Controllers
         [ChildActionOnly]
         public ActionResult AllBands()
         {
-            List<BandProfile> bandProfiles = database.BandProfiles.ToList();
-            List<BandDisplayModel> bandDisplays = new List<BandDisplayModel>();
-
-            foreach (BandProfile bandProfile in bandProfiles)
-            {
-                BandDisplayModel bandDisplay = new BandDisplayModel();
-                bandDisplay.BandId = bandProfile.BandId;
-                bandDisplay.BandName = bandProfile.BandName;
-                bandDisplay.CreatorName = database.UserProfiles.Find(bandProfile.CreatorId).UserName;
-
-                var members = from b in database.BandMemberships
-                          join u in database.UserProfiles 
-                          on b.MemberId equals u.UserId
-                          where b.BandId == bandProfile.BandId
-                          select u.UserName;
-
-                bandDisplay.Members = string.Join(", ", members.ToArray());
-
-                bandDisplays.Add(bandDisplay);
-            }
-
-            return PartialView("_BandListPartial", bandDisplays);
+            return PartialView("_BandListPartial", BandUtil.BandModels(true));
         }
 
         //
-        // GET: /Band/Register
+        // GET: /Band/Bands
 
         [ChildActionOnly]
         public ActionResult Bands()
         {
-            List<BandDisplayModel> bandDisplays = new List<BandDisplayModel>();
-
-            // this probably needs to be optimized, i feel like im doing something really dumb
-
-            var results = from m in database.BandMemberships
-                        join p in database.BandProfiles
-                        on m.BandId equals p.BandId
-                        join u in database.UserProfiles
-                        on p.CreatorId equals u.UserId
-                        where m.MemberId == WebSecurity.CurrentUserId
-                        select new { p.BandId, p.BandName, u.UserName };
-
-            foreach(var row in results)
-            {
-                BandDisplayModel bandDisplay = new BandDisplayModel();
-                bandDisplay.BandId = row.BandId;
-                bandDisplay.BandName = row.BandName;
-                bandDisplay.CreatorName = row.UserName;
-
-                bandDisplays.Add(bandDisplay);
-            }
-
-            return PartialView("_BandsPartial", bandDisplays);
+            return PartialView("_BandsPartial", BandUtil.BandModelsFor(WebSecurity.CurrentUserId));
         }
 
         //
@@ -89,27 +46,18 @@ namespace test.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterBandModel model)
         {
-            // todo: exceptions, class
-
             if (ModelState.IsValid)
             {
-                if (database.BandProfiles.Where(x => x.BandName == model.BandName).Count() > 0)
+                if (BandUtil.IsBandNameTaken(model.BandName))
                 {
                     ModelState.AddModelError("", "band name taken idiot");
                 }
                 else
                 {
-                    BandProfile band = new BandProfile(model.BandName,
-                        WebSecurity.CurrentUserId,
-                        Crypto.HashPassword(model.Password));
-                    database.BandProfiles.Add(band);
+                    int bandId = BandUtil.Register(model);
 
-                    BandMembership membership = new BandMembership(band.BandId, WebSecurity.CurrentUserId);
-                    database.BandMemberships.Add(membership);
-                    database.SaveChanges();
-
-                    // todo: send them somewhere nice
-                    return RedirectToAction("Index", "Home");
+                    // After registering, we send them to their new band's dashboard
+                    return RedirectToAction("Index", "Dashboard", new { bandId = bandId } );
                 }
             }
 
@@ -138,31 +86,9 @@ namespace test.Controllers
 
             if (ModelState.IsValid)
             {
-                List<BandDisplayModel> bandDisplays = new List<BandDisplayModel>();
-
-                var results = from b in database.BandProfiles
-                              join u in database.UserProfiles
-                              on b.CreatorId equals u.UserId
-                              where b.BandName.Contains(model.BandName)
-                              select new { b.BandId, b.BandName, u.UserName };
-
-                // again, this is seems dumb
-                foreach (var row in results)
-                {
-                    BandDisplayModel bandDisplay = new BandDisplayModel();
-                    bandDisplay.BandId = row.BandId;
-                    bandDisplay.BandName = row.BandName;
-                    bandDisplay.CreatorName = row.UserName;
-
-                    bandDisplays.Add(bandDisplay);
-                }
-
-                svm.resultsModel = bandDisplays;
-
-                return View(svm);
+                svm.resultsModel = BandUtil.SearchByName(model.BandName);
             }
 
-            // If we got this far, something failed, redisplay form
             return View(svm);
         }
 
@@ -172,7 +98,10 @@ namespace test.Controllers
         [Authorize]
         public ActionResult Join(int bandId)
         {
-            BandProfile bandProfile = database.BandProfiles.Find(bandId);
+            BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
+
+            // TODO: Create BandNotFoundException and make BandProfileFor
+            // throw it, then make an exception filter for it
 
             if (bandProfile == null)
             {
@@ -182,7 +111,6 @@ namespace test.Controllers
 
             ViewBag.BandId = bandId;
             ViewBag.BandName = bandProfile.BandName;
-
             return View();
         }
 
@@ -193,7 +121,7 @@ namespace test.Controllers
         [HttpPost]
         public ActionResult Join(int bandId, JoinBandModel model)
         {
-            BandProfile bandProfile = database.BandProfiles.Find(bandId);
+            BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
 
             if (bandProfile == null)
             {
@@ -204,20 +132,15 @@ namespace test.Controllers
                 ViewBag.BandName = bandProfile.BandName;
                 ViewBag.BandId = bandId;
 
-                //string hash = Crypto.HashPassword(model.Password);
-                //if (hash == bandProfile.Password)
-                //{
-                    BandMembership membership = new BandMembership(bandId, WebSecurity.CurrentUserId);
-                    database.BandMemberships.Add(membership);
-                    database.SaveChanges();
-
+                if (BandUtil.Join(bandId))
+                {
                     ViewBag.StatusMessage = "You joined " + bandProfile.BandName;
-                //}
-                //else
-                //{
-                //    ModelState.AddModelError("", "Invalid band password (" + hash + ", " + bandProfile.Password + ")");
-                //    return View(model);
-                //}
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Invalid band password");
+                    return View(model);
+                }
             }
 
             return View("Status");
@@ -229,7 +152,7 @@ namespace test.Controllers
         [Authorize]
         public ActionResult Update(int bandId)
         {
-            BandProfile bandProfile = database.BandProfiles.Find(bandId);
+            BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
 
             if (bandProfile == null)
             {
@@ -253,7 +176,7 @@ namespace test.Controllers
         {
             bool updateName = false;
             bool updatePassword = false;
-            // Load the current band profile by id
+
             BandProfile bandProfile = database.BandProfiles.Find(bandId);
 
             if (bandProfile == null)
@@ -315,6 +238,7 @@ namespace test.Controllers
                     database.BandMemberships.Remove(bm);
                 }
                 database.SaveChanges();
+
                 return View("~/Views/Home/About.cshtml");
             }
         }

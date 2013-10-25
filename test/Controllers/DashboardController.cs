@@ -28,7 +28,7 @@ namespace band.Controllers
                 return View("Status");
             }
 
-            if (!BandManager.UserInBand(WebSecurity.CurrentUserId, bandId))
+            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))
             {
                 ViewBag.BandId = bandId;
                 ViewBag.BandName = bandProfile.BandName;
