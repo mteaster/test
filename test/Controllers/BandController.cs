@@ -132,7 +132,7 @@ namespace test.Controllers
                 ViewBag.BandName = bandProfile.BandName;
                 ViewBag.BandId = bandId;
 
-                if (BandUtil.Join(bandId))
+                if (BandUtil.Join(bandId, model.Password))
                 {
                     ViewBag.StatusMessage = "You joined " + bandProfile.BandName;
                 }

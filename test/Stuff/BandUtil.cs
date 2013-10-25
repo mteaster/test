@@ -9,6 +9,14 @@ using System.Data;
 
 namespace test.Stuff
 {
+    public class BandNotFoundException : System.Exception
+    {
+        public BandNotFoundException() { }
+
+        public BandNotFoundException(string message)
+            : base(message) { }
+    }
+
     public static class BandUtil
     {
         public static bool IsUserInBand(int userId, int bandId)
@@ -33,32 +41,32 @@ namespace test.Stuff
             return profile.BandId;
         }
 
-        public static bool Join(int bandId)
+        public static bool Join(int bandId, string password)
         {
-            //string hash = Crypto.HashPassword(model.Password);
-            
-            //if (true)hash == bandProfile.Password)
-            //{
             using (DatabaseContext database = new DatabaseContext())
             {
-                BandMembership membership = new BandMembership(bandId, WebSecurity.CurrentUserId);
-                database.BandMemberships.Add(membership);
-                database.SaveChanges();
+                BandProfile profile = BandProfileFor(bandId, database);
 
-                return true;
+                if(Crypto.VerifyHashedPassword(profile.Password, password))
+                {
+                    BandMembership membership = new BandMembership(bandId, WebSecurity.CurrentUserId);
+                    database.BandMemberships.Add(membership);
+                    database.SaveChanges();
+
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-
-
-            //}
-
-            //return false;
         }
 
         public static void ChangeBandName(int bandId, string bandName)
         {
             using (DatabaseContext database = new DatabaseContext())
             {
-                BandProfile profile = database.BandProfiles.Find(bandId);
+                BandProfile profile = BandProfileFor(bandId, database);
                 profile.BandName = bandName;
                 database.Entry(profile).State = EntityState.Modified;
                 database.SaveChanges();
@@ -69,7 +77,7 @@ namespace test.Stuff
         {
             using (DatabaseContext database = new DatabaseContext())
             {
-                BandProfile profile = database.BandProfiles.Find(bandId);
+                BandProfile profile = BandProfileFor(bandId, database);
                 profile.Password = Crypto.HashPassword(password);
                 database.Entry(profile).State = EntityState.Modified;
                 database.SaveChanges();
@@ -94,6 +102,18 @@ namespace test.Stuff
                 return string.Join(", ", memberUsernames.ToArray());
             }
 
+        }
+
+        public static BandProfile BandProfileFor(int bandId, DatabaseContext database)
+        {
+            BandProfile profile = database.BandProfiles.Find(bandId);
+
+            if (profile == null)
+            {
+                throw new BandNotFoundException();
+            }
+
+            return profile;
         }
 
         public static BandProfile BandProfileFor(int bandId)
@@ -145,7 +165,6 @@ namespace test.Stuff
         //            where m.MemberId == userId
         //            select new BandModel(p.BandId, p.BandName, u.UserName, null)).ToList();
         //}
-
 
         public static BandModel BandModelFor(BandProfile profile, bool membersFlag = false)
         {
