@@ -27,7 +27,7 @@ namespace test.Controllers
         [ChildActionOnly]
         public ActionResult Bands()
         {
-            return PartialView("_BandsPartial", BandUtil.CrazyBandModelsFor(WebSecurity.CurrentUserId));
+            return PartialView("_BandsPartial", BandUtil.BandModelsFor(WebSecurity.CurrentUserId));
         }
 
         //
