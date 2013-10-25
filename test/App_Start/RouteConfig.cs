@@ -14,28 +14,28 @@ namespace test
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Join",
+                name: "Join Band",
                 url: "Band/Join/{bandId}",
                 defaults: new { controller = "Band", action = "Join" },
                 constraints: new { bandId = @"\d+" }
             );
 
             routes.MapRoute(
-                name: "Post",
+                name: "Post Message",
                 url: "Dashboard/Post/{bandId}",
                 defaults: new { controller = "Dashboard", action = "Post" },
                 constraints: new { bandId = @"\d+" }
             );
 
             routes.MapRoute(
-                name: "Update",
-                url: "Band/Update/{bandId}",
+                name: "Manage Band",
+                url: "Band/Manage/{bandId}",
                 defaults: new { controller = "Band", action = "Update" },
                 constraints: new { bandId = @"\d+" }
             );
 
             routes.MapRoute(
-                name: "Delete",
+                name: "Delete Band",
                 url: "Band/Delete/{bandId}",
                 defaults: new { controller = "Band", action = "Delete" },
                 constraints: new { bandId = @"\d+" }

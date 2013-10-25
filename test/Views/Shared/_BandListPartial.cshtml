@@ -19,7 +19,7 @@
         <td>@Html.DisplayFor(modelItem => item.CreatorName)</td>
         <td>@Html.DisplayFor(modelItem => item.Members)</td>
         <td>@Html.ActionLink("Join", "Join", new {bandId = item.BandId})</td>
-        <td>@Html.ActionLink("Update", "Update", new {bandId = item.BandId})</td>
+        <td>@Html.ActionLink("Manage", "Manage", new {bandId = item.BandId})</td>
     </tr>
 }
 
