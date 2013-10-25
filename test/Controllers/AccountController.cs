@@ -11,8 +11,6 @@ namespace test.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        private DatabaseContext database = new DatabaseContext();
-
         //
         // GET: /Account/Login
 
@@ -97,8 +95,6 @@ namespace test.Controllers
         {
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
-                : message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
                 : message == ManageMessageId.ChangeDisplayNameSuccess ? "Your display name has been changed."
                 : "";
             ViewBag.HasLocalPassword = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
@@ -112,12 +108,15 @@ namespace test.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ChangeDisplayName(DisplayNameModel model)
+        public ActionResult ChangeDisplayName(ChangeDisplayNameModel model)
         {
-            UserProfile original = database.UserProfiles.Find(WebSecurity.CurrentUserId);
-            original.DisplayName = model.DisplayName;
-            database.Entry(original).State = EntityState.Modified;
-            database.SaveChanges();
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                UserProfile original = database.UserProfiles.Find(WebSecurity.CurrentUserId);
+                original.DisplayName = model.DisplayName;
+                database.Entry(original).State = EntityState.Modified;
+                database.SaveChanges();
+            }
 
             return RedirectToAction("Manage", new { Message = ManageMessageId.ChangeDisplayNameSuccess });
         }
@@ -128,7 +127,7 @@ namespace test.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Manage(LocalPasswordModel model)
+        public ActionResult Manage(PasswordModel model)
         {
             bool hasLocalAccount = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
             ViewBag.HasLocalPassword = hasLocalAccount;
@@ -202,8 +201,6 @@ namespace test.Controllers
         public enum ManageMessageId
         {
             ChangePasswordSuccess,
-            SetPasswordSuccess,
-            RemoveLoginSuccess,
             ChangeDisplayNameSuccess
         }
 

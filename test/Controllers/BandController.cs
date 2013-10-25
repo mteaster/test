@@ -147,72 +147,67 @@ namespace test.Controllers
         }
 
         //
-        // Get: /Band/Update
+        // Get: /Band/Manage
 
         [Authorize]
-        public ActionResult Update(int bandId)
+        public ActionResult Manage(int bandId, ManageMessageId? message)
         {
             BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
 
             if (bandProfile == null)
             {
-                ViewBag.StatusMessage = "Band not in database.";
+                ViewBag.StatusMessage = "Invalid band ID (not in database)" + bandId;
                 return View("Status");
             }
-            else
-            {
-                ViewBag.BandId = bandProfile.BandId;
-                ViewBag.BandName = bandProfile.BandName;
-                return View();
-            }
+
+            ViewBag.StatusMessage =
+                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
+                : message == ManageMessageId.ChangeBandNameSuccess ? "Your band name has been changed."
+                : "";
+
+            ViewBag.BandId = bandProfile.BandId;
+            ViewBag.BandName = bandProfile.BandName;
+            return View();
         }
 
         //
-        // Post: /Band/Update
+        // POST: /Band/ChangeBandName
 
-        [Authorize]
         [HttpPost]
-        public ActionResult Update(int bandId, UpdateBandModel updateBandModel)
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangeBandName(int bandId, ChangeBandNameModel model)
         {
-            bool updateName = false;
-            bool updatePassword = false;
-
-            BandProfile bandProfile = database.BandProfiles.Find(bandId);
+            BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
 
             if (bandProfile == null)
             {
-                // Could not find the band. This shouldn't happen
-                ViewBag.StatusMessage = "Unexpected Error: Could not update profile.";
-                return View();
+                ViewBag.StatusMessage = "Invalid band ID (not in database)";
+                return View("Status");
             }
-            else
+
+            BandUtil.ChangeBandName(bandProfile, model.BandName);
+
+            return RedirectToAction("Manage", new { Message = ManageMessageId.ChangeBandNameSuccess } );
+        }
+
+        //
+        // POST: /Band/ChangeBandPassword
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangeBandPassword(int bandId, BandPasswordModel model)
+        {
+            BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
+
+            if (bandProfile == null)
             {
-                // update band name, if new one provided
-                if (!string.IsNullOrWhiteSpace(updateBandModel.NewBandName))
-                {
-                    bandProfile.BandName = updateBandModel.NewBandName;
-                    updateName = true;
-                }
-
-                // update band password, if new one provided
-                if (!string.IsNullOrWhiteSpace(updateBandModel.NewPassword))
-                {
-                    bandProfile.Password = Crypto.HashPassword(updateBandModel.NewPassword);
-                    updatePassword = true;
-                }
-
-                if (updatePassword || updateName)
-                {
-                    database.Entry(bandProfile).State = EntityState.Modified;
-                    database.SaveChanges();
-                    return View("~/Views/Home/About.cshtml");
-                }
-                else
-                {
-                    ViewBag.UpdateError = "No changes detected.";
-                    return View();
-                }
+                ViewBag.StatusMessage = "Invalid band ID (not in database)";
+                return View("Status");
             }
+
+            BandUtil.ChangeBandPassword(bandProfile, model.NewPassword);
+
+            return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
         }
 
         [Authorize]
@@ -243,5 +238,10 @@ namespace test.Controllers
             }
         }
 
+        public enum ManageMessageId
+        {
+            ChangePasswordSuccess,
+            ChangeBandNameSuccess
+        }
     }
 }

@@ -5,6 +5,7 @@ using System.Web;
 using test.Models;
 using WebMatrix.WebData;
 using System.Web.Helpers;
+using System.Data;
 
 namespace test.Stuff
 {
@@ -51,6 +52,26 @@ namespace test.Stuff
             //}
 
             //return false;
+        }
+
+        public static void ChangeBandName(BandProfile profile, string bandName)
+        {
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                profile.BandName = bandName;
+                database.Entry(profile).State = EntityState.Modified;
+                database.SaveChanges();
+            }
+        }
+
+        public static void ChangeBandPassword(BandProfile profile, string password)
+        {
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                profile.BandName = Crypto.HashPassword(password);
+                database.Entry(profile).State = EntityState.Modified;
+                database.SaveChanges();
+            }
         }
 
         public static bool IsBandNameTaken(string bandName)
@@ -123,6 +144,7 @@ namespace test.Stuff
         //            where m.MemberId == userId
         //            select new BandModel(p.BandId, p.BandName, u.UserName, null)).ToList();
         //}
+
 
         public static BandModel BandModelFor(BandProfile profile, bool membersFlag = false)
         {
