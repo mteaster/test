@@ -129,8 +129,6 @@ namespace test.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Manage(UserPasswordModel model)
         {
-            bool hasLocalAccount = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
-
             ViewBag.ReturnUrl = Url.Action("Manage");
 
             if (ModelState.IsValid)

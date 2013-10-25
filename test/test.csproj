@@ -368,7 +368,7 @@
     <Content Include="Views\Band\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Band\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Band\_ChangeBandPasswordPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Band\_ChangeBandNamePartial.cshtml" />
