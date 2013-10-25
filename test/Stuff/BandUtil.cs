@@ -68,9 +68,9 @@ namespace test.Stuff
         {
             using (DatabaseContext database = new DatabaseContext())
             {
-                database.BandProfiles.Find(profile.BandId);
-                profile.BandName = Crypto.HashPassword(password);
-                database.Entry(profile).State = EntityState.Modified;
+                BandProfile profile2 = database.BandProfiles.Find(profile.BandId);
+                profile2.BandName = Crypto.HashPassword(password);
+                database.Entry(profile2).State = EntityState.Modified;
                 database.SaveChanges();
             }
         }
