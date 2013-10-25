@@ -10,13 +10,12 @@
 
 <p class="message-success">@ViewBag.StatusMessage</p>
 
-@Html.ActionLink("Delete", "Delete", new { bandId = ViewBag.BandId })
-
 <section class="half">
     @Html.Partial("_ChangeBandPasswordPartial")
 </section>
 <section class="half">
     @Html.Partial("_ChangeBandNamePartial")
+    @Html.ActionLink("Delete", "Delete", new { bandId = ViewBag.BandId })
 </section>
 
 @section Scripts
