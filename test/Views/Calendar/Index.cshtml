@@ -1,76 +1,123 @@
-﻿@{
+@{
     ViewBag.Title = "Calendar";
 }
 
 <h2>Track Gigs and other Events!</h2>
 
-<TABLE BORDER=3 CELLSPACING=3 CELLPADDING=3> 
- <TR>
- <TD COLSPAN="7" ALIGN=center><B>October</B></TD> 
- </TR>
-<TR> 
- <TD COLSPAN="7" ALIGN=center><I>This calendar sucks.</I></TD>
- </TR>
-
-<TR> 
- <TD ALIGN=center>Sun</TD>
- <TD ALIGN=center>Mon</TD>
- <TD ALIGN=center>Tue</TD>
- <TD ALIGN=center>Wed</TD>
- <TD ALIGN=center>Thu</TD>
- <TD ALIGN=center>Fri</TD>
-<TD ALIGN=center>Sat</TD>
- </TR>
-
-<TR> 
- <TD ALIGN=center></TD>
- <TD ALIGN=center></TD>
- <TD ALIGN=center>1</TD>
- <TD ALIGN=center>2</TD>
- <TD ALIGN=center>3</TD>
- <TD ALIGN=center>4</TD>
- <TD ALIGN=center>5</TD>
- </TR>
-
-<TR> 
- <TD ALIGN=center>6</TD>
- <TD ALIGN=center>7</TD>
- <TD ALIGN=center>8</TD>
- <TD ALIGN=center>9</TD>
- <TD ALIGN=center>10</TD>
- <TD ALIGN=center>11</TD>
- <TD ALIGN=center>12</TD>
- </TR>
-
-<TR> 
- <TD ALIGN=center>13</TD>
- <TD ALIGN=center>14</TD>
- <TD ALIGN=center>15</TD>
- <TD ALIGN=center>16</TD>
- <TD ALIGN=center>17</TD>
- <TD ALIGN=center>18</TD>
- <TD ALIGN=center>19</TD>
- </TR>
-
-<TR> 
- <TD ALIGN=center>20</TD>
- <TD ALIGN=center>21</TD>
- <TD ALIGN=center>22</TD>
- <TD ALIGN=center>23</TD>
- <TD ALIGN=center>24</TD>
- <TD ALIGN=center>25</TD>
- <TD ALIGN=center>26</TD>
- </TR>
-
-<TR> 
- <TD ALIGN=center>27</TD>
- <TD ALIGN=center>28</TD>
- <TD ALIGN=center>29</TD>
- <TD ALIGN=center>30</TD>
- <TD ALIGN=center>31</TD>
- <TD ALIGN=center></TD>
- <TD ALIGN=center></TD>
- </TR>
-
- </TABLE> 
+<html lang="en"> 
+<head> 
+ <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"> 
+ <title>Calendar</title> 
+ <meta name="Description" content="Monthly Calendar"> 
+ <meta name="keywords" content="A monthly calendar template"> 
+ <!-- you should use this instead . . . <link rel="stylesheet" type="text/css" href=""> --> 
+ <style type="text/css"> 
+  #calendar-table { 
+ width: 716px; /* 100 per cell + borders */ 
+ margin:auto; 
+ background:#ffffff; 
+ border: 1px solid #b1b1b1; 
+} 
+#calendar-table td { 
+ vertical-align:top; 
+ width: 100px; 
+ height: 100px; /* will vary with content */ 
+ padding:4px; 
+ background: #f8f8f8; 
+ border: 1px solid #b1b1b1; 
+} 
+#calendar-table td p { 
+ text-align: center; 
+} 
+#header { 
+ background:#000000; 
+ color:#ffffff; 
+ font-weight:700; 
+ padding:12px; 
+ text-align: center; 
+} 
+#descr { 
+ background:#ffffff; 
+ font-style:italic; 
+ padding:12px; 
+ text-align: center; 
+} 
+ </style> 
+</head> 
+<body> 
+<table id="calendar-table" cellpadding="0" cellspacing="0"> 
+<tr> 
+ <th colspan="7" id="header">January 2009</th> 
+</tr> 
+<tr> 
+ <th colspan="7" id="descr">Course Calendar</th> 
+</tr> 
+<tr> 
+ <td>Sun</td> 
+ <td>Mon</td> 
+ <td>Tue</td> 
+ <td>Wed</td> 
+ <td>Thu</td> 
+ <td>Fri</td> 
+ <td>Sat</td> 
+</tr> 
+<tr> 
+ <td>&nbsp;</td> 
+ <td>&nbsp;</td> 
+ <td>&nbsp;</td> 
+ <td>&nbsp;</td> 
+ <td>1</td> 
+ <td>2</td> 
+ <td>3</td> 
+</tr> 
+<tr> 
+ <td>4</td> 
+ <td>5</td> 
+ <td>6</td> 
+ <td>7</td> 
+ <td>8 
+ <p>PL Class</p> 
+ </td> 
+ <td>9</td> 
+ <td>10</td> 
+</tr> 
+<tr> 
+ <td>11</td> 
+ <td>12</td> 
+ <td>13</td> 
+ <td>14</td> 
+ <td>15</td> 
+ <td>16</td> 
+ <td>17</td> 
+</tr> 
+<tr> 
+ <td>18</td> 
+ <td>19</td> 
+ <td>20</td> 
+ <td>21</td> 
+ <td>22</td> 
+ <td>23</td> 
+ <td>24</td> 
+</tr> 
+<tr> 
+ <td>25</td> 
+ <td>26</td> 
+ <td>27</td> 
+ <td>28</td> 
+ <td>29</td> 
+ <td>30</td> 
+ <td>31</td> 
+</tr> 
+<tr> 
+ <td>30</td> 
+ <td>31</td> 
+ <td>&nbsp;</td> 
+ <td>&nbsp;</td> 
+ <td>&nbsp;</td> 
+ <td>&nbsp;</td> 
+ <td>&nbsp;</td> 
+</tr> 
+</table> 
+</body> 
+</html> 
 
