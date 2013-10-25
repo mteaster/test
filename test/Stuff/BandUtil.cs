@@ -195,11 +195,19 @@ namespace test.Stuff
         {
             using (DatabaseContext database = new DatabaseContext())
             {
-                return (from b in database.BandProfiles
-                        join u in database.UserProfiles
-                        on b.CreatorId equals u.UserId
-                        where b.BandName.Contains(term)
-                        select new BandModel(b.BandId, b.BandName, u.UserName, null)).ToList();
+                var results = from b in database.BandProfiles
+                              join u in database.UserProfiles
+                              on b.CreatorId equals u.UserId
+                              where b.BandName.Contains(term)
+                              select new { b.BandId, b.BandName, u.UserName };
+                List<BandModel> bands = new List<BandModel>();
+
+                foreach (var result in results)
+                {
+                    bands.Add(new BandModel(result.BandId, result.BandName, result.UserName, null));
+                }
+
+                return bands;
             }
         }
     }
