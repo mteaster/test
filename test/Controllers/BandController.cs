@@ -187,7 +187,7 @@ namespace test.Controllers
 
             BandUtil.ChangeBandName(bandProfile, model.BandName);
 
-            return RedirectToAction("Manage", new { Message = ManageMessageId.ChangeBandNameSuccess } );
+            return RedirectToAction("Manage", new { bandId = bandProfile.BandId, Message = ManageMessageId.ChangeBandNameSuccess } );
         }
 
         //
@@ -207,7 +207,7 @@ namespace test.Controllers
 
             BandUtil.ChangeBandPassword(bandProfile, model.NewPassword);
 
-            return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
+            return RedirectToAction("Manage", new { bandId = bandProfile.BandId, Message = ManageMessageId.ChangePasswordSuccess });
         }
 
         [Authorize]
