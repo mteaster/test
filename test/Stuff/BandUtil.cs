@@ -104,6 +104,13 @@ namespace test.Stuff
 
         }
 
+        public static string BandNameFor(int bandId)
+        {
+            BandProfile profile = BandProfileFor(bandId);
+
+            return profile.BandName;
+        }
+
         public static BandProfile BandProfileFor(int bandId, DatabaseContext database)
         {
             BandProfile profile = database.BandProfiles.Find(bandId);
@@ -118,8 +125,13 @@ namespace test.Stuff
 
         public static BandProfile BandProfileFor(int bandId)
         {
-            return new DatabaseContext().BandProfiles.Find(bandId);
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                return BandProfileFor(bandId, database);
+            }
         }
+
+        // stuff under here might need refactoring
 
         public static List<BandModel> BandModels(bool membersFlag = false)
         {

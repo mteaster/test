@@ -100,15 +100,6 @@ namespace test.Controllers
         {
             BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
 
-            // TODO: Create BandNotFoundException and make BandProfileFor
-            // throw it, then make an exception filter for it
-
-            if (bandProfile == null)
-            {
-                ViewBag.StatusMessage = "Invalid band ID (not in database)";
-                return View("Status");
-            }
-
             ViewBag.BandId = bandId;
             ViewBag.BandName = bandProfile.BandName;
             return View();
@@ -121,29 +112,16 @@ namespace test.Controllers
         [HttpPost]
         public ActionResult Join(int bandId, JoinBandModel model)
         {
-            BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
+            ViewBag.BandId = bandId;
 
-            if (bandProfile == null)
+            if (BandUtil.Join(bandId, model.Password))
             {
-                ViewBag.StatusMessage = "Invalid band ID (not in database)" + bandId;
-            }
-            else
-            {
-                ViewBag.BandName = bandProfile.BandName;
-                ViewBag.BandId = bandId;
-
-                if (BandUtil.Join(bandId, model.Password))
-                {
-                    ViewBag.StatusMessage = "You joined " + bandProfile.BandName;
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Invalid band password");
-                    return View(model);
-                }
+                return RedirectToAction("Index", "Dashboard", new { bandId = bandId } );
             }
 
-            return View("Status");
+            ViewBag.BandName = BandUtil.BandNameFor(bandId);
+            ModelState.AddModelError("", "Invalid band password");
+            return View(model);
         }
 
         //
@@ -153,12 +131,6 @@ namespace test.Controllers
         public ActionResult Manage(int bandId, ManageMessageId? message)
         {
             BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
-
-            if (bandProfile == null)
-            {
-                ViewBag.StatusMessage = "Invalid band ID (not in database)" + bandId;
-                return View("Status");
-            }
 
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
