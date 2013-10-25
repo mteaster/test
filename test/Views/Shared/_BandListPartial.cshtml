@@ -6,16 +6,19 @@
         <th>@Html.DisplayNameFor(model => model.BandName)</th>
         <th>@Html.DisplayNameFor(model => model.CreatorName)</th>
         <th>@Html.DisplayNameFor(model => model.Members)</th>
-        <th>Update Test</th>
+        <th>Join</th>
+        <th>Update</th>
     </tr>
 
 @foreach (var item in Model)
 {
     <tr>
         <th>@Html.DisplayFor(modelItem => item.BandId)</th>
-        <td>@Html.DisplayFor(modelItem => item.BandName)</td>
+        <td>@Html.ActionLink(Html.DisplayFor(modelItem => item.BandName).ToString(),
+             "Index", "Dashboard", new { bandId = item.BandId }, null)</td>
         <td>@Html.DisplayFor(modelItem => item.CreatorName)</td>
         <td>@Html.DisplayFor(modelItem => item.Members)</td>
+        <td>@Html.ActionLink("Join", "Join", new {bandId = item.BandId})</td>
         <td>@Html.ActionLink("Update", "Update", new {bandId = item.BandId})</td>
     </tr>
 }

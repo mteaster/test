@@ -16,31 +16,36 @@ namespace test
             routes.MapRoute(
                 name: "Join",
                 url: "Band/Join/{bandId}",
-                defaults: new { controller = "Band", action = "Join", bandId = "" }
+                defaults: new { controller = "Band", action = "Join" },
+                constraints: new { bandId = @"\d+" }
             );
 
             routes.MapRoute(
                 name: "Post",
                 url: "Dashboard/Post/{bandId}",
-                defaults: new { controller = "Dashboard", action = "Post", bandId = "" }
+                defaults: new { controller = "Dashboard", action = "Post" },
+                constraints: new { bandId = @"\d+" }
             );
 
             routes.MapRoute(
                 name: "Update",
                 url: "Band/Update/{bandId}",
-                defaults: new { controller = "Band", action = "Update", bandId = "" }
+                defaults: new { controller = "Band", action = "Update" },
+                constraints: new { bandId = @"\d+" }
             );
 
             routes.MapRoute(
                 name: "Delete",
                 url: "Band/Delete/{bandId}",
-                defaults: new { controller = "Band", action = "Delete", bandId = "" }
+                defaults: new { controller = "Band", action = "Delete" },
+                constraints: new { bandId = @"\d+" }
             );
 
             routes.MapRoute(
                 name: "Dashboard",
                 url: "Dashboard/{bandId}",
-                defaults: new { controller = "Dashboard", action = "Index", bandId = "" }
+                defaults: new { controller = "Dashboard", action = "Index" },
+                constraints: new { bandId = @"\d+" }
             );
 
             routes.MapRoute(
