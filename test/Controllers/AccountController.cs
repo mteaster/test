@@ -4,6 +4,7 @@ using System.Web.Security;
 using Microsoft.Web.WebPages.OAuth;
 using test.Models;
 using WebMatrix.WebData;
+using System.Data;
 
 namespace test.Controllers
 {
@@ -115,6 +116,7 @@ namespace test.Controllers
         {
             UserProfile original = database.UserProfiles.Find(WebSecurity.CurrentUserId);
             original.DisplayName = model.DisplayName;
+            database.Entry(original).State = EntityState.Modified;
             database.SaveChanges();
 
             return RedirectToAction("Manage", new { Message = ManageMessageId.ChangeDisplayNameSuccess });
