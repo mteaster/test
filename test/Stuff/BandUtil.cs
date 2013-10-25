@@ -97,16 +97,16 @@ namespace test.Stuff
             return bandModels;
         }
 
-        public static List<BandModel> CrazyBandModelsFor(int userId, bool membersFlag = false)
-        {
-            return (from m in database.BandMemberships
-                    join p in database.BandProfiles
-                    on m.BandId equals p.BandId
-                    join u in database.UserProfiles
-                    on p.CreatorId equals u.UserId
-                    where m.MemberId == userId
-                    select new BandModel(p.BandId, p.BandName, u.UserName, null)).ToList();
-        }
+        //public static List<BandModel> CrazyBandModelsFor(int userId, bool membersFlag = false)
+        //{
+        //    return (from m in database.BandMemberships
+        //            join p in database.BandProfiles
+        //            on m.BandId equals p.BandId
+        //            join u in database.UserProfiles
+        //            on p.CreatorId equals u.UserId
+        //            where m.MemberId == userId
+        //            select new BandModel(p.BandId, p.BandName, u.UserName, null)).ToList();
+        //}
 
         public static BandModel BandModelFor(BandProfile profile, bool membersFlag = false)
         {
