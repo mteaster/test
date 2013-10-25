@@ -325,7 +325,6 @@
     <Content Include="Views\Band\Manage.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Band\_UpdateBandPartial.cshtml" />
     <Content Include="Views\Calendar\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
