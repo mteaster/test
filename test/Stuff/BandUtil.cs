@@ -15,7 +15,7 @@ namespace test.Stuff
         public BandNotFoundException(string message) : base(message) {}
     }
 
-    public static class BandUtil
+    public class BandUtil
     {
         public static bool IsUserInBand(int userId, int bandId)
         {
@@ -53,10 +53,8 @@ namespace test.Stuff
 
                     return true;
                 }
-                else
-                {
-                    return false;
-                }
+
+                return false;
             }
         }
 
@@ -138,6 +136,19 @@ namespace test.Stuff
             }
 
             return profile;
+        }
+
+        public static BandProfile SuperBandProfileFor(int bandId, DatabaseContext database)
+        {
+            BandProfile profile = database.BandProfiles.Find(bandId);
+            BandMembership membership = database.BandMemberships.Find(bandId, WebSecurity.CurrentUserId);
+            
+            if (profile == null)
+            {
+                throw new BandNotFoundException();
+            }
+
+            return membership == null ? null : profile;
         }
 
         public static BandProfile BandProfileFor(int bandId)
