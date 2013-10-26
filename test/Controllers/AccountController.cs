@@ -110,24 +110,30 @@ namespace test.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ChangeDisplayName(ChangeDisplayNameModel model)
         {
-            using (DatabaseContext database = new DatabaseContext())
+            if (ModelState.IsValid)
             {
-                UserProfile original = database.UserProfiles.Find(WebSecurity.CurrentUserId);
-                original.DisplayName = model.DisplayName;
-                database.Entry(original).State = EntityState.Modified;
-                database.SaveChanges();
+                using (DatabaseContext database = new DatabaseContext())
+                {
+                    UserProfile original = database.UserProfiles.Find(WebSecurity.CurrentUserId);
+                    original.DisplayName = model.DisplayName;
+                    database.Entry(original).State = EntityState.Modified;
+                    database.SaveChanges();
+                }
+
+                return RedirectToAction("Manage", new { Message = ManageMessageId.ChangeDisplayNameSuccess });
             }
 
-            return RedirectToAction("Manage", new { Message = ManageMessageId.ChangeDisplayNameSuccess });
+            // If we got this far, something failed, redisplay form
+            return View(model);
         }
         
 
         //
-        // POST: /Account/Manage
+        // POST: /Account/ChangePassword
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Manage(UserPasswordModel model)
+        public ActionResult ChangePassword(UserPasswordModel model)
         {
             ViewBag.ReturnUrl = Url.Action("Manage");
 
