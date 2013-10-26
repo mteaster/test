@@ -179,7 +179,7 @@ namespace test.Controllers
         {
             BandUtil.Delete(bandId);
 
-            ViewBag.StatusMessage("your band got deleted im so sorry");
+            ViewBag.StatusMessage = "your band got deleted im so sorry";
             return View("Status");
         }
 
