@@ -30,7 +30,7 @@ namespace test
             routes.MapRoute(
                 name: "Manage Band",
                 url: "Band/Manage/{bandId}",
-                defaults: new { controller = "Band", action = "Update" },
+                defaults: new { controller = "Band", action = "Manage" },
                 constraints: new { bandId = @"\d+" }
             );
 

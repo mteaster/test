@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -20,13 +19,7 @@ namespace band.Controllers
 
         public ActionResult Index(int bandId)
         {
-            BandProfile bandProfile = database.BandProfiles.Find(bandId);
-
-            if (bandProfile == null)
-            {
-                ViewBag.StatusMessage = "band doesn't exist";
-                return View("Status");
-            }
+            BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
 
             if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))
             {
