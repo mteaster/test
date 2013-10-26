@@ -11,10 +11,12 @@ using test.Stuff;
 
 namespace test.Controllers
 {
+    [Authorize]
     public class BandController : Controller
     {
         private DatabaseContext database = new DatabaseContext();
 
+        [AllowAnonymous]
         [ChildActionOnly]
         public ActionResult AllBands()
         {
@@ -24,6 +26,7 @@ namespace test.Controllers
         //
         // GET: /Band/Bands
 
+        [AllowAnonymous]
         [ChildActionOnly]
         public ActionResult Bands()
         {
@@ -41,7 +44,6 @@ namespace test.Controllers
         //
         // POST: /Band/Register
 
-        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterBandModel model)
@@ -76,7 +78,6 @@ namespace test.Controllers
         //
         // POST: /Band/Search
 
-        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Search(SearchBandModel model)
@@ -95,7 +96,6 @@ namespace test.Controllers
         //
         // GET: /Band/Join
 
-        [Authorize]
         public ActionResult Join(int bandId)
         {
             BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
@@ -108,7 +108,6 @@ namespace test.Controllers
         //
         // POST: /Band/Join
 
-        [Authorize]
         [HttpPost]
         public ActionResult Join(int bandId, JoinBandModel model)
         {
@@ -127,7 +126,6 @@ namespace test.Controllers
         //
         // Get: /Band/Manage
 
-        [Authorize]
         public ActionResult Manage(int bandId, ManageMessageId? message)
         {
             BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
@@ -174,7 +172,6 @@ namespace test.Controllers
             return RedirectToAction("Manage", new { bandId = bandId, Message = ManageMessageId.ChangePasswordSuccess });
         }
 
-        [Authorize]
         public ActionResult Delete(int bandId)
         {
             if (BandUtil.Delete(bandId))
