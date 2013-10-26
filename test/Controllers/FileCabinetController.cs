@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using test.Models;
+using test.Stuff;
 
 namespace band.Content
 {
@@ -11,8 +13,10 @@ namespace band.Content
         //
         // GET: /FileCabinet/
 
-        public ActionResult Index()
+        public ActionResult Index(int bandId)
         {
+            BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
+
             return View();
         }
 

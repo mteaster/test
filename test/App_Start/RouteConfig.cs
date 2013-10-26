@@ -42,6 +42,34 @@ namespace test
             );
 
             routes.MapRoute(
+                name: "Calendar",
+                url: "Calendar/{bandId}",
+                defaults: new { controller = "Calendar", action = "Index" },
+                constraints: new { bandId = @"\d+" }
+            );
+
+            routes.MapRoute(
+                name: "Budget",
+                url: "Budget/{bandId}",
+                defaults: new { controller = "Budget", action = "Index" },
+                constraints: new { bandId = @"\d+" }
+            );
+
+            routes.MapRoute(
+                name: "Online",
+                url: "Online/{bandId}",
+                defaults: new { controller = "Online", action = "Index" },
+                constraints: new { bandId = @"\d+" }
+            );
+
+            routes.MapRoute(
+                name: "Rolodex",
+                url: "Rolodex/{bandId}",
+                defaults: new { controller = "Rolodex", action = "Index" },
+                constraints: new { bandId = @"\d+" }
+            );
+
+            routes.MapRoute(
                 name: "Dashboard",
                 url: "Dashboard/{bandId}",
                 defaults: new { controller = "Dashboard", action = "Index" },
