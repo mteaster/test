@@ -349,9 +349,6 @@
     <Content Include="Views\Band\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Home\_BandManagementPartial.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Band\_SearchBandPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -371,6 +368,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Band\_ChangeBandNamePartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_BandHeaderPartial.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
