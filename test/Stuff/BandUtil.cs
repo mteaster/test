@@ -11,10 +11,13 @@ namespace test.Stuff
 {
     public class BandNotFoundException : System.Exception
     {
-        public BandNotFoundException() { }
-
-        public BandNotFoundException(string message)
-            : base(message) { }
+        public BandNotFoundException() {}
+        public BandNotFoundException(string message) : base(message) {}
+    }
+    public class BandNameTakenException : System.Exception
+    {
+        public BandNameTakenException() {}
+        public BandNameTakenException(string message) : base(message) {}
     }
 
     public static class BandUtil
@@ -62,6 +65,21 @@ namespace test.Stuff
             }
         }
 
+        public static void Delete(int bandId)
+        {
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                BandProfile profile = BandProfileFor(bandId, database);
+                database.BandProfiles.Remove(profile);
+                IQueryable<BandMembership> memberships = database.BandMemberships.Where(m => m.BandId == bandId);
+                foreach (BandMembership membership in memberships)
+                {
+                    database.BandMemberships.Remove(membership);
+                }
+                database.SaveChanges();
+            }
+        }
+
         public static void ChangeBandName(int bandId, string bandName)
         {
             using (DatabaseContext database = new DatabaseContext())
@@ -84,9 +102,13 @@ namespace test.Stuff
             }
         }
 
+        // might want to integrate into Register
         public static bool IsBandNameTaken(string bandName)
         {
-            return new DatabaseContext().BandProfiles.Where(x => x.BandName == bandName).Count() > 0;
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                return database.BandProfiles.Where(x => x.BandName == bandName).Count() > 0;
+            }
         }
 
         public static string MembersFor(int bandId)

@@ -149,14 +149,6 @@ namespace test.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ChangeBandName(int bandId, ChangeBandNameModel model)
         {
-            BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
-
-            if (bandProfile == null)
-            {
-                ViewBag.StatusMessage = "Invalid band ID (not in database)";
-                return View("Status");
-            }
-
             BandUtil.ChangeBandName(bandId, model.BandName);
 
             return RedirectToAction("Manage", new { bandId = bandId, Message = ManageMessageId.ChangeBandNameSuccess } );
@@ -185,29 +177,10 @@ namespace test.Controllers
         [Authorize]
         public ActionResult Delete(int bandId)
         {
-            List<BandMembership> bandMembershipList;
-            // Load the current band profile by id
-            BandProfile bandProfile = database.BandProfiles.Find(bandId);
+            BandUtil.Delete(bandId);
 
-            if (bandProfile == null)
-            {
-                // Could not find the band. This shouldn't happen
-                ViewBag.StatusMessage = "Unexpected Error: Could not delete profile.";
-                return View("Status");
-            }
-            else
-            {
-                // Delete the band
-                database.BandProfiles.Remove(bandProfile);
-                bandMembershipList = database.BandMemberships.Where(m => m.BandId == bandId).ToList();
-                foreach (BandMembership bm in bandMembershipList)
-                {
-                    database.BandMemberships.Remove(bm);
-                }
-                database.SaveChanges();
-
-                return View("~/Views/Home/About.cshtml");
-            }
+            ViewBag.StatusMessage("your band got deleted im so sorry");
+            return View("Status");
         }
 
         public enum ManageMessageId
