@@ -79,7 +79,7 @@ namespace test
             routes.MapRoute(
                 name: "File Cabinet",
                 url: "FileCabinet/{bandId}",
-                defaults: new { controller = "Band", action = "Join" },
+                defaults: new { controller = "FileCabinet", action = "Index" },
                 constraints: new { bandId = @"\d+" }
             );
 
