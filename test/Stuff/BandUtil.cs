@@ -14,11 +14,6 @@ namespace test.Stuff
         public BandNotFoundException() {}
         public BandNotFoundException(string message) : base(message) {}
     }
-    public class BandNameTakenException : System.Exception
-    {
-        public BandNameTakenException() {}
-        public BandNameTakenException(string message) : base(message) {}
-    }
 
     public static class BandUtil
     {
