@@ -21,16 +21,16 @@ namespace test
             );
 
             routes.MapRoute(
-                name: "Join Band",
-                url: "FileCabinet/{bandId}",
-                defaults: new { controller = "Band", action = "Join" },
+                name: "Post Message",
+                url: "Dashboard/Post/{bandId}",
+                defaults: new { controller = "Dashboard", action = "Post" },
                 constraints: new { bandId = @"\d+" }
             );
 
             routes.MapRoute(
-                name: "Post Message",
-                url: "Dashboard/Post/{bandId}",
-                defaults: new { controller = "Dashboard", action = "Post" },
+                name: "Dashboard",
+                url: "Dashboard/{bandId}",
+                defaults: new { controller = "Dashboard", action = "Index" },
                 constraints: new { bandId = @"\d+" }
             );
 
@@ -77,9 +77,9 @@ namespace test
             );
 
             routes.MapRoute(
-                name: "Dashboard",
-                url: "Dashboard/{bandId}",
-                defaults: new { controller = "Dashboard", action = "Index" },
+                name: "File Cabinet",
+                url: "FileCabinet/{bandId}",
+                defaults: new { controller = "Band", action = "Join" },
                 constraints: new { bandId = @"\d+" }
             );
 
