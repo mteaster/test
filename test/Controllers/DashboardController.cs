@@ -22,15 +22,15 @@ namespace band.Controllers
             // Check if band exists - if it does, get band profile
             BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
 
+            ViewBag.BandId = bandId;
+            ViewBag.BandName = bandProfile.BandName;
+
             // Check if the user is in the band
             if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))
             {
-                ViewBag.BandId = bandId;
-                ViewBag.BandName = bandProfile.BandName;
                 return RedirectToAction("Join", "Band");
             }
 
-            ViewBag.BandId = bandId;
             ViewBag.Message = getMsg();
             ViewBag.StatusMessage = "hello";
             return View();
