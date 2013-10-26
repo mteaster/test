@@ -177,9 +177,15 @@ namespace test.Controllers
         [Authorize]
         public ActionResult Delete(int bandId)
         {
-            BandUtil.Delete(bandId);
+            if (BandUtil.Delete(bandId))
+            {
+                ViewBag.StatusMessage = "your band got deleted im so sorry";
+            }
+            else
+            {
+                ViewBag.StatusMessage = "we didn't delete your band because u r stupid";
+            }
 
-            ViewBag.StatusMessage = "your band got deleted im so sorry";
             return View("Status");
         }
 

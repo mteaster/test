@@ -19,24 +19,27 @@ namespace test.Stuff
     {
         public static bool IsUserInBand(int userId, int bandId)
         {
-            return new DatabaseContext().BandMemberships.Find(bandId, userId) != null;
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                return database.BandMemberships.Find(bandId, userId) != null;
+            }
         }
 
         public static int Register(RegisterBandModel model)
         {
-            BandProfile profile = new BandProfile(model.BandName, WebSecurity.CurrentUserId, Crypto.HashPassword(model.Password));
-
             using (DatabaseContext database = new DatabaseContext())
             {
+                BandProfile profile = new BandProfile(model.BandName, WebSecurity.CurrentUserId, Crypto.HashPassword(model.Password));
+
                 database.BandProfiles.Add(profile);
 
                 BandMembership membership = new BandMembership(profile.BandId, WebSecurity.CurrentUserId);
                 database.BandMemberships.Add(membership);
 
                 database.SaveChanges();
-            }
 
-            return profile.BandId;
+                return profile.BandId;
+            }
         }
 
         public static bool Join(int bandId, string password)
@@ -58,18 +61,28 @@ namespace test.Stuff
             }
         }
 
-        public static void Delete(int bandId)
+        public static bool Delete(int bandId)
         {
             using (DatabaseContext database = new DatabaseContext())
             {
                 BandProfile profile = BandProfileFor(bandId, database);
+
+                if (profile.CreatorId != WebSecurity.CurrentUserId)
+                {
+                    return false;
+                }
+
                 database.BandProfiles.Remove(profile);
+
                 IQueryable<BandMembership> memberships = database.BandMemberships.Where(m => m.BandId == bandId);
                 foreach (BandMembership membership in memberships)
                 {
                     database.BandMemberships.Remove(membership);
                 }
+
                 database.SaveChanges();
+
+                return true;
             }
         }
 
