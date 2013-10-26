@@ -27,14 +27,14 @@
 <div>
     <table style="width: 100%;">
         <tr>
-            <td>@Html.ActionLink("Rolodex", "Index", "Rolodex")</td>
+            <td>@Html.ActionLink("Rolodex", "Index", "Rolodex", new { bandId = ViewBag.BandId }, null)</td>
             <td>&nbsp;</td>
             <td>@Html.ActionLink("Calendar", "Index", "Calendar")</td>
         </tr>
         <tr>
-            <td>@Html.ActionLink("FileCabinet", "Index", "FileCabinet")</td>
-            <td>@Html.ActionLink("Online", "Index", "Online")</td>
-            <td>@Html.ActionLink("Budget", "Index", "Budget")</td>
+            <td>@Html.ActionLink("FileCabinet", "Index", "FileCabinet", new { bandId = ViewBag.BandId }, null)</td>
+            <td>@Html.ActionLink("Online", "Index", "Online", new { bandId = ViewBag.BandId }, null)</td>
+            <td>@Html.ActionLink("Budget", "Index", "Budget", new { bandId = ViewBag.BandId }, null)</td>
         </tr>
      
     </table>
