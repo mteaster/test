@@ -587,7 +587,7 @@ tr.pager td {
 
 /* MIKE'S CSS ADDITIONS */
 
-li.horizontal
+ul.horizontal li
 {
     display: inline;
     list-style-type: none;
