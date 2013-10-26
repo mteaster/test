@@ -587,11 +587,16 @@ tr.pager td {
 
 /* MIKE'S CSS ADDITIONS */
 
+ul.horizontal
+{
+    padding: 0;
+    margin: 0;
+}
 ul.horizontal li
 {
     display: inline;
     list-style-type: none;
-    padding-right: 20px;
+    padding-right: 10px;
 }   
 
 section.half
