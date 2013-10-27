@@ -11,7 +11,7 @@ namespace test.Stuff
 {
     public class BandNotFoundException : System.Exception
     {
-        public BandNotFoundException() {}
+        public BandNotFoundException() : base("A band with this ID does not an exist.") {}
         public BandNotFoundException(string message) : base(message) {}
     }
 
