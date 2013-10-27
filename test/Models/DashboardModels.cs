@@ -36,18 +36,21 @@ namespace test.Models
     public class MessageBoardPostModel
     {
         [Required]
+        [Display(Name = "ID")]
         public int PostId { get; set; }
 
         [Required]
+        [Display(Name = "Name")]
         public string PosterName { get; set; }
 
         [Required]
+        [Display(Name = "Time")]
         public DateTime PostTime { get; set; }
 
         [Required]
+        [Display(Name = "Content")]
         [DataType(DataType.MultilineText)]
         public string Content { get; set; }
-
     }
 
     public class DashboardViewModel
