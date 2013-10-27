@@ -9,36 +9,13 @@
     @Html.Partial("_BandHeaderPartial")
 }
 
-<h5>Message Board</h5>
+<hgroup class="title">
+    <h1>Message Board.</h1>
+    <h2>You're dumb.</h2>
+</hgroup>
 
 @ViewBag.StatusMessage
 
-@using (Html.BeginForm("Post", "Dashboard", new { bandId = ViewBag.BandId }, FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary()
+@Html.Partial("_PostMessagePartial");
 
-    <fieldset>
-        <legend>Registration Form</legend>
-         @Html.EditorFor(model => model.Content)
-        <br />
-        <input type="submit" value="Post" />
-    </fieldset>
-}
-
-<hr />
-<div>
-    <table style="width: 100%;">
-        <tr>
-            <td>@Html.ActionLink("Rolodex", "Index", "Rolodex")</td>
-            <td>&nbsp;</td>
-            <td>@Html.ActionLink("Calendar", "Index", "Calendar")</td>
-        </tr>
-        <tr>
-            <td>@Html.ActionLink("FileCabinet", "Index", "FileCabinet")</td>
-            <td>@Html.ActionLink("Online", "Index", "Online")</td>
-            <td>@Html.ActionLink("Budget", "Index", "Budget")</td>
-        </tr>
-     
-    </table>
-</div>
+@Html.Partial("_DisplayMessagesPartial");
