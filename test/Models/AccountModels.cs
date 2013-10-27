@@ -23,7 +23,14 @@ namespace test.Models
         public string DisplayName { get; set; }
     }
 
-    public class LocalPasswordModel
+    public class ChangeDisplayNameModel
+    {
+        [Required]
+        [Display(Name = "Display name")]
+        public string DisplayName { get; set; }
+    }
+
+    public class UserPasswordModel
     {
         [Required]
         [DataType(DataType.Password)]
@@ -40,13 +47,6 @@ namespace test.Models
         [Display(Name = "Confirm new password")]
         [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
-    }
-
-    public class DisplayNameModel
-    {
-        [Required]
-        [Display(Name = "Display name")]
-        public string DisplayName { get; set; }
     }
 
     public class LoginModel

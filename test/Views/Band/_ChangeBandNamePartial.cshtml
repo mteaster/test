@@ -1,0 +1,20 @@
+﻿@model test.Models.ChangeBandNameModel
+
+<h3>Change band name</h3>
+
+@using (Html.BeginForm("ChangeBandName", "Band", new { bandId = ViewBag.BandId }, FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <fieldset>
+        <legend>Change Band Name Form</legend>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.BandName)
+                @Html.TextBoxFor(m => m.BandName)
+            </li>
+        </ol>
+        <input type="submit" value="Change band name" />
+    </fieldset>
+}

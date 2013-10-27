@@ -11,8 +11,6 @@ namespace test.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        private DatabaseContext database = new DatabaseContext();
-
         //
         // GET: /Account/Login
 
@@ -97,8 +95,6 @@ namespace test.Controllers
         {
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
-                : message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
                 : message == ManageMessageId.ChangeDisplayNameSuccess ? "Your display name has been changed."
                 : "";
             ViewBag.HasLocalPassword = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
@@ -112,73 +108,55 @@ namespace test.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ChangeDisplayName(DisplayNameModel model)
+        public ActionResult ChangeDisplayName(ChangeDisplayNameModel model)
         {
-            UserProfile original = database.UserProfiles.Find(WebSecurity.CurrentUserId);
-            original.DisplayName = model.DisplayName;
-            database.Entry(original).State = EntityState.Modified;
-            database.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                using (DatabaseContext database = new DatabaseContext())
+                {
+                    UserProfile original = database.UserProfiles.Find(WebSecurity.CurrentUserId);
+                    original.DisplayName = model.DisplayName;
+                    database.Entry(original).State = EntityState.Modified;
+                    database.SaveChanges();
+                }
 
-            return RedirectToAction("Manage", new { Message = ManageMessageId.ChangeDisplayNameSuccess });
+                return RedirectToAction("Manage", new { Message = ManageMessageId.ChangeDisplayNameSuccess });
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
         }
         
 
         //
-        // POST: /Account/Manage
+        // POST: /Account/ChangePassword
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Manage(LocalPasswordModel model)
+        public ActionResult ChangePassword(UserPasswordModel model)
         {
-            bool hasLocalAccount = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
-            ViewBag.HasLocalPassword = hasLocalAccount;
             ViewBag.ReturnUrl = Url.Action("Manage");
-            if (hasLocalAccount)
-            {
-                if (ModelState.IsValid)
-                {
-                    // ChangePassword will throw an exception rather than return false in certain failure scenarios.
-                    bool changePasswordSucceeded;
-                    try
-                    {
-                        changePasswordSucceeded = WebSecurity.ChangePassword(User.Identity.Name, model.OldPassword, model.NewPassword);
-                    }
-                    catch (Exception)
-                    {
-                        changePasswordSucceeded = false;
-                    }
 
-                    if (changePasswordSucceeded)
-                    {
-                        return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
-                    }
-                    else
-                    {
-                        ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
-                    }
-                }
-            }
-            else
+            if (ModelState.IsValid)
             {
-                // User does not have a local password so remove any validation errors caused by a missing
-                // OldPassword field
-                ModelState state = ModelState["OldPassword"];
-                if (state != null)
+                // ChangePassword will throw an exception rather than return false in certain failure scenarios.
+                bool changePasswordSucceeded;
+                try
                 {
-                    state.Errors.Clear();
+                    changePasswordSucceeded = WebSecurity.ChangePassword(User.Identity.Name, model.OldPassword, model.NewPassword);
+                }
+                catch (Exception)
+                {
+                    changePasswordSucceeded = false;
                 }
 
-                if (ModelState.IsValid)
+                if (changePasswordSucceeded)
                 {
-                    try
-                    {
-                        WebSecurity.CreateAccount(User.Identity.Name, model.NewPassword);
-                        return RedirectToAction("Manage", new { Message = ManageMessageId.SetPasswordSuccess });
-                    }
-                    catch (Exception e)
-                    {
-                        ModelState.AddModelError("", e);
-                    }
+                    return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
+                }
+                else
+                {
+                    ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
                 }
             }
 
@@ -202,8 +180,6 @@ namespace test.Controllers
         public enum ManageMessageId
         {
             ChangePasswordSuccess,
-            SetPasswordSuccess,
-            RemoveLoginSuccess,
             ChangeDisplayNameSuccess
         }
 

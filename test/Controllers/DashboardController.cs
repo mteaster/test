@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -20,47 +19,59 @@ namespace band.Controllers
 
         public ActionResult Index(int bandId)
         {
-            BandProfile bandProfile = database.BandProfiles.Find(bandId);
+            // Check if band exists - if it does, get band profile
+            BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
 
-            if (bandProfile == null)
-            {
-                ViewBag.StatusMessage = "band doesn't exist";
-                return View("Status");
-            }
-
-            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))
-            {
-                ViewBag.BandId = bandId;
-                ViewBag.BandName = bandProfile.BandName;
-                return RedirectToAction("Join", "Band", new { bandId = bandId } );
-            }
+            DashboardViewModel dvm = new DashboardViewModel();
 
             ViewBag.BandId = bandId;
-            ViewBag.Message = getMsg();
-            ViewBag.StatusMessage = "hello";
-            return View();
+            ViewBag.BandName = bandProfile.BandName;
+
+            // Check if the user is in the band
+            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))
+            {
+                return RedirectToAction("Join", "Band");
+            }
+
+            dvm.DisplayMessagesModel = MessageBoardUtil.MessagesFor(bandId);
+
+            return View(dvm);
         }
 
         //
-        // POST: /Dashboard/Post
+        // POST: /Dashboard/
 
         [HttpPost]
-        public ActionResult Post(string bandId, PostMessageModel model)
+        public ActionResult Index(int bandId, PostMessageModel model)
         {
-            if (ModelState.IsValid)
+            // Check if band exists - if it does, get band profile
+            BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
+
+            ViewBag.BandId = bandId;
+            ViewBag.BandName = bandProfile.BandName;
+
+            // Check if the user is in the band
+            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))
             {
-                ViewBag.StatusMessage = "let's pretend you posted a message, even though you didn't";
-                return View("Index");
+                return RedirectToAction("Join", "Band");
             }
 
-            // If we got this far, something failed, redisplay form
-            ViewBag.StatusMessage = "something was wrong with your message";
-            return View("Status");
-        }
+            DashboardViewModel dvm = new DashboardViewModel();
+            dvm.PostMessageModel = model;
 
-        public String getMsg()
-        {
-            return "Code will go here to query DB for messages";
+            if (ModelState.IsValid)
+            {
+                MessageBoardUtil.AddMessage(bandId, model.Content);
+                ViewBag.StatusMessage = "message posted successfully";
+            }
+            else
+            {
+                ViewBag.StatusMessage = "something was wrong with your message";
+            }
+
+            dvm.DisplayMessagesModel = MessageBoardUtil.MessagesFor(bandId);
+
+            return View(dvm);
         }
     }
 }

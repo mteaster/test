@@ -33,6 +33,34 @@ namespace test.Models
         public string Content { get; set; }
     }
 
+    public class MessageBoardPostModel
+    {
+        [Required]
+        [Display(Name = "ID")]
+        public int PostId { get; set; }
+
+        [Required]
+        [Display(Name = "Name")]
+        public string PosterName { get; set; }
+
+        [Required]
+        [Display(Name = "Time")]
+        public DateTime PostTime { get; set; }
+
+        [Required]
+        [Display(Name = "Content")]
+        [DataType(DataType.MultilineText)]
+        public string Content { get; set; }
+    }
+
+    public class DashboardViewModel
+    {
+        // model for the post given to the server
+        public PostMessageModel PostMessageModel { get; set; }
+        // model for the messages returned by the server
+        public List<MessageBoardPostModel> DisplayMessagesModel { get; set; }
+    }
+
     public class PostMessageModel
     {
         [Required]

@@ -8,17 +8,10 @@ namespace test.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "welcome to our dumb website";
-
             return View();
         }
 
         public ActionResult About()
-        {
-            return View();
-        }
-
-        public ActionResult Contact()
         {
             return View();
         }
