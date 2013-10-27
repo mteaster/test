@@ -213,7 +213,7 @@ namespace test.Stuff
 
                 foreach (int bandId in bandIds)
                 {
-                    bandModels.Add(BandModelFor(bandId, database, membersFlag));
+                    bandModels.Add(BandModelFor(bandId, membersFlag));
                 }
 
                 return bandModels;
