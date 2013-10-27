@@ -92,7 +92,7 @@ namespace test.Models
     public class SearchViewModel
     {
         public SearchBandModel searchModel { get; set; }
-        public IEnumerable<test.Models.BandModel> resultsModel { get; set; }
+        public IEnumerable<BandModel> resultsModel { get; set; }
     }
 
     public class ChangeBandNameModel

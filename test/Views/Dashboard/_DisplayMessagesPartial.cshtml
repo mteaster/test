@@ -1,0 +1,30 @@
+﻿@model IEnumerable<test.Models.MessageBoardPostModel>
+
+@if (Model != null)
+{
+    if (Model.Any())
+    {
+        <table class="pretty" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.PostId)</th>
+                <th>@Html.DisplayNameFor(model => model.PosterName)</th>
+                <th>@Html.DisplayNameFor(model => model.PostTime)</th>
+                <th>@Html.DisplayNameFor(model => model.Content)</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th>@Html.DisplayFor(modelItem => item.PostId)</th>
+                    <th>@Html.DisplayFor(modelItem => item.PostName)</th>
+                    <th>@Html.DisplayFor(modelItem => item.PostTime)</th>
+                    <th>@Html.DisplayFor(modelItem => item.Content)</th>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <span>No bands found</span>
+    }
+}
