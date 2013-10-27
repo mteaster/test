@@ -11,7 +11,7 @@ namespace test
             filters.Add(new HandleErrorAttribute
             {
                 ExceptionType = typeof(BandNotFoundException),
-                View = "Exception",
+                View = "Exception"
             });
 
             filters.Add(new HandleErrorAttribute());
