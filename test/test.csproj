@@ -378,9 +378,6 @@
   <ItemGroup>
     <Content Include="Views\Dashboard\_DisplayMessagesPartial.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\Exception.cshtml" />
-  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
