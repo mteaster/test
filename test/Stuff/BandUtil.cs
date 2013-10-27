@@ -80,6 +80,12 @@ namespace test.Stuff
                     database.BandMemberships.Remove(membership);
                 }
 
+                IQueryable<MessageBoardPost> posts = database.MessageBoardPosts.Where(p => p.BandId == bandId);
+                foreach (MessageBoardPost post in posts)
+                {
+                    database.MessageBoardPosts.Remove(post);
+                }
+
                 database.SaveChanges();
 
                 return true;

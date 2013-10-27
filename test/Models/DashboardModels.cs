@@ -20,7 +20,6 @@ namespace test.Models
         [ForeignKey("BandId")]
         public virtual BandProfile BandProfile { get; set; }
 
-        [Required]
         public int PosterId { get; set; }
         [ForeignKey("PosterId")]
         public virtual UserProfile PosterProfile { get; set; }
