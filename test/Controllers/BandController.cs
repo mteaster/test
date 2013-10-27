@@ -139,7 +139,7 @@ namespace test.Controllers
             // Check if the user is in the band
             if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))
             {
-                ViewBag.StatusMessage = "You must be a member of this band to manage its options.";
+                ViewBag.StatusMessage = "You must be a member of this band to change its preferences.";
                 return View("Status");
             }
 
@@ -164,7 +164,7 @@ namespace test.Controllers
                 return RedirectToAction("Manage", new { bandId = bandId, Message = ManageMessageId.ChangeBandNameSuccess });
             }
 
-            ViewBag.StatusMessage = "you can't change this band's name";
+            ViewBag.StatusMessage = "You must be a member of this band to change its name.";
             return View("Status");
         }
 
@@ -180,7 +180,7 @@ namespace test.Controllers
                 return RedirectToAction("Manage", new { bandId = bandId, Message = ManageMessageId.ChangePasswordSuccess });
             }
 
-            ViewBag.StatusMessage = "you can't change this band's password";
+            ViewBag.StatusMessage = "You must be a member of this band to change its password.";
             return View("Status");
         }
 
@@ -188,11 +188,11 @@ namespace test.Controllers
         {
             if (BandUtil.Delete(bandId))
             {
-                ViewBag.StatusMessage = "your band got deleted im so sorry";
+                ViewBag.StatusMessage = "Band deleted";
             }
             else
             {
-                ViewBag.StatusMessage = "we didn't delete your band because u r stupid";
+                ViewBag.StatusMessage = "You can't delete this band";
             }
 
             return View("Status");
