@@ -16,6 +16,6 @@
 
 @ViewBag.StatusMessage
 
-@Html.Partial("_PostMessagePartial")
+@Html.Partial("_PostMessagePartial", Model.PostMessageModel);
 
-@Html.Partial("_DisplayMessagesPartial")
+@Html.Partial("_DisplayMessagesPartial", Model.DisplayMessagesModel)
