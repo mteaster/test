@@ -182,7 +182,7 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\BandModels.cs" />
     <Compile Include="Models\DatabaseContext.cs" />
-    <Compile Include="Models\MessageBoardModels.cs" />
+    <Compile Include="Models\DashboardModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Stuff\BandUtil.cs" />
   </ItemGroup>
@@ -370,6 +370,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_BandHeaderPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Dashboard\_PostMessagePartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Dashboard\_DisplayMessagesPartial.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
