@@ -12,7 +12,6 @@ using test.Stuff;
 namespace test.Controllers
 {
     [Authorize]
-    [HandleError(ExceptionType = typeof(BandNotFoundException), View = "Error")]
     public class BandController : Controller
     {
         private DatabaseContext database = new DatabaseContext();
