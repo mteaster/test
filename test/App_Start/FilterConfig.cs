@@ -14,7 +14,7 @@ namespace test
                 View = "Exception"
             });
 
-            filters.Add(new HandleErrorAttribute());
+            //filters.Add(new HandleErrorAttribute());
         }
     }
 }
