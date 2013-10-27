@@ -358,7 +358,7 @@
     <Content Include="Views\Shared\_BandsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\Status.cshtml" />
+    <Content Include="Views\Shared\Success.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Band\Delete.cshtml" />

@@ -140,7 +140,7 @@ namespace test.Controllers
             if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))
             {
                 ViewBag.StatusMessage = "You must be a member of this band to change its preferences.";
-                return View("Status");
+                return View("Error");
             }
 
 
@@ -165,7 +165,7 @@ namespace test.Controllers
             }
 
             ViewBag.StatusMessage = "You must be a member of this band to change its name.";
-            return View("Status");
+            return View("Error");
         }
 
         //
@@ -181,21 +181,19 @@ namespace test.Controllers
             }
 
             ViewBag.StatusMessage = "You must be a member of this band to change its password.";
-            return View("Status");
+            return View("Error");
         }
 
         public ActionResult Delete(int bandId)
         {
             if (BandUtil.Delete(bandId))
             {
-                ViewBag.StatusMessage = "Band deleted";
-            }
-            else
-            {
-                ViewBag.StatusMessage = "You can't delete this band";
+                ViewBag.StatusMessage = "Your band has been deleted.";
+                return View("Success");
             }
 
-            return View("Status");
+            ViewBag.StatusMessage = "You must be the creator of this band to delete it.";
+            return View("Error");
         }
 
         public enum ManageMessageId
