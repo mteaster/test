@@ -33,31 +33,7 @@ namespace band.Controllers
                 return RedirectToAction("Join", "Band");
             }
 
-            using (DatabaseContext database = new DatabaseContext())
-            {
-                //var posts = database.MessageBoardPosts.Where(post => post.BandId == bandId).OrderBy(post => post.PostTime);
-
-                var results = from p in database.MessageBoardPosts
-                        join u in database.UserProfiles
-                        on p.PosterId equals u.UserId
-                        where p.BandId == bandId
-                        select new { p.PostId, p.PostTime, p.Content, u.DisplayName };
-
-                List<MessageBoardPostModel> postModels = new List<MessageBoardPostModel>();
-
-                foreach (var result in results)
-                {
-                    MessageBoardPostModel postModel = new MessageBoardPostModel();
-                    postModel.PostId = result.PostId;
-                    postModel.PostTime = result.PostTime;
-                    postModel.Content = result.Content;
-                    postModel.PosterName = result.DisplayName;
-
-                    postModels.Add(postModel);
-                }
-
-                dvm.DisplayMessagesModel = postModels;
-            }
+            dvm.DisplayMessagesModel = MessageBoardUtil.MessagesFor(bandId);
 
             return View();
         }
@@ -68,20 +44,12 @@ namespace band.Controllers
         [HttpPost]
         public ActionResult Index(int bandId, PostMessageModel model)
         {
+            DashboardViewModel dvm = new DashboardViewModel();
+            dvm.PostMessageModel = model;
+
             if (ModelState.IsValid)
             {
-                MessageBoardPost post = new MessageBoardPost();
-                post.BandId = bandId;
-                post.PosterId = WebSecurity.CurrentUserId;
-                post.PostTime = DateTime.Now;
-                post.Content = model.Content;
-
-                using (DatabaseContext database = new DatabaseContext())
-                {
-                    database.MessageBoardPosts.Add(post);
-                    database.SaveChanges();
-                }
-
+                MessageBoardUtil.AddMessage(bandId, model.Content);
                 ViewBag.StatusMessage = "message posted successfully";
             }
             else
@@ -89,12 +57,9 @@ namespace band.Controllers
                 ViewBag.StatusMessage = "something was wrong with your message";
             }
 
-            return RedirectToAction("Index");
-        }
+            dvm.DisplayMessagesModel = MessageBoardUtil.MessagesFor(bandId);
 
-        public String getMsg()
-        {
-            return "Code will go here to query DB for messages";
+            return View(dvm);
         }
     }
 }
