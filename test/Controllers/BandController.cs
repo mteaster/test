@@ -147,9 +147,13 @@ namespace test.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ChangeBandName(int bandId, ChangeBandNameModel model)
         {
-            BandUtil.ChangeBandName(bandId, model.BandName);
+            if (BandUtil.ChangeBandName(bandId, model.BandName))
+            {
+                return RedirectToAction("Manage", new { bandId = bandId, Message = ManageMessageId.ChangeBandNameSuccess });
+            }
 
-            return RedirectToAction("Manage", new { bandId = bandId, Message = ManageMessageId.ChangeBandNameSuccess } );
+            ViewBag.StatusMessage = "you can't change this band's name";
+            return View("Status");
         }
 
         //
@@ -159,17 +163,13 @@ namespace test.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ChangeBandPassword(int bandId, BandPasswordModel model)
         {
-            BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
-
-            if (bandProfile == null)
+            if (BandUtil.ChangeBandPassword(bandId, model.NewPassword))
             {
-                ViewBag.StatusMessage = "Invalid band ID (not in database)";
-                return View("Status");
+                return RedirectToAction("Manage", new { bandId = bandId, Message = ManageMessageId.ChangePasswordSuccess });
             }
 
-            BandUtil.ChangeBandPassword(bandId, model.NewPassword);
-
-            return RedirectToAction("Manage", new { bandId = bandId, Message = ManageMessageId.ChangePasswordSuccess });
+            ViewBag.StatusMessage = "you can't change this band's password";
+            return View("Status");
         }
 
         public ActionResult Delete(int bandId)
