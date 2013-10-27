@@ -128,15 +128,27 @@ namespace test.Controllers
 
         public ActionResult Manage(int bandId, ManageMessageId? message)
         {
+            // Check if band exists - if it does, get band profile
             BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
+
+            DashboardViewModel dvm = new DashboardViewModel();
+
+            ViewBag.BandId = bandId;
+            ViewBag.BandName = bandProfile.BandName;
+
+            // Check if the user is in the band
+            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))
+            {
+                ViewBag.StatusMessage = "You must be a member of this band to manage its options.";
+                return View("Status");
+            }
+
 
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
                 : message == ManageMessageId.ChangeBandNameSuccess ? "Your band name has been changed."
                 : "";
 
-            ViewBag.BandId = bandProfile.BandId;
-            ViewBag.BandName = bandProfile.BandName;
             return View();
         }
 
