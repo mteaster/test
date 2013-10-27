@@ -35,7 +35,7 @@ namespace band.Controllers
 
             dvm.DisplayMessagesModel = MessageBoardUtil.MessagesFor(bandId);
 
-            return View();
+            return View(dvm);
         }
 
         //
