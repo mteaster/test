@@ -59,8 +59,6 @@ namespace band.Controllers
                 dvm.DisplayMessagesModel = postModels;
             }
 
-            ViewBag.Message = getMsg();
-            ViewBag.StatusMessage = "hello";
             return View();
         }
 
@@ -83,12 +81,13 @@ namespace band.Controllers
                     database.MessageBoardPosts.Add(post);
                     database.SaveChanges();
                 }
-                
+
                 ViewBag.StatusMessage = "message posted successfully";
             }
-
-            // If we got this far, something failed, redisplay form
-            ViewBag.StatusMessage = "something was wrong with your message";
+            else
+            {
+                ViewBag.StatusMessage = "something was wrong with your message";
+            }
 
             return RedirectToAction("Index");
         }
