@@ -30,12 +30,7 @@ namespace test.Controllers
                 return View("Error");
             }
 
-
-            using (DatabaseContext database = new DatabaseContext())
-            {
-                return View(database.Logs);
-
-            }
+            return View("Error");
         }
     }
 }
