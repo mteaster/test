@@ -21,6 +21,12 @@
         <td>@Html.DisplayFor(modelItem => item.CreatorName)</td>
     </tr>
 }
+
+@if(Roles.IsUserInRole("Administrator"))
+{
+    Html.ActionLink("Admin", "Index", "Admin");
+}
+
 </table>
 
 
