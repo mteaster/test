@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using test.Models;
 using WebMatrix.WebData;
 using System.Web.Security;
+using test.Filters;
 
 namespace test.Controllers
 {
@@ -18,9 +19,9 @@ namespace test.Controllers
             return View();
         }
 
+        [PerformanceFilter]
         public ActionResult Test()
         {
-            ViewBag.
             return View("Success");
         }
     }
