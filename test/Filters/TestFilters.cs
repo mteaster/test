@@ -14,37 +14,17 @@ namespace test.Filters
         {
             Stopwatch stopwatch = Stopwatch.StartNew();
             filterContext.HttpContext.Items.Add("Stopwatch", stopwatch);
-
-            using (DatabaseContext database = new DatabaseContext())
-            {
-                Log log = new Log();
-                log.LogMessage = "OnActionExecuting";
-                log.LogTime = DateTime.Now;
-
-                database.Logs.Add(log);
-                database.SaveChanges();
-            }
         }
 
         public void OnActionExecuted(ActionExecutedContext filterContext)
         {
-            using (DatabaseContext database = new DatabaseContext())
-            {
-                Log log = new Log();
-                log.LogMessage = "OnActionExecuted";
-                log.LogTime = DateTime.Now;
-
-                database.Logs.Add(log);
-                database.SaveChanges();
-            }
-
 
             if (filterContext.HttpContext.Items["Stopwatch"] != null)
             {
                 Stopwatch stopwatch = (Stopwatch)filterContext.HttpContext.Items["Stopwatch"];
                 stopwatch.Stop();
 
-                string message = string.Format("Finished executing controller {0}, action {1} - time spent {2}",
+                string message = string.Format("Controller: {0}, Action: {1} - Time elapsed: {2} ms",
                     filterContext.ActionDescriptor.ControllerDescriptor.ControllerName,
                     filterContext.ActionDescriptor.ActionName,
                     stopwatch.ElapsedMilliseconds);
