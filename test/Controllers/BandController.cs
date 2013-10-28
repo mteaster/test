@@ -121,6 +121,23 @@ namespace test.Controllers
         }
 
         //
+        // GET: /Band/Leave
+
+        public ActionResult Leave(int bandId)
+        {
+            BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
+
+            if (BandUtil.Leave(bandId))
+            {
+                ViewBag.StatusMessage = "You left " + bandProfile.BandName + ".";
+                return View("Status");
+            }
+
+            ViewBag.StatusMessage = "We can't let you leave " + bandProfile.BandName + ".";
+            return View("Error");
+        }
+
+        //
         // Get: /Band/Manage
 
         public ActionResult Manage(int bandId, ManageMessageId? message)

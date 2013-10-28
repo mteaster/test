@@ -61,6 +61,24 @@ namespace test.Stuff
             }
         }
 
+        public static bool Leave(int bandId)
+        {
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                BandMembership membership = database.BandMemberships.Find(bandId, WebSecurity.CurrentUserId);
+
+                if (membership == null)
+                {
+                    return false;
+                }
+
+                database.BandMemberships.Remove(membership);
+                database.SaveChanges();
+
+                return true;
+            }
+        }
+
         public static bool Delete(int bandId)
         {
             using (DatabaseContext database = new DatabaseContext())
