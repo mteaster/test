@@ -183,6 +183,7 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\BandModels.cs" />
+    <Compile Include="Models\CalendarModels.cs" />
     <Compile Include="Models\DatabaseContext.cs" />
     <Compile Include="Models\DashboardModels.cs" />
     <Compile Include="Models\TestModels.cs" />
@@ -385,6 +386,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Admin\Log.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Calendar\AddEvent.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

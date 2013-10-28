@@ -1,0 +1,37 @@
+﻿@model test.Models.CalendarEventModel
+
+@{
+    ViewBag.Title = "Calendar";
+}
+
+@using (Html.BeginForm("AddEvent", "Calendar"))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <fieldset>
+        <legend>Add Event Form</legend>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.EventTitle)
+                @Html.TextBoxFor(m => m.EventTitle)
+            </li>
+            <li>
+                @Html.EditorFor(model => model.EventDescription)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.EventMonth)
+                @Html.TextBoxFor(m => m.EventMonth)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.EventDay)
+                @Html.TextBoxFor(m => m.EventDay)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.EventYear)
+                @Html.TextBoxFor(m => m.EventYear)
+            </li>
+        </ol>
+        <input type="submit" value="Add Event" />
+    </fieldset>
+}

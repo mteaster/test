@@ -30,6 +30,5 @@ namespace band.Controllers
 
             return View();
         }
-
     }
 }

@@ -11,6 +11,7 @@ namespace test.Models
         public DbSet<BandProfile> BandProfiles { get; set; }
         public DbSet<BandMembership> BandMemberships { get; set; }
         public DbSet<MessageBoardPost> MessageBoardPosts { get; set; }
+        public DbSet<CalendarEvent> CalendarEvents { get; set; }
         public DbSet<Log> Logs { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

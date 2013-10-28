@@ -7,10 +7,10 @@ using System;
 
 namespace test.Models
 {
-    [Table("Event")]
-    public class Event
+    [Table("CalendarEvent")]
+    public class CalendarEvent
     {
-        public Event() {}
+        public CalendarEvent() {}
 
         [Key]
         [Required]
@@ -27,4 +27,27 @@ namespace test.Models
         [DataType(DataType.MultilineText)]
         public string EventDescription { get; set; }
     }
+
+    public class CalendarEventModel
+    {
+        public CalendarEventModel() {}
+
+        [Required]
+        public string EventTitle { get; set; }
+
+        [Required]
+        [DataType(DataType.MultilineText)]
+        public string EventDescription { get; set; }
+
+        [Required]
+        public int EventMonth { get; set; }
+
+        [Required]
+        public int EventDay { get; set; }
+
+        [Required]
+        public int EventYear { get; set; }
+    }
+
+
 }
