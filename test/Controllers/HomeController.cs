@@ -10,9 +10,6 @@ namespace test.Controllers
     {
         public ActionResult Index()
         {
-            Roles.CreateRole("Administrator");
-            Roles.AddUserToRole("admin", "Administrator");
-
             return View();
         }
 
