@@ -17,5 +17,11 @@ namespace test.Controllers
         {
             return View();
         }
+
+        public ActionResult Test()
+        {
+            ViewBag.
+            return View("Success");
+        }
     }
 }
