@@ -22,6 +22,7 @@ namespace test.Controllers
         [PerformanceFilter]
         public ActionResult Test()
         {
+            ViewBag.StatusMessage = "what am i doing here";
             return View("Success");
         }
     }

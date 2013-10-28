@@ -35,6 +35,7 @@ namespace test.Filters
                     log.LogTime = DateTime.Now;
 
                     database.Logs.Add(log);
+                    database.SaveChanges();
                 }
 
                 filterContext.HttpContext.Items.Remove("Stopwatch");
