@@ -30,13 +30,28 @@
 }
 else
 {
-    <h1>No bands found!</h1>
-    <h2>@Html.ActionLink("Join", "Search", "Band") or @Html.ActionLink("Create", "Register", "Band") a band or create a band to get started.</h2>
-}
+    <h1>You're not in any bands!</h1>
+    
+    <h3>Do something about it:</h3>
+    <ol class="round">
+        <li class="one">
+            <h5>@Html.ActionLink("Join", "Search", "Band")shut up</h5>
+            Search for bands and join one.
+        </li>
 
-<br />
+        <li class="two">
+            <h5>@Html.ActionLink("Create", "Register", "Band")</h5>
+            Start a new band.
+        </li>
+
+        <li class="three">
+            <h5>Leave</h5>
+            And never come back.
+        </li>
+    </ol>
+}
 
 @if(Roles.IsUserInRole("Administrator"))
 {
-    @Html.ActionLink("Admin", "Index", "Admin");
+    <h3>@Html.ActionLink("Admin Page", "Index", "Admin")</h3>
 }
