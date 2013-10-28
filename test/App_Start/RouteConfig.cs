@@ -14,6 +14,14 @@ namespace test
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Add Event",
+                url: "Calendar/AddEvent/{bandId}",
+                defaults: new { controller = "Calendar", action = "AddEvent" },
+                constraints: new { bandId = @"\d+" }
+            );
+
+
+            routes.MapRoute(
                 name: "Join Band",
                 url: "Band/Join/{bandId}",
                 defaults: new { controller = "Band", action = "Join" },
