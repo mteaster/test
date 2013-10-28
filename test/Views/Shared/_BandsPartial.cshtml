@@ -22,11 +22,9 @@
     </tr>
 }
 
-@if(Roles.IsUserInRole("Administrator"))
-{
-    Html.ActionLink("Admin", "Index", "Admin");
-}
-
 </table>
 
-
+@if(Roles.IsUserInRole("Administrator"))
+{
+    @Html.ActionLink("Admin", "Index", "Admin");
+}
