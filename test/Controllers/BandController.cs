@@ -57,13 +57,10 @@ namespace test.Controllers
                 else
                 {
                     int bandId = BandUtil.Register(model);
-
-                    // After registering, we send them to their new band's dashboard
                     return RedirectToAction("Index", "Dashboard", new { bandId = bandId } );
                 }
             }
 
-            // If we got this far, something failed, redisplay form
             return View(model);
         }
 
@@ -128,15 +125,10 @@ namespace test.Controllers
 
         public ActionResult Manage(int bandId, ManageMessageId? message)
         {
-            // Check if band exists - if it does, get band profile
             BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
-
-            DashboardViewModel dvm = new DashboardViewModel();
-
             ViewBag.BandId = bandId;
             ViewBag.BandName = bandProfile.BandName;
 
-            // Check if the user is in the band
             if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))
             {
                 ViewBag.StatusMessage = "You must be a member of this band to change its preferences.";

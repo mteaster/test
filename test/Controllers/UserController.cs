@@ -6,15 +6,16 @@ namespace test.Controllers
 {
     public class UserController : Controller
     {
-        private DatabaseContext database = new DatabaseContext();
-
         //
         // GET: /User/AllUsers
 
         [ChildActionOnly]
         public ActionResult AllUsers()
         {
-            return PartialView("_UserListPartial", database.UserProfiles.ToList());
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                return PartialView("_UserListPartial", database.UserProfiles.ToList());
+            }
         }
     }
 }

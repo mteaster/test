@@ -12,8 +12,6 @@ namespace band.Controllers
     [Authorize]
     public class DashboardController : Controller
     {
-        DatabaseContext database = new DatabaseContext();
-
         //
         // GET: /Dashboard/
 
