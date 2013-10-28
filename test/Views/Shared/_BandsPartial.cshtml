@@ -30,14 +30,11 @@
 }
 else
 {
-    <hgroup class="title">
-        <h1>No bands found!</h1>
-        <h2>Join or create a band to get started.</h2>
-    </hgroup>
-    
-    <h2>@Html.ActionLink("Join an existing band", "Search", "Band")</h2>
-    <h2>@Html.ActionLink("Create a new band", "Register", "Band")</h2>
+    <h1>No bands found!</h1>
+    <h2>@Html.ActionLink("Join", "Search", "Band") or @Html.ActionLink("Create", "Register", "Band") a band or create a band to get started.</h2>
 }
+
+<br />
 
 @if(Roles.IsUserInRole("Administrator"))
 {
