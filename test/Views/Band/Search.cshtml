@@ -1,8 +1,13 @@
 ﻿@model test.Models.SearchViewModel
 
 @{
-    ViewBag.Title = "Search for bands";
+    ViewBag.Title = "Search Bands";
 }
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>You're dumb.</h2>
+</hgroup>
 
 @Html.Partial("_SearchBandPartial", new ViewDataDictionary(ViewData) { Model = Model.searchModel })
 @Html.Partial("_SearchResultsPartial", new ViewDataDictionary(ViewData) { Model = Model.resultsModel })

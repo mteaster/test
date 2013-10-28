@@ -11,7 +11,7 @@ namespace test.Stuff
 {
     public class BandNotFoundException : System.Exception
     {
-        public BandNotFoundException() {}
+        public BandNotFoundException() : base("A band with this ID does not an exist.") {}
         public BandNotFoundException(string message) : base(message) {}
     }
 
@@ -61,6 +61,24 @@ namespace test.Stuff
             }
         }
 
+        public static bool Leave(int bandId)
+        {
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                BandMembership membership = database.BandMemberships.Find(bandId, WebSecurity.CurrentUserId);
+
+                if (membership == null)
+                {
+                    return false;
+                }
+
+                database.BandMemberships.Remove(membership);
+                database.SaveChanges();
+
+                return true;
+            }
+        }
+
         public static bool Delete(int bandId)
         {
             using (DatabaseContext database = new DatabaseContext())
@@ -92,25 +110,39 @@ namespace test.Stuff
             }
         }
 
-        public static void ChangeBandName(int bandId, string bandName)
+        public static bool ChangeBandName(int bandId, string bandName)
         {
             using (DatabaseContext database = new DatabaseContext())
             {
+                if (database.BandMemberships.Find(bandId, WebSecurity.CurrentUserId) == null)
+                {
+                    return false;
+                }
+
                 BandProfile profile = BandProfileFor(bandId, database);
                 profile.BandName = bandName;
                 database.Entry(profile).State = EntityState.Modified;
                 database.SaveChanges();
+
+                return true;
             }
         }
 
-        public static void ChangeBandPassword(int bandId, string password)
+        public static bool ChangeBandPassword(int bandId, string password)
         {
             using (DatabaseContext database = new DatabaseContext())
             {
+                if (database.BandMemberships.Find(bandId, WebSecurity.CurrentUserId) == null)
+                {
+                    return false;
+                }
+
                 BandProfile profile = BandProfileFor(bandId, database);
                 profile.Password = Crypto.HashPassword(password);
                 database.Entry(profile).State = EntityState.Modified;
                 database.SaveChanges();
+
+                return true;
             }
         }
 
@@ -140,34 +172,25 @@ namespace test.Stuff
 
         public static string BandNameFor(int bandId)
         {
-            BandProfile profile = BandProfileFor(bandId);
-
-            return profile.BandName;
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                BandProfile profile = database.BandProfiles.Find(bandId);
+                if (profile == null)
+                {
+                    throw new BandNotFoundException();
+                }
+                return profile.BandName;
+            }
         }
 
-        public static BandProfile BandProfileFor(int bandId, DatabaseContext database)
+        private static BandProfile BandProfileFor(int bandId, DatabaseContext database)
         {
             BandProfile profile = database.BandProfiles.Find(bandId);
-
             if (profile == null)
             {
                 throw new BandNotFoundException();
             }
-
             return profile;
-        }
-
-        public static BandProfile SuperBandProfileFor(int bandId, DatabaseContext database)
-        {
-            BandProfile profile = database.BandProfiles.Find(bandId);
-            BandMembership membership = database.BandMemberships.Find(bandId, WebSecurity.CurrentUserId);
-            
-            if (profile == null)
-            {
-                throw new BandNotFoundException();
-            }
-
-            return membership == null ? null : profile;
         }
 
         public static BandProfile BandProfileFor(int bandId)
@@ -178,19 +201,20 @@ namespace test.Stuff
             }
         }
 
-        // stuff under here might need refactoring
-
         public static List<BandModel> BandModels(bool membersFlag = false)
         {
-            List<BandProfile> bandProfiles = new DatabaseContext().BandProfiles.ToList();
-            List<BandModel> bandModels = new List<BandModel>();
-
-            foreach (BandProfile bandProfile in bandProfiles)
+            using (DatabaseContext database = new DatabaseContext())
             {
-                bandModels.Add(BandUtil.BandModelFor(bandProfile.BandId, true));
-            }
+                List<BandProfile> bandProfiles = database.BandProfiles.ToList();
+                List<BandModel> bandModels = new List<BandModel>();
 
-            return bandModels;
+                foreach (BandProfile bandProfile in bandProfiles)
+                {
+                    bandModels.Add(BandUtil.BandModelFor(bandProfile.BandId, database, true));
+                }
+
+                return bandModels;
+            }
         }
 
         public static List<BandModel> BandModelsFor(int userId, bool membersFlag = false)
@@ -214,28 +238,22 @@ namespace test.Stuff
             }
         }
 
-        //public static List<BandModel> CrazyBandModelsFor(int userId, bool membersFlag = false)
-        //{
-        //    return (from m in database.BandMemberships
-        //            join p in database.BandProfiles
-        //            on m.BandId equals p.BandId
-        //            join u in database.UserProfiles
-        //            on p.CreatorId equals u.UserId
-        //            where m.MemberId == userId
-        //            select new BandModel(p.BandId, p.BandName, u.UserName, null)).ToList();
-        //}
-
-        public static BandModel BandModelFor(BandProfile profile, bool membersFlag = false)
+        private static BandModel BandModelFor(int bandId, DatabaseContext database, bool membersFlag = false)
         {
-            return new BandModel(profile.BandId,
+                BandProfile profile = BandProfileFor(bandId, database);
+
+                return new BandModel(profile.BandId,
                                         profile.BandName,
-                                        new DatabaseContext().UserProfiles.Find(profile.CreatorId).UserName,
+                                        database.UserProfiles.Find(profile.CreatorId).UserName,
                                         membersFlag ? MembersFor(profile.BandId) : null);
         }
 
-        public static BandModel BandModelFor(int bandId, bool members = false)
+        public static BandModel BandModelFor(int bandId, bool membersFlag = false)
         {
-            return BandModelFor(new DatabaseContext().BandProfiles.Find(bandId), members);
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                return BandModelFor(bandId, database, membersFlag);
+            }
         }
 
         public static List<BandModel> SearchByName(String term)
@@ -247,6 +265,7 @@ namespace test.Stuff
                               on b.CreatorId equals u.UserId
                               where b.BandName.Contains(term)
                               select new { b.BandId, b.BandName, u.UserName };
+
                 List<BandModel> bands = new List<BandModel>();
 
                 foreach (var result in results)

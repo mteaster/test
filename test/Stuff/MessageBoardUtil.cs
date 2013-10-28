@@ -16,7 +16,7 @@ namespace test.Stuff
             MessageBoardPost post = new MessageBoardPost();
             post.BandId = bandId;
             post.PosterId = WebSecurity.CurrentUserId;
-            post.PostTime = DateTime.Now;
+            post.PostTime = DateTime.UtcNow;
             post.Content = content;
 
             using (DatabaseContext database = new DatabaseContext())

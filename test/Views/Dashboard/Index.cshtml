@@ -14,7 +14,7 @@
     <h2>You're dumb.</h2>
 </hgroup>
 
-@ViewBag.StatusMessage
+<p class="message-success">@ViewBag.StatusMessage</p>
 
 @Html.Partial("_PostMessagePartial", new ViewDataDictionary(ViewData) { Model = Model.PostMessageModel } )
 

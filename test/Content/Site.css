@@ -630,6 +630,10 @@ table.pretty th
 	font-weight: bold;
 }
 
+li.right
+{
+    float: right;
+}
 
 /********************
 *   Mobile Styles   *

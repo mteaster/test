@@ -1,6 +1,9 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using test.Models;
+using WebMatrix.WebData;
+using System.Web.Security;
+using test.Filters;
 
 namespace test.Controllers
 {
@@ -14,6 +17,13 @@ namespace test.Controllers
         public ActionResult About()
         {
             return View();
+        }
+
+        [PerformanceFilter]
+        public ActionResult Test()
+        {
+            ViewBag.StatusMessage = "what am i doing here";
+            return View("Success");
         }
     }
 }
