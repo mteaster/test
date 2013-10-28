@@ -18,6 +18,17 @@ namespace test.Filters
 
         public void OnActionExecuted(ActionExecutedContext filterContext)
         {
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                Log log = new Log();
+                log.LogMessage = "is it broken?";
+                log.LogTime = DateTime.Now;
+
+                database.Logs.Add(log);
+                database.SaveChanges();
+            }
+
+
             if (filterContext.HttpContext.Items["Stopwatch"] != null)
             {
                 Stopwatch stopwatch = (Stopwatch)filterContext.HttpContext.Items["Stopwatch"];
