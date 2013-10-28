@@ -9,7 +9,7 @@ using System.Data;
 namespace test.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AdminController : Controller
     {
         public ActionResult Index()
         {
