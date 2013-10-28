@@ -6,7 +6,7 @@ using test.Models;
 
 namespace test.Filters
 {
-    public class PerformanceFilterAttribute : System.Web.Http.Filters.ActionFilterAttribute
+    public class PerformanceFilterAttribute : ActionFilterAttribute, IActionFilter
     {
         private Stopwatch stopWatch = new Stopwatch();
 
