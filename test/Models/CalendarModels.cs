@@ -33,19 +33,24 @@ namespace test.Models
         public CalendarEventModel() {}
 
         [Required]
+        [Display(Name = "Title")]
         public string EventTitle { get; set; }
 
         [Required]
         [DataType(DataType.MultilineText)]
+        [Display(Name = "Description")]
         public string EventDescription { get; set; }
 
         [Required]
+        [Display(Name = "Month (Number)")]
         public int EventMonth { get; set; }
 
         [Required]
+        [Display(Name = "Day (Number)")]
         public int EventDay { get; set; }
 
         [Required]
+        [Display(Name = "Year (Number)")]
         public int EventYear { get; set; }
     }
 
