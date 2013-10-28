@@ -130,7 +130,7 @@ namespace test.Controllers
             if (BandUtil.Leave(bandId))
             {
                 ViewBag.StatusMessage = "You left " + bandProfile.BandName + ".";
-                return View("Status");
+                return View("Success");
             }
 
             ViewBag.StatusMessage = "We can't let you leave " + bandProfile.BandName + ".";

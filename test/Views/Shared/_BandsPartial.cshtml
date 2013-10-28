@@ -20,7 +20,7 @@
     <tr>
         <td>@Html.ActionLink(item.BandName, "Index", "Dashboard", new { bandId = item.BandId }, null)</td>
         <td>@Html.DisplayFor(modelItem => item.CreatorName)</td>
-        <td>@Html.ActionLink(item.BandName, "Leave", "Band", new { bandId = item.BandId }, null)</td>
+        <td>@Html.ActionLink("Leave", "Leave", "Band", new { bandId = item.BandId }, null)</td>
     </tr>
 }
 
