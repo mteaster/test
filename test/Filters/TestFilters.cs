@@ -33,7 +33,7 @@ namespace test.Filters
                 {
                     Log log = new Log();
                     log.LogMessage = message;
-                    log.LogTime = DateTime.Now;
+                    log.LogTime = DateTime.UtcNow;
 
                     database.Logs.Add(log);
                     database.SaveChanges();
