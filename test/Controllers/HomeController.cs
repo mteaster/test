@@ -10,7 +10,7 @@ namespace test.Controllers
     {
         public ActionResult Index()
         {
-            WebSecurity.CreateUserAndAccount("admin", "Goose1234", new { DisplayName = "admin" });
+            Roles.CreateRole("Administrator");
             Roles.AddUserToRole("admin", "Administrator");
 
             return View();
