@@ -14,6 +14,16 @@ namespace test.Filters
         {
             Stopwatch stopwatch = Stopwatch.StartNew();
             filterContext.HttpContext.Items.Add("Stopwatch", stopwatch);
+
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                Log log = new Log();
+                log.LogMessage = "OnActionExecuting";
+                log.LogTime = DateTime.Now;
+
+                database.Logs.Add(log);
+                database.SaveChanges();
+            }
         }
 
         public void OnActionExecuted(ActionExecutedContext filterContext)
@@ -21,7 +31,7 @@ namespace test.Filters
             using (DatabaseContext database = new DatabaseContext())
             {
                 Log log = new Log();
-                log.LogMessage = "is it broken?";
+                log.LogMessage = "OnActionExecuted";
                 log.LogTime = DateTime.Now;
 
                 database.Logs.Add(log);
