@@ -21,5 +21,21 @@ namespace test.Controllers
 
             return View();
         }
+
+        public ActionResult Log()
+        {
+            if (!Roles.IsUserInRole("Administrator"))
+            {
+                @ViewBag.StatusMessage = "you're not an admin, idiot";
+                return View("Error");
+            }
+
+
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                return View(database.Logs);
+
+            }
+        }
     }
 }

@@ -13,7 +13,7 @@
     @foreach (var item in Model)
     {
         <tr>
-            <th>@Html.DisplayFor(modelItem => item.BandId)</th>
+            <td>@Html.DisplayFor(modelItem => item.BandId)</td>
             <td>@Html.ActionLink(Html.DisplayFor(modelItem => item.BandName).ToString(),
                  "Index", "Dashboard", new { bandId = item.BandId }, null)</td>
             <td>@Html.DisplayFor(modelItem => item.CreatorName)</td>
