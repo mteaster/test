@@ -56,13 +56,26 @@ namespace band.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddEvent(CalendarEventModel model)
+        public ActionResult AddEvent(int bandId, CalendarEventModel model)
         {
+            // Check if band exists - if it does, get band profile
+            BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
+
+            ViewBag.BandId = bandId;
+            ViewBag.BandName = bandProfile.BandName;
+
+            // Check if the user is in the band
+            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))
+            {
+                return RedirectToAction("Join", "Band");
+            }
+
             if (ModelState.IsValid)
             {
                 CalendarEvent calendarEvent = new CalendarEvent();
 
-                calendarEvent.EventTitle = model.EventTitle;
+                calendarEvent.BandId = bandId;
+                calendarEvent.EventTitle = model.EventTitle;    
                 calendarEvent.EventTime = new DateTime(model.EventYear, model.EventMonth, model.EventDay);
                 calendarEvent.EventDescription = model.EventDescription;
 

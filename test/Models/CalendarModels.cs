@@ -21,6 +21,11 @@ namespace test.Models
         public string EventTitle { get; set; }
 
         [Required]
+        public int BandId { get; set; }
+        [ForeignKey("BandId")]
+        public virtual BandProfile BandProfile { get; set; }
+
+        [Required]
         public DateTime EventTime { get; set; }
 
         [Required]
