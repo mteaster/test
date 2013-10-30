@@ -4,7 +4,7 @@
     ViewBag.Title = "Calendar";
 }
 
-@using (Html.BeginForm("AddEvent", "Calendar"))
+@using (Html.BeginForm("AddEvent", "Calendar", new { bandId = ViewBag.BandId }, FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
