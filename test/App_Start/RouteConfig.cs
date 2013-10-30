@@ -20,7 +20,6 @@ namespace test
                 constraints: new { bandId = @"\d+" }
             );
 
-
             routes.MapRoute(
                 name: "Join Band",
                 url: "Band/Join/{bandId}",
