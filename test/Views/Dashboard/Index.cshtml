@@ -15,7 +15,6 @@
 </hgroup>
 
 <p class="message-success">@ViewBag.StatusMessage</p>
-
+@Html.Partial("_DisplayMessagesPartial", new ViewDataDictionary(ViewData) { Model = Model.DisplayMessagesModel } )
 @Html.Partial("_PostMessagePartial", new ViewDataDictionary(ViewData) { Model = Model.PostMessageModel } )
 
-@Html.Partial("_DisplayMessagesPartial", new ViewDataDictionary(ViewData) { Model = Model.DisplayMessagesModel } )

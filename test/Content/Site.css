@@ -604,7 +604,36 @@ section.half
     float: left;
     width: 50%;
 }
-
+p.messageBoardName {
+    font-weight:600;
+    font-size:medium;
+    vertical-align:top;
+}
+p.messageBoardMessage {
+    font-size:medium;
+}
+p.messageBoardTime {
+    font-weight:200;
+    font-size:x-small;
+    vertical-align:top;
+}
+table.messageBoard 
+{
+    background-color: #FFFFFF;
+    border:1px;
+    width:200px;
+}
+table.messageBoard td {
+  text-align:left;
+}
+table.messageBoard th
+{
+    background-color:#C3C3C3;
+    padding: 5px;
+    vertical-align: top;
+	text-align: left;
+	font-weight: bold;
+}
 table.pretty
 {
     background-color: #FFFFFF;

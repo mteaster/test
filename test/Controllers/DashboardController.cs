@@ -13,6 +13,12 @@ namespace band.Controllers
     public class DashboardController : Controller
     {
         //
+        // /Dashboard/RemovePost
+        public ActionResult RemovePost()
+        {
+            return View();
+        }
+        //
         // GET: /Dashboard/
 
         public ActionResult Index(int bandId)
@@ -70,6 +76,12 @@ namespace band.Controllers
             dvm.DisplayMessagesModel = MessageBoardUtil.MessagesFor(bandId);
 
             return View(dvm);
+
+
         }
+        
+      
+      
     }
+    
 }
