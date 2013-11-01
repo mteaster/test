@@ -56,7 +56,7 @@ namespace test.Controllers
         [ChildActionOnly]
         public ActionResult BandList()
         {
-            return PartialView("_BandListPartial", BandUtil.BandModelsFor(WebSecurity.CurrentUserId));
+            return PartialView("_BandListPartial", BandUtil.BandModels(true));
         }
 
         public ActionResult Logs()
