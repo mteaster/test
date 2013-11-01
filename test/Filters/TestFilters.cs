@@ -10,13 +10,14 @@ namespace test.Filters
     {
         private Stopwatch stopWatch = new Stopwatch();
 
-        public void OnActionExecuting(ActionExecutingContext filterContext)
+
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             Stopwatch stopwatch = Stopwatch.StartNew();
             filterContext.HttpContext.Items.Add("Stopwatch", stopwatch);
         }
 
-        public void OnActionExecuted(ActionExecutedContext filterContext)
+        public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
 
             if (filterContext.HttpContext.Items["Stopwatch"] != null)
