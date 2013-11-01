@@ -3,13 +3,12 @@
 @if (Model != null && Model.Any())
 {
     
-    <table class="messageBoard" width="600" >
+    <table class="messageBoard">
         <tr>
-            <th>Messages</th> 
+            <th>Messages</th>
             <th></th>
             <th></th>
-            <th></th>
-            
+            <th></th> 
         </tr>
           
         @foreach (var item in Model)
@@ -19,7 +18,7 @@
                 <td><p class="messageBoardName">@Html.DisplayFor(modelItem => item.PosterName)</p></td>
                 <td><p class="messageBoardMessage">@Html.DisplayFor(modelItem => item.Content)</p></td>
                 <td><p class="messageBoardTime">@Html.DisplayFor(modelItem => item.PostTime)</p></td>
-               <td>@Html.ActionLink("Delete", "RemovePost", "DashboardController")</td>
+               <td>@Html.ActionLink("Delete", "RemovePost", "Dashboard",new {PostId = item.PostId}, null)</td>
             </tr>
         }
     </table>
