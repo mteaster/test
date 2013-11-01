@@ -36,15 +36,6 @@ namespace test.Controllers
         }
 
         [ChildActionOnly]
-        public ActionResult ManageUsers()
-        {
-            using (DatabaseContext database = new DatabaseContext())
-            {
-                return PartialView("_ManageUsersPartial", database.UserProfiles.ToList());
-            }
-        }
-
-        [ChildActionOnly]
         public ActionResult UserList()
         {
             using (DatabaseContext database = new DatabaseContext())
@@ -63,10 +54,11 @@ namespace test.Controllers
         {
             if (!Roles.IsUserInRole("Administrator"))
             {
-                @ViewBag.StatusMessage = "you're not an admin, idiot";
+                @ViewBag.StatusMessage = "Sorry, you can't access this page.";
                 return View("Error");
             }
 
+            @ViewBag.StatusMessage = "I didn't actually make the logs work yet.";
             return View("Error");
         }
 
