@@ -6,6 +6,7 @@ using test.Models;
 using WebMatrix.WebData;
 using System.Web.Helpers;
 using System.Data;
+using System.Web.Security;
 
 namespace test.Stuff
 {
@@ -85,7 +86,7 @@ namespace test.Stuff
             {
                 BandProfile profile = BandProfileFor(bandId, database);
 
-                if (profile.CreatorId != WebSecurity.CurrentUserId)
+                if (profile.CreatorId != WebSecurity.CurrentUserId && !Roles.IsUserInRole("Administrator"))
                 {
                     return false;
                 }
@@ -114,7 +115,7 @@ namespace test.Stuff
         {
             using (DatabaseContext database = new DatabaseContext())
             {
-                if (database.BandMemberships.Find(bandId, WebSecurity.CurrentUserId) == null)
+                if (database.BandMemberships.Find(bandId, WebSecurity.CurrentUserId) == null && !Roles.IsUserInRole("Administrator"))
                 {
                     return false;
                 }
@@ -132,7 +133,7 @@ namespace test.Stuff
         {
             using (DatabaseContext database = new DatabaseContext())
             {
-                if (database.BandMemberships.Find(bandId, WebSecurity.CurrentUserId) == null)
+                if (database.BandMemberships.Find(bandId, WebSecurity.CurrentUserId) == null && !Roles.IsUserInRole("Administrator"))
                 {
                     return false;
                 }

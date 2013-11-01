@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "Accounts";
+}
+
+<section class="half">
+    <hgroup class="title">
+        <h1>Bands.</h1>
+        <h2>Here are all the bands.</h2>
+    </hgroup>
+
+    @{ Html.RenderAction("BandList", "Admin"); }; 
+</section>

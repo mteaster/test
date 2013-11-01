@@ -24,7 +24,7 @@ namespace test.Controllers
             return View();
         }
 
-        public ActionResult Accounts()
+        public ActionResult Users()
         {
             if (!Roles.IsUserInRole("Administrator"))
             {
@@ -35,8 +35,15 @@ namespace test.Controllers
             return View();
         }
 
-        // REMOVE ALLOW ANONYMOUS AFTER DEVELOPMENT
-        [AllowAnonymous]
+        [ChildActionOnly]
+        public ActionResult ManageUsers()
+        {
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                return PartialView("_ManageUsersPartial", database.UserProfiles.ToList());
+            }
+        }
+
         [ChildActionOnly]
         public ActionResult UserList()
         {
@@ -46,8 +53,6 @@ namespace test.Controllers
             }
         }
 
-        // REMOVE ALLOW ANONYMOUS AFTER DEVELOPMENT
-        [AllowAnonymous]
         [ChildActionOnly]
         public ActionResult BandList()
         {
@@ -64,5 +69,7 @@ namespace test.Controllers
 
             return View("Error");
         }
+
+
     }
 }
