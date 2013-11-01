@@ -8,6 +8,7 @@ using System.Text;
 using System;
 using System.Data;
 using test.Stuff;
+using System.Web.Security;
 
 namespace test.Controllers
 {
@@ -139,7 +140,7 @@ namespace test.Controllers
             ViewBag.BandId = bandId;
             ViewBag.BandName = bandProfile.BandName;
 
-            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))
+            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
             {
                 ViewBag.StatusMessage = "You must be a member of this band to change its preferences.";
                 return View("Error");
