@@ -9,13 +9,19 @@ using WebMatrix.WebData;
 
 namespace band.Controllers
 {
+    
     [Authorize]
     public class DashboardController : Controller
     {
+        
         //
         // /Dashboard/RemovePost
-        public ActionResult RemovePost()
+        public ActionResult RemovePost(int postId)
         {
+            if (MessageBoardUtil.Delete(postId))
+                ViewBag.message = "Post Removed!";
+            else
+                ViewBag.message = "You cannot remove someone else's post!";
             return View();
         }
         //
@@ -38,7 +44,7 @@ namespace band.Controllers
             }
 
             dvm.DisplayMessagesModel = MessageBoardUtil.MessagesFor(bandId);
-
+            
             return View(dvm);
         }
 

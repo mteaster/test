@@ -620,10 +620,14 @@ p.messageBoardTime {
 }
 table.messageBoard 
 {
+    min-width:600px;
     background-color: #FFFFFF;
     border:1px;
     width:200px;
 }
+    table.messageBoard tr {
+    width:600px;
+    }
 table.messageBoard td {
   text-align:left;
 }

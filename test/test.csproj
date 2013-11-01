@@ -396,6 +396,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Admin\Accounts.cshtml" />
+    <Content Include="Views\Dashboard\RemovePost.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
