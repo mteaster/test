@@ -15,8 +15,6 @@ namespace test.Controllers
     [Authorize]
     public class BandController : Controller
     {
-        private DatabaseContext database = new DatabaseContext();
-
         //
         // GET: /Band/Bands
 
@@ -145,7 +143,6 @@ namespace test.Controllers
                 ViewBag.StatusMessage = "You must be a member of this band to change its preferences.";
                 return View("Error");
             }
-
 
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
