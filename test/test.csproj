@@ -175,7 +175,6 @@
     <Compile Include="Controllers\FileCabinetController.cs" />
     <Compile Include="Controllers\OnlineController.cs" />
     <Compile Include="Controllers\RolodexController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Filters\TestFilters.cs" />
     <Compile Include="Global.asax.cs">
