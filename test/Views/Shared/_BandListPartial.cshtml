@@ -20,8 +20,8 @@
                  "Index", "Dashboard", new { bandId = item.BandId }, null)</td>
             <td>@Html.DisplayFor(modelItem => item.CreatorName)</td>
             <td>@Html.DisplayFor(modelItem => item.Members)</td>
-            <td>@Html.ActionLink("Join", "Join", new {bandId = item.BandId})</td>
-            <td>@Html.ActionLink("Manage", "Manage", new {bandId = item.BandId})</td>
+            <td>@Html.ActionLink("Join", "Join", "Band", new {bandId = item.BandId}, null)</td>
+            <td>@Html.ActionLink("Manage", "Manage", "Band", new {bandId = item.BandId}, null)</td>
         </tr>
     }
 

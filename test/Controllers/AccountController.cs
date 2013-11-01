@@ -57,6 +57,7 @@ namespace test.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+
             return View();
         }
 
