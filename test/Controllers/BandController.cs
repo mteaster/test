@@ -16,13 +16,6 @@ namespace test.Controllers
     {
         private DatabaseContext database = new DatabaseContext();
 
-        [AllowAnonymous]
-        [ChildActionOnly]
-        public ActionResult AllBands()
-        {
-            return PartialView("_BandListPartial", BandUtil.BandModels(true));
-        }
-
         //
         // GET: /Band/Bands
 

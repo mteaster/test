@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "About";
+    ViewBag.Title = "Accounts";
 }
 
 <section class="half">
@@ -8,7 +8,7 @@
         <h2>Here are all the bands.</h2>
     </hgroup>
 
-    @{ Html.RenderAction("AllBands", "Band"); }
+    @{ Html.RenderAction("BandList", "Admin"); }; 
 </section>
 
 <section class="half">
@@ -17,5 +17,5 @@
         <h2>Here are all the users.</h2>
     </hgroup>
 
-    @{ Html.RenderAction("AllUsers", "User"); }
+    @{ Html.RenderAction("AllUsers", "Admin"); }
 </section>
