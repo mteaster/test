@@ -54,6 +54,7 @@ namespace band.Controllers
         //
         // GET: /Dashboard/EditPost
 
+        [HttpPost]
         public ActionResult EditPost(int postId)
         {
             return View();
