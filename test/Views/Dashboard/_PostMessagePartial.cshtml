@@ -5,7 +5,7 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
 
-    <fieldset class="postMessage">
+    <fieldset>
         <legend>Post Message Form</legend>
         @Html.EditorFor(model => model.Content)
         <br />

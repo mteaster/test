@@ -622,12 +622,6 @@ section.half
     width: 50%;
 }
 
-fieldset.postMessage textarea
-{
-    width: 100%;
-    resize: none;
-}
-
 span.messageBoardName
 {
     color: #000000;
