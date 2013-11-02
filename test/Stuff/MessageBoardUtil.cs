@@ -17,7 +17,7 @@ namespace test.Stuff
 
     public class MessageBoardUtil
     {
-        public static void AddMessage(int bandId, string content)
+        public static void AddPost(int bandId, string content)
         {
             MessageBoardPost post = new MessageBoardPost();
             post.BandId = bandId;
@@ -32,7 +32,7 @@ namespace test.Stuff
             }
         }
 
-        public static List<MessageBoardPostModel> MessagesFor(int bandId)
+        public static List<MessageBoardPostModel> PostsFor(int bandId)
         {
             using (DatabaseContext database = new DatabaseContext())
             {
@@ -62,7 +62,7 @@ namespace test.Stuff
             }
         }
 
-        public static bool Delete(int postId)
+        public static bool DeletePost(int postId)
         {
             using (DatabaseContext database = new DatabaseContext())
             {
@@ -81,7 +81,7 @@ namespace test.Stuff
         }
 
         // todo
-        public static bool Edit(int postId, string content)
+        public static bool EditPost(int postId, string content)
         {
             using (DatabaseContext database = new DatabaseContext())
             {

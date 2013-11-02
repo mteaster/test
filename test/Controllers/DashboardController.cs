@@ -20,7 +20,7 @@ namespace band.Controllers
         {
             // TODO: Add redirect back to dashboard (too lazy to do it now)
 
-            if (MessageBoardUtil.Delete(postId))
+            if (MessageBoardUtil.DeletePost(postId))
             {
                 ViewBag.StatusMessage = "Post Removed!";
                 return View("Success");
@@ -40,7 +40,7 @@ namespace band.Controllers
         {
             // TODO: Add redirect back to dashboard (too lazy to do it now)
 
-            if (MessageBoardUtil.Edit(postId, model.Content))
+            if (MessageBoardUtil.EditPost(postId, model.Content))
             {
                 ViewBag.StatusMessage = "Post edited!";
                 return View("Success");
@@ -79,7 +79,7 @@ namespace band.Controllers
                 return RedirectToAction("Join", "Band");
             }
 
-            dvm.DisplayMessagesModel = MessageBoardUtil.MessagesFor(bandId);
+            dvm.DisplayMessagesModel = MessageBoardUtil.PostsFor(bandId);
             
             return View(dvm);
         }
@@ -107,7 +107,7 @@ namespace band.Controllers
 
             if (ModelState.IsValid)
             {
-                MessageBoardUtil.AddMessage(bandId, model.Content);
+                MessageBoardUtil.AddPost(bandId, model.Content);
                 ViewBag.StatusMessage = "message posted successfully";
             }
             else
@@ -115,7 +115,7 @@ namespace band.Controllers
                 ViewBag.StatusMessage = "something was wrong with your message";
             }
 
-            dvm.DisplayMessagesModel = MessageBoardUtil.MessagesFor(bandId);
+            dvm.DisplayMessagesModel = MessageBoardUtil.PostsFor(bandId);
 
             return View(dvm);
         }
