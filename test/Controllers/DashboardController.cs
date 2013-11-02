@@ -57,6 +57,7 @@ namespace band.Controllers
 
         public ActionResult EditPost(int postId)
         {
+            ViewBag.PostId = postId;
             return View();
         }
 
