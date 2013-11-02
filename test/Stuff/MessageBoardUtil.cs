@@ -39,7 +39,7 @@ namespace test.Stuff
                               join u in database.UserProfiles
                               on p.PosterId equals u.UserId
                               where p.BandId == bandId
-                              select new { p.PostId, p.PostTime, p.Content, u.DisplayName };
+                              select new { p.PostId, p.PostTime, p.Content, u.UserId, u.DisplayName };
 
                 List<MessageBoardPostModel> postModels = new List<MessageBoardPostModel>();
 
@@ -47,6 +47,7 @@ namespace test.Stuff
                 {
                     MessageBoardPostModel postModel = new MessageBoardPostModel();
                     postModel.PostId = result.PostId;
+                    postModel.PosterId = result.UserId;
                     postModel.PostTime = result.PostTime;
                     postModel.Content = result.Content;
                     postModel.PosterName = result.DisplayName;

@@ -39,6 +39,10 @@ namespace test.Models
         public int PostId { get; set; }
 
         [Required]
+        [Display(Name = "Poster ID")]
+        public int PosterId { get; set; }
+
+        [Required]
         [Display(Name = "Name")]
         public string PosterName { get; set; }
 
