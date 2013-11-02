@@ -7,7 +7,7 @@
     <ol class="messages">
         @foreach (var item in Model)
         {
-            <li id="post-container-@item.PostId">
+            <li class="post-container" id="post-container-@item.PostId">
                 <div id="post-@item.PostId">
                     <span class="messageBoardName">@Html.DisplayFor(modelItem => item.PosterName)</span><br />
                     <span class="messageBoardTime">@Html.DisplayFor(modelItem => item.PostTime)</span><br />
