@@ -3,5 +3,9 @@ console.log("messageboard.js");
 function edit(id)
 {
     console.log("edit post with id " + id);
-    $("li." + id + " div").hide();
+
+    var form = $("<p>form goes here</>");
+
+    $("#content" + id + " div").hide();
+    $("#post" + id).append(form);
 }
