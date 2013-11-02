@@ -477,15 +477,18 @@ textarea {
     padding: 10px 20px;
 }
 
-.message-error {
+.message-error
+{
     clear: both;
     color: #e80c4d;
-    font-size: 1.3em;
+    font-size: 1.3em; /* Changed */
     font-weight: bold;
     margin: 20px 0 10px 0;
 }
 
-.message-success {
+.message-success 
+{
+    clear: both;  /* Changed */
     color: #7ac0da;
     font-size: 1.3em;
     font-weight: bold;
