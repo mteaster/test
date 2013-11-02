@@ -15,7 +15,9 @@
         <h2>Share messages with your band.</h2>
     </hgroup>
 
-    <p class="message-success">@ViewBag.StatusMessage</p>
+    <p class="message-success">@ViewBag.SuccessMessage</p>
+    <p class="message-error">@ViewBag.ErrorMessage</p>
+
     @Html.Partial("_PostMessagePartial", new ViewDataDictionary(ViewData) { Model = Model.PostMessageModel } )
     @Html.Partial("_DisplayMessagesPartial", new ViewDataDictionary(ViewData) { Model = Model.DisplayMessagesModel } )
 

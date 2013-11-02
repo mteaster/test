@@ -5,7 +5,6 @@
 @using (Html.BeginForm("Index", "Dashboard", new { bandId = ViewBag.BandId }, FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary()
 
     <fieldset>
         <legend>Post Message Form</legend>
