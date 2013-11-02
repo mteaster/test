@@ -7,11 +7,11 @@
     <ol class="messages">
         @foreach (var item in Model)
         {
-            <li id="post-@item.PostId">
-                <div id="content-@item.PostId">
+            <li id="post-container-@item.PostId">
+                <div id="post-@item.PostId">
                     <span class="messageBoardName">@Html.DisplayFor(modelItem => item.PosterName)</span><br />
                     <span class="messageBoardTime">@Html.DisplayFor(modelItem => item.PostTime)</span><br />
-                    <p class="messageBoardMessage">@Html.DisplayFor(modelItem => item.Content)</p>
+                    <p id="post-content-@item.PostId" class="messageBoardMessage">@Html.DisplayFor(modelItem => item.Content)</p>
 
                     @if (item.PosterId == WebSecurity.CurrentUserId)
                     {
