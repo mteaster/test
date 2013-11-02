@@ -8,7 +8,7 @@
         @foreach (var item in Model)
         {
             <li id="post-@item.PostId">
-                <div "content-@item.PostId">
+                <div id="content-@item.PostId">
                     <span class="messageBoardName">@Html.DisplayFor(modelItem => item.PosterName)</span><br />
                     <span class="messageBoardTime">@Html.DisplayFor(modelItem => item.PostTime)</span><br />
                     <p class="messageBoardMessage">@Html.DisplayFor(modelItem => item.Content)</p>
