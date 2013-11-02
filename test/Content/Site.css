@@ -626,7 +626,6 @@ p.messageBoardName
 {
     font-weight: 600;
     font-size: medium;
-    vertical-align: top;
 }
 
 span.messageBoardMessage 
@@ -639,9 +638,8 @@ span.messageBoardMessage
 
 span.messageBoardTime 
 {
-    font-weight: 200;
-    font-size: x-small;
-    vertical-align: top;
+    font-weight: normal;
+    font-size: small;
 }
 
 table.pretty
