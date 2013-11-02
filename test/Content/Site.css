@@ -644,7 +644,7 @@ span.messageBoardTime
 
 a.messageBoardLink
 {
-    padding: 0;
+    padding: 0 0 0 3px;
 }
 
 table.pretty
