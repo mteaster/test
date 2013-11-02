@@ -1,7 +1,6 @@
 console.log("messageboard.js");
 
-$("#btn-edit").click(
-    function () {
-        console.log("do it now gohan!!!!");
-    }
-);
+function edit(id)
+{
+    console.log("edit post with id " + id);
+}
