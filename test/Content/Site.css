@@ -624,6 +624,7 @@ section.half
 
 fieldset.postMessage textarea
 {
+    width: 100%;
     resize: none;
 }
 
