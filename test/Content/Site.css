@@ -588,19 +588,10 @@ tr.pager td {
 
 /* MIKE'S CSS ADDITIONS */
 
-ol.messages
+section.half
 {
-    padding: 0;
-    margin: 0;   
-}
-
-ol.messages li
-{
-    border: 1px solid #C3C3C3;
-    list-style-type: none;
-    padding: 12px;
-    margin-bottom: 20px;
-    background: white;
+    float: left;
+    width: 50%;
 }
 
 ul.horizontal
@@ -616,10 +607,32 @@ ul.horizontal li
     padding-right: 10px;
 }   
 
-section.half
+ol.messages
 {
-    float: left;
-    width: 50%;
+    padding: 0;
+    margin: 0;   
+}
+
+ol.messages li
+{
+    border: 1px solid #C3C3C3;
+    list-style-type: none;
+    padding: 12px;
+    margin-bottom: 20px;
+    background: white;
+}
+
+ol.messages ul
+{
+    padding: 0;
+    margin: 0;
+}
+
+ol.messages ul li
+{
+    display: inline;
+    list-style-type: none;
+    padding-right: 3px;
 }
 
 span.messageBoardName
@@ -640,11 +653,6 @@ span.messageBoardTime
 {
     font-weight: normal;
     font-size: small;
-}
-
-a.messageBoardLink
-{
-    padding: 0 0 0 3px;
 }
 
 table.pretty

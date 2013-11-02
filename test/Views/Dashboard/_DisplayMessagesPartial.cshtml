@@ -7,14 +7,21 @@
         {
             <li>
                 <span class="messageBoardName">@Html.DisplayFor(modelItem => item.PosterName)</span><br />
-                <span class="messageBoardTime">@Html.DisplayFor(modelItem => item.PostTime)</span><br />
                 <p class="messageBoardMessage">@Html.DisplayFor(modelItem => item.Content)</p>
 
-                @if (item.PosterId == WebSecurity.CurrentUserId)
-                {
-                    @Html.ActionLink("Edit", "EditPost", "Dashboard", new { PostId = item.PostId }, new { @class = "messageBoardLink" })
-                    @Html.ActionLink("Delete", "RemovePost", "Dashboard", new { PostId = item.PostId }, new { @class = "messageBoardLink" })
-                }    
+                <ul>
+                    @if (item.PosterId == WebSecurity.CurrentUserId)
+                    {
+                        <li>
+                            @Html.ActionLink("Edit", "EditPost", "Dashboard", new { PostId = item.PostId }, new { @class = "messageBoardLink" })
+                        </li>
+                        <li>
+                            @Html.ActionLink("Delete", "DeletePost", "Dashboard", new { PostId = item.PostId }, new { @class = "messageBoardLink" })
+                        </li>
+                    }    
+
+                    <li class="right">@Html.DisplayFor(modelItem => item.PostTime)</li>
+                </ul>
             </li>
         }
     </ol>
