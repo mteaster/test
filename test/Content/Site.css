@@ -596,10 +596,11 @@ ol.messages
 
 ol.messages li
 {
-    border-right: 1px solid #000000;
+    border: 1px solid #000000;
     list-style-type: none;
     padding: 12px;
     margin-bottom: 20px;
+    background: white;
 }
 
 ul.horizontal
