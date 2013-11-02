@@ -630,12 +630,9 @@ ol.messages ul
 
 ol.messages ul li
 {
-    border: none;
-    background: none;
-    list-style-type: none;
     display: inline;
-    padding: 0 0 0 3px;
-    margin: 0;
+    list-style-type: none;
+    padding-right: 3px;
 }
 
 span.messageBoardName
