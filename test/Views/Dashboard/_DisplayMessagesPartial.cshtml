@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<test.Models.MessageBoardPostModel>
 
+<h3>Messages</h3>
+
 @if (Model != null && Model.Any())
 {
     <ol class="messages">
@@ -12,7 +14,7 @@
 
                 @if (item.PosterId == WebSecurity.CurrentUserId)
                 {
-                    @Html.ActionLink("Edit", "EditPost", "Dashboard", new { PostId = item.PostId }, new { @class = "messageBoardLink" })
+                    <a id="link-edit" href="/Dashboard/EditPost?PostId=@item.PostId" class="messageBoardLink">Edit</a>
                     @Html.ActionLink("Delete", "RemovePost", "Dashboard", new { PostId = item.PostId }, new { @class = "messageBoardLink" })
                 }    
             </li>
@@ -22,4 +24,9 @@
 else
 {
     <span>No messages found</span>
+}
+
+@section scripts
+{
+     <script type="text/javascript" src="@Url.Content("/Scripts/messageboard.js")"></script>
 }

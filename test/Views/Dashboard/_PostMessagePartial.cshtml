@@ -1,5 +1,7 @@
 ﻿@model test.Models.PostMessageModel
 
+<h3>Post Message</h3>
+
 @using (Html.BeginForm("Index", "Dashboard", new { bandId = ViewBag.BandId }, FormMethod.Post))
 {
     @Html.AntiForgeryToken()
