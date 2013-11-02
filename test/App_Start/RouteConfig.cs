@@ -35,10 +35,17 @@ namespace test
             );
 
             routes.MapRoute(
-                name: "Delete Message",
-                url: "Dashboard/DeletePost/{bandId}",
+                name: "Delete Post",
+                url: "Dashboard/DeletePost/{postId}",
                 defaults: new { controller = "Dashboard", action = "DeletePost" },
-                constraints: new { bandId = @"\d+" }
+                constraints: new { postId = @"\d+" }
+            );
+
+            routes.MapRoute(
+                name: "Edit Post",
+                url: "Dashboard/EditPost/{postId}",
+                defaults: new { controller = "Dashboard", action = "EditPost" },
+                constraints: new { postId = @"\d+" }
             );
 
             routes.MapRoute(
