@@ -16,18 +16,18 @@ namespace band.Controllers
         //
         // GET: /Dashboard/RemovePost
 
-        public ActionResult DeletePost(int postId, string returnUrl)
+        public ActionResult RemovePost(int postId)
         {
             // TODO: Add redirect back to dashboard (too lazy to do it now)
 
             if (MessageBoardUtil.DeletePost(postId))
             {
-                ViewBag.StatusMessage = "Post deleted!";
+                ViewBag.StatusMessage = "Post Removed!";
                 return View("Success");
             }
             else
             {
-                ViewBag.StatusMessage = "You cannot delete someone else's post!";
+                ViewBag.StatusMessage = "You cannot remove someone else's post!";
                 return View("Error");
             }
         }
