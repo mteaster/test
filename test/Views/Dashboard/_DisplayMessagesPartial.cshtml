@@ -9,7 +9,7 @@
                 <span class="messageBoardName">@Html.DisplayFor(modelItem => item.PosterName)</span><br />
                 <span class="messageBoardTime">@Html.DisplayFor(modelItem => item.PostTime)</span><br />
                 <p class="messageBoardMessage">@Html.DisplayFor(modelItem => item.Content)</p>
-                @Html.ActionLink("Delete", "RemovePost", "Dashboard", new { PostId = item.PostId }, new { @class = "messageBoardLink" } ) )
+                @Html.ActionLink("Delete", "RemovePost", "Dashboard", new { PostId = item.PostId }, new { @class = "messageBoardLink" } )
             </li>
         }
     </ol>
