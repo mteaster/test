@@ -2,7 +2,7 @@
 
 @if (Model != null && Model.Any())
 {
-    <ul class="messages">
+    <ol class="messages">
         @foreach (var item in Model)
         {
             <li>
@@ -12,7 +12,7 @@
                 @Html.ActionLink("Delete", "RemovePost", "Dashboard", new {PostId = item.PostId}, null)
             </li>
         }
-    </ul>
+    </ol>
 }
 else
 {
