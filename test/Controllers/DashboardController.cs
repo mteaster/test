@@ -13,17 +13,25 @@ namespace band.Controllers
     [Authorize]
     public class DashboardController : Controller
     {
-        
         //
         // /Dashboard/RemovePost
+
         public ActionResult RemovePost(int postId)
         {
+            // TODO: Add redirect back to dashboard (too lazy to do it now)
+
             if (MessageBoardUtil.Delete(postId))
-                ViewBag.message = "Post Removed!";
+            {
+                ViewBag.StatusMessage = "Post Removed!";
+                return View("Success");
+            }
             else
-                ViewBag.message = "You cannot remove someone else's post!";
-            return View();
+            {
+                ViewBag.StatusMessage = "You cannot remove someone else's post!";
+                return View("Error");
+            }
         }
+
         //
         // GET: /Dashboard/
 
@@ -82,12 +90,6 @@ namespace band.Controllers
             dvm.DisplayMessagesModel = MessageBoardUtil.MessagesFor(bandId);
 
             return View(dvm);
-
-
         }
-        
-      
-      
-    }
-    
+    }    
 }

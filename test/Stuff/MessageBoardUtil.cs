@@ -14,6 +14,7 @@ namespace test.Stuff
         public PostNotFoundException() : base("A post with this ID does not an exist.") { }
         public PostNotFoundException(string message) : base(message) { }
     }
+
     public class MessageBoardUtil
     {
         public static void AddMessage(int bandId, string content)
@@ -58,6 +59,7 @@ namespace test.Stuff
                 return postModels;
             }
         }
+
         public static bool Delete(int postId)
         {
             using (DatabaseContext database = new DatabaseContext())
@@ -71,16 +73,20 @@ namespace test.Stuff
 
                 database.MessageBoardPosts.Remove(post);
                 database.SaveChanges();
+
                 return true;
             }
         }
+
         private static MessageBoardPost PostFor(int postId, DatabaseContext database)
         {
             MessageBoardPost post = database.MessageBoardPosts.Find(postId);
+
             if (post == null)
             {
                 throw new PostNotFoundException();
             }
+
             return post;
         }
     }

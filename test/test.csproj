@@ -395,9 +395,6 @@
     <Content Include="Views\Home\Test.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Dashboard\RemovePost.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Admin\Bands.cshtml" />
     <Content Include="Views\Admin\_AdminHeaderPartial.cshtml" />
   </ItemGroup>
