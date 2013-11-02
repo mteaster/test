@@ -588,6 +588,20 @@ tr.pager td {
 
 /* MIKE'S CSS ADDITIONS */
 
+ol.messages
+{
+    padding: 0;
+    margin: 0;   
+}
+
+ol.messages li
+{
+    border-right: 1px solid #000000;
+    list-style-type: none;
+    padding: 12px;
+    margin-bottom: 20px;
+}
+
 ul.horizontal
 {
     padding: 0;

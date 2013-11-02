@@ -2,27 +2,17 @@
 
 @if (Model != null && Model.Any())
 {
-    
-    <table class="messageBoard">
-        <tr>
-            <th>Messages</th>
-            <th></th>
-            <th></th>
-            <th></th> 
-        </tr>
-          
+    <ul class="messages">
         @foreach (var item in Model)
         {
-            <tr>
-                <!--<th>@Html.DisplayFor(modelItem => item.PostId)</th> -->
-                <td><p class="messageBoardName">@Html.DisplayFor(modelItem => item.PosterName)</p></td>
-                <td><p class="messageBoardMessage">@Html.DisplayFor(modelItem => item.Content)</p></td>
-                <td><p class="messageBoardTime">@Html.DisplayFor(modelItem => item.PostTime)</p></td>
-               <td>@Html.ActionLink("Delete", "RemovePost", "Dashboard",new {PostId = item.PostId}, null)</td>
-            </tr>
+            <li>
+                @Html.DisplayFor(modelItem => item.PosterName)
+                @Html.DisplayFor(modelItem => item.Content)
+                @Html.DisplayFor(modelItem => item.PostTime)
+                @Html.ActionLink("Delete", "RemovePost", "Dashboard", new {PostId = item.PostId}, null)
+            </li>
         }
-    </table>
-      
+    </ul>
 }
 else
 {

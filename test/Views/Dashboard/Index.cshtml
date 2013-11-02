@@ -9,12 +9,26 @@
     @Html.Partial("_BandHeaderPartial")
 }
 
-<hgroup class="title">
-    <h1>Message Board.</h1>
-    <h2>You're dumb.</h2>
-</hgroup>
+<article>
+    <hgroup class="title">
+        <h1>Message Board.</h1>
+        <h2>Share messages with your band.</h2>
+    </hgroup>
 
-<p class="message-success">@ViewBag.StatusMessage</p>
-@Html.Partial("_DisplayMessagesPartial", new ViewDataDictionary(ViewData) { Model = Model.DisplayMessagesModel } )
-@Html.Partial("_PostMessagePartial", new ViewDataDictionary(ViewData) { Model = Model.PostMessageModel } )
+    <p class="message-success">@ViewBag.StatusMessage</p>
+    @Html.Partial("_PostMessagePartial", new ViewDataDictionary(ViewData) { Model = Model.PostMessageModel } )
+    @Html.Partial("_DisplayMessagesPartial", new ViewDataDictionary(ViewData) { Model = Model.DisplayMessagesModel } )
 
+</article>
+
+<aside>
+    <h3>Aside Title</h3>
+    <p>
+        Use this area to provide additional information.
+    </p>
+    <ul>
+        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+        <li>@Html.ActionLink("About", "About", "Home")</li>
+        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+    </ul>
+</aside>
