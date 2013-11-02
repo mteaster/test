@@ -12,7 +12,7 @@
 
                 @if (item.PosterId == WebSecurity.CurrentUserId)
                 {
-                    @Html.ActionLink("Edit", "EditMessage", "Dashboard", new { PostId = item.PostId }, new { @class = "messageBoardLink" })
+                    @Html.ActionLink("Edit", "EditPost", "Dashboard", new { PostId = item.PostId }, new { @class = "messageBoardLink" })
                     @Html.ActionLink("Delete", "RemovePost", "Dashboard", new { PostId = item.PostId }, new { @class = "messageBoardLink" })
                 }    
             </li>
