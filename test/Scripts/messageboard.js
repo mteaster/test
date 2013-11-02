@@ -6,6 +6,6 @@ function edit(id)
 
     var form = $("<p>form goes here</>");
 
-    $("#content" + id + " div").hide();
-    $("#post" + id).append(form);
+    $("#content-" + id + " div").hide();
+    $("#post-" + id).append(form);
 }
