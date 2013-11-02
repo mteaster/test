@@ -60,25 +60,6 @@ namespace band.Controllers
         }
 
         //
-        // POST: /Dashboard/EditPost
-
-        public ActionResult EditPost(int postId, PostMessageModel model)
-        {
-            // TODO: Add redirect back to dashboard (too lazy to do it now)
-
-            if (MessageBoardUtil.Edit(postId, model.Content))
-            {
-                ViewBag.StatusMessage = "Post edited!";
-                return View("Success");
-            }
-            else
-            {
-                ViewBag.StatusMessage = "You cannot edit someone else's post!";
-                return View("Error");
-            }
-        }
-
-        //
         // GET: /Dashboard/
 
         public ActionResult Index(int bandId)
