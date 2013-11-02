@@ -1,5 +1,3 @@
-console.log("messageboard.js");
-
 function initiateEdit(id)
 {
     $(".post-edit").remove();
