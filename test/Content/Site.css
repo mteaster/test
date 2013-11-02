@@ -631,6 +631,7 @@ p.messageBoardMessage
     padding: 5px;
     border: 1px solid #000000;
     font-size:medium;
+    margin: 0;
 }
 p.messageBoardTime {
     font-weight:200;

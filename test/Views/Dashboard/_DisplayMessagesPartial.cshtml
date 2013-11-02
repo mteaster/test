@@ -10,7 +10,7 @@
                 <br />
                 @Html.DisplayFor(modelItem => item.PostTime)
                 <br />
-                <p class="messageboardMessage">@Html.DisplayFor(modelItem => item.Content)</p>
+                <p class="messageBoardMessage">@Html.DisplayFor(modelItem => item.Content)</p>
                 <br />
                 @Html.ActionLink("Delete", "RemovePost", "Dashboard", new {PostId = item.PostId}, null)
             </li>
