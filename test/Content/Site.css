@@ -626,7 +626,10 @@ p.messageBoardName {
     font-size:medium;
     vertical-align:top;
 }
-p.messageBoardMessage {
+p.messageBoardMessage 
+{
+    padding: 5px;
+    border: 1px solid #000000;
     font-size:medium;
 }
 p.messageBoardTime {
