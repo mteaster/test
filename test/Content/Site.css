@@ -642,6 +642,11 @@ span.messageBoardTime
     font-size: small;
 }
 
+a.messageBoardLink
+{
+    padding: 0;
+}
+
 table.pretty
 {
     background-color: #FFFFFF;
