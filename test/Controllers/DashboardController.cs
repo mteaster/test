@@ -14,7 +14,7 @@ namespace band.Controllers
     public class DashboardController : Controller
     {
         //
-        // /Dashboard/RemovePost
+        // GET: /Dashboard/RemovePost
 
         public ActionResult RemovePost(int postId)
         {
@@ -28,6 +28,52 @@ namespace band.Controllers
             else
             {
                 ViewBag.StatusMessage = "You cannot remove someone else's post!";
+                return View("Error");
+            }
+        }
+
+        //
+        // /Dashboard/EditPost
+
+        public ActionResult EditPost(int postId, PostMessageModel model)
+        {
+            // TODO: Add redirect back to dashboard (too lazy to do it now)
+
+            if (MessageBoardUtil.Edit(postId, model.Content))
+            {
+                ViewBag.StatusMessage = "Post edited!";
+                return View("Success");
+            }
+            else
+            {
+                ViewBag.StatusMessage = "You cannot edit someone else's post!";
+                return View("Error");
+            }
+        }
+
+        //
+        // GET: /Dashboard/EditPost
+
+        public ActionResult EditPost(int postId, PostMessageModel model)
+        {
+            return View();
+        }
+
+        //
+        // POST: /Dashboard/EditPost
+
+        public ActionResult EditPost(int postId, PostMessageModel model)
+        {
+            // TODO: Add redirect back to dashboard (too lazy to do it now)
+
+            if (MessageBoardUtil.Edit(postId, model.Content))
+            {
+                ViewBag.StatusMessage = "Post edited!";
+                return View("Success");
+            }
+            else
+            {
+                ViewBag.StatusMessage = "You cannot edit someone else's post!";
                 return View("Error");
             }
         }

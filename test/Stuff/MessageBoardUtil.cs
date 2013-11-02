@@ -67,13 +67,33 @@ namespace test.Stuff
             using (DatabaseContext database = new DatabaseContext())
             {
                 MessageBoardPost post = PostFor(postId, database);
-                
+
                 if (post.PosterId != WebSecurity.CurrentUserId)
                 {
                     return false;
                 }
 
                 database.MessageBoardPosts.Remove(post);
+                database.SaveChanges();
+
+                return true;
+            }
+        }
+
+        // todo
+        public static bool Edit(int postId, string content)
+        {
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                MessageBoardPost post = PostFor(postId, database);
+                
+                if (post.PosterId != WebSecurity.CurrentUserId)
+                {
+                    return false;
+                }
+
+                post.Content = content;
+
                 database.SaveChanges();
 
                 return true;

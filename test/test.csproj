@@ -398,6 +398,9 @@
     <Content Include="Views\Admin\Bands.cshtml" />
     <Content Include="Views\Admin\_AdminHeaderPartial.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Dashboard\EditMessage.cshtml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
