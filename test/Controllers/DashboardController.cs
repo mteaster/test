@@ -14,9 +14,9 @@ namespace band.Controllers
     public class DashboardController : Controller
     {
         //
-        // GET: /Dashboard/RemovePost
+        // GET: /Dashboard/DeletePost
 
-        public ActionResult RemovePost(int postId)
+        public ActionResult DeletePost(int postId)
         {
             // TODO: Add redirect back to dashboard (too lazy to do it now)
 

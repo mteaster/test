@@ -15,7 +15,7 @@
 
                     @if (item.PosterId == WebSecurity.CurrentUserId)
                     {
-                        <button id="btn-edit" onclick="edit(@item.PostId)">Edit</button>
+                        <a class="messageBoardLink" href="javascript:edit(@item.PostId);">Edit</a>
                         @Html.ActionLink("Delete", "RemovePost", "Dashboard", new { PostId = item.PostId }, new { @class = "messageBoardLink" })
                     }    
                 </div>
