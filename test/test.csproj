@@ -399,7 +399,7 @@
     <Content Include="Views\Admin\_AdminHeaderPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Dashboard\EditMessage.cshtml" />
+    <Content Include="Views\Dashboard\EditPost.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
