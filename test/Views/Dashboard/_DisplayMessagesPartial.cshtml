@@ -8,15 +8,17 @@
         @foreach (var item in Model)
         {
             <li id="@item.PostId">
-                <span class="messageBoardName">@Html.DisplayFor(modelItem => item.PosterName)</span><br />
-                <span class="messageBoardTime">@Html.DisplayFor(modelItem => item.PostTime)</span><br />
-                <p class="messageBoardMessage">@Html.DisplayFor(modelItem => item.Content)</p>
+                <div>
+                    <span class="messageBoardName">@Html.DisplayFor(modelItem => item.PosterName)</span><br />
+                    <span class="messageBoardTime">@Html.DisplayFor(modelItem => item.PostTime)</span><br />
+                    <p class="messageBoardMessage">@Html.DisplayFor(modelItem => item.Content)</p>
 
-                @if (item.PosterId == WebSecurity.CurrentUserId)
-                {
-                    <button id="btn-edit" onclick="edit(@item.PostId)">Edit</button>
-                    @Html.ActionLink("Delete", "RemovePost", "Dashboard", new { PostId = item.PostId }, new { @class = "messageBoardLink" })
-                }    
+                    @if (item.PosterId == WebSecurity.CurrentUserId)
+                    {
+                        <button id="btn-edit" onclick="edit(@item.PostId)">Edit</button>
+                        @Html.ActionLink("Delete", "RemovePost", "Dashboard", new { PostId = item.PostId }, new { @class = "messageBoardLink" })
+                    }    
+                </div>
             </li>
         }
     </ol>
