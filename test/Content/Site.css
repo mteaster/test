@@ -622,10 +622,10 @@ section.half
     width: 50%;
 }
 
-p.messageBoardName
+span.messageBoardName
 {
-    font-weight: 600;
-    font-size: medium;
+    color: #000000;
+    font-size: 1.2em;
 }
 
 span.messageBoardMessage 
