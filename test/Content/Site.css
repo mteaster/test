@@ -488,7 +488,6 @@ textarea {
 
 .message-success 
 {
-    clear: both; 
     color: #7ac0da;
     font-size: 1.3em;
     font-weight: bold;
