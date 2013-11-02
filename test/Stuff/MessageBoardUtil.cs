@@ -41,7 +41,7 @@ namespace test.Stuff
                               on p.PosterId equals u.UserId
                               where p.BandId == bandId
                               orderby p.PostTime descending
-                              select new { p.PostId, p.PostTime, p.Content, u.UserId, u.DisplayName }
+                              select new { p.PostId, p.PostTime, p.Content, u.UserId, u.DisplayName };
 
  
                 List<MessageBoardPostModel> postModels = new List<MessageBoardPostModel>();
