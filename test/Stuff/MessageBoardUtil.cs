@@ -40,8 +40,10 @@ namespace test.Stuff
                               join u in database.UserProfiles
                               on p.PosterId equals u.UserId
                               where p.BandId == bandId
-                              select new { p.PostId, p.PostTime, p.Content, u.UserId, u.DisplayName };
+                              orderby p.PostTime descending
+                              select new { p.PostId, p.PostTime, p.Content, u.UserId, u.DisplayName }
 
+ 
                 List<MessageBoardPostModel> postModels = new List<MessageBoardPostModel>();
 
                 foreach (var result in results)
