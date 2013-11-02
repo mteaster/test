@@ -35,6 +35,7 @@ namespace band.Controllers
         //
         // /Dashboard/EditPost
 
+        [HttpPost]
         public ActionResult EditPost(int postId, PostMessageModel model)
         {
             // TODO: Add redirect back to dashboard (too lazy to do it now)
@@ -54,7 +55,6 @@ namespace band.Controllers
         //
         // GET: /Dashboard/EditPost
 
-        [HttpPost]
         public ActionResult EditPost(int postId)
         {
             return View();
