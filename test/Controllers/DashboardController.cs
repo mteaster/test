@@ -109,11 +109,7 @@ namespace band.Controllers
             if (ModelState.IsValid)
             {
                 MessageBoardUtil.AddPost(bandId, model.Content);
-                ViewBag.StatusMessage = "message posted successfully";
-            }
-            else
-            {
-                ViewBag.StatusMessage = "something was wrong with your message";
+                ViewBag.StatusMessage = "Message posted!";
             }
 
             dvm.DisplayMessagesModel = MessageBoardUtil.PostsFor(bandId);
