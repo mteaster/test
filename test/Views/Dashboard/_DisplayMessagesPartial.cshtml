@@ -6,12 +6,9 @@
         @foreach (var item in Model)
         {
             <li>
-                Posted by @Html.DisplayFor(modelItem => item.PosterName):
-                <br />
-                @Html.DisplayFor(modelItem => item.PostTime)
-                <br />
+                <span class="messageBoardname">@Html.DisplayFor(modelItem => item.PosterName)</span><br />
+                <span class="messageBoardTime">@Html.DisplayFor(modelItem => item.PostTime)</span><br />
                 <p class="messageBoardMessage">@Html.DisplayFor(modelItem => item.Content)</p>
-                <br />
                 @Html.ActionLink("Delete", "RemovePost", "Dashboard", new {PostId = item.PostId}, null)
             </li>
         }
