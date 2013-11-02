@@ -14,7 +14,7 @@
 
                 @if (item.PosterId == WebSecurity.CurrentUserId)
                 {
-                    <a id="link-edit" href="" class="messageBoardLink">Edit</a>
+                    <button id="btn-edit">Edit</button>
                     @Html.ActionLink("Delete", "RemovePost", "Dashboard", new { PostId = item.PostId }, new { @class = "messageBoardLink" })
                 }    
             </li>
@@ -24,9 +24,4 @@
 else
 {
     <span>No messages found</span>
-}
-
-@section scripts
-{
-     <script type="text/javascript" src="@Url.Content("/Scripts/messageboard.js")"></script>
 }
