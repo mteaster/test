@@ -630,9 +630,9 @@ span.messageBoardName
     font-size: 1.2em;
 }
 
-span.messageBoardMessage 
+div.messageBoardMessage 
 {
-
+    padding: 5px 0;
 }
 
 span.messageBoardTime 
