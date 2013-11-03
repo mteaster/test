@@ -21,11 +21,11 @@ namespace band.Controllers
 
             if (MessageBoardUtil.DeletePost(postId))
             {
-                ViewBag.SuccessMessage = "Post deleted!";
+                TempData["SuccessMessage"] = "Post deleted!";
             }
             else
             {
-                ViewBag.ErrorMessage = "You cannot delete someone else's post!";
+                TempData["ErrorMessage"] = "You cannot delete someone else's post!";
             }
 
             return RedirectToLocal(Request.UrlReferrer.AbsolutePath);
@@ -39,11 +39,11 @@ namespace band.Controllers
         {
             if (MessageBoardUtil.EditPost(postId, model.Content))
             {
-                ViewBag.SuccessMessage = "Post edited!";
+                TempData["SuccessMessage"] = "Post edited!";
             }
             else
             {
-                ViewBag.ErrorMessage = "You cannot edit someone else's post!";
+                TempData["ErrorMessage"] = "You cannot edit someone else's post!";
             }
 
             return RedirectToLocal(Request.UrlReferrer.AbsolutePath);
@@ -63,6 +63,9 @@ namespace band.Controllers
 
         public ActionResult Index(int bandId)
         {
+            ViewBag.SuccessMessage = TempData["SuccessMessage"];
+            ViewBag.ErrorMessage = TempData["ErrorMessage"];
+
             // Check if band exists - if it does, get band profile
             BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
 
