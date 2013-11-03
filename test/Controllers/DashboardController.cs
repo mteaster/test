@@ -9,7 +9,6 @@ using WebMatrix.WebData;
 
 namespace band.Controllers
 {
-    
     [Authorize]
     public class DashboardController : Controller
     {
@@ -23,7 +22,7 @@ namespace band.Controllers
             if (MessageBoardUtil.DeletePost(postId))
             {
                 ViewBag.StatusMessage = "Post deleted!";
-                return View("Success");
+                return RedirectToLocal(Request.UrlReferrer);
             }
             else
             {
@@ -119,6 +118,18 @@ namespace band.Controllers
             dvm.DisplayMessagesModel = MessageBoardUtil.PostsFor(bandId);
 
             return View(dvm);
+        }
+
+        private ActionResult RedirectToLocal(string returnUrl)
+        {
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
     }    
 }
