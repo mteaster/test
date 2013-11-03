@@ -122,8 +122,6 @@ namespace band.Controllers
 
         private ActionResult RedirectToLocal(string returnUrl)
         {
-            ViewBag.StatusMessage = returnUrl;
-
             if (Url.IsLocalUrl(returnUrl))
             {
                 return Redirect(returnUrl);
