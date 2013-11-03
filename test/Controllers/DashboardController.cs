@@ -22,7 +22,7 @@ namespace band.Controllers
             if (MessageBoardUtil.DeletePost(postId))
             {
                 ViewBag.StatusMessage = "Post deleted!";
-                return RedirectToLocal(Request.UrlReferrer);
+                return RedirectToLocal(Request.UrlReferrer.ToString());
             }
             else
             {
