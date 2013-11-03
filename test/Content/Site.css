@@ -630,7 +630,7 @@ span.messageBoardName
     font-size: 1.2em;
 }
 
-span.messageBoardMessage 
+p.messageBoardMessage 
 {
     padding: 5px;
     border: 1px solid #000000;
