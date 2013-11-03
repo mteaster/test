@@ -21,14 +21,14 @@ namespace band.Controllers
 
             if (MessageBoardUtil.DeletePost(postId))
             {
-                ViewBag.StatusMessage = "Post deleted!";
-                return RedirectToLocal(Request.UrlReferrer.AbsolutePath);
+                ViewBag.SuccessMessage = "Post deleted!";
             }
             else
             {
-                ViewBag.StatusMessage = "You cannot delete someone else's post!";
-                return View("Error");
+                ViewBag.ErrorMessage = "You cannot delete someone else's post!";
             }
+
+            return RedirectToLocal(Request.UrlReferrer.AbsolutePath);
         }
 
         //
@@ -37,18 +37,16 @@ namespace band.Controllers
         [HttpPost]
         public ActionResult EditPost(int postId, PostMessageModel model)
         {
-            // TODO: Add redirect back to dashboard (too lazy to do it now)
-
             if (MessageBoardUtil.EditPost(postId, model.Content))
             {
-                ViewBag.StatusMessage = "Post edited!";
-                return View("Success");
+                ViewBag.SuccessMessage = "Post edited!";
             }
             else
             {
-                ViewBag.StatusMessage = "You cannot edit someone else's post!";
-                return View("Error");
+                ViewBag.ErrorMessage = "You cannot edit someone else's post!";
             }
+
+            return RedirectToLocal(Request.UrlReferrer.AbsolutePath);
         }
 
         //
