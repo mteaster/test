@@ -12,7 +12,7 @@
                     <span class="messageBoardName">@Html.DisplayFor(modelItem => item.PosterName)</span><br />
                     <span class="messageBoardTime">@Html.DisplayFor(modelItem => item.PostTime)</span><br />
 
-                    <div id="post-content-@item.PostId" class="messageBoardMessage">@Html.DisplayFor(modelItem => item.Content)</div>
+                    <div id="post-content-@item.PostId" class="messageBoardMessage">@item.Content</div>
 
                     @if (item.PosterId == WebSecurity.CurrentUserId)
                     {
