@@ -632,6 +632,7 @@ span.messageBoardName
 
 div.messageBoardMessage 
 {
+    border: 1px solid #E2E2E2;
     padding: 5px 0;
 }
 
