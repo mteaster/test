@@ -630,9 +630,9 @@ span.messageBoardName
     font-size: 1.2em;
 }
 
-p.messageBoardMessage 
+span.messageBoardMessage 
 {
-    word-break: break-all;
+
 }
 
 span.messageBoardTime 

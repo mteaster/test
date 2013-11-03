@@ -52,7 +52,7 @@ namespace test.Stuff
                     postModel.PostId = result.PostId;
                     postModel.PosterId = result.UserId;
                     postModel.PostTime = result.PostTime;
-                    postModel.Content = result.Content;
+                    postModel.Content = result.Content.Replace("\n", "<br />");
                     postModel.PosterName = result.DisplayName;
 
                     postModels.Add(postModel);

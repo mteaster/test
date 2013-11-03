@@ -12,8 +12,7 @@
                     <span class="messageBoardName">@Html.DisplayFor(modelItem => item.PosterName)</span><br />
                     <span class="messageBoardTime">@Html.DisplayFor(modelItem => item.PostTime)</span><br />
 
-                    <textarea readonly>@Html.DisplayFor(modelItem => item.Content)</textarea>
-                    <p id="post-content-@item.PostId" class="messageBoardMessage">@Html.DisplayFor(modelItem => item.Content)</p>
+                    <span id="post-content-@item.PostId" class="messageBoardMessage">@Html.DisplayFor(modelItem => item.Content)</span>
 
                     @if (item.PosterId == WebSecurity.CurrentUserId)
                     {
