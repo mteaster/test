@@ -101,11 +101,12 @@ namespace test.Stuff
 
     public class CalendarUtil
     {
-        public static List<CalendarEvent> EventsForMonth(int month, int bandId)
+        public static List<CalendarEvent> EventsForMonth(int bandId, int month, int year)
         {
             using (DatabaseContext database = new DatabaseContext())
             {
                 return database.CalendarEvents.Where(c => c.EventTime.Month == month
+                                        && c.EventTime.Year == year
                                         && c.BandId == bandId).ToList();
             }
         }

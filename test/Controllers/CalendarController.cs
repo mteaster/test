@@ -48,9 +48,9 @@ namespace band.Controllers
             return View();
         }
 
-        public ActionResult EventsForMonth(int bandId, int month)
+        public ActionResult EventsForMonth(int bandId, int month, int year)
         {
-            return View(CalendarUtil.EventsForMonth(bandId, month));
+            return View(CalendarUtil.EventsForMonth(bandId, month, year));
         }
 
         //
