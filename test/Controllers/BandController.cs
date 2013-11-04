@@ -130,9 +130,7 @@ namespace test.Controllers
                 TempData["ErrorMessage"] = "You must be a member of this band to change its name.";
             }
 
-            TempData["SuccessMessage"] = Request.UrlReferrer.AbsolutePath;
-           
-            return RedirectToAction("Manage", new { bandId = bandId });
+            return RedirectToLocal(Request.UrlReferrer.AbsolutePath);
         }
 
         [HttpPost]
@@ -148,7 +146,7 @@ namespace test.Controllers
                 TempData["ErrorMessage"] = "You must be a member of this band to change its password.";
             }
 
-            return RedirectToAction("Manage", new { bandId = bandId });
+            return RedirectToLocal(Request.UrlReferrer.AbsolutePath);
         }
 
         public ActionResult Delete(int bandId)
@@ -160,7 +158,7 @@ namespace test.Controllers
             }
 
             TempData["ErrorMessage"] = "You must be the creator of this band to delete it.";
-            return RedirectToAction("Manage", new { bandId = bandId });
+            return RedirectToLocal(Request.UrlReferrer.AbsolutePath);
         }
 
         private ActionResult RedirectToLocal(string returnUrl)
