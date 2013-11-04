@@ -24,6 +24,7 @@
     <tr>
         <th>ID</th>
         <th>Band</th>
+        <th>Creator</th>
         <th>Join</th>
         <th>Leave</th>
         <th>Manage</th>
@@ -35,6 +36,7 @@
     <tr>
         <td>@item.BandId</td>
         <td>@item.BandName</td>
+        <td>@item.CreatorName</td>
         <td>@Html.ActionLink("Join", "Join", "Band", new {bandId = item.BandId}, null)</td>
         <td>@Html.ActionLink("Leave", "Leave", "Band", new { bandId = item.BandId }, null)</td>
         <td>@Html.ActionLink("Manage", "Manage", "Band", new {bandId = item.BandId}, null)</td>
