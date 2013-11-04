@@ -7,7 +7,7 @@ using WebMatrix.WebData;
 namespace test.Stuff
 {
     // I doubt anything in here works
-    public class BandCalendar
+    /*public class BandCalendar
     {
         public DateTime LastAccessTime { get; set; }
         public int BandId { get; set; }
@@ -97,56 +97,16 @@ namespace test.Stuff
                 return bandCalendars[bandId].EventsForMonth(month, year);
             }
         }
-    }
+    }*/
 
     public class CalendarUtil
     {
-        public static void EventsForMonth(int month)
-        {
-            
-
-
-        }
-
-        public static void AddMessage(int bandId, string content)
-        {
-            MessageBoardPost post = new MessageBoardPost();
-            post.BandId = bandId;
-            post.PosterId = WebSecurity.CurrentUserId;
-            post.PostTime = DateTime.UtcNow;
-            post.Content = content;
-
-            using (DatabaseContext database = new DatabaseContext())
-            {
-                database.MessageBoardPosts.Add(post);
-                database.SaveChanges();
-            }
-        }
-
-        public static List<MessageBoardPostModel> MessagesFor(int bandId)
+        public static List<CalendarEvent> EventsForMonth(int month, int bandId)
         {
             using (DatabaseContext database = new DatabaseContext())
             {
-                var results = from p in database.MessageBoardPosts
-                              join u in database.UserProfiles
-                              on p.PosterId equals u.UserId
-                              where p.BandId == bandId
-                              select new { p.PostId, p.PostTime, p.Content, u.DisplayName };
-
-                List<MessageBoardPostModel> postModels = new List<MessageBoardPostModel>();
-
-                foreach (var result in results)
-                {
-                    MessageBoardPostModel postModel = new MessageBoardPostModel();
-                    postModel.PostId = result.PostId;
-                    postModel.PostTime = result.PostTime;
-                    postModel.Content = result.Content;
-                    postModel.PosterName = result.DisplayName;
-
-                    postModels.Add(postModel);
-                }
-
-                return postModels;
+                return database.CalendarEvents.Where(c => c.EventTime.Month == month
+                                        && c.BandId == bandId).ToList();
             }
         }
     }

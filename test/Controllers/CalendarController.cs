@@ -48,6 +48,11 @@ namespace band.Controllers
             return View();
         }
 
+        public ActionResult EventsForMonth(int bandId, int month)
+        {
+            return View(CalendarUtil.EventsForMonth(bandId, month));
+        }
+
         //
         // Post: /Calendar/AddEvent
 
