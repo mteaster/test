@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using test.Models;
 using test.Stuff;
+using WebMatrix.WebData;
 
 namespace test.Controllers
 {
@@ -36,6 +37,16 @@ namespace test.Controllers
         }
 
         // This is where I play around with stuff
+        public ActionResult Crazy()
+        {
+            CrazyModel model = new CrazyModel();
+
+            model.AllBands = BandUtil.BandModels();
+            model.UserBands = BandUtil.BandModelsFor(WebSecurity.CurrentUserId);
+
+            return View(model);
+        }
+
         public ActionResult Test()
         {
             ViewBag.StatusMessage = "what am i doing here";

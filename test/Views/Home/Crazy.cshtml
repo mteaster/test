@@ -1,0 +1,40 @@
+﻿<!-- DEVELOPMENT ONLY -->
+
+@model test.Models.CrazyModel
+
+@{
+    ViewBag.Title = "Crazy";
+}
+
+<table class="pretty" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.BandName)</th>
+    </tr>
+
+@foreach (var item in Model.UserBands)
+{
+    <tr>
+        <td>@Html.DisplayFor(modelItem => modelItem.BandName)</td>
+    </tr>
+}
+
+<table class="pretty" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.BandName)</th>
+        <th>Join</th>
+        <th>Leave</th>
+        <th>Manage</th>
+        <th>Delete</th>
+    </tr>
+
+@foreach (var item in Model.AllBands)
+{
+    <tr>
+        <td>@Html.DisplayFor(modelItem => modelItem.BandName)</td>
+        <td>@Html.ActionLink("Join", "Join", "Band", new {bandId = item.BandId}, null)</td>
+        <td>@Html.ActionLink("Leave", "Leave", "Band", new { bandId = item.BandId }, null)</td>
+        <td>@Html.ActionLink("Manage", "Manage", "Band", new {bandId = item.BandId}, null)</td>
+        <td>@Html.ActionLink("Delete", "Delete", "Band", new {bandId = item.BandId}, null)</td>
+    </tr>
+}
+

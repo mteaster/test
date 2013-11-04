@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -19,5 +20,11 @@ namespace test.Models
         [Required]
         [Display(Name = "Message")]
         public string LogMessage { get; set; }
+    }
+
+    public class CrazyModel
+    {
+        public IEnumerable<test.Models.BandModel> UserBands { get; set; }
+        public IEnumerable<test.Models.BandModel> AllBands { get; set; }
     }
 }
