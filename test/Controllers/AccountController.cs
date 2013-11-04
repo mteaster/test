@@ -137,18 +137,28 @@ namespace test.Controllers
         {
             if (ModelState.IsValid)
             {
+                bool changePasswordSucceeded;
+
                 // ChangePassword will throw an exception rather than return false in certain failure scenarios.
                 try
                 {
-                    WebSecurity.ChangePassword(User.Identity.Name, model.OldPassword, model.NewPassword);
+                    changePasswordSucceeded = WebSecurity.ChangePassword(User.Identity.Name, model.OldPassword, model.NewPassword);
                 }
                 catch (Exception)
                 {
-                    TempData["ErrorMessage"] = "The current password is incorrect or the new password is invalid.";
-                    return RedirectToAction("Manage");
+                    changePasswordSucceeded = false;
                 }
 
-                TempData["SuccessMessage"] = "Your password has been changed.";
+                if (changePasswordSucceeded)
+                {
+                    TempData["SuccessMessage"] = "Your password has been changed.";
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "The current password is incorrect or the new password is invalid.";
+                }
+
+
             }
             else
             {
