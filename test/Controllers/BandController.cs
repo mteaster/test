@@ -85,7 +85,7 @@ namespace test.Controllers
 
             if(BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))
             {
-                ViewBag.ErrorMessage = "You're already in '" + bandName + "'.";
+                ViewBag.ErrorMessage = "You're already in '" + ViewBag.BandName + "'.";
                 return View("Error");
             }
 
@@ -95,7 +95,7 @@ namespace test.Controllers
             }
             else
             {
-                ViewBag.ErrorMessage = "The password you entered is invalid." + bandName;
+                ViewBag.ErrorMessage = "The password you entered is invalid.";
                 return View(model);
             }
         }
