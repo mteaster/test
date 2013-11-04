@@ -13,10 +13,10 @@
 <p>You're logged in as <strong>@User.Identity.Name</strong>.</p>
 
 <section class="half">
-    @Html.Partial("_ChangePasswordPartial", Model.userPasswordModel)
+    @Html.Partial("_ChangePasswordPartial", new ViewDataDictionary(ViewData) { Model = Model.userPasswordModel })
 </section>
 <section class="half">
-    @Html.Partial("_ChangeDisplayNamePartial", Model.changeDisplayNameModel)
+    @Html.Partial("_ChangeDisplayNamePartial", new ViewDataDictionary(ViewData) { Model = Model.changeDisplayNameModel })
 </section>
 
 
