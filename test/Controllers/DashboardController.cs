@@ -20,7 +20,7 @@ namespace band.Controllers
                 TempData["ErrorMessage"] = "You cannot delete someone else's post!";
             }
 
-            return RedirectToLocal(Request.UrlReferrer.AbsolutePath);
+            return RedirectToLocal(Request.UrlReferrer.AbsolutePath); //Takes you back to the view you came from
         }
 
         [HttpPost]
