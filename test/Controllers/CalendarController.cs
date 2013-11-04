@@ -25,7 +25,7 @@ namespace band.Controllers
             return View(CalendarUtil.EventsForMonth(bandId, DateTime.UtcNow.Month, DateTime.UtcNow.Year));
         }
 
-        public ActionResult Index(int bandId, int month, int year)
+        public ActionResult Month(int bandId, int month, int year)
         {
             // Check if band exists - if it does, get band profile
             BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
@@ -39,7 +39,7 @@ namespace band.Controllers
                 return RedirectToAction("Join", "Band");
             }
 
-            return View(CalendarUtil.EventsForMonth(bandId, month, year));
+            return View("Index", CalendarUtil.EventsForMonth(bandId, month, year));
         }
 
         //
