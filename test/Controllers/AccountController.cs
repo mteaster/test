@@ -94,13 +94,9 @@ namespace test.Controllers
 
         public ActionResult Manage(ManageMessageId? message)
         {
-            ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                : message == ManageMessageId.ChangeDisplayNameSuccess ? "Your display name has been changed."
-                : "";
-            ViewBag.HasLocalPassword = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
-            ViewBag.ReturnUrl = Url.Action("Manage");
-            return View(new ManageAccountViewModel());
+            ViewBag.SuccessMessage = TempData["SuccessMessage"];
+            ViewBag.ErrorMessage = TempData["ErrorMessage"];
+            return View();
         }
 
 
@@ -121,12 +117,14 @@ namespace test.Controllers
                     database.SaveChanges();
                 }
 
-                return RedirectToAction("Manage", new { Message = ManageMessageId.ChangeDisplayNameSuccess });
+                TempData["SuccessMessage"] = "Your display name has been changed.";
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Something was wrong with the display name you entered. Try again.";
             }
 
-            ManageAccountViewModel mavm = new ManageAccountViewModel();
-            mavm.changeDisplayNameModel = model;
-            return View("Manage", mavm);
+            return RedirectToAction("Manage");
         }
         
 
@@ -137,8 +135,6 @@ namespace test.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ChangePassword(UserPasswordModel model)
         {
-            ViewBag.ReturnUrl = Url.Action("Manage");
-
             if (ModelState.IsValid)
             {
                 // ChangePassword will throw an exception rather than return false in certain failure scenarios.
@@ -147,24 +143,21 @@ namespace test.Controllers
                 {
                     changePasswordSucceeded = WebSecurity.ChangePassword(User.Identity.Name, model.OldPassword, model.NewPassword);
                 }
-                catch (Exception)
+                catch (InvalidOperationException)
                 {
-                    changePasswordSucceeded = false;
+                    TempData["ErrorMessage"] = "The current password is incorrect or the new password is invalid.";
+                    return RedirectToAction("Manage");
                 }
 
-                if (changePasswordSucceeded)
-                {
-                    return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
-                }
-                else
-                {
-                    ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
-                }
+                TempData["SuccessMessage"] = "Your password has been changed.";
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Something was wrong with the password you entered, but I don't know what.";
             }
 
-            ManageAccountViewModel mavm = new ManageAccountViewModel();
-            mavm.userPasswordModel = model;
-            return View("Manage", mavm);
+
+            return RedirectToAction("Manage");
         }
 
         #region Helpers
@@ -178,12 +171,6 @@ namespace test.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-        }
-
-        public enum ManageMessageId
-        {
-            ChangePasswordSuccess,
-            ChangeDisplayNameSuccess
         }
 
         private static string ErrorCodeToString(MembershipCreateStatus createStatus)
