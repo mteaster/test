@@ -63,6 +63,12 @@ namespace test.Controllers
 
         public ActionResult Join(int bandId)
         {
+            if (BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))
+            {
+                ViewBag.ErrorMessage = "You're already in '" + ViewBag.BandName + "'.";
+                return View("Error");
+            }
+
             BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
 
             ViewBag.BandId = bandId;
@@ -74,16 +80,23 @@ namespace test.Controllers
         public ActionResult Join(int bandId, JoinBandModel model)
         {
             ViewBag.BandId = bandId;
+            ViewBag.BandName = BandUtil.BandNameFor(bandId);
+
+            if(BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))
+            {
+                ViewBag.ErrorMessage = "You're already in '" + ViewBag.BandName + "'.";
+                return View("Error");
+            }
 
             if (BandUtil.Join(bandId, model.Password))
             {
                 return RedirectToAction("Index", "Dashboard");
             }
-
-            ViewBag.BandName = BandUtil.BandNameFor(bandId);
-            ViewBag.ErrorMessage = "The password you entered is invalid";
-            //ModelState.AddModelError("", "The password you entered is invalid.");
-            return View(model);
+            else
+            {
+                ViewBag.ErrorMessage = "The password you entered is invalid.";
+                return View(model);
+            }
         }
 
         public ActionResult Leave(int bandId)
