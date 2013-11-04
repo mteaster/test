@@ -95,7 +95,7 @@ namespace test.Controllers
             }
             else
             {
-                ViewBag.ErrorMessage = "The password you entered is invalid.";
+                ViewBag.ErrorMessage = "The password you entered is invalid." + bandName;
                 return View(model);
             }
         }
