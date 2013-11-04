@@ -96,8 +96,6 @@ namespace test.Controllers
             }
 
             ViewBag.StatusMessage = "We can't let you leave " + bandProfile.BandName + ".";
-
-            ViewBag.StatusMessage(Request.UrlReferrer.AbsolutePath);
             return View("Error");
         }
 
@@ -131,6 +129,8 @@ namespace test.Controllers
             {
                 TempData["ErrorMessage"] = "You must be a member of this band to change its name.";
             }
+
+            TempData["SuccessMessage"] = Request.UrlReferrer.AbsolutePath;
            
             return RedirectToAction("Manage", new { bandId = bandId });
         }
