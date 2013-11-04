@@ -29,7 +29,7 @@ namespace test
 
             routes.MapRoute(
                 name: "Leave Band",
-                url: "Band/Join/{bandId}",
+                url: "Band/Leave/{bandId}",
                 defaults: new { controller = "Band", action = "Leave" },
                 constraints: new { bandId = @"\d+" }
             );
