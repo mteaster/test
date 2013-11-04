@@ -21,6 +21,12 @@ namespace test.Models
         public string DisplayName { get; set; }
     }
 
+    public class ManageAccountViewModel
+    {
+        public ChangeDisplayNameModel changeDisplayNameModel { get; set; }
+        public UserPasswordModel userPasswordModel { get; set; }
+    }
+
     public class ChangeDisplayNameModel
     {
         [Required]

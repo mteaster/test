@@ -1,4 +1,4 @@
-﻿@model test.Models.UserPasswordModel
+﻿@model test.Models.ManageAccountViewModel
 
 @{
     ViewBag.Title = "Manage Account";
@@ -13,10 +13,10 @@
 <p>You're logged in as <strong>@User.Identity.Name</strong>.</p>
 
 <section class="half">
-    @Html.Partial("_ChangePasswordPartial")
+    @Html.Partial("_ChangePasswordPartial", Model.userPasswordModel)
 </section>
 <section class="half">
-    @Html.Partial("_ChangeDisplayNamePartial")
+    @Html.Partial("_ChangeDisplayNamePartial", Model.changeDisplayNameModel)
 </section>
 
 

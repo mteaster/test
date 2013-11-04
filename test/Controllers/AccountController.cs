@@ -124,8 +124,9 @@ namespace test.Controllers
                 return RedirectToAction("Manage", new { Message = ManageMessageId.ChangeDisplayNameSuccess });
             }
 
-            // If we got this far, something failed, redisplay form
-            return View("Manage", model);
+            ManageAccountViewModel mavm = new ManageAccountViewModel();
+            mavm.changeDisplayNameModel = model;
+            return View("Manage", mavm);
         }
         
 
@@ -161,8 +162,9 @@ namespace test.Controllers
                 }
             }
 
-            // If we got this far, something failed, redisplay form
-            return View("Manage", model);
+            ManageAccountViewModel mavm = new ManageAccountViewModel();
+            mavm.userPasswordModel = model;
+            return View("Manage", mavm);
         }
 
         #region Helpers
