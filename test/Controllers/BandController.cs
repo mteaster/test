@@ -128,20 +128,18 @@ namespace test.Controllers
 
         public ActionResult Manage(int bandId, ManageMessageId? message)
         {
-            BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
-            ViewBag.BandId = bandId;
-            ViewBag.BandName = bandProfile.BandName;
-
             if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
             {
                 ViewBag.StatusMessage = "You must be a member of this band to change its preferences.";
                 return View("Error");
             }
 
-            ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                : message == ManageMessageId.ChangeBandNameSuccess ? "Your band name has been changed."
-                : "";
+            BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
+            ViewBag.BandId = bandId;
+            ViewBag.BandName = bandProfile.BandName;
+
+            ViewBag.SuccessMessage = TempData["SuccessMessage"];
+            ViewBag.ErrorMessage = TempData["ErrorMessage"];
 
             return View();
         }
@@ -155,11 +153,14 @@ namespace test.Controllers
         {
             if (BandUtil.ChangeBandName(bandId, model.BandName))
             {
-                return RedirectToAction("Manage", new { bandId = bandId, Message = ManageMessageId.ChangeBandNameSuccess });
+                TempData["SuccessMessage"] = "Your band name has been changed.";
             }
-
-            ViewBag.StatusMessage = "You must be a member of this band to change its name.";
-            return View("Error");
+            else
+            {
+                TempData["ErrorMessage"] = "You must be a member of this band to change its name.";
+            }
+           
+            return RedirectToAction("Manage", new { bandId = bandId });
         }
 
         //
@@ -171,11 +172,14 @@ namespace test.Controllers
         {
             if (BandUtil.ChangeBandPassword(bandId, model.NewPassword))
             {
-                return RedirectToAction("Manage", new { bandId = bandId, Message = ManageMessageId.ChangePasswordSuccess });
+                TempData["SuccessMessage"] = "Your password has been changed.";
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "You must be a member of this band to change its password.";
             }
 
-            ViewBag.StatusMessage = "You must be a member of this band to change its password.";
-            return View("Error");
+            return RedirectToAction("Manage", new { bandId = bandId });
         }
 
         public ActionResult Delete(int bandId)
@@ -186,8 +190,8 @@ namespace test.Controllers
                 return View("Success");
             }
 
-            ViewBag.StatusMessage = "You must be the creator of this band to delete it.";
-            return View("Error");
+            ViewBag.ErrorMessage = "You must be the creator of this band to delete it.";
+            return RedirectToAction("Manage", new { bandId = bandId });
         }
 
         public enum ManageMessageId
