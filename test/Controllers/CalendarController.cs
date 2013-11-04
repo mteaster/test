@@ -82,7 +82,7 @@ namespace band.Controllers
                     database.SaveChanges();
                 }
 
-                ViewBag.StatusMessage = "we added a calendar event and nothing broke";
+                ViewBag.SuccessMessage = "we added a calendar event and nothing broke";
                 return View("Success");
             }
 

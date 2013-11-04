@@ -13,7 +13,7 @@ namespace test.Controllers
         {
             if (!Roles.IsUserInRole("Administrator"))
             {
-                @ViewBag.StatusMessage = "Sorry, you can't access this page.";
+                @ViewBag.ErrorMessage = "Sorry, you can't access this page.";
                 return View("Error");
             }
 
@@ -24,7 +24,7 @@ namespace test.Controllers
         {
             if (!Roles.IsUserInRole("Administrator"))
             {
-                @ViewBag.StatusMessage = "Sorry, you can't access this page.";
+                @ViewBag.ErrorMessage = "Sorry, you can't access this page.";
                 return View("Error");
             }
 
@@ -50,11 +50,11 @@ namespace test.Controllers
         {
             if (!Roles.IsUserInRole("Administrator"))
             {
-                @ViewBag.StatusMessage = "Sorry, you can't access this page.";
+                @ViewBag.ErrorMessage = "Sorry, you can't access this page.";
                 return View("Error");
             }
 
-            @ViewBag.StatusMessage = "I didn't actually make the logs work yet.";
+            @ViewBag.ErrorMessage = "I didn't actually make the logs work yet.";
             return View("Error");
         }
 

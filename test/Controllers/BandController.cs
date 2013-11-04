@@ -77,11 +77,12 @@ namespace test.Controllers
 
             if (BandUtil.Join(bandId, model.Password))
             {
-                return RedirectToAction("Index", "Dashboard", new { bandId = bandId } );
+                return RedirectToAction("Index", "Dashboard");
             }
 
             ViewBag.BandName = BandUtil.BandNameFor(bandId);
-            ModelState.AddModelError("", "The password you entered is invalid.");
+            ViewBag.ErrorMessage = "The password you entered is invalid";
+            //ModelState.AddModelError("", "The password you entered is invalid.");
             return View(model);
         }
 
@@ -91,11 +92,11 @@ namespace test.Controllers
 
             if (BandUtil.Leave(bandId))
             {
-                ViewBag.StatusMessage = "You left '" + bandProfile.BandName + "'.";
+                ViewBag.SuccessMessage = "You left '" + bandProfile.BandName + "'.";
                 return View("Success");
             }
 
-            ViewBag.StatusMessage = "We can't let you leave '" + bandProfile.BandName + "'.";
+            ViewBag.ErrorMessage = "We can't let you leave '" + bandProfile.BandName + "'.";
             return View("Error");
         }
 
@@ -103,7 +104,7 @@ namespace test.Controllers
         {
             if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
             {
-                ViewBag.StatusMessage = "You must be a member of this band to change its preferences.";
+                ViewBag.ErrorMessage = "You must be a member of this band to change its preferences.";
                 return View("Error");
             }
 
@@ -153,7 +154,7 @@ namespace test.Controllers
         {
             if (BandUtil.Delete(bandId))
             {
-                ViewBag.StatusMessage = "Your band has been deleted.";
+                ViewBag.SuccessMessage = "Your band has been deleted.";
                 return View("Success");
             }
 

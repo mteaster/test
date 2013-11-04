@@ -2,13 +2,14 @@
 
 <hgroup class="title">
     <h1>Join "@ViewBag.BandName"</h1>
-    <h2>You're dumb.</h2>
+    <h2>Do it.</h2>
 </hgroup>
+
+<p class="message-error">@ViewBag.ErrorMessage</p>
 
 @using (Html.BeginForm("Join", "Band", new { bandId = ViewBag.BandId }, FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary()
 
     <fieldset>
         <legend>Join Band Form</legend>
