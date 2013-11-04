@@ -69,7 +69,7 @@ namespace band.Controllers
             ViewBag.BandName = bandProfile.BandName;
 
             // Check if the user is in the band
-            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) || !Roles.IsUserInRole("Administrator"))
+            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
             {
                 return RedirectToAction("Join", "Band");
             }
