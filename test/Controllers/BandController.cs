@@ -63,16 +63,17 @@ namespace test.Controllers
 
         public ActionResult Join(int bandId)
         {
+            BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
+
+            ViewBag.BandId = bandId;
+            ViewBag.BandName = bandProfile.BandName;
+
             if (BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))
             {
                 ViewBag.ErrorMessage = "You're already in '" + ViewBag.BandName + "'.";
                 return View("Error");
             }
 
-            BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
-
-            ViewBag.BandId = bandId;
-            ViewBag.BandName = bandProfile.BandName;
             return View();
         }
 
@@ -80,8 +81,7 @@ namespace test.Controllers
         public ActionResult Join(int bandId, JoinBandModel model)
         {
             ViewBag.BandId = bandId;
-            string bandName = BandUtil.BandNameFor(bandId);
-            ViewBag.BandName = bandName;
+            ViewBag.BandName = BandUtil.BandNameFor(bandId);
 
             if(BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))
             {
