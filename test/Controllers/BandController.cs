@@ -80,11 +80,12 @@ namespace test.Controllers
         public ActionResult Join(int bandId, JoinBandModel model)
         {
             ViewBag.BandId = bandId;
-            ViewBag.BandName = BandUtil.BandNameFor(bandId);
+            string bandName = BandUtil.BandNameFor(bandId);
+            ViewBag.BandName = bandName;
 
             if(BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))
             {
-                ViewBag.ErrorMessage = "You're already in '" + ViewBag.BandName + "'.";
+                ViewBag.ErrorMessage = "You're already in '" + bandName + "'.";
                 return View("Error");
             }
 
