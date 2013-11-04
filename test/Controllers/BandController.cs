@@ -190,7 +190,7 @@ namespace test.Controllers
                 return View("Success");
             }
 
-            TempData[ErrorMessage] = "You must be the creator of this band to delete it.";
+            TempData["ErrorMessage"] = "You must be the creator of this band to delete it.";
             return RedirectToAction("Manage", new { bandId = bandId });
         }
 
