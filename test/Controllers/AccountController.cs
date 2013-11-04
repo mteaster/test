@@ -139,12 +139,11 @@ namespace test.Controllers
             {
                 bool changePasswordSucceeded;
 
-                // ChangePassword will throw an exception rather than return false in certain failure scenarios.
                 try
                 {
                     changePasswordSucceeded = WebSecurity.ChangePassword(User.Identity.Name, model.OldPassword, model.NewPassword);
                 }
-                catch (Exception)
+                catch (InvalidOperationException)
                 {
                     changePasswordSucceeded = false;
                 }
@@ -157,14 +156,11 @@ namespace test.Controllers
                 {
                     TempData["ErrorMessage"] = "The current password is incorrect or the new password is invalid.";
                 }
-
-
             }
             else
             {
                 TempData["ErrorMessage"] = "Something was wrong with the password you entered, but I don't know what.";
             }
-
 
             return RedirectToAction("Manage");
         }
