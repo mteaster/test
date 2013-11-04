@@ -28,6 +28,13 @@ namespace test
             );
 
             routes.MapRoute(
+                name: "Leave Band",
+                url: "Band/Join/{bandId}",
+                defaults: new { controller = "Band", action = "Leave" },
+                constraints: new { bandId = @"\d+" }
+            );
+
+            routes.MapRoute(
                 name: "Post Message",
                 url: "Dashboard/Post/{bandId}",
                 defaults: new { controller = "Dashboard", action = "Post" },
