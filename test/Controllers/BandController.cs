@@ -91,11 +91,11 @@ namespace test.Controllers
 
             if (BandUtil.Leave(bandId))
             {
-                ViewBag.StatusMessage = "You left " + bandProfile.BandName + ".";
+                ViewBag.StatusMessage = "You left '" + bandProfile.BandName + "'.";
                 return View("Success");
             }
 
-            ViewBag.StatusMessage = "We can't let you leave " + bandProfile.BandName + ".";
+            ViewBag.StatusMessage = "We can't let you leave '" + bandProfile.BandName + "'.";
             return View("Error");
         }
 
@@ -123,7 +123,7 @@ namespace test.Controllers
         {
             if (BandUtil.ChangeBandName(bandId, model.BandName))
             {
-                TempData["SuccessMessage"] = "Your band name has been changed.";
+                TempData["SuccessMessage"] = "Your band's name has been changed.";
             }
             else
             {
@@ -139,7 +139,7 @@ namespace test.Controllers
         {
             if (BandUtil.ChangeBandPassword(bandId, model.NewPassword))
             {
-                TempData["SuccessMessage"] = "Your password has been changed.";
+                TempData["SuccessMessage"] = "Your band's password has been changed.";
             }
             else
             {
