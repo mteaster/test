@@ -8,9 +8,6 @@ namespace band.Controllers
 {
     public class CalendarController : Controller
     {
-        //
-        // GET: /Calendar/
-
         public ActionResult Index(int bandId)
         {
             // Check if band exists - if it does, get band profile
@@ -25,7 +22,24 @@ namespace band.Controllers
                 return RedirectToAction("Join", "Band");
             }
 
-            return View();
+            return View(CalendarUtil.EventsForMonth(bandId, DateTime.UtcNow.Month, DateTime.UtcNow.Year));
+        }
+
+        public ActionResult Index(int bandId, int month, int year)
+        {
+            // Check if band exists - if it does, get band profile
+            BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
+
+            ViewBag.BandId = bandId;
+            ViewBag.BandName = bandProfile.BandName;
+
+            // Check if the user is in the band
+            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))
+            {
+                return RedirectToAction("Join", "Band");
+            }
+
+            return View(CalendarUtil.EventsForMonth(bandId, month, year));
         }
 
         //

@@ -1,3 +1,5 @@
+@model IEnumerable<test.Models.CalendarEvent>
+
 @{
     ViewBag.Title = "Calendar";
 }
@@ -8,16 +10,24 @@
     @Html.Partial("_BandHeaderPartial")
 }
 
+<table class="pretty" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.EventId)</th>
+        <th>@Html.DisplayNameFor(model => model.EventTitle)</th>
+        <th>@Html.DisplayNameFor(model => model.EventTime)</th>
+        <th>@Html.DisplayNameFor(model => model.EventDescription)</th>
+    </tr>
 
-
-
-<html>
-<body>
-
-<iframe src="https://www.google.com/calendar/embed?src=cqemps0k2pkucgnd7kemkrd6p0%40group.calendar.google.com&ctz=America/Chicago" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-
-</body>
-</html>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.EventId)</td>
+            <td>@Html.DisplayFor(modelItem => item.EventTitle)</td>
+            <td>@Html.DisplayFor(modelItem => item.EventTime)</td>
+            <td>@Html.DisplayFor(modelItem => item.EventDescription)</td>
+        </tr>
+    }
+</table>
 
 @Html.ActionLink("Add event", "AddEvent")
 @Html.ActionLink("DECEMBER EVENTS", "EventsForMonth", "Calendar", 
