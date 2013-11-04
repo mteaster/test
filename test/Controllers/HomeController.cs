@@ -1,9 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using test.Models;
-using WebMatrix.WebData;
-using System.Web.Security;
-using test.Filters;
 using test.Stuff;
 
 namespace test.Controllers

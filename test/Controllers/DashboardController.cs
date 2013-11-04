@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using System.Web.Security;
 using test.Models;
 using test.Stuff;
 using WebMatrix.WebData;
@@ -63,9 +60,6 @@ namespace band.Controllers
 
         public ActionResult Index(int bandId)
         {
-            ViewBag.SuccessMessage = TempData["SuccessMessage"];
-            ViewBag.ErrorMessage = TempData["ErrorMessage"];
-
             // Check if band exists - if it does, get band profile
             BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
 
@@ -75,10 +69,13 @@ namespace band.Controllers
             ViewBag.BandName = bandProfile.BandName;
 
             // Check if the user is in the band
-            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))
+            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) || !Roles.IsUserInRole("Administrator"))
             {
                 return RedirectToAction("Join", "Band");
             }
+
+            ViewBag.SuccessMessage = TempData["SuccessMessage"];
+            ViewBag.ErrorMessage = TempData["ErrorMessage"];
 
             dvm.DisplayMessagesModel = MessageBoardUtil.PostsFor(bandId);
             

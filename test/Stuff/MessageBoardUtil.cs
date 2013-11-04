@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using test.Models;
 using WebMatrix.WebData;
-using System.Web.Helpers;
-using System.Data;
 
 namespace test.Stuff
 {
@@ -80,7 +77,6 @@ namespace test.Stuff
             }
         }
 
-        // todo
         public static bool EditPost(int postId, string content)
         {
             using (DatabaseContext database = new DatabaseContext())
@@ -93,7 +89,6 @@ namespace test.Stuff
                 }
 
                 post.Content = content;
-
                 database.SaveChanges();
 
                 return true;

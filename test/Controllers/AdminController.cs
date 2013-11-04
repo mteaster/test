@@ -1,11 +1,7 @@
-﻿using System;
+﻿using System.Linq;
 using System.Web.Mvc;
-using System.Linq;
 using System.Web.Security;
-using Microsoft.Web.WebPages.OAuth;
 using test.Models;
-using WebMatrix.WebData;
-using System.Data;
 using test.Stuff;
 
 namespace test.Controllers

@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Microsoft.Web.WebPages.OAuth;
+using System;
+using System.Data;
 using System.Web.Mvc;
 using System.Web.Security;
-using Microsoft.Web.WebPages.OAuth;
 using test.Models;
 using WebMatrix.WebData;
-using System.Data;
 
 namespace test.Controllers
 {
@@ -125,7 +125,7 @@ namespace test.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return View("Manage", model);
         }
         
 
@@ -162,7 +162,7 @@ namespace test.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return View("Manage", model);
         }
 
         #region Helpers
