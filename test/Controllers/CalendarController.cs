@@ -15,6 +15,8 @@ namespace band.Controllers
 
             ViewBag.BandId = bandId;
             ViewBag.BandName = bandProfile.BandName;
+            ViewBag.Month = DateTime.UtcNow.Month;
+            ViewBag.Year = DateTime.UtcNow.Year;
 
             // Check if the user is in the band
             if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))
@@ -22,7 +24,7 @@ namespace band.Controllers
                 return RedirectToAction("Join", "Band");
             }
 
-            return View(CalendarUtil.EventsForMonth(bandId, DateTime.UtcNow.Month, DateTime.UtcNow.Year));
+            return View(CalendarUtil.EventsForMonth(bandId, ViewBag.Month, ViewBag.Year));
         }
 
         public ActionResult Month(int bandId, int month, int year)
