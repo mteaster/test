@@ -9,9 +9,6 @@ namespace test.Controllers
     [Authorize]
     public class BandController : Controller
     {
-        //
-        // GET: /Band/Bands
-
         [AllowAnonymous]
         [ChildActionOnly]
         public ActionResult Bands()
@@ -19,16 +16,10 @@ namespace test.Controllers
             return PartialView("_BandsPartial", BandUtil.BandModelsFor(WebSecurity.CurrentUserId));
         }
 
-        //
-        // GET: /Band/Register
-
         public ActionResult Register()
         {
             return View();
         }
-
-        //
-        // POST: /Band/Register
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -38,7 +29,7 @@ namespace test.Controllers
             {
                 if (BandUtil.IsBandNameTaken(model.BandName))
                 {
-                    ModelState.AddModelError("", "band name taken idiot");
+                    ModelState.AddModelError("", "This band name is already in use.");
                 }
                 else
                 {
@@ -50,16 +41,10 @@ namespace test.Controllers
             return View(model);
         }
 
-        //
-        // GET: /Band/Search
-
         public ActionResult Search()
         {
             return View(new SearchViewModel());
         }
-
-        //
-        // POST: /Band/Search
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -76,9 +61,6 @@ namespace test.Controllers
             return View(svm);
         }
 
-        //
-        // GET: /Band/Join
-
         public ActionResult Join(int bandId)
         {
             BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
@@ -87,9 +69,6 @@ namespace test.Controllers
             ViewBag.BandName = bandProfile.BandName;
             return View();
         }
-
-        //
-        // POST: /Band/Join
 
         [HttpPost]
         public ActionResult Join(int bandId, JoinBandModel model)
@@ -102,12 +81,9 @@ namespace test.Controllers
             }
 
             ViewBag.BandName = BandUtil.BandNameFor(bandId);
-            ModelState.AddModelError("", "Invalid band password");
+            ModelState.AddModelError("", "The password you entered is invalid.");
             return View(model);
         }
-
-        //
-        // GET: /Band/Leave
 
         public ActionResult Leave(int bandId)
         {
@@ -120,13 +96,12 @@ namespace test.Controllers
             }
 
             ViewBag.StatusMessage = "We can't let you leave " + bandProfile.BandName + ".";
+
+            ViewBag.StatusMessage(Request.UrlReferrer.AbsolutePath);
             return View("Error");
         }
 
-        //
-        // Get: /Band/Manage
-
-        public ActionResult Manage(int bandId, ManageMessageId? message)
+        public ActionResult Manage(int bandId)
         {
             if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
             {
@@ -144,9 +119,6 @@ namespace test.Controllers
             return View();
         }
 
-        //
-        // POST: /Band/ChangeBandName
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult ChangeBandName(int bandId, ChangeBandNameModel model)
@@ -162,9 +134,6 @@ namespace test.Controllers
            
             return RedirectToAction("Manage", new { bandId = bandId });
         }
-
-        //
-        // POST: /Band/ChangeBandPassword
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -194,10 +163,16 @@ namespace test.Controllers
             return RedirectToAction("Manage", new { bandId = bandId });
         }
 
-        public enum ManageMessageId
+        private ActionResult RedirectToLocal(string returnUrl)
         {
-            ChangePasswordSuccess,
-            ChangeBandNameSuccess
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
     }
 }

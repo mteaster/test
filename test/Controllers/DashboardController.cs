@@ -9,13 +9,8 @@ namespace band.Controllers
     [Authorize]
     public class DashboardController : Controller
     {
-        //
-        // GET: /Dashboard/DeletePost
-
         public ActionResult DeletePost(int postId)
         {
-            // TODO: Add redirect back to dashboard (too lazy to do it now)
-
             if (MessageBoardUtil.DeletePost(postId))
             {
                 TempData["SuccessMessage"] = "Post deleted!";
@@ -27,9 +22,6 @@ namespace band.Controllers
 
             return RedirectToLocal(Request.UrlReferrer.AbsolutePath);
         }
-
-        //
-        // /Dashboard/EditPost
 
         [HttpPost]
         public ActionResult EditPost(int postId, PostMessageModel model)
@@ -46,17 +38,11 @@ namespace band.Controllers
             return RedirectToLocal(Request.UrlReferrer.AbsolutePath);
         }
 
-        //
-        // GET: /Dashboard/EditPost
-
         public ActionResult EditPost(int postId)
         {
             ViewBag.PostId = postId;
             return View();
         }
-
-        //
-        // GET: /Dashboard/
 
         public ActionResult Index(int bandId)
         {
@@ -81,9 +67,6 @@ namespace band.Controllers
             
             return View(dvm);
         }
-
-        //
-        // POST: /Dashboard/
 
         [HttpPost]
         public ActionResult Index(int bandId, PostMessageModel model)
