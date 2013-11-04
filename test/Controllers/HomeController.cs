@@ -39,6 +39,9 @@ namespace test.Controllers
         // This is where I play around with stuff
         public ActionResult Crazy()
         {
+            ViewBag.SuccessMessage = TempData["SuccessMessage"];
+            ViewBag.ErrorMessage = TempData["ErrorMessage"];
+
             CrazyModel model = new CrazyModel();
 
             model.AllBands = BandUtil.BandModels();
