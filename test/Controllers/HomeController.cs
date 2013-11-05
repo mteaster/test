@@ -81,7 +81,7 @@ namespace test.Controllers
                 @ViewBag.Content = reader.ReadToEnd();
             }
 
-            return RedirectToAction("Index");
+            return View();
         }
     }
 }
