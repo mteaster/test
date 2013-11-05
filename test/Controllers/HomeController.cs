@@ -67,17 +67,11 @@ namespace test.Controllers
 
         public ActionResult FileUpload()
         {
-            ViewBag.StatusMessage = "what am i doing here";
-
-            //WebSecurity.CreateUserAndAccount("admin", "password", new { DisplayName = "admin" });
-            //Roles.CreateRole("Administrator");
-            //Roles.AddUserToRole("admin", "Administrator");
-
             return View();
         }
 
         [HttpPost]
-        public ActionResult Index(HttpPostedFileBase file)
+        public ActionResult FileUpload(HttpPostedFileBase file)
         {
             @ViewBag.Content = "IT'S NOTHING";
 
