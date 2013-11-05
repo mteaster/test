@@ -169,7 +169,30 @@ namespace test.Stuff
 
                 return string.Join(", ", memberUsernames.ToArray());
             }
+        }
 
+        public static List<MemberModel> MemberModelsFor(int bandId)
+        {
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                var results = from b in database.BandMemberships
+                              join u in database.UserProfiles
+                              on b.MemberId equals u.UserId
+                              where b.BandId == bandId
+                              select new { u.UserName, u.DisplayName };
+
+                List<MemberModel> memberModels = new List<MemberModel>();
+
+                foreach (var result in results)
+                {
+                    MemberModel memberModel = new MemberModel();
+                    memberModel.MemberDisplayName = result.DisplayName;
+                    memberModel.MemberUserName = result.UserName;
+                    memberModels.Add(memberModel);
+                }
+
+                return memberModels;
+            }
         }
 
         public static string BandNameFor(int bandId)

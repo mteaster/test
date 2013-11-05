@@ -17,6 +17,13 @@ namespace test.Controllers
             return PartialView("_BandsPartial", BandUtil.BandModelsFor(WebSecurity.CurrentUserId));
         }
 
+        [AllowAnonymous]
+        [ChildActionOnly]
+        public ActionResult Members(int bandId)
+        {
+            return PartialView("_MembersPartial", BandUtil.MemberModelsFor(bandId));
+        }
+
         public ActionResult Register()
         {
             return View();
