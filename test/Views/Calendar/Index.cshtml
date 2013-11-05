@@ -31,6 +31,39 @@
     }
 </table>
 
-@Html.ActionLink("Add event", "AddEvent")
-@Html.ActionLink("DECEMBER EVENTS", "EventsForMonth", "Calendar", 
-                            new { bandId = ViewBag.BandId, month = 12, year = 2013 }, null)
+@{ 
+    int previousMonth;
+    int previousMonthYear;
+    int nextMonth;
+    int nextMonthYear;
+        
+    if(ViewBag.Month == 1)
+    {
+        previousMonth = ViewBag.Month = 12;
+        previousMonthYear = ViewBag.Year - 1;
+    }
+    else
+    {
+        previousMonth = ViewBag.Month - 1;
+        previousMonthYear = ViewBag.Year;
+    }
+
+    if (ViewBag.Month == 12)
+    {
+        nextMonth = 1;
+        nextMonthYear = ViewBag.Year + 1;
+    }
+    else
+    {
+        nextMonth = ViewBag.Month + 1;
+        nextMonthYear = ViewBag.Year;
+    }
+    
+    Html.ActionLink("Last month", "Month", "Calendar", 
+                            new { bandId = ViewBag.BandId, month = previousMonth, year = previousMonthYear }, null);
+
+    Html.ActionLink("Next month", "Month", "Calendar",
+                            new { bandId = ViewBag.BandId, month = nextMonth, year = nextMonthYear }, null);
+}
+
+
