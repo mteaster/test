@@ -390,9 +390,6 @@
     <Content Include="Views\Calendar\AddEvent.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Home\Test.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Admin\Bands.cshtml" />
     <Content Include="Views\Admin\_AdminHeaderPartial.cshtml" />
   </ItemGroup>
@@ -404,6 +401,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_MembersPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\FileUpload.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
