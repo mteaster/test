@@ -24,36 +24,8 @@ namespace band.Controllers
                 return RedirectToAction("Join", "Band");
             }
 
-            MonthModel monthModel = new MonthModel();
-
             DateTime now = DateTime.UtcNow;
-            monthModel.CurrentMonth = now.Month;
-            monthModel.CurrentMonthYear = now.Year;
-
-            if (monthModel.CurrentMonth == 1)
-            {
-                monthModel.PreviousMonth = 12;
-                monthModel.PreviousMonthYear = monthModel.CurrentMonthYear - 1;
-            }
-            else
-            {
-                monthModel.PreviousMonth = monthModel.CurrentMonth - 1;
-                monthModel.PreviousMonthYear = monthModel.CurrentMonthYear;
-            }
-
-            if (monthModel.CurrentMonth == 12)
-            {
-                monthModel.NextMonth = 1;
-                monthModel.NextMonthYear = monthModel.CurrentMonthYear + 1;
-            }
-            else
-            {
-                monthModel.NextMonth = monthModel.CurrentMonth + 1;
-                monthModel.NextMonthYear = monthModel.CurrentMonthYear;
-            }
-
-            monthModel.MonthName = "IT'S NOTHING";
-            monthModel.DaysInMonth = DateTime.DaysInMonth(monthModel.CurrentMonthYear, monthModel.CurrentMonth);
+            MonthModel monthModel = new MonthModel(now.Month, now.Year);
             monthModel.Events = CalendarUtil.EventsForMonth(bandId, monthModel.CurrentMonth, monthModel.CurrentMonthYear);
 
             return View(monthModel);
@@ -73,36 +45,7 @@ namespace band.Controllers
                 return RedirectToAction("Join", "Band");
             }
 
-
-            MonthModel monthModel = new MonthModel();
-
-            monthModel.CurrentMonth = month;
-            monthModel.CurrentMonthYear = year;
-
-            if (monthModel.CurrentMonth == 1)
-            {
-                monthModel.PreviousMonth = 12;
-                monthModel.PreviousMonthYear = monthModel.CurrentMonthYear - 1;
-            }
-            else
-            {
-                monthModel.PreviousMonth = monthModel.CurrentMonth - 1;
-                monthModel.PreviousMonthYear = monthModel.CurrentMonthYear;
-            }
-
-            if (monthModel.CurrentMonth == 12)
-            {
-                monthModel.NextMonth = 1;
-                monthModel.NextMonthYear = monthModel.CurrentMonthYear + 1;
-            }
-            else
-            {
-                monthModel.NextMonth = monthModel.CurrentMonth + 1;
-                monthModel.NextMonthYear = monthModel.CurrentMonthYear;
-            }
-
-            monthModel.MonthName = "IT'S NOTHING";
-            monthModel.DaysInMonth = DateTime.DaysInMonth(monthModel.CurrentMonthYear, monthModel.CurrentMonth);
+            MonthModel monthModel = new MonthModel(month, year);
             monthModel.Events = CalendarUtil.EventsForMonth(bandId, monthModel.CurrentMonth, monthModel.CurrentMonthYear);
 
             return View("Index", monthModel);

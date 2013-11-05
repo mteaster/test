@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using test.Models.Band;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace test.Models.Calendar
 {
@@ -60,8 +61,40 @@ namespace test.Models.Calendar
 
     public class MonthModel
     {
-        public int DaysInMonth { get; set; }
+        public MonthModel() {}
+        public MonthModel(int month, int year)
+        {
+            MonthName = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(8);
+            DaysInMonth = DateTime.DaysInMonth(year, month);
+
+            CurrentMonth = month;
+            CurrentMonthYear = year;
+
+            if (month == 1)
+            {
+                PreviousMonth = 12;
+                PreviousMonthYear = year - 1;
+            }
+            else
+            {
+                PreviousMonth = month - 1;
+                PreviousMonthYear = year;
+            }
+
+            if (month == 12)
+            {
+                NextMonth = 1;
+                NextMonthYear = year + 1;
+            }
+            else
+            {
+                NextMonth = month + 1;
+                NextMonthYear = year;
+            }
+        }
+
         public string MonthName { get; set; }
+        public int DaysInMonth { get; set; }
 
         public int CurrentMonth { get; set; }
         public int CurrentMonthYear { get; set; }
@@ -73,9 +106,5 @@ namespace test.Models.Calendar
         public int NextMonthYear { get; set; }
 
         public IEnumerable<test.Models.Calendar.CalendarEvent> Events;
-        
-
     }
-
-
 }
