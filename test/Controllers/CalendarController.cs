@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Web.Mvc;
 using test.Models;
+using test.Models.Band;
+using test.Models.Calendar;
 using test.Stuff;
 using WebMatrix.WebData;
-using test.Models.Calendar;
-using test.Models.Band;
 
 namespace band.Controllers
 {
@@ -18,39 +18,45 @@ namespace band.Controllers
             ViewBag.BandId = bandId;
             ViewBag.BandName = bandProfile.BandName;
 
-            DateTime now = DateTime.UtcNow;
-            ViewBag.CurrentMonth = now.Month;
-            ViewBag.CurrentYear = now.Year;
-
-            if(ViewBag.CurrentMonth == 1)
-            {
-                ViewBag.PreviousMonth = ViewBag.CurrentMonth = 12;
-                ViewBag.PreviousMonthYear = ViewBag.CurrentYear - 1;
-            }
-            else
-            {
-                ViewBag.PreviousMonth = ViewBag.CurrentMonth - 1;
-                ViewBag.PreviousMonthYear = ViewBag.CurrentYear;
-            }
-
-            if (ViewBag.CurrentMonth == 12)
-            {
-                ViewBag.NextMonth = 1;
-                ViewBag.NextMonthYear = ViewBag.CurrentYear + 1;
-            }
-            else
-            {
-                ViewBag.NextMonth = ViewBag.CurrentMonth + 1;
-                ViewBag.NextMonthYear = ViewBag.CurrentYear;
-            }
-
             // Check if the user is in the band
             if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))
             {
                 return RedirectToAction("Join", "Band");
             }
 
-            return View(CalendarUtil.EventsForMonth(bandId, ViewBag.Month, ViewBag.Year));
+            MonthModel monthModel = new MonthModel();
+
+            DateTime now = DateTime.UtcNow;
+            monthModel.CurrentMonth = now.Month;
+            monthModel.CurrentMonthYear = now.Year;
+
+            if(ViewBag.CurrentMonth == 1)
+            {
+                monthModel.PreviousMonth = ViewBag.CurrentMonth = 12;
+                monthModel.PreviousMonthYear = ViewBag.CurrentYear - 1;
+            }
+            else
+            {
+                monthModel.PreviousMonth = ViewBag.CurrentMonth - 1;
+                monthModel.PreviousMonthYear = ViewBag.CurrentYear;
+            }
+
+            if (ViewBag.CurrentMonth == 12)
+            {
+                monthModel.NextMonth = 1;
+                monthModel.NextMonthYear = ViewBag.CurrentYear + 1;
+            }
+            else
+            {
+                monthModel.NextMonth = ViewBag.CurrentMonth + 1;
+                monthModel.NextMonthYear = ViewBag.CurrentYear;
+            }
+
+            monthModel.MonthName = "IT'S NOTHING";
+            monthModel.DaysInMonth = DateTime.DaysInMonth(monthModel.CurrentMonthYear, monthModel.CurrentMonth);
+            monthModel.Events = CalendarUtil.EventsForMonth(bandId, monthModel.CurrentMonth, monthModel.CurrentMonthYear);
+
+            return View(monthModel);
         }
 
         public ActionResult Month(int bandId, int month, int year)
@@ -61,39 +67,45 @@ namespace band.Controllers
             ViewBag.BandId = bandId;
             ViewBag.BandName = bandProfile.BandName;
 
-            DateTime now = DateTime.UtcNow;
-            ViewBag.CurrentMonth = month;
-            ViewBag.CurrentYear = year;
-
-            if (ViewBag.CurrentMonth == 1)
-            {
-                ViewBag.PreviousMonth = ViewBag.CurrentMonth = 12;
-                ViewBag.PreviousMonthYear = ViewBag.CurrentYear - 1;
-            }
-            else
-            {
-                ViewBag.PreviousMonth = ViewBag.CurrentMonth - 1;
-                ViewBag.PreviousMonthYear = ViewBag.CurrentYear;
-            }
-
-            if (ViewBag.CurrentMonth == 12)
-            {
-                ViewBag.NextMonth = 1;
-                ViewBag.NextMonthYear = ViewBag.CurrentYear + 1;
-            }
-            else
-            {
-                ViewBag.NextMonth = ViewBag.CurrentMonth + 1;
-                ViewBag.NextMonthYear = ViewBag.CurrentYear;
-            }
-
             // Check if the user is in the band
             if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))
             {
                 return RedirectToAction("Join", "Band");
             }
 
-            return View("Index", CalendarUtil.EventsForMonth(bandId, month, year));
+
+            MonthModel monthModel = new MonthModel();
+
+            monthModel.CurrentMonth = month;
+            monthModel.CurrentMonthYear = year;
+
+            if (ViewBag.CurrentMonth == 1)
+            {
+                monthModel.PreviousMonth = ViewBag.CurrentMonth = 12;
+                monthModel.PreviousMonthYear = ViewBag.CurrentYear - 1;
+            }
+            else
+            {
+                monthModel.PreviousMonth = ViewBag.CurrentMonth - 1;
+                monthModel.PreviousMonthYear = ViewBag.CurrentYear;
+            }
+
+            if (ViewBag.CurrentMonth == 12)
+            {
+                monthModel.NextMonth = 1;
+                monthModel.NextMonthYear = ViewBag.CurrentYear + 1;
+            }
+            else
+            {
+                monthModel.NextMonth = ViewBag.CurrentMonth + 1;
+                monthModel.NextMonthYear = ViewBag.CurrentYear;
+            }
+
+            monthModel.MonthName = "IT'S NOTHING";
+            monthModel.DaysInMonth = DateTime.DaysInMonth(monthModel.CurrentMonthYear, monthModel.CurrentMonth);
+            monthModel.Events = CalendarUtil.EventsForMonth(bandId, monthModel.CurrentMonth, monthModel.CurrentMonthYear);
+
+            return View("Index", monthModel);
         }
 
         //

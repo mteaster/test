@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using test.Models.Band;
+using System.Collections.Generic;
 
 namespace test.Models.Calendar
 {
@@ -55,6 +56,25 @@ namespace test.Models.Calendar
         [Required]
         [Display(Name = "Year (Number)")]
         public int EventYear { get; set; }
+    }
+
+    public class MonthModel
+    {
+        public int DaysInMonth { get; set; }
+        public string MonthName { get; set; }
+
+        public int CurrentMonth { get; set; }
+        public int CurrentMonthYear { get; set; }
+
+        public int PreviousMonth { get; set; }
+        public int PreviousMonthYear { get; set; }
+
+        public int NextMonth { get; set; }
+        public int NextMonthYear { get; set; }
+
+        public IEnumerable<test.Models.Calendar.CalendarEvent> Events;
+        
+
     }
 
 
