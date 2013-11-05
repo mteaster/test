@@ -62,8 +62,8 @@ namespace band.Controllers
             ViewBag.BandName = bandProfile.BandName;
 
             DateTime now = DateTime.UtcNow;
-            ViewBag.CurrentMonth = now.Month;
-            ViewBag.CurrentYear = now.Year;
+            ViewBag.CurrentMonth = month;
+            ViewBag.CurrentYear = year;
 
             if (ViewBag.CurrentMonth == 1)
             {
