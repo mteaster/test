@@ -17,8 +17,32 @@ namespace band.Controllers
 
             ViewBag.BandId = bandId;
             ViewBag.BandName = bandProfile.BandName;
-            ViewBag.Month = DateTime.UtcNow.Month;
-            ViewBag.Year = DateTime.UtcNow.Year;
+
+            DateTime now = DateTime.UtcNow;
+            ViewBag.CurrentMonth = now.Month;
+            ViewBag.CurrentYear = now.Year;
+
+            if(ViewBag.CurrentMonth == 1)
+            {
+                ViewBag.PreviousMonth = ViewBag.CurrentMonth = 12;
+                ViewBag.PreviousMonthYear = ViewBag.CurrentYear - 1;
+            }
+            else
+            {
+                ViewBag.PreviousMonth = ViewBag.CurrentMonth - 1;
+                ViewBag.PreviousMonthYear = ViewBag.CurrentYear;
+            }
+
+            if (ViewBag.CurrentMonth == 12)
+            {
+                ViewBag.NextMonth = 1;
+                ViewBag.NextMonthYear = ViewBag.CurrentYear + 1;
+            }
+            else
+            {
+                ViewBag.NextMonth = ViewBag.CurrentMonth + 1;
+                ViewBag.NextMonthYear = ViewBag.CurrentYear;
+            }
 
             // Check if the user is in the band
             if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))
@@ -36,9 +60,32 @@ namespace band.Controllers
 
             ViewBag.BandId = bandId;
             ViewBag.BandName = bandProfile.BandName;
-            ViewBag.Month = month;
-            ViewBag.Year = year;
 
+            DateTime now = DateTime.UtcNow;
+            ViewBag.CurrentMonth = now.Month;
+            ViewBag.CurrentYear = now.Year;
+
+            if (ViewBag.CurrentMonth == 1)
+            {
+                ViewBag.PreviousMonth = ViewBag.CurrentMonth = 12;
+                ViewBag.PreviousMonthYear = ViewBag.CurrentYear - 1;
+            }
+            else
+            {
+                ViewBag.PreviousMonth = ViewBag.CurrentMonth - 1;
+                ViewBag.PreviousMonthYear = ViewBag.CurrentYear;
+            }
+
+            if (ViewBag.CurrentMonth == 12)
+            {
+                ViewBag.NextMonth = 1;
+                ViewBag.NextMonthYear = ViewBag.CurrentYear + 1;
+            }
+            else
+            {
+                ViewBag.NextMonth = ViewBag.CurrentMonth + 1;
+                ViewBag.NextMonthYear = ViewBag.CurrentYear;
+            }
 
             // Check if the user is in the band
             if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))

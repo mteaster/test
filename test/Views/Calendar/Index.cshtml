@@ -31,37 +31,9 @@
     }
 </table>
 
-@{ 
-    int previousMonth = -1432;
-    int previousMonthYear = -13213;
-    int nextMonth = -1313;
-    int nextMonthYear = -13534;
-        
-    if(ViewBag.Month == 1)
-    {
-        previousMonth = ViewBag.Month = 12;
-        previousMonthYear = ViewBag.Year - 1;
-    }
-    else
-    {
-        previousMonth = ViewBag.Month - 1;
-        previousMonthYear = ViewBag.Year;
-    }
-
-    if (ViewBag.Month == 12)
-    {
-        nextMonth = 1;
-        nextMonthYear = ViewBag.Year + 1;
-    }
-    else
-    {
-        nextMonth = ViewBag.Month + 1;
-        nextMonthYear = ViewBag.Year;
-    }
-}
 
 @Html.ActionLink("Last month", "Month", "Calendar", 
-                        new { bandId = ViewBag.BandId, month = previousMonth, year = previousMonthYear }, null)
+                        new { bandId = ViewBag.BandId, month = ViewBag.PreviousMonth, year = ViewBag.PreviousMonthYear }, null)
 
 @Html.ActionLink("Next month", "Month", "Calendar",
-                        new { bandId = ViewBag.BandId, month = nextMonth, year = nextMonthYear }, null)
+                        new { bandId = ViewBag.BandId, month = ViewBag.NextMonth, year = ViewBag.NextMonthYear }, null)
