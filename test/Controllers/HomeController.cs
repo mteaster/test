@@ -5,6 +5,8 @@ using test.Models;
 using test.Stuff;
 using WebMatrix.WebData;
 using test.Models.Test;
+using System.Web;
+using System.IO;
 
 namespace test.Controllers
 {
@@ -61,6 +63,31 @@ namespace test.Controllers
             //Roles.AddUserToRole("admin", "Administrator");
 
             return View();
+        }
+
+        public ActionResult FileUpload()
+        {
+            ViewBag.StatusMessage = "what am i doing here";
+
+            //WebSecurity.CreateUserAndAccount("admin", "password", new { DisplayName = "admin" });
+            //Roles.CreateRole("Administrator");
+            //Roles.AddUserToRole("admin", "Administrator");
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Index(HttpPostedFileBase file)
+        {
+            @ViewBag.Content = "IT'S NOTHING";
+
+            if (file.ContentLength > 0)
+            {
+                StreamReader reader = new StreamReader(file.InputStream);
+                @ViewBag.Content = reader.ReadToEnd();
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }

@@ -27,4 +27,18 @@ namespace test.Models.Test
         public IEnumerable<test.Models.Band.BandModel> UserBands { get; set; }
         public IEnumerable<test.Models.Band.BandModel> AllBands { get; set; }
     }
+
+    public class FileNameModel
+    {
+        [Required]
+        [Display(Name = "File name")]
+        public string FileName { get; set; }
+    }
+
+    public class FileModel
+    {
+        [Required]
+        [Display(Name = "File")]
+        public string FileThing { get; set; }
+    }
 }
