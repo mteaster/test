@@ -62,7 +62,7 @@ namespace test.Models.Account
         public bool RememberMe { get; set; }
     }
 
-    public class RegisterModel
+    public class RegisterUserModel
     {
         [Required]
         [Display(Name = "Display name")]
