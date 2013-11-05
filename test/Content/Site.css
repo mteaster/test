@@ -859,4 +859,11 @@ li.right
         float: left;
         width: 100%;
     }
+    
+    section.blarg
+    {
+        float: left;
+        width: 100%;
+        padding-right: 0;
+    }
 }
