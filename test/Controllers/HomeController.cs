@@ -65,6 +65,17 @@ namespace test.Controllers
             return View();
         }
 
+        public ActionResult DateTest()
+        {
+            ViewBag.StatusMessage = "what am i doing here";
+
+            //WebSecurity.CreateUserAndAccount("admin", "password", new { DisplayName = "admin" });
+            //Roles.CreateRole("Administrator");
+            //Roles.AddUserToRole("admin", "Administrator");
+
+            return View();
+        }
+
         public ActionResult FileUpload()
         {
             return View();
