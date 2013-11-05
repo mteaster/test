@@ -30,26 +30,26 @@ namespace band.Controllers
             monthModel.CurrentMonth = now.Month;
             monthModel.CurrentMonthYear = now.Year;
 
-            if(ViewBag.CurrentMonth == 1)
+            if (monthModel.CurrentMonth == 1)
             {
                 monthModel.PreviousMonth = monthModel.CurrentMonth = 12;
-                monthModel.PreviousMonthYear = ViewBag.CurrentYear - 1;
+                monthModel.PreviousMonthYear = monthModel.CurrentMonthYear - 1;
             }
             else
             {
-                monthModel.PreviousMonth = ViewBag.CurrentMonth - 1;
-                monthModel.PreviousMonthYear = ViewBag.CurrentYear;
+                monthModel.PreviousMonth = monthModel.CurrentMonth - 1;
+                monthModel.PreviousMonthYear = monthModel.CurrentMonthYear;
             }
 
-            if (ViewBag.CurrentMonth == 12)
+            if (monthModel.CurrentMonth == 12)
             {
                 monthModel.NextMonth = 1;
-                monthModel.NextMonthYear = ViewBag.CurrentYear + 1;
+                monthModel.NextMonthYear = monthModel.CurrentMonthYear + 1;
             }
             else
             {
-                monthModel.NextMonth = ViewBag.CurrentMonth + 1;
-                monthModel.NextMonthYear = ViewBag.CurrentYear;
+                monthModel.NextMonth = monthModel.CurrentMonth + 1;
+                monthModel.NextMonthYear = monthModel.CurrentMonthYear;
             }
 
             monthModel.MonthName = "IT'S NOTHING";
