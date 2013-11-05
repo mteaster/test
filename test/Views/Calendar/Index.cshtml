@@ -59,11 +59,13 @@
         nextMonthYear = ViewBag.Year;
     }
     
-    Html.ActionLink("Last month", "Month", "Calendar", 
-                            new { bandId = ViewBag.BandId, month = previousMonth, year = previousMonthYear }, null);
 
-    Html.ActionLink("Next month", "Month", "Calendar",
-                            new { bandId = ViewBag.BandId, month = nextMonth, year = nextMonthYear }, null);
+
+
 }
 
+@Html.ActionLink("Last month", "Month", "Calendar", 
+                        new { bandId = ViewBag.BandId, month = previousMonth, year = previousMonthYear }, null)
 
+@Html.ActionLink("Next month", "Month", "Calendar",
+                        new { bandId = ViewBag.BandId, month = nextMonth, year = nextMonthYear }, null)
