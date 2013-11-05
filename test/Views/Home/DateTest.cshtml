@@ -4,12 +4,13 @@
 
 @section scripts
 {
-    <script type="text/javascript" ssrc="//netdna.bootstrapcdn.com/bootstrap/3.0.1/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="@Url.Content("/Scripts/bootstrap-datepicker.js")"></script>
     <script type="text/javascript">
-        $("#dp").datepicker();
+        $(function ()
+        {
+            $("#datepicker").datepicker();
+        });
     </script>
 }
 
-<input id="dp" class="span2" size="16" type="text" value="12-02-2012">
+<p>Date: <input type="text" id="datepicker" /></p>
 
