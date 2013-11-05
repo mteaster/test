@@ -34,6 +34,9 @@ namespace band.Controllers
 
             ViewBag.BandId = bandId;
             ViewBag.BandName = bandProfile.BandName;
+            ViewBag.Month = month;
+            ViewBag.Year = year;
+
 
             // Check if the user is in the band
             if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))
