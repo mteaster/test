@@ -32,7 +32,7 @@ namespace band.Controllers
 
             if (monthModel.CurrentMonth == 1)
             {
-                monthModel.PreviousMonth = monthModel.CurrentMonth = 12;
+                monthModel.PreviousMonth = 12;
                 monthModel.PreviousMonthYear = monthModel.CurrentMonthYear - 1;
             }
             else
@@ -81,7 +81,7 @@ namespace band.Controllers
 
             if (monthModel.CurrentMonth == 1)
             {
-                monthModel.PreviousMonth = monthModel.CurrentMonth = 12;
+                monthModel.PreviousMonth = 12;
                 monthModel.PreviousMonthYear = monthModel.CurrentMonthYear - 1;
             }
             else
