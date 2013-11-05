@@ -1,10 +1,12 @@
-﻿html {
+﻿html 
+{
     background-color: #e2e2e2;
     margin: 0;
     padding: 0;
 }
 
-body {
+body 
+{
     background-color: #fff;
     border-top: solid 10px #000;
     color: #333;
@@ -616,13 +618,19 @@ ul.horizontal li
     display: inline;
     list-style-type: none;
     padding-right: 10px;
-}   
+}
+
+section.blarg
+{
+    float: left;
+    width: 48%;   
+    padding-right: 10px;
+}
 
 section.half
 {
     float: left;
-    width: 50%;
-   
+    width: 50%;   
 }
 
 span.messageBoardName

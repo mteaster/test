@@ -159,4 +159,15 @@ namespace test.Models.Band
         [Display(Name = "New Password (leave blank to keep current password)")]
         public string NewPassword { get; set; }
     }
+
+    public class MemberModel
+    {
+        [Required]
+        [Display(Name = "Display name")]
+        public string MemberDisplayName { get; set; }
+
+        [Required]
+        [Display(Name = "User name")]
+        public string MemberUserName { get; set; }
+    }
 }

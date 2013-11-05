@@ -24,16 +24,9 @@
 </article>
 
 <aside>
-    <h2>Lorem ipsum</h2>
-    <p>
-        Sed dui lectus, viverra ut velit eu, ullamcorper varius sem. Nam luctus sodales purus, sit amet congue eros rhoncus nec. Cras feugiat vel dui in tempus. 
-    </p>
-    <p>
-        Curabitur eu orci vitae magna egestas tristique. Donec rutrum fringilla nibh, vel pretium est consectetur eget. In viverra vehicula dolor nec pretium.
-    </p>
-    <p>
-        Etiam vitae faucibus diam. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In hac habitasse platea dictumst. Nunc vitae orci velit. Curabitur porttitor dui sit amet dolor semper suscipit. 
-    </p>
+    <h1>Members.</h1>
+
+    @{ Html.RenderAction("Members", "Band", new { bandId = ViewBag.BandId }); }
 </aside>
 
 @section scripts

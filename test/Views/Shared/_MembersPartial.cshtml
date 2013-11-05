@@ -1,0 +1,8 @@
+﻿@model IEnumerable<test.Models.Band.MemberModel>
+
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>@Html.DisplayFor(modelItem => item.MemberDisplayName)</li>
+    }
+</ul>
