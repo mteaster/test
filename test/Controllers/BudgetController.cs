@@ -2,6 +2,7 @@
 using test.Models;
 using test.Stuff;
 using WebMatrix.WebData;
+using test.Models.Band;
 
 namespace band.Controllers
 {

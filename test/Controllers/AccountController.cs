@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using test.Models;
 using WebMatrix.WebData;
+using test.Models.Account;
 
 namespace test.Controllers
 {

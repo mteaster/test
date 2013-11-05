@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using test.Models.Band;
+using test.Models.Account;
 
-namespace test.Models
+namespace test.Models.Dashboard
 {
     [Table("MessageBoardPost")]
     public class MessageBoardPost

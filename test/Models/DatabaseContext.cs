@@ -1,5 +1,10 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using test.Models.Account;
+using test.Models.Band;
+using test.Models.Calendar;
+using test.Models.Dashboard;
+using test.Models.Test;
 
 namespace test.Models
 {

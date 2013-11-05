@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Web.Mvc;
 
-namespace test.Models
+namespace test.Models.Account
 {
     [Table("UserProfile")]
     public class UserProfile

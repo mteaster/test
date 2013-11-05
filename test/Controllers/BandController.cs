@@ -3,6 +3,7 @@ using System.Web.Security;
 using test.Models;
 using test.Stuff;
 using WebMatrix.WebData;
+using test.Models.Band;
 
 namespace test.Controllers
 {

@@ -1,8 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using test.Models.Band;
 
-namespace test.Models
+namespace test.Models.Calendar
 {
     [Table("CalendarEvent")]
     public class CalendarEvent

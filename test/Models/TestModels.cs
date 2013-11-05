@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace test.Models
+namespace test.Models.Test
 {
     [Table("Log")]
     public class Log
@@ -24,7 +24,7 @@ namespace test.Models
 
     public class CrazyModel
     {
-        public IEnumerable<test.Models.BandModel> UserBands { get; set; }
-        public IEnumerable<test.Models.BandModel> AllBands { get; set; }
+        public IEnumerable<test.Models.Band.BandModel> UserBands { get; set; }
+        public IEnumerable<test.Models.Band.BandModel> AllBands { get; set; }
     }
 }

@@ -2,8 +2,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Web.Mvc;
+using test.Models.Account;
 
-namespace test.Models
+namespace test.Models.Band
 {
     [Table("BandProfile")]
     public class BandProfile
