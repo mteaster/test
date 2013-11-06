@@ -7,6 +7,30 @@ using System.Web;
 
 namespace test.Models.Rolodex
 {
+
+    // This class is used to generalize results from the database for band, people, and venue records
+    //      it will be used for the contact list/rolodex
+    public class Contact
+    {
+        [Display(Name = "ContactId")]
+        public int ContactId { get; set; }
+
+
+        public enum ContactType { Band, People, Venue }
+        [Display(Name = "Type")]
+        public ContactType Type { get; set; }
+
+        [Display(Name = "Name")]
+        public string Name { get; set; }
+
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
+        [Display(Name = "Phone Number")]
+        public string PhoneNumber { get; set; }
+
+    }
+
     [Table("BandContact")]
     public class BandContact
     {

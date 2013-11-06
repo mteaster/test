@@ -23,6 +23,8 @@ namespace test.Models
         public DbSet<FileGroup> FileGroups { get; set; }
         public DbSet<Log> Logs { get; set; }
         public DbSet<BandContact> BandContacts { get; set; }
+        public DbSet<PeopleContact> PeopleContacts { get; set; }
+        public DbSet<VenueContact> VenueContacts { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

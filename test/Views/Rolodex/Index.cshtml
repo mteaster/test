@@ -8,3 +8,5 @@
 }
 
 <div>@Html.ActionLink("Create Contact", "CreateContact", new { bandId = ViewBag.BandId })</div>
+
+@Html.RenderAction("RolodexList", new { bandId = ViewBag.BandId })
