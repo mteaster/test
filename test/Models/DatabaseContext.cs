@@ -4,6 +4,7 @@ using test.Models.Account;
 using test.Models.Band;
 using test.Models.Calendar;
 using test.Models.Dashboard;
+using test.Models.FileCabinet;
 using test.Models.Test;
 
 namespace test.Models
@@ -17,6 +18,7 @@ namespace test.Models
         public DbSet<BandMembership> BandMemberships { get; set; }
         public DbSet<MessageBoardPost> MessageBoardPosts { get; set; }
         public DbSet<CalendarEvent> CalendarEvents { get; set; }
+        public DbSet<FileEntry> FileEntries { get; set; }
         public DbSet<Log> Logs { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
