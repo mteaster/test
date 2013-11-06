@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
+using System.Web.Security;
 using test.Models;
 using test.Models.Band;
 using test.Models.Calendar;
@@ -19,7 +20,7 @@ namespace band.Controllers
             ViewBag.BandName = bandProfile.BandName;
 
             // Check if the user is in the band
-            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))
+            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
             {
                 return RedirectToAction("Join", "Band");
             }

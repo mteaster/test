@@ -3,6 +3,7 @@ using test.Models;
 using test.Stuff;
 using WebMatrix.WebData;
 using test.Models.Band;
+using System.Web.Security;
 
 namespace band.Controllers
 {
@@ -20,7 +21,7 @@ namespace band.Controllers
             ViewBag.BandName = bandProfile.BandName;
 
             // Check if the user is in the band
-            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))
+            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
             {
                 return RedirectToAction("Join", "Band");
             }
