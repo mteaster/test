@@ -183,6 +183,7 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\BandModels.cs" />
     <Compile Include="Models\CalendarModels.cs" />
+    <Compile Include="Models\FileCabinetModels.cs" />
     <Compile Include="Models\DatabaseContext.cs" />
     <Compile Include="Models\DashboardModels.cs" />
     <Compile Include="Models\TestModels.cs" />
@@ -411,6 +412,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\DateTest.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\FileCabinet\UploadFile.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
