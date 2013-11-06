@@ -25,6 +25,9 @@ namespace band.Controllers
                 return RedirectToAction("Join", "Band");
             }
 
+            ViewBag.SuccessMessage = TempData["SuccessMessage"];
+            ViewBag.ErrorMessage = TempData["ErrorMessage"];
+
             DateTime now = DateTime.UtcNow;
             MonthModel monthModel = new MonthModel(now.Month, now.Year);
             monthModel.Events = CalendarUtil.EventsForMonth(bandId, monthModel.CurrentMonth, monthModel.CurrentMonthYear);
@@ -116,8 +119,8 @@ namespace band.Controllers
                     database.SaveChanges();
                 }
 
-                ViewBag.SuccessMessage = "we added a calendar event and nothing broke";
-                return View("Success");
+                TempData["SuccessMessage"] = "we added an event";
+                return RedirectToAction("Index", new { bandId = bandId });
             }
 
             return View(model);
@@ -185,8 +188,8 @@ namespace band.Controllers
                     database.SaveChanges();
                 }
 
-                ViewBag.SuccessMessage = "we edited ur calendar event LOL";
-                return View("Success");
+                TempData["SuccessMessage"] = "we edited ur calendar event LOL";
+                return RedirectToAction("Index", new { bandId = bandId });
             }
 
             return View(model);
