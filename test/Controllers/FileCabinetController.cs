@@ -66,6 +66,8 @@ namespace band.Content
 
             string path = Server.MapPath("~/App_Data/" + bandId + "/" + fileName);
 
+            return null;
+
         }
 
         private byte[] ReadFile(string s)
