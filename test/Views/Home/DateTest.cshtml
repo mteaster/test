@@ -21,14 +21,17 @@
     <script type="text/javascript" src="@Url.Content("/Scripts/bootstrap-timepicker.min.js")"></script>
 
     <script type="text/javascript">
-        console.log("hi kids");
-        $('#timepicker').timepicker({
-            minuteStep: 1,
-            template: 'modal',
-            appendWidgetTo: 'body',
-            showSeconds: true,
-            showMeridian: false,
-            defaultTime: false
+        $(document).ready(function ()
+        {
+            console.log("hi kids");
+            $('#timepicker').timepicker({
+                minuteStep: 1,
+                template: 'modal',
+                appendWidgetTo: 'body',
+                showSeconds: true,
+                showMeridian: false,
+                defaultTime: false
+            });
         });
     </script>
 }
