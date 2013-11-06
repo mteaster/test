@@ -118,13 +118,14 @@ namespace band.Controllers
             return View(model);
         }
 
-        public ActionResult EditEvent(int bandId)
+        public ActionResult EditEvent(int bandId, int eventId)
         {
             // Check if band exists - if it does, get band profile
             BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
 
             ViewBag.BandId = bandId;
             ViewBag.BandName = bandProfile.BandName;
+            ViewBag.EventId = eventId;
 
             // Check if the user is in the band
             if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))

@@ -18,6 +18,7 @@
         <th>Title</th>
         <th>Time</th>
         <th>Description</th>
+        <th>Edit</th>
     </tr>
 
     @foreach (var item in Model.Events)
@@ -27,6 +28,7 @@
             <td>@Html.DisplayFor(modelItem => item.EventTitle)</td>
             <td>@Html.DisplayFor(modelItem => item.EventTime)</td>
             <td>@Html.DisplayFor(modelItem => item.EventDescription)</td>
+            <td>@Html.ActionLink("Edit", "EditEvent", new { bandId = ViewBag.BandId, eventId = item.EventId })</td>
         </tr>
     }
 </table>
