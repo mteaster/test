@@ -44,6 +44,40 @@ namespace band.Content
             return View();
         }
 
+        public ActionResult DownloadFile(int bandId, int fileId)
+        {
+            BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
+            ViewBag.BandId = bandId;
+            ViewBag.BandName = bandProfile.BandName;
+            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
+            {
+                return RedirectToAction("Join", "Band");
+            }
+
+            string fileName = "";
+
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                FileEntry fileEntry = database.FileEntries.Find(fileId);
+                fileName = fileEntry.FileName;
+            }
+
+
+
+            string path = Server.MapPath("~/App_Data/" + bandId + "/" + fileName);
+
+        }
+
+        private byte[] ReadFile(string s)
+        {
+            System.IO.FileStream fs = System.IO.File.OpenRead(s);
+            byte[] data = new byte[fs.Length];
+            int br = fs.Read(data, 0, data.Length);
+            if (br != fs.Length)
+                throw new System.IO.IOException(s);
+            return data;
+        }
+
         [HttpPost]
         public ActionResult UploadFile(int bandId, HttpPostedFileBase file)
         {
@@ -68,12 +102,18 @@ namespace band.Content
                 ViewBag.ErrorMessage = "File size is greater than 100 (whatever that means)";
                 return View("Error");
             }
+            
+            string bandDirectory = Server.MapPath("~/App_Data/" + bandId + "/");
+            if (!Directory.Exists(bandDirectory))
+            {
+                Directory.CreateDirectory(bandDirectory);
+            }
 
             FileEntry fileEntry = new FileEntry();
             fileEntry.BandId = bandId;
             fileEntry.UploaderId = WebSecurity.CurrentUserId;
             fileEntry.FileName = Path.GetFileName(file.FileName);
-            fileEntry.FilePath = Path.Combine(Server.MapPath("~/App_Data/"), fileEntry.FileName);
+            fileEntry.FilePath = Path.Combine(bandDirectory, fileEntry.FileName);
 
             using (DatabaseContext database = new DatabaseContext())
             {
@@ -88,6 +128,5 @@ namespace band.Content
 
             return View();
         }
-
     }
 }
