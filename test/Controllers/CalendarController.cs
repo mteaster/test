@@ -96,9 +96,14 @@ namespace band.Controllers
                 calendarEvent.EventTitle = model.EventTitle;    
 
                 int actualHour = model.EventHour;
+                
                 if(model.EventPeriod.ToUpper() == "PM")
                 {
                     actualHour += 12;
+                }
+                else if (actualHour == 12)
+                {
+                    actualHour = 0;
                 }
 
                 calendarEvent.EventTime = new DateTime(model.EventYear, model.EventMonth, model.EventDay,
