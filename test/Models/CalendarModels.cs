@@ -101,6 +101,8 @@ namespace test.Models.Calendar
             MonthName = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(8);
             DaysInMonth = DateTime.DaysInMonth(year, month);
 
+            FirstDayOfWeek = new DateTime(year, month, 1).DayOfWeek.ToString();
+
             CurrentMonth = month;
             CurrentMonthYear = year;
 
@@ -129,6 +131,7 @@ namespace test.Models.Calendar
 
         public string MonthName { get; set; }
         public int DaysInMonth { get; set; }
+        public string FirstDayOfWeek { get; set; }
 
         public int CurrentMonth { get; set; }
         public int CurrentMonthYear { get; set; }
