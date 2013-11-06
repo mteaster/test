@@ -9,10 +9,14 @@
     </span>
 </div>
 
-@section scripts
+@section styles 
 {
-    <link type="text/css" href="@Url.Content("/Content/bootstrap.min.css")" />
-    <link type="text/css" href="@Url.Content("/Content/bootstrap-timepicker.min.css")" />
+{
+    <link type="text/css" rel="Stylesheet" href="@Url.Content("/Content/bootstrap.min.css")" />
+    <link type="text/css" rel="Stylesheet" href="@Url.Content("/Content/bootstrap-timepicker.min.css")" />
+}
+
+@section scripts
 
     <script type="text/javascript" src="@Url.Content("/Scripts/bootstrap.min.js")"></script>
     <script type="text/javascript" src="@Url.Content("/Scripts/bootstrap-timepicker.min.js")"></script>
