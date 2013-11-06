@@ -102,7 +102,15 @@ namespace band.Controllers
 
                 calendarEvent.BandId = bandId;
                 calendarEvent.EventTitle = model.EventTitle;    
-                calendarEvent.EventTime = new DateTime(model.EventYear, model.EventMonth, model.EventDay);
+
+                int actualHour = model.EventHour;
+                if(model.EventPeriod.ToUpper() == "PM")
+                {
+                    actualHour += 12;
+                }
+
+                calendarEvent.EventTime = new DateTime(model.EventYear, model.EventMonth, model.EventDay,
+                                                            actualHour, model.EventMinute, 0, DateTimeKind.Unspecified);
                 calendarEvent.EventDescription = model.EventDescription;
 
                 using (DatabaseContext database = new DatabaseContext())

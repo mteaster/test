@@ -57,6 +57,18 @@ namespace test.Models.Calendar
         [Required]
         [Display(Name = "Year (Number)")]
         public int EventYear { get; set; }
+
+        [Required]
+        [Display(Name = "Hour (Number)")]
+        public int EventHour { get; set; }
+
+        [Required]
+        [Display(Name = "Minute (Number)")]
+        public int EventMinute { get; set; }
+
+        [Required]
+        [Display(Name = "Period (AM or PM)")]
+        public string EventPeriod { get; set; }
     }
 
     public class MonthModel
