@@ -78,6 +78,7 @@ namespace band.Content
             using (DatabaseContext database = new DatabaseContext())
             {
                 database.FileEntries.Add(fileEntry);
+                database.SaveChanges();
             }
 
             file.SaveAs(fileEntry.FilePath);
