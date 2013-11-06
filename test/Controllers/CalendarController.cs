@@ -72,14 +72,6 @@ namespace band.Controllers
             return View();
         }
 
-        public ActionResult EventsForMonth(int bandId, int month, int year)
-        {
-            return View(CalendarUtil.EventsForMonth(bandId, month, year));
-        }
-
-        //
-        // Post: /Calendar/AddEvent
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddEvent(int bandId, CalendarEventModel model)
@@ -124,6 +116,72 @@ namespace band.Controllers
             }
 
             return View(model);
+        }
+
+        public ActionResult EditEvent(int bandId)
+        {
+            // Check if band exists - if it does, get band profile
+            BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
+
+            ViewBag.BandId = bandId;
+            ViewBag.BandName = bandProfile.BandName;
+
+            // Check if the user is in the band
+            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))
+            {
+                return RedirectToAction("Join", "Band");
+            }
+
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditEvent(int bandId, int eventId, CalendarEventModel model)
+        {
+            // Check if band exists - if it does, get band profile
+            BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
+
+            ViewBag.BandId = bandId;
+            ViewBag.BandName = bandProfile.BandName;
+
+            // Check if the user is in the band
+            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))
+            {
+                return RedirectToAction("Join", "Band");
+            }
+
+            if (ModelState.IsValid)
+            {
+                using (DatabaseContext database = new DatabaseContext())
+                {
+                    CalendarEvent calendarEvent = database.CalendarEvents.Find(eventId);
+
+                    calendarEvent.EventTitle = model.EventTitle;
+                    calendarEvent.EventDescription = model.EventDescription;
+
+                    int actualHour = model.EventHour;
+                    if (model.EventPeriod.ToUpper() == "PM")
+                    {
+                        actualHour += 12;
+                    }
+                    calendarEvent.EventTime = new DateTime(model.EventYear, model.EventMonth, model.EventDay,
+                                                            actualHour, model.EventMinute, 0, DateTimeKind.Unspecified);
+
+                    database.SaveChanges();
+                }
+
+                ViewBag.SuccessMessage = "we edited ur calendar event LOL";
+                return View("Success");
+            }
+
+            return View(model);
+        }
+
+
+        public ActionResult EventsForMonth(int bandId, int month, int year)
+        {
+            return View(CalendarUtil.EventsForMonth(bandId, month, year));
         }
     }
 }

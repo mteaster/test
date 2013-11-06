@@ -1,10 +1,10 @@
 ﻿@model test.Models.Calendar.CalendarEventModel
 
 @{
-    ViewBag.Title = "Calendar";
+    ViewBag.Title = "Edit Event";
 }
 
-@using (Html.BeginForm("AddEvent", "Calendar", new { bandId = ViewBag.BandId }, FormMethod.Post))
+@using (Html.BeginForm("EditEvent", "Calendar", new { bandId = ViewBag.BandId, eventId = ViewBag.EventId}, FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
@@ -32,17 +32,18 @@
                 @Html.TextBoxFor(m => m.EventYear)
             </li>
             <li>
-                @Html.LabelFor(m => m.EventMonth)
-                @Html.TextBoxFor(m => m.EventMonth)
+                @Html.LabelFor(m => m.EventHour)
+                @Html.TextBoxFor(m => m.EventHour)
             </li>
             <li>
-                @Html.LabelFor(m => m.EventDay)
-                @Html.TextBoxFor(m => m.EventDay)
+                @Html.LabelFor(m => m.EventMinute)
+                @Html.TextBoxFor(m => m.EventMinute)
             </li>
             <li>
-                @Html.LabelFor(m => m.EventYear)
-                @Html.TextBoxFor(m => m.EventYear)
+                @Html.LabelFor(m => m.EventPeriod)
+                @Html.TextBoxFor(m => m.EventPeriod)
             </li>
+
         </ol>
         <input type="submit" value="Add Event" />
     </fieldset>
