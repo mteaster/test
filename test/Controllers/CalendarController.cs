@@ -195,6 +195,27 @@ namespace band.Controllers
             return View(model);
         }
 
+        public ActionResult DeleteEvent(int eventId)
+        {
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                CalendarEvent calendarEvent = database.CalendarEvents.Find(eventId);
+
+                // Check if the user is in the band
+                if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, calendarEvent.BandId))
+                {
+                    ViewBag.ErrorMessage = "you're not in this band idiot";
+                    return View("Error");
+                }
+
+                database.CalendarEvents.Remove(calendarEvent);
+                database.SaveChanges();
+
+                TempData["SuccessMessage"] = "we edited ur calendar event LOL";
+                return RedirectToAction("Index", new { bandId = calendarEvent.BandId });
+            }
+        }
+
 
         public ActionResult EventsForMonth(int bandId, int month, int year)
         {
