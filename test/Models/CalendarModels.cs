@@ -37,6 +37,28 @@ namespace test.Models.Calendar
     {
         public CalendarEventModel() {}
 
+        public CalendarEventModel(CalendarEvent calendarEvent)
+        {
+            this.EventTitle = calendarEvent.EventTitle;
+            this.EventDescription = calendarEvent.EventDescription;
+            this.EventMonth = calendarEvent.EventTime.Month;
+            this.EventDay = calendarEvent.EventTime.Day;
+            this.EventYear = calendarEvent.EventTime.Year;
+
+            if (calendarEvent.EventTime.Hour > 12)
+            {
+                this.EventHour = calendarEvent.EventTime.Hour - 12;
+                this.EventPeriod = "PM";
+            }
+            else
+            {
+                this.EventHour = calendarEvent.EventTime.Hour;
+                this.EventPeriod = "AM";
+            }
+
+            this.EventMinute = calendarEvent.EventTime.Minute;
+        }
+
         [Required]
         [Display(Name = "Title")]
         public string EventTitle { get; set; }

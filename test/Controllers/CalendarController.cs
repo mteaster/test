@@ -133,7 +133,15 @@ namespace band.Controllers
                 return RedirectToAction("Join", "Band");
             }
 
-            return View();
+            CalendarEventModel calendarEventModel;
+
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                CalendarEvent calendarEvent = database.CalendarEvents.Find(eventId);
+                calendarEventModel = new CalendarEventModel(calendarEvent);
+            }
+
+            return View(calendarEventModel);
         }
 
         [HttpPost]
