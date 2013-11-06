@@ -73,7 +73,7 @@ namespace band.Content
             fileEntry.BandId = bandId;
             fileEntry.UploaderId = WebSecurity.CurrentUserId;
             fileEntry.FileName = Path.GetFileName(file.FileName);
-            fileEntry.FilePath = Path.Combine(Server.MapPath("~/App_Data/Uploads"), fileEntry.FileName);
+            fileEntry.FilePath = Path.Combine(Server.MapPath("~/App_Data/"), fileEntry.FileName);
 
             using (DatabaseContext database = new DatabaseContext())
             {
