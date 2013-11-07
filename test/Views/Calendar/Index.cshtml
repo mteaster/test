@@ -40,22 +40,28 @@
         background: #f8f8f8;
         border: 1px solid #b1b1b1;
     }
+    #calendar-table td:hover
+    {
+        background: #FF00CC;
+    }
     #calendar-table td p
     {
         text-align: center;
     }
-    #header {
-    background:#000000;
-    color:#ffffff;
-    font-weight:700;
-    padding:12px;
-    text-align: center;
+    #header 
+    {
+        background:#000000;
+        color:#ffffff;
+        font-weight:700;
+        padding:12px;
+        text-align: center;
     }
-    #descr {
-    background:#ffffff;
-    font-style:italic;
-    padding:12px;
-    text-align: center;
+    #descr
+    {
+        background:#ffffff;
+        font-style:italic;
+        padding:12px;
+        text-align: center;
     }
 </style>
 <span>Events for @Model.MonthName @Model.CurrentMonthYear</span>
@@ -114,34 +120,4 @@
 
 @Html.ActionLink("Next month", "Month", "Calendar",
                         new { bandId = ViewBag.BandId, month = Model.NextMonth, year = Model.NextMonthYear }, null)
-     
-
-<!-- for (int week = 0; week < 5; week++)
-{
-    for (int dayOfWeek = 0; dayOfWeek < 7; dayOfWeek++)
-    {
-        if(!started)
-        {
-            if(Model.FirstDayOfWeek == dayOfWeek)
-            {
-                currentDay = 1;
-                started = true;
-                // spit out a td with currentDay and events  
-            }
-            else
-            {
-                // spit out an empty td   
-            }
-        }
-        else
-        {
-            currentDay++;
-            
-            if(
-            
-            
-            
-            
-        }
-    }
-}-->
+    
