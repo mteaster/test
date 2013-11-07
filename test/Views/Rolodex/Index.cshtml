@@ -9,4 +9,4 @@
 
 <div>@Html.ActionLink("Create Contact", "CreateContact", new { bandId = ViewBag.BandId })</div>
 
-@Html.RenderAction("RolodexList", "RolodexController", new { bandId = ViewBag.BandId })
+@{Html.RenderAction("RolodexList", "RolodexController", new { bandId = ViewBag.BandId });}
