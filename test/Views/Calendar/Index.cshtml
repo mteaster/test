@@ -73,14 +73,22 @@
             currentDayOfWeek++;
             currentDay++;   
         }
+        
+        for (; currentDayOfWeek < 7; currentDayOfWeek++)
+        {
+            <td></td>   
+        }
     }
-
-
-
 
     </tr>
 </table>
 
+@Html.ActionLink("Last month", "Month", "Calendar", 
+                        new { bandId = ViewBag.BandId, month = Model.PreviousMonth, year = Model.PreviousMonthYear }, null)
+
+@Html.ActionLink("Next month", "Month", "Calendar",
+                        new { bandId = ViewBag.BandId, month = Model.NextMonth, year = Model.NextMonthYear }, null)
+     
 
 <!-- for (int week = 0; week < 5; week++)
 {
