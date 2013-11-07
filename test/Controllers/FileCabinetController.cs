@@ -117,17 +117,20 @@ namespace band.Content
             fileEntry.FileName = Path.GetFileName(file.FileName);
             fileEntry.FilePath = Path.Combine(bandDirectory, fileEntry.FileName);
 
+            int fileId = -456;
             using (DatabaseContext database = new DatabaseContext())
             {
                 database.FileEntries.Add(fileEntry);
                 database.SaveChanges();
+
+                fileId = fileEntry.FileId;
             }
 
-            file.SaveAs(fileEntry.FilePath);
+            //file.SaveAs(fileEntry.FilePath);
 
-            StreamReader reader = new StreamReader(file.InputStream);
-            @ViewBag.Content = reader.ReadToEnd();
-
+            //StreamReader reader = new StreamReader(file.InputStream);
+            //@ViewBag.Content = reader.ReadToEnd();
+            @ViewBag.Content = fileEntry.FileId;
             return View();
         }
     }
