@@ -1,1 +1,35 @@
-﻿rawr. Also, testing
+﻿@model test.Models.BandContact
+
+
+@using (Html.BeginForm("CreateBandContact", "Rolodex"))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <fieldset>
+        <legend>Registration Form</legend>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.Name)
+                @Html.TextBoxFor(m => m.Name)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.PhoneNumber)
+                @Html.TextBoxFor(m => m.PhoneNumber)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Email)
+                @Html.TextBoxFor(m => m.Email)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.MusicalStyle)
+                @Html.TextBoxFor(m => m.MusicalStyle)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Notes)
+                @Html.TextBoxFor(m => m.Notes)
+            </li>
+        </ol>
+        <input type="submit" value="Save" />
+    </fieldset>
+}
