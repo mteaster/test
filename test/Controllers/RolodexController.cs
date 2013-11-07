@@ -20,12 +20,20 @@ namespace band.Controllers
             ViewBag.BandName = bandProfile.BandName;
 
             // Check if the user is in the band
+            // If not, redirect to join a band page
             if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))
             {
                 return RedirectToAction("Join", "Band");
             }
 
+            // This will also display contacts for the band
+
             return View();
+        }
+
+        public ActionResult CreateBandContact(int BandId)
+        {
+            return PartialView("_CreateBandContact");
         }
 
     }

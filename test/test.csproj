@@ -183,6 +183,7 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\BandModels.cs" />
     <Compile Include="Models\CalendarModels.cs" />
+    <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\FileCabinetModels.cs" />
     <Compile Include="Models\DatabaseContext.cs" />
     <Compile Include="Models\DashboardModels.cs" />
@@ -418,6 +419,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\FileCabinet\Files.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Rolodex\CreateContact.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Rolodex\_CreateBandContact.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
