@@ -54,9 +54,21 @@ namespace band.Controllers
             return PartialView("_CreatePersonContact");
         }
 
+        [HttpPost]
+        public ActionResult CreatePersonContact(PeopleContact peopleContract)
+        {
+            return RedirectToAction("Index", "Home");
+        }
+
         public ActionResult CreateVenueContact(int BandId)
         {
             return PartialView("_CreateVenueContact");
+        }
+
+        [HttpPost]
+        public ActionResult CreateVenueContact(VenueContact venueContact)
+        {
+            return RedirectToAction("Index", "Home");
         }
 
     }
