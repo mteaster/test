@@ -32,6 +32,12 @@ namespace band.Controllers
             return View();
         }
 
+        public ActionResult CreateContact(int BandId)
+        {
+            ViewBag.BandId = BandId;
+            return View("CreateContact");
+        }
+
         public ActionResult CreateBandContact(int BandId)
         {
             return PartialView("_CreateBandContact");
