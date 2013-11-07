@@ -169,7 +169,7 @@ namespace band.Controllers
             contacts.Sort((c1, c2) => c1.Name.CompareTo(c2.Name));
 
 
-            return PartialView("_BandListPartial", contacts);
+            return PartialView("_RolodexList", contacts);
         }
 
     }
