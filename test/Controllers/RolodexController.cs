@@ -43,5 +43,15 @@ namespace band.Controllers
             return PartialView("_CreateBandContact");
         }
 
+        public ActionResult CreatePersonContact(int BandId)
+        {
+            return PartialView("_CreatePersonContact");
+        }
+
+        public ActionResult CreateVenueContact(int BandId)
+        {
+            return PartialView("_CreateVenueContact");
+        }
+
     }
 }

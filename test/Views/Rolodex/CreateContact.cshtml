@@ -13,15 +13,33 @@
 
 <h2>CreateContact</h2>
 
-<a href="#" onclick="band()">Create a Band Contact</a> | 
-<a href="#" onclick="people()">Create a Person Contact</a> | 
-<a href="#" onclick="venue()">Create a Venue Contact</a> 
-
 @Ajax.ActionLink(
     "Create a Band Contact",
     "CreateBandContact",
     new { BandId = @ViewBag.BandId },
     new AjaxOptions { UpdateTargetId = "dvForm" }
     )
+
+ | 
+
+@Ajax.ActionLink(
+    "Create a Person Contact",
+    "CreatePersonContact",
+    new { BandId = @ViewBag.BandId },
+    new AjaxOptions { UpdateTargetId = "dvForm" }
+    )
+
+ | 
+
+@Ajax.ActionLink(
+    "Create a Venue Contact",
+    "CreateVenueContact",
+    new { BandId = @ViewBag.BandId },
+    new AjaxOptions { UpdateTargetId = "dvForm" }
+    )
+
+ | 
+
+
 
 <div id="dvForm"></div> 

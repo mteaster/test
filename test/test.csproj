@@ -431,6 +431,12 @@
     </Content>
     <Content Include="Views\Rolodex\_CreateBandContact.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Rolodex\_CreatePersonContact.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Rolodex\_CreateVenueContact.cshtml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
