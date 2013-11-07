@@ -91,8 +91,6 @@ namespace band.Content
                 return RedirectToAction("Join", "Band");
             }
 
-            ViewBag.Content = "IT'S NOTHING";
-
             if(file.ContentLength <= 0)
             {
                 ViewBag.ErrorMessage = "File size is less than or equal to 0"; 
@@ -105,10 +103,10 @@ namespace band.Content
                 return View("Error");
             }
             
-            string bandDirectory = Server.MapPath("~/App_Data/" + bandId + "/");
-            if (!Directory.Exists(bandDirectory))
+            string directory = Server.MapPath("~/App_Data/" + bandId + "/");
+            if (!Directory.Exists(directory))
             {
-                Directory.CreateDirectory(bandDirectory);
+                Directory.CreateDirectory(directory);
             }
 
             FileEntry fileEntry = new FileEntry();
@@ -117,23 +115,21 @@ namespace band.Content
             fileEntry.FileName = Path.GetFileName(file.FileName);
             fileEntry.FilePath = path;
 
-            //int fileId = -456;
-            //using (DatabaseContext database = new DatabaseContext())
-            //{
-            //    database.FileEntries.Add(fileEntry);
-            //    database.SaveChanges();
-            //    fileId = fileEntry.FileId;
-            //}
+            int fileId;
 
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                database.FileEntries.Add(fileEntry);
+                database.SaveChanges();
+                fileId = fileEntry.FileId;
+            }
+ 
+            file.SaveAs(directory + fileId);
 
-
-            //file.SaveAs(fileEntry.FilePath);
-
-            //StreamReader reader = new StreamReader(file.InputStream);
-            //@ViewBag.Content = reader.ReadToEnd();
-            @ViewBag.Content = path;
-
-            return View(fileEntry);
+            StreamReader reader = new StreamReader(file.InputStream);
+            @ViewBag.Content = reader.ReadToEnd();
+            
+            return View();
         }
     }
 }

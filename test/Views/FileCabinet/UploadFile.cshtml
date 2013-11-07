@@ -6,6 +6,7 @@
 
 @if (Model != null)
 {
+    <p>@ViewBag.Content</p>
     @Html.DisplayForModel();
 }
 else
@@ -17,7 +18,7 @@ else
   
   <label for="file">Filename:</label>
   <input type="file" name="file" id="file" />
-  <input type="hidden" value="this is a path to the file" id="path" name="path" />
+  <input type="hidden" value="/" id="path" name="path" />
   <input type="submit" />
 </form>
 
