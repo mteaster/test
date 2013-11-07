@@ -133,7 +133,6 @@ namespace band.Content
             //@ViewBag.Content = reader.ReadToEnd();
             @ViewBag.Content = fileEntry.FileId;
 
-            @ViewBag.
             return View();
         }
     }

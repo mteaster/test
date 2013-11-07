@@ -8,6 +8,10 @@
 {
     @Html.DisplayForModel();
 }
+else
+{
+    <p>Model is null</p>
+}
 
 <form action="/FileCabinet/UploadFile?bandId=@ViewBag.BandId" method="post" enctype="multipart/form-data">
   
