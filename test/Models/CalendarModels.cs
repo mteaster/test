@@ -98,7 +98,7 @@ namespace test.Models.Calendar
         public MonthModel() {}
         public MonthModel(int month, int year)
         {
-            MonthName = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(8);
+            MonthName = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(month);
             DaysInMonth = DateTime.DaysInMonth(year, month);
 
             FirstDayOfWeek = (int)(new DateTime(year, month, 1).DayOfWeek);
