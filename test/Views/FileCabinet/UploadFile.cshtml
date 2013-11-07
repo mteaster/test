@@ -1,15 +1,19 @@
-﻿@{
+﻿@model test.Models.FileCabinet.FileEntry
+
+@{
     ViewBag.Title = "Test";
 }
 
-File contents:
-<p>@ViewBag.Content</p>
+@if (Model != null)
+{
+    @Html.DisplayForModel();
+}
 
 <form action="/FileCabinet/UploadFile?bandId=@ViewBag.BandId" method="post" enctype="multipart/form-data">
   
   <label for="file">Filename:</label>
   <input type="file" name="file" id="file" />
-
+  <input type="hidden" value="this is a path to the file" id="path" name="path" />
   <input type="submit" />
 </form>
 

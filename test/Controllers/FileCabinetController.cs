@@ -81,7 +81,7 @@ namespace band.Content
         }
 
         [HttpPost]
-        public ActionResult UploadFile(int bandId, HttpPostedFileBase file)
+        public ActionResult UploadFile(int bandId, string path, HttpPostedFileBase file)
         {
             BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
             ViewBag.BandId = bandId;
@@ -115,22 +115,25 @@ namespace band.Content
             fileEntry.BandId = bandId;
             fileEntry.UploaderId = WebSecurity.CurrentUserId;
             fileEntry.FileName = Path.GetFileName(file.FileName);
-            fileEntry.FilePath = Path.Combine(bandDirectory, fileEntry.FileName);
+            fileEntry.FilePath = path;
 
             int fileId = -456;
             using (DatabaseContext database = new DatabaseContext())
             {
                 database.FileEntries.Add(fileEntry);
                 database.SaveChanges();
-
                 fileId = fileEntry.FileId;
             }
+
+
 
             //file.SaveAs(fileEntry.FilePath);
 
             //StreamReader reader = new StreamReader(file.InputStream);
             //@ViewBag.Content = reader.ReadToEnd();
             @ViewBag.Content = fileEntry.FileId;
+
+            @ViewBag.
             return View();
         }
     }
