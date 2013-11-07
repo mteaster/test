@@ -62,14 +62,18 @@
         
         while(currentDay <= Model.DaysInMonth)
         {
-            <td>@currentDay</td>
+            if(currentDayOfWeek == 7)
+            {
+                currentDayOfWeek = 0;
+                </tr><tr>
+            }
 
+            <td>@currentDay</td>
+        
+            currentDayOfWeek++;
             currentDay++;   
         }
     }
-
-
-
 
     </tr>
 </table>
