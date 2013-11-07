@@ -117,13 +117,13 @@ namespace band.Content
             fileEntry.FileName = Path.GetFileName(file.FileName);
             fileEntry.FilePath = path;
 
-            int fileId = -456;
-            using (DatabaseContext database = new DatabaseContext())
-            {
-                database.FileEntries.Add(fileEntry);
-                database.SaveChanges();
-                fileId = fileEntry.FileId;
-            }
+            //int fileId = -456;
+            //using (DatabaseContext database = new DatabaseContext())
+            //{
+            //    database.FileEntries.Add(fileEntry);
+            //    database.SaveChanges();
+            //    fileId = fileEntry.FileId;
+            //}
 
 
 
@@ -131,9 +131,9 @@ namespace band.Content
 
             //StreamReader reader = new StreamReader(file.InputStream);
             //@ViewBag.Content = reader.ReadToEnd();
-            @ViewBag.Content = fileEntry.FileId;
+            @ViewBag.Content = path;
 
-            return View();
+            return View(fileEntry);
         }
     }
 }
