@@ -129,7 +129,7 @@ namespace band.Content
             StreamReader reader = new StreamReader(file.InputStream);
             @ViewBag.Content = reader.ReadToEnd();
             
-            return View();
+            return View(fileEntry);
         }
     }
 }
