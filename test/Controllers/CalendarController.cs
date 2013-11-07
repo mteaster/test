@@ -222,6 +222,11 @@ namespace band.Controllers
             return View(CalendarUtil.EventsForMonth(bandId, month, year));
         }
 
+        public ActionResult Day(int bandId, int day, int month, int year)
+        {
+            return View(CalendarUtil.EventsForDay(bandId, day, month, year));
+        }
+
         public ActionResult Index2(int bandId)
         {
             return View();

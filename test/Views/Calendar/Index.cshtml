@@ -48,6 +48,12 @@
     {
         background: #6699FF;
     }
+    a.boxlink
+    {
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
     #calendar-table td p
     {
         text-align: center;
@@ -104,12 +110,12 @@
                     @:</tr><tr>
                 }
 
-                @:<td>@currentDay</td>
+                @:<a class="boxlink" href="/Calendar/Day/@ViewBag.BandId/@currentDay/@Model.CurrentMonth/@Model.CurrentMonthYear"><td>@currentDay</td></a>
         
                 currentDayOfWeek++;
                 currentDay++;   
             }
-        
+        <a href="/Calendar/Month/1007/10/2013">Last month</a>
             for (; currentDayOfWeek < 7; currentDayOfWeek++)
             {
                 <td></td>   
