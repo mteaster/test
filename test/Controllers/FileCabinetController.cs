@@ -24,7 +24,7 @@ namespace band.Content
             ViewBag.BandName = bandProfile.BandName;
 
             // Check if the user is in the band
-            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))
+            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
             {
                 return RedirectToAction("Join", "Band");
             }
@@ -65,6 +65,8 @@ namespace band.Content
 
 
             string path = Server.MapPath("~/App_Data/" + bandId + "/" + fileName);
+
+            return null;
 
         }
 

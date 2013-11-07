@@ -11,6 +11,10 @@
 }
 
 <span>Events for @Model.CurrentMonth / @Model.CurrentMonthYear</span>
+<span>First day of the month is a @Model.FirstDayOfWeek</span>
+
+<p class="message-success">@ViewBag.SuccessMessage</p>
+<p class="message-error">@ViewBag.ErrorMessage</p>
 
 <table class="pretty" border="0" cellpadding="0" cellspacing="0">
     <tr>
@@ -18,6 +22,8 @@
         <th>Title</th>
         <th>Time</th>
         <th>Description</th>
+        <th>Edit</th>
+        <th>Delete</th>
     </tr>
 
     @foreach (var item in Model.Events)
@@ -27,6 +33,8 @@
             <td>@Html.DisplayFor(modelItem => item.EventTitle)</td>
             <td>@Html.DisplayFor(modelItem => item.EventTime)</td>
             <td>@Html.DisplayFor(modelItem => item.EventDescription)</td>
+            <td>@Html.ActionLink("Edit", "EditEvent", new { bandId = ViewBag.BandId, eventId = item.EventId })</td>
+            <td>@Html.ActionLink("Delete", "DeleteEvent", new { eventId = item.EventId })</td>
         </tr>
     }
 </table>
@@ -41,3 +49,5 @@
 <br />                   
 
 @Html.ActionLink("Add event", "AddEvent", "Calendar", new { bandId = ViewBag.BandId }, null)
+
+@Html.ActionLink("Test index", "Index2", "Calendar", new { bandId = ViewBag.BandId }, null)

@@ -1,0 +1,91 @@
+@model test.Models.Calendar.MonthModel
+
+@{
+    ViewBag.Title = "Calendar";
+}
+
+
+@section featured 
+{
+    @Html.Partial("_BandHeaderPartial")
+}
+
+<span>Events for @Model.CurrentMonth / @Model.CurrentMonthYear</span>
+
+<p class="message-success">@ViewBag.SuccessMessage</p>
+<p class="message-error">@ViewBag.ErrorMessage</p>
+
+<style type="text/css">
+      #calendar-table {
+     width: 716px; /* 100 per cell + borders */
+     margin:auto;
+     background:#ffffff;
+     border: 1px solid #b1b1b1;
+    }
+    #calendar-table td {
+     vertical-align:top;
+     width: 100px;
+     height: 100px; /* will vary with content */
+     padding:4px;
+     background: #f8f8f8;
+     border: 1px solid #b1b1b1;
+    }
+    #calendar-table td p {
+     text-align: center;
+    }
+    #header {
+     background:#000000;
+     color:#ffffff;
+     font-weight:700;
+     padding:12px;
+     text-align: center;
+    }
+    #descr {
+     background:#ffffff;
+     font-style:italic;
+     padding:12px;
+     text-align: center;
+    }
+</style>
+
+<table id="calendar-table" cellpadding="0" cellspacing="0">
+
+    <tr>
+    @for(int i = 0; i < Model.FirstDayOfWeek)
+    {
+        <td></td>   
+    }
+
+    </tr>
+</table>
+
+
+<!-- for (int week = 0; week < 5; week++)
+{
+    for (int dayOfWeek = 0; dayOfWeek < 7; dayOfWeek++)
+    {
+        if(!started)
+        {
+            if(Model.FirstDayOfWeek == dayOfWeek)
+            {
+                currentDay = 1;
+                started = true;
+                // spit out a td with currentDay and events  
+            }
+            else
+            {
+                // spit out an empty td   
+            }
+        }
+        else
+        {
+            currentDay++;
+            
+            if(
+            
+            
+            
+            
+        }
+    }
+}-->

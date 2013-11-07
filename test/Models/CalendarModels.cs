@@ -37,6 +37,28 @@ namespace test.Models.Calendar
     {
         public CalendarEventModel() {}
 
+        public CalendarEventModel(CalendarEvent calendarEvent)
+        {
+            this.EventTitle = calendarEvent.EventTitle;
+            this.EventDescription = calendarEvent.EventDescription;
+            this.EventMonth = calendarEvent.EventTime.Month;
+            this.EventDay = calendarEvent.EventTime.Day;
+            this.EventYear = calendarEvent.EventTime.Year;
+
+            if (calendarEvent.EventTime.Hour > 12)
+            {
+                this.EventHour = calendarEvent.EventTime.Hour - 12;
+                this.EventPeriod = "PM";
+            }
+            else
+            {
+                this.EventHour = calendarEvent.EventTime.Hour;
+                this.EventPeriod = "AM";
+            }
+
+            this.EventMinute = calendarEvent.EventTime.Minute;
+        }
+
         [Required]
         [Display(Name = "Title")]
         public string EventTitle { get; set; }
@@ -57,6 +79,18 @@ namespace test.Models.Calendar
         [Required]
         [Display(Name = "Year (Number)")]
         public int EventYear { get; set; }
+
+        [Required]
+        [Display(Name = "Hour (Number)")]
+        public int EventHour { get; set; }
+
+        [Required]
+        [Display(Name = "Minute (Number)")]
+        public int EventMinute { get; set; }
+
+        [Required]
+        [Display(Name = "Period (AM or PM)")]
+        public string EventPeriod { get; set; }
     }
 
     public class MonthModel
@@ -66,6 +100,8 @@ namespace test.Models.Calendar
         {
             MonthName = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(8);
             DaysInMonth = DateTime.DaysInMonth(year, month);
+
+            FirstDayOfWeek = (int)(new DateTime(year, month, 1).DayOfWeek);
 
             CurrentMonth = month;
             CurrentMonthYear = year;
@@ -95,6 +131,7 @@ namespace test.Models.Calendar
 
         public string MonthName { get; set; }
         public int DaysInMonth { get; set; }
+        public int FirstDayOfWeek { get; set; }
 
         public int CurrentMonth { get; set; }
         public int CurrentMonthYear { get; set; }

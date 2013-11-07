@@ -425,6 +425,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Rolodex\_CreateBandContact.cshtml" />
+    <Content Include="Views\Calendar\EditEvent.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
