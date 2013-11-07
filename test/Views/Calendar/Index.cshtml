@@ -16,81 +16,98 @@
 <p class="message-error">@ViewBag.ErrorMessage</p>
 
 <style type="text/css">
-      #calendar-table {
-     width: 716px; /* 100 per cell + borders */
-     margin:auto;
-     background:#ffffff;
-     border: 1px solid #b1b1b1;
+    #calendar-table 
+    {
+        width: 716px; /* 100 per cell + borders */
+        margin:auto;
+        background:#ffffff;
+        border: 1px solid #b1b1b1;
     }
-    #calendar-table td {
-     vertical-align:top;
-     width: 100px;
-     height: 100px; /* will vary with content */
-     padding:4px;
-     background: #f8f8f8;
-     border: 1px solid #b1b1b1;
+    #calendar-table th
+    {
+        vertical-align:top;
+        width: 100px;
+        height: 20px; /* will vary with content */
+        padding: 4px;
+        background: #f8f8f8;
+        border: 1px solid #b1b1b1;
     }
-    #calendar-table td p {
-     text-align: center;
+    #calendar-table td
+    {
+        vertical-align:top;
+        width: 100px;
+        height: 100px; /* will vary with content */
+        padding:4px;
+        background: #f8f8f8;
+        border: 1px solid #b1b1b1;
+    }
+    #calendar-table td p
+    {
+        text-align: center;
     }
     #header {
-     background:#000000;
-     color:#ffffff;
-     font-weight:700;
-     padding:12px;
-     text-align: center;
+    background:#000000;
+    color:#ffffff;
+    font-weight:700;
+    padding:12px;
+    text-align: center;
     }
     #descr {
-     background:#ffffff;
-     font-style:italic;
-     padding:12px;
-     text-align: center;
+    background:#ffffff;
+    font-style:italic;
+    padding:12px;
+    text-align: center;
     }
 </style>
 <span>Events for @Model.MonthName @Model.CurrentMonthYear</span>
 
 <table id="calendar-table" cellpadding="0" cellspacing="0">
-    <tr>
-        <td>Sunday</td>
-        <td>Monday</td>
-        <td>Tuesday</td>
-        <td>Wednesday</td>
-        <td>Thursday</td>
-        <td>Friday</td>
-        <td>Saturday</td>
-    </tr> 
+    <thead>
+        <tr>
+            <th>Sunday</th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+            <th>Saturday</th>
+        </tr>
+    </thead> 
 
-    <tr>
-    @for (int i = 0; i < Model.FirstDayOfWeek; i++ )
-    {
-        <td></td>   
-    }
+    <tbody>
 
-    @{
-        int currentDayOfWeek = Model.FirstDayOfWeek;
-        int currentDay = 1;
-        
-        while(currentDay <= Model.DaysInMonth)
-        {
-            if(currentDayOfWeek == 7)
-            {
-                currentDayOfWeek = 0;
-                @:</tr><tr>
-            }
-
-            @:<td>@currentDay</td>
-        
-            currentDayOfWeek++;
-            currentDay++;   
-        }
-        
-        for (; currentDayOfWeek < 7; currentDayOfWeek++)
+        <tr>
+        @for (int i = 0; i < Model.FirstDayOfWeek; i++ )
         {
             <td></td>   
         }
-    }
 
-    </tr>
+        @{
+            int currentDayOfWeek = Model.FirstDayOfWeek;
+            int currentDay = 1;
+        
+            while(currentDay <= Model.DaysInMonth)
+            {
+                if(currentDayOfWeek == 7)
+                {
+                    currentDayOfWeek = 0;
+                    @:</tr><tr>
+                }
+
+                @:<td>@currentDay</td>
+        
+                currentDayOfWeek++;
+                currentDay++;   
+            }
+        
+            for (; currentDayOfWeek < 7; currentDayOfWeek++)
+            {
+                <td></td>   
+            }
+        }
+
+        </tr>
+    </tbody>
 </table>
 
 @Html.ActionLink("Last month", "Month", "Calendar", 
