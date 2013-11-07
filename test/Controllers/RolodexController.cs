@@ -43,6 +43,12 @@ namespace band.Controllers
             return PartialView("_CreateBandContact");
         }
 
+        [HttpPost]
+        public ActionResult CreateBandContact(BandContact bandContact)
+        {
+            return RedirectToAction("Index", "Home");
+        }
+
         public ActionResult CreatePersonContact(int BandId)
         {
             return PartialView("_CreatePersonContact");
