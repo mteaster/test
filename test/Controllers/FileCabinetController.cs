@@ -70,11 +70,12 @@ namespace band.Content
             }
         }
 
-        public ActionResult UploadFile(int bandId)
+        public ActionResult UploadFile(int bandId, int groupId)
         {
             BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
             ViewBag.BandId = bandId;
             ViewBag.BandName = bandProfile.BandName;
+            ViewBag.GroupId = groupId;
             if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
             {
                 return RedirectToAction("Join", "Band");
