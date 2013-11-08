@@ -170,7 +170,7 @@ namespace band.Content
             file.SaveAs(directory + fileEntry.FileId);
 
             StreamReader reader = new StreamReader(file.InputStream);
-            @ViewBag.Content = reader.ReadToEnd();
+            @ViewBag.Content = reader.ReadToEnd() + file.ContentType;
             
             return View(fileEntry);
         }
@@ -188,15 +188,16 @@ namespace band.Content
 
             string fileName = "";
 
+
             using (DatabaseContext database = new DatabaseContext())
             {
                 FileEntry fileEntry = database.FileEntries.Find(fileId);
-                fileName = fileEntry.FileName;
+
+                string path = Server.MapPath("~/App_Data/" + bandId + "/" + fileId);
+                //string type = System.Web.MimeMapping.GetMimeMapping(fileEntry.FileName);
+
+                return File(path, "application/pdf", "Report.pdf");
             }
-
-            string path = Server.MapPath("~/App_Data/" + bandId + "/" + fileName);
-
-            return null;
         }
 
         private byte[] ReadFile(string s)
