@@ -4,7 +4,7 @@
     ViewBag.Title = "Calendar";
 }
 
-@using (Html.BeginForm("AddEvent", "Calendar", new { bandId = ViewBag.BandId, EventDay = ViewBag.EventDay }, FormMethod.Post))
+@using (Html.BeginForm("AddEvent", "Calendar", new { bandId = ViewBag.BandId }, FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
@@ -24,7 +24,10 @@
                 @Html.TextBoxFor(m => m.EventMonth)
             </li>
             
-
+            <li>
+                @Html.LabelFor(m => m.EventDay)
+                @Html.TextBoxFor(m => m.EventDay)
+            </li>
             
             <li>
                 @Html.LabelFor(m => m.EventYear)
