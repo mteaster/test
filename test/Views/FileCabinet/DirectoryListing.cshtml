@@ -10,24 +10,25 @@
   <input type="submit" />
 </form>
 
-<table class="pretty" border="0" cellpadding="0" cellspacing="0">
-    <tr>
-        <th>@Html.DisplayNameFor(model => model.FileId)</th>
-        <th>@Html.DisplayNameFor(model => model.FilePath)</th>
-        <th>@Html.DisplayNameFor(model => model.FileName)</th>
-        <th>@Html.DisplayNameFor(model => model.UploaderId)</th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+@if(Model != null)
+{
+    <table class="pretty" border="0" cellpadding="0" cellspacing="0">
         <tr>
-            <td>@Html.DisplayFor(modelItem => item.FileId)</td>
-            <td>@Html.DisplayFor(modelItem => item.FilePath)</td>
-            <td>@Html.DisplayFor(modelItem => item.FileName)</td>
-            <td>@Html.DisplayFor(modelItem => item.UploaderId)</td>
+            <th>@Html.DisplayNameFor(model => model.FileId)</th>
+            <th>@Html.DisplayNameFor(model => model.FilePath)</th>
+            <th>@Html.DisplayNameFor(model => model.FileName)</th>
+            <th>@Html.DisplayNameFor(model => model.UploaderId)</th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.FileId)</td>
+                <td>@Html.DisplayFor(modelItem => item.FilePath)</td>
+                <td>@Html.DisplayFor(modelItem => item.FileName)</td>
+                <td>@Html.DisplayFor(modelItem => item.UploaderId)</td>
+            </tr>
+        }
 
-@ViewBag.SuccessMessage
+    </table>
+}
