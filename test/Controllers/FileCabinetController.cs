@@ -110,7 +110,7 @@ namespace band.Content
 
             using (DatabaseContext database = new DatabaseContext())
             {
-                return View(database.FileEntries.Where(f => f.BandId == bandId && f.GroupId == groupId));
+                return View(database.FileEntries.Where(f => f.BandId == bandId && f.GroupId == groupId).ToList());
             }
         }
 
