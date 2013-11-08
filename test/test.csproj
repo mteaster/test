@@ -418,7 +418,7 @@
     <Content Include="Views\FileCabinet\UploadFile.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\FileCabinet\Files.cshtml" />
+    <Content Include="Views\FileCabinet\Group.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Calendar\EditEvent.cshtml" />
@@ -442,7 +442,10 @@
     <Content Include="Views\Calendar\Day.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\FileCabinet\DirectoryListing.cshtml" />
+    <Content Include="Views\FileCabinet\CreateGroup.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\FileCabinet\_GroupsPartial.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
