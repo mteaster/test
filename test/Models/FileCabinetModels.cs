@@ -48,10 +48,10 @@ namespace test.Models.FileCabinet
         [Key]
         [Required]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public int DirectoryId { get; set; }
+        public int GroupId { get; set; }
 
         [Required]
-        public string DirectoryName { get; set; }
+        public string GroupName { get; set; }
 
         [Required]
         public int BandId { get; set; }
