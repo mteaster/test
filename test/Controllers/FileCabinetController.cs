@@ -5,6 +5,7 @@ using WebMatrix.WebData;
 using test.Models.Band;
 using System.Web;
 using System.IO;
+using System.Linq;
 using test.Models.FileCabinet;
 using System.Web.Security;
 
@@ -119,6 +120,14 @@ namespace band.Content
 
             using (DatabaseContext database = new DatabaseContext())
             {
+                if (database.FileEntries.Where(f => f.BandId == fileEntry.BandId
+                                        && f.FilePath == fileEntry.FilePath
+                                        && f.FileName == fileEntry.FileName).Any())
+                {
+                    ViewBag.ErrorMessage = "file already exists";
+                    return View("Error");
+                }
+
                 database.FileEntries.Add(fileEntry);
                 database.SaveChanges();
                 fileId = fileEntry.FileId;
