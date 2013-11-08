@@ -23,10 +23,9 @@
                 @Html.LabelFor(m => m.EventMonth)
                 @Html.TextBoxFor(m => m.EventMonth)
             </li>
-            <li>
-                @Html.LabelFor(m => m.EventDay)
-                @Html.TextBoxFor(m => m.EventDay)
-            </li>
+            
+
+            @Model.EventDay => m.EventDay
             <li>
                 @Html.LabelFor(m => m.EventYear)
                 @Html.TextBoxFor(m => m.EventYear)
