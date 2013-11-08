@@ -100,9 +100,9 @@
         @{
             int currentDayOfWeek = Model.FirstDayOfWeek;
             int currentDay = 1;
-        
-            var monthModel = new test.Models.Calendar.MonthModel(Model.CurrentMonth,Model.CurrentMonthYear);
-            var monthEvents = monthModel.Events;
+
+            test.Models.Calendar.MonthModel monthModel = new test.Models.Calendar.MonthModel(Model.CurrentMonth, Model.CurrentMonthYear);
+            IEnumerable<test.Models.Calendar.CalendarEvent> monthEvents = monthModel.Events;
             bool hasEvent;
             
             while(currentDay <= Model.DaysInMonth)
