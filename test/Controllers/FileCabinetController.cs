@@ -91,14 +91,14 @@ namespace band.Content
             using (DatabaseContext database = new DatabaseContext())
             {
                 ViewBag.BandId = bandId;
-                List<FileEntry> fileEntries = database.FileEntries.Where(f => f.BandId == bandId 
-                                                                            && f.FilePath.StartsWith(path)).ToList();
-                return View(fileEntries);
+                //List<FileEntry> fileEntries = database.FileEntries.Where(f => f.BandId == bandId 
+                 //                                                           && f.File.StartsWith(path)).ToList();
+                return View();
             }
         }
 
         [HttpPost]
-        public ActionResult UploadFile(int bandId, string path, HttpPostedFileBase file)
+        public ActionResult UploadFile(int bandId, int directoryId, HttpPostedFileBase file)
         {
             BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
             ViewBag.BandId = bandId;
@@ -131,12 +131,12 @@ namespace band.Content
             fileEntry.BandId = bandId;
             fileEntry.UploaderId = WebSecurity.CurrentUserId;
             fileEntry.FileName = Path.GetFileName(file.FileName);
-            fileEntry.FilePath = path;
+            fileEntry.DirectoryId = directoryId;
 
             using (DatabaseContext database = new DatabaseContext())
             {
                 if (database.FileEntries.Where(f => f.BandId == fileEntry.BandId
-                                        && f.FilePath == fileEntry.FilePath
+                                        && f.DirectoryId == fileEntry.DirectoryId
                                         && f.FileName == fileEntry.FileName).Any())
                 {
                     ViewBag.ErrorMessage = "file already exists";
