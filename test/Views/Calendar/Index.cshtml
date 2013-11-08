@@ -114,7 +114,7 @@
                     @:</tr><tr>
                 }
                 
-                if(monthEvents != null)//can't figure out how to assign monthEvents correctly
+                //if(monthEvents != null)//can't figure out how to assign monthEvents correctly
                 {
                     //checking to see if a given day has an event(s) for indicating if it has events
                     foreach ( test.Models.Calendar.CalendarEvent ev in monthEvents)
@@ -128,7 +128,7 @@
                 
                if(hasEvent)
                {
-                   //@:<td><a href="/Calendar/Day/@ViewBag.BandId/@currentDay/@Model.CurrentMonth/@Model.CurrentMonthYear">@currentDay</a></td>
+                   @:<td><a href="/Calendar/Day/@ViewBag.BandId/@currentDay/@Model.CurrentMonth/@Model.CurrentMonthYear">@currentDay</a></td>
                }
                else
                {
