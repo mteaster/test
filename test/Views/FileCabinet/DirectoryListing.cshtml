@@ -1,0 +1,21 @@
+﻿@model string
+
+@{
+    ViewBag.Title = "Directory Listing";
+}
+
+@if (Model != null)
+{
+    <p>@Model</p>
+}
+else
+{
+    <p>Model is null</p>
+}
+
+<form action="/FileCabinet/UploadFile?bandId=@ViewBag.BandId" method="post">
+  <label for="path">Path:</label>
+  <input name="path" id="path" />
+  <input type="submit" />
+</form>
+

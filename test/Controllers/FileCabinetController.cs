@@ -63,12 +63,9 @@ namespace band.Content
                 fileName = fileEntry.FileName;
             }
 
-
-
             string path = Server.MapPath("~/App_Data/" + bandId + "/" + fileName);
 
             return null;
-
         }
 
         private byte[] ReadFile(string s)
@@ -81,12 +78,25 @@ namespace band.Content
             return data;
         }
 
+        public ActionResult DirectoryListing(int bandId)
+        {
+            ViewBag.BandId = bandId;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult DirectoryListing(int bandId, string path)
+        {
+            return View("hey look at me");
+        }
+
         [HttpPost]
         public ActionResult UploadFile(int bandId, string path, HttpPostedFileBase file)
         {
             BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
             ViewBag.BandId = bandId;
             ViewBag.BandName = bandProfile.BandName;
+            
             if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
             {
                 return RedirectToAction("Join", "Band");
@@ -116,8 +126,6 @@ namespace band.Content
             fileEntry.FileName = Path.GetFileName(file.FileName);
             fileEntry.FilePath = path;
 
-            int fileId;
-
             using (DatabaseContext database = new DatabaseContext())
             {
                 if (database.FileEntries.Where(f => f.BandId == fileEntry.BandId
@@ -130,10 +138,9 @@ namespace band.Content
 
                 database.FileEntries.Add(fileEntry);
                 database.SaveChanges();
-                fileId = fileEntry.FileId;
             }
  
-            file.SaveAs(directory + fileId);
+            file.SaveAs(directory + fileEntry.FileId);
 
             StreamReader reader = new StreamReader(file.InputStream);
             @ViewBag.Content = reader.ReadToEnd();
