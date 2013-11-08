@@ -7,6 +7,8 @@
     @Html.Partial("_BandHeaderPartial")
 }
 
+@{ Html.RenderAction("Groups"); }
+
 @Html.ActionLink("Upload a file do it pls", "UploadFile", new { bandId = ViewBag.BandId } )
 
 @Html.ActionLink("Create group", "CreateGroup", new { bandId = ViewBag.BandId } )
