@@ -102,9 +102,7 @@
             int currentDay = 1;
 
             var monthEvents = Model.Events;
-            
-            //test.Models.Calendar.MonthModel monthModel = new test.Models.Calendar.MonthModel(Model.CurrentMonth, Model.CurrentMonthYear);
-            //IEnumerable<test.Models.Calendar.CalendarEvent> monthEvents = monthModel.Events;
+           
             bool hasEvent;
             
             while(currentDay <= Model.DaysInMonth)
@@ -131,14 +129,12 @@
                if(hasEvent)
                {
                    //change color of td or something
-                   @:<td style="background-color:#B0B0B0 "><a href="/Calendar/Day/@ViewBag.BandId/@currentDay/@Model.CurrentMonth/@Model.CurrentMonthYear">@currentDay</a></td>
+                   @:<td style="{ background-color: #B0B0B0} :hover{background:#CCFFFF}"><a href="/Calendar/Day/@ViewBag.BandId/@currentDay/@Model.CurrentMonth/@Model.CurrentMonthYear">@currentDay</a></td>
                }
                else
                {
                    @:<td><a href="/Calendar/Day/@ViewBag.BandId/@currentDay/@Model.CurrentMonth/@Model.CurrentMonthYear">@currentDay</a></td>
-               }
-                
-                
+               }              
         
                 currentDayOfWeek++;
                 currentDay++;   
