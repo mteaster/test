@@ -114,13 +114,17 @@
                     @:</tr><tr>
                 }
                 
-                foreach ( test.Models.Calendar.CalendarEvent ev in monthEvents)
+                if(monthEvents != null)
                 {
-                    if (ev.EventTime.Day == currentDay)
+                    foreach ( test.Models.Calendar.CalendarEvent ev in monthEvents)
                     {
-                        hasEvent = true;
+                        if (ev.EventTime.Day == currentDay)
+                        {
+                            hasEvent = true;
+                        }
                     }
                 }
+                
                if(hasEvent)
                {
                    @:<td><a href="/Calendar/Day/@ViewBag.BandId/@currentDay/@Model.CurrentMonth/@Model.CurrentMonthYear">@currentDay</a></td>
