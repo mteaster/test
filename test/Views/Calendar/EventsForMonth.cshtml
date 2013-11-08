@@ -4,6 +4,8 @@
     ViewBag.Title = "Calendar";
 }
 
+@Html.ActionLink("Add event", "AddEvent", "Calendar", new { bandId = ViewBag.BandId }, null)
+
 <table class="pretty" border="0" cellpadding="0" cellspacing="0">
     <tr>
         <th>@Html.DisplayNameFor(model => model.EventId)</th>
