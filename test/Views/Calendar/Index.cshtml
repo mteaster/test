@@ -101,7 +101,7 @@
             int currentDayOfWeek = Model.FirstDayOfWeek;
             int currentDay = 1;
         
-            var monthModel = new test.Models.Calendar.MonthModel();
+            var monthModel = new test.Models.Calendar.MonthModel(Model.CurrentMonth,Model.CurrentMonthYear);
             var monthEvents = monthModel.Events;
             bool hasEvent;
             
