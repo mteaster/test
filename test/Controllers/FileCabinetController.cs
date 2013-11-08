@@ -30,12 +30,24 @@ namespace band.Content
             {
                 return RedirectToAction("Join", "Band");
             }
+
             return View();
         }
 
         public ActionResult CreateGroup(int bandId)
         {
-            @ViewBag.BandId = bandId;
+            // Check if band exists - if it does, get band profile
+            BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
+
+            ViewBag.BandId = bandId;
+            ViewBag.BandName = bandProfile.BandName;
+
+            // Check if the user is in the band
+            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
+            {
+                return RedirectToAction("Join", "Band");
+            }
+
             return View();
         }
 
@@ -64,9 +76,41 @@ namespace band.Content
 
         public ActionResult Groups(int bandId)
         {
+            // Check if band exists - if it does, get band profile
+            BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
+
+            ViewBag.BandId = bandId;
+            ViewBag.BandName = bandProfile.BandName;
+
+            // Check if the user is in the band
+            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
+            {
+                return RedirectToAction("Join", "Band");
+            }
+
             using (DatabaseContext database = new DatabaseContext())
             {
                 return PartialView("_GroupsPartial", database.FileGroups.Where(f => f.BandId == bandId).ToList());
+            }
+        }
+
+        public ActionResult ListFiles(int bandId, int groupId)
+        {
+            // Check if band exists - if it does, get band profile
+            BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
+
+            ViewBag.BandId = bandId;
+            ViewBag.BandName = bandProfile.BandName;
+
+            // Check if the user is in the band
+            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
+            {
+                return RedirectToAction("Join", "Band");
+            }
+
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                return View(database.FileEntries.Where(f => f.BandId == bandId && f.GroupId == groupId));
             }
         }
 
@@ -82,57 +126,6 @@ namespace band.Content
             }
 
             return View();
-        }
-
-        public ActionResult DownloadFile(int bandId, int fileId)
-        {
-            BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
-            ViewBag.BandId = bandId;
-            ViewBag.BandName = bandProfile.BandName;
-            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
-            {
-                return RedirectToAction("Join", "Band");
-            }
-
-            string fileName = "";
-
-            using (DatabaseContext database = new DatabaseContext())
-            {
-                FileEntry fileEntry = database.FileEntries.Find(fileId);
-                fileName = fileEntry.FileName;
-            }
-
-            string path = Server.MapPath("~/App_Data/" + bandId + "/" + fileName);
-
-            return null;
-        }
-
-        private byte[] ReadFile(string s)
-        {
-            System.IO.FileStream fs = System.IO.File.OpenRead(s);
-            byte[] data = new byte[fs.Length];
-            int br = fs.Read(data, 0, data.Length);
-            if (br != fs.Length)
-                throw new System.IO.IOException(s);
-            return data;
-        }
-
-        public ActionResult DirectoryListing(int bandId)
-        {
-            ViewBag.BandId = bandId;
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult DirectoryListing(int bandId, string path)
-        {
-            using (DatabaseContext database = new DatabaseContext())
-            {
-                ViewBag.BandId = bandId;
-                //List<FileEntry> fileEntries = database.FileEntries.Where(f => f.BandId == bandId 
-                 //                                                           && f.File.StartsWith(path)).ToList();
-                return View();
-            }
         }
 
         [HttpPost]
@@ -181,5 +174,40 @@ namespace band.Content
             
             return View(fileEntry);
         }
+
+
+        public ActionResult DownloadFile(int bandId, int fileId)
+        {
+            BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
+            ViewBag.BandId = bandId;
+            ViewBag.BandName = bandProfile.BandName;
+            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
+            {
+                return RedirectToAction("Join", "Band");
+            }
+
+            string fileName = "";
+
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                FileEntry fileEntry = database.FileEntries.Find(fileId);
+                fileName = fileEntry.FileName;
+            }
+
+            string path = Server.MapPath("~/App_Data/" + bandId + "/" + fileName);
+
+            return null;
+        }
+
+        private byte[] ReadFile(string s)
+        {
+            System.IO.FileStream fs = System.IO.File.OpenRead(s);
+            byte[] data = new byte[fs.Length];
+            int br = fs.Read(data, 0, data.Length);
+            if (br != fs.Length)
+                throw new System.IO.IOException(s);
+            return data;
+        }
+
     }
 }
