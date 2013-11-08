@@ -19,6 +19,7 @@ namespace test.Models
         public DbSet<MessageBoardPost> MessageBoardPosts { get; set; }
         public DbSet<CalendarEvent> CalendarEvents { get; set; }
         public DbSet<FileEntry> FileEntries { get; set; }
+        public DbSet<FileGroup> FileGroups { get; set; }
         public DbSet<Log> Logs { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

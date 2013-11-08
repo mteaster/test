@@ -98,7 +98,7 @@ namespace band.Content
         }
 
         [HttpPost]
-        public ActionResult UploadFile(int bandId, int directoryId, HttpPostedFileBase file)
+        public ActionResult UploadFile(int bandId, int groupId, HttpPostedFileBase file)
         {
             BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
             ViewBag.BandId = bandId;
@@ -131,12 +131,13 @@ namespace band.Content
             fileEntry.BandId = bandId;
             fileEntry.UploaderId = WebSecurity.CurrentUserId;
             fileEntry.FileName = Path.GetFileName(file.FileName);
-            fileEntry.DirectoryId = directoryId;
+            fileEntry.GroupId = groupId;
 
             using (DatabaseContext database = new DatabaseContext())
             {
+                
                 if (database.FileEntries.Where(f => f.BandId == fileEntry.BandId
-                                        && f.DirectoryId == fileEntry.DirectoryId
+                                        && f.GroupId == fileEntry.GroupId
                                         && f.FileName == fileEntry.FileName).Any())
                 {
                     ViewBag.ErrorMessage = "file already exists";

@@ -18,9 +18,9 @@ namespace test.Models.FileCabinet
         [Required]
         public string FileName { get; set; }
 
-        public int DirectoryId { get; set; }
-        [ForeignKey("FileDirectory")]
-        public virtual DirectoryEntry Directory { get; set; }
+        public int GroupId { get; set; }
+        [ForeignKey("GroupId")]
+        public virtual FileGroup FileGroup { get; set; }
 
         [Required]
         public int BandId { get; set; }
@@ -33,8 +33,8 @@ namespace test.Models.FileCabinet
         public virtual UserProfile UploaderProfile { get; set; }
     }
 
-    [Table("FileEntry")]
-    public class DirectoryEntry
+    [Table("FileGroup")]
+    public class FileGroup
     {
         [Key]
         [Required]
@@ -44,8 +44,9 @@ namespace test.Models.FileCabinet
         [Required]
         public string DirectoryName { get; set; }
 
-        public int ParentId { get; set; }
-        [ForeignKey("ParentId")]
-        public virtual DirectoryEntry ParentDirectory { get; set; }
+        [Required]
+        public int BandId { get; set; }
+        [ForeignKey("BandId")]
+        public virtual BandProfile BandProfile { get; set; }
     }
 }
