@@ -33,6 +33,43 @@ namespace band.Content
             return View();
         }
 
+        public ActionResult CreateGroup(int bandId)
+        {
+            @ViewBag.BandId = bandId;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateGroup(int bandId, string groupName)
+        {
+            using (DatabaseContext database = new DatabaseContext())
+            {
+
+                if (database.FileGroups.Where(f => f.BandId == bandId && f.GroupName == groupName).Any())
+                {
+                    ViewBag.ErrorMessage = "group already exists";
+                    return View("Error");
+                }
+
+                FileGroup fileGroup = new FileGroup();
+                fileGroup.BandId = bandId;
+                fileGroup.GroupName = groupName;
+                database.FileGroups.Add(fileGroup);
+                database.SaveChanges();
+
+                ViewBag.SuccessMessage = "group created";
+                return View("Success");
+            }
+        }
+
+        public ActionResult Groups(int bandId)
+        {
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                return PartialView("_GroupsPartial", database.FileGroups.Where(f => f.BandId == bandId).ToList());
+            }
+        }
+
         public ActionResult UploadFile(int bandId)
         {
             BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
