@@ -186,17 +186,13 @@ namespace band.Content
                 return RedirectToAction("Join", "Band");
             }
 
-            string fileName = "";
-
-
             using (DatabaseContext database = new DatabaseContext())
             {
                 FileEntry fileEntry = database.FileEntries.Find(fileId);
 
                 string path = Server.MapPath("~/App_Data/" + bandId + "/" + fileId);
-                //string type = System.Web.MimeMapping.GetMimeMapping(fileEntry.FileName);
 
-                return File(path, "application/pdf", "Report.pdf");
+                return File(path, "application/" + Path.GetExtension(fileEntry.FileName), fileEntry.FileName);
             }
         }
 
