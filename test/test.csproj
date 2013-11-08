@@ -441,6 +441,9 @@
   <ItemGroup>
     <Content Include="Views\Calendar\Day.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\FileCabinet\DirectoryListing.cshtml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
