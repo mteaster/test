@@ -1,5 +1,6 @@
 @model test.Models.Calendar.MonthModel
 
+
 @{
     ViewBag.Title = "Calendar";
 }
@@ -100,15 +101,36 @@
             int currentDayOfWeek = Model.FirstDayOfWeek;
             int currentDay = 1;
         
+            var monthModel = new test.Models.Calendar.MonthModel();
+            var monthEvents = monthModel.Events;
+            bool hasEvent;
+            
             while(currentDay <= Model.DaysInMonth)
             {
+                hasEvent = false;
                 if(currentDayOfWeek == 7)
                 {
                     currentDayOfWeek = 0;
                     @:</tr><tr>
                 }
-
-                @:<td><a href="/Calendar/Day/@ViewBag.BandId/@currentDay/@Model.CurrentMonth/@Model.CurrentMonthYear">@currentDay</a></td>
+                
+                foreach ( test.Models.Calendar.CalendarEvent ev in monthEvents)
+                {
+                    if (ev.EventTime.Day == currentDay)
+                    {
+                        hasEvent = true;
+                    }
+                }
+               if(hasEvent)
+               {
+                   @:<td><a href="/Calendar/Day/@ViewBag.BandId/@currentDay/@Model.CurrentMonth/@Model.CurrentMonthYear">@currentDay</a></td>
+               }
+               else
+               {
+                   //@:<td><a href="/Calendar/Day/@ViewBag.BandId/@currentDay/@Model.CurrentMonth/@Model.CurrentMonthYear">@currentDay</a></td>
+               }
+                
+                
         
                 currentDayOfWeek++;
                 currentDay++;   
