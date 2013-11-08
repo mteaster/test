@@ -1,17 +1,8 @@
-﻿@model string
-
-@{
+﻿@{
     ViewBag.Title = "Directory Listing";
 }
 
-@if (Model != null)
-{
-    <p>@Model</p>
-}
-else
-{
-    <p>Model is null</p>
-}
+@ViewBag.SuccessMessage
 
 <form action="/FileCabinet/DirectoryListing?bandId=@ViewBag.BandId" method="post">
   <label for="path">Path:</label>

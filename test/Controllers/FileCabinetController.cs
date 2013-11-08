@@ -87,7 +87,8 @@ namespace band.Content
         [HttpPost]
         public ActionResult DirectoryListing(int bandId, string path)
         {
-            return View("DirectoryListing", "hey look at me");
+            ViewBag.SuccessMessage = "hey look at me";
+            return View();
         }
 
         [HttpPost]
