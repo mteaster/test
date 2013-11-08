@@ -1,13 +1,14 @@
 ﻿@model IEnumerable<test.Models.FileCabinet.FileEntry>
 
 @{
-    ViewBag.Title = "Directory Listing";
+    ViewBag.Title = "Directory listing";
 }
 
 <form action="/FileCabinet/DirectoryListing?bandId=@ViewBag.BandId" method="post">
   <label for="path">Path:</label>
   <input name="path" id="path" />
-  <input type="submit" />
+  <br />
+  <input type="submit" value="ls" />
 </form>
 
 @if(Model != null)
