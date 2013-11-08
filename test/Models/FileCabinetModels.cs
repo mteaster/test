@@ -10,6 +10,15 @@ namespace test.Models.FileCabinet
     [Table("FileEntry")]
     public class FileEntry
     {
+        public FileEntry() {}
+        public FileEntry(string fileName, int bandId, int groupId, int uploaderId)
+        {
+            this.FileName = fileName;
+            this.GroupId = groupId;
+            this.BandId = bandId;
+            this.UploaderId = uploaderId;
+        }
+
         [Key]
         [Required]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
@@ -18,14 +27,14 @@ namespace test.Models.FileCabinet
         [Required]
         public string FileName { get; set; }
 
-        public int GroupId { get; set; }
-        [ForeignKey("GroupId")]
-        public virtual FileGroup FileGroup { get; set; }
-
         [Required]
         public int BandId { get; set; }
         [ForeignKey("BandId")]
         public virtual BandProfile BandProfile { get; set; }
+
+        public int GroupId { get; set; }
+        [ForeignKey("GroupId")]
+        public virtual FileGroup FileGroup { get; set; }
 
         [Required]
         public int UploaderId { get; set; }

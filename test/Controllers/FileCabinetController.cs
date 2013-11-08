@@ -109,33 +109,16 @@ namespace band.Content
                 return RedirectToAction("Join", "Band");
             }
 
-            if(file.ContentLength <= 0)
+            if (file.ContentLength <= 0 || file.ContentLength > 100)
             {
-                ViewBag.ErrorMessage = "File size is less than or equal to 0"; 
-                return View("Error");
-            }
-            
-            if(file.ContentLength > 100)
-            {
-                ViewBag.ErrorMessage = "File size is greater than 100 (whatever that means)";
-                return View("Error");
-            }
-            
-            string directory = Server.MapPath("~/App_Data/" + bandId + "/");
-            if (!Directory.Exists(directory))
-            {
-                Directory.CreateDirectory(directory);
+                return null;
             }
 
-            FileEntry fileEntry = new FileEntry();
-            fileEntry.BandId = bandId;
-            fileEntry.UploaderId = WebSecurity.CurrentUserId;
-            fileEntry.FileName = Path.GetFileName(file.FileName);
-            fileEntry.GroupId = groupId;
+            FileEntry fileEntry = new FileEntry(Path.GetFileName(file.FileName), bandId, groupId, WebSecurity.CurrentUserId);
 
             using (DatabaseContext database = new DatabaseContext())
             {
-                
+
                 if (database.FileEntries.Where(f => f.BandId == fileEntry.BandId
                                         && f.GroupId == fileEntry.GroupId
                                         && f.FileName == fileEntry.FileName).Any())
@@ -147,7 +130,12 @@ namespace band.Content
                 database.FileEntries.Add(fileEntry);
                 database.SaveChanges();
             }
- 
+
+            string directory = Server.MapPath("~/App_Data/" + bandId + "/");
+            if (!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
             file.SaveAs(directory + fileEntry.FileId);
 
             StreamReader reader = new StreamReader(file.InputStream);
