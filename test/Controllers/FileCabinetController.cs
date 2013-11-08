@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using test.Models.FileCabinet;
 using System.Web.Security;
+using System.Collections.Generic;
 
 namespace band.Content
 {
@@ -87,8 +88,13 @@ namespace band.Content
         [HttpPost]
         public ActionResult DirectoryListing(int bandId, string path)
         {
-            ViewBag.SuccessMessage = "hey look at me";
-            return View();
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                ViewBag.BandId = bandId;
+                List<FileEntry> fileEntries = database.FileEntries.Where(f => f.BandId == bandId 
+                                                                            && f.FilePath.StartsWith(path)).ToList();
+                return View(fileEntries);
+            }
         }
 
         [HttpPost]

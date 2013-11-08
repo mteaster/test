@@ -1,8 +1,8 @@
-﻿@{
+﻿@model IEnumerable<test.Models.FileCabinet.FileEntry>
+
+@{
     ViewBag.Title = "Directory Listing";
 }
-
-@ViewBag.SuccessMessage
 
 <form action="/FileCabinet/DirectoryListing?bandId=@ViewBag.BandId" method="post">
   <label for="path">Path:</label>
@@ -10,3 +10,24 @@
   <input type="submit" />
 </form>
 
+<table class="pretty" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.FileId)</th>
+        <th>@Html.DisplayNameFor(model => model.FilePath)</th>
+        <th>@Html.DisplayNameFor(model => model.FileName)</th>
+        <th>@Html.DisplayNameFor(model => model.UploaderId)</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.FileId)</td>
+            <td>@Html.DisplayFor(modelItem => item.FilePath)</td>
+            <td>@Html.DisplayFor(modelItem => item.FileName)</td>
+            <td>@Html.DisplayFor(modelItem => item.UploaderId)</td>
+        </tr>
+    }
+
+</table>
+
+@ViewBag.SuccessMessage
