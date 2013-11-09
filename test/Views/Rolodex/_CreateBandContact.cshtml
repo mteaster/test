@@ -1,11 +1,11 @@
 ﻿@model test.Models.Rolodex.BandContact
 
 
-@using (Html.BeginForm("CreateBandContact", "Rolodex"))
+@using (Html.BeginForm("CreateBandContact", "Rolodex", new { bandId = ViewBag.BandId }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
-   //@(Model.BandId = ViewBag.BandId);
+    //@(Model.BandId = ViewBag.BandId);
     <fieldset>
         <legend>Registration Form</legend>
         <ol>
