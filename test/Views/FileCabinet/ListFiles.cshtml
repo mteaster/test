@@ -12,6 +12,7 @@
         <th>@Html.DisplayNameFor(model => model.BandId)</th>
         <th>@Html.DisplayNameFor(model => model.UploaderId)</th>
         <th>Download</th>
+        <th>Delete</th>
     </tr>
 
     @foreach (var item in Model)
@@ -22,7 +23,8 @@
             <td>@Html.DisplayFor(modelItem => item.GroupId)</td>
             <td>@Html.DisplayFor(modelItem => item.BandId)</td>
             <td>@Html.DisplayFor(modelItem => item.UploaderId)</td>
-            <td>@Html.ActionLink("Download", "DownloadFile", new { bandId = item.BandId, fileId = item.FileId }, null)</td>
+            <td>@Html.ActionLink("Download", "DownloadFile", new { bfileId = item.FileId }, null)</td>
+            <td>@Html.ActionLink("Delete", "DeleteFile", new { fileId = item.FileId }, null)</td>
         </tr>
     }
 

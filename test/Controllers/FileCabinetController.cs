@@ -1,14 +1,13 @@
-﻿using System.Web.Mvc;
+﻿using System.IO;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Security;
 using test.Models;
+using test.Models.Band;
+using test.Models.FileCabinet;
 using test.Stuff;
 using WebMatrix.WebData;
-using test.Models.Band;
-using System.Web;
-using System.IO;
-using System.Linq;
-using test.Models.FileCabinet;
-using System.Web.Security;
-using System.Collections.Generic;
 
 namespace band.Content
 {
@@ -131,69 +130,89 @@ namespace band.Content
         [HttpPost]
         public ActionResult UploadFile(int bandId, int groupId, HttpPostedFileBase file)
         {
-            BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
-            ViewBag.BandId = bandId;
-            ViewBag.BandName = bandProfile.BandName;
-            
-            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
-            {
-                return RedirectToAction("Join", "Band");
-            }
-
-            if (file.ContentLength <= 0 || file.ContentLength > 1048576)
-            {
-                ViewBag.ErrorMessage = "file sucks";
-                return View("Error");
-            }
-
-            FileEntry fileEntry = new FileEntry(Path.GetFileName(file.FileName), bandId, groupId, WebSecurity.CurrentUserId);
-
             using (DatabaseContext database = new DatabaseContext())
             {
+                ViewBag.BandId = bandId;
+                ViewBag.BandName = database.BandProfiles.Find(bandId).BandName;
 
-                if (database.FileEntries.Where(f => f.BandId == fileEntry.BandId
-                                        && f.GroupId == fileEntry.GroupId
-                                        && f.FileName == fileEntry.FileName).Any())
+                if (database.BandMemberships.Find(bandId, WebSecurity.CurrentUserId) == null
+                    && !Roles.IsUserInRole("Administrator"))
+                {
+                    return RedirectToAction("Join", "Band");
+                }
+
+                if (file.ContentLength <= 0 || file.ContentLength > 1048576)
+                {
+                    ViewBag.ErrorMessage = "file sucks";
+                    return View("Error");
+                }
+
+                string fileName = Path.GetFileName(file.FileName);
+
+                if (database.FileEntries.Where(f => f.BandId == bandId
+                                        && f.GroupId == groupId
+                                        && f.FileName == fileName).Any())
                 {
                     ViewBag.ErrorMessage = "file already exists";
                     return View("Error");
                 }
 
+                FileEntry fileEntry = new FileEntry(fileName, bandId, groupId, WebSecurity.CurrentUserId);
+
                 database.FileEntries.Add(fileEntry);
                 database.SaveChanges();
+
+                string directory = Server.MapPath("~/App_Data/" + bandId + "/");
+
+                if (!Directory.Exists(directory))
+                {
+                    Directory.CreateDirectory(directory);
+                }
+                file.SaveAs(directory + fileEntry.FileId);
+
+                MessageBoardUtil.AddFilePost(bandId, fileEntry.FileId);
+
+                return View(fileEntry);
             }
-
-            string directory = Server.MapPath("~/App_Data/" + bandId + "/");
-            if (!Directory.Exists(directory))
-            {
-                Directory.CreateDirectory(directory);
-            }
-            file.SaveAs(directory + fileEntry.FileId);
-
-            StreamReader reader = new StreamReader(file.InputStream);
-            @ViewBag.Content = reader.ReadToEnd() + file.ContentType;
-
-            MessageBoardUtil.AddFilePost(bandId, fileEntry.FileId);
-
-            return View(fileEntry);
         }
 
-
-        public ActionResult DownloadFile(int bandId, int fileId)
+        public ActionResult DownloadFile(int fileId)
         {
-            BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
-            ViewBag.BandId = bandId;
-            ViewBag.BandName = bandProfile.BandName;
-            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
-            {
-                return RedirectToAction("Join", "Band");
-            }
-
             using (DatabaseContext database = new DatabaseContext())
             {
                 FileEntry fileEntry = database.FileEntries.Find(fileId);
+                ViewBag.BandId = fileEntry.BandId;
+                ViewBag.BandName = database.BandProfiles.Find(fileEntry.BandId).BandName;
 
-                string path = Server.MapPath("~/App_Data/" + bandId + "/" + fileId);
+                if (database.BandMemberships.Find(fileEntry.BandId, WebSecurity.CurrentUserId) == null
+                    && !Roles.IsUserInRole("Administrator"))
+                {
+                    return RedirectToAction("Join", "Band");
+                }
+
+                string path = Server.MapPath("~/App_Data/" + fileEntry.BandId + "/" + fileId);
+
+                return File(path, "application/" + Path.GetExtension(fileEntry.FileName), fileEntry.FileName);
+            }
+        }
+
+        public ActionResult DeleteFile(int fileId)
+        {
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                FileEntry fileEntry = database.FileEntries.Find(fileId);
+                ViewBag.BandId = fileEntry.BandId;
+                ViewBag.BandName = database.BandProfiles.Find(fileEntry.BandId).BandName;
+
+                if (database.BandMemberships.Find(fileEntry.BandId, WebSecurity.CurrentUserId) == null
+                    && !Roles.IsUserInRole("Administrator"))
+                {
+                    return RedirectToAction("Join", "Band");
+                }
+
+                string path = Server.MapPath("~/App_Data/" + fileEntry.BandId + "/" + fileId);
+
+                System.IO.File.Delete(path);
 
                 return File(path, "application/" + Path.GetExtension(fileEntry.FileName), fileEntry.FileName);
             }
