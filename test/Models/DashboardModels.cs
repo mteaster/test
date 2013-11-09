@@ -7,13 +7,34 @@ using test.Models.Account;
 
 namespace test.Models.Dashboard
 {
+    public enum PostType
+    {
+        Message,
+        MemberJoin,
+        MemberLeave,
+        FileUpload
+    }
+
     [Table("MessageBoardPost")]
     public class MessageBoardPost
     {
+        public MessageBoardPost() {}
+        public MessageBoardPost(int bandId, int posterId, PostType postType, DateTime postTime, string content)
+        {
+            this.BandId = bandId;
+            this.PosterId = posterId;
+            this.PostType = (int)postType;
+            this.PostTime = postTime;
+            this.Content = content;
+        }
+
         [Key]
         [Required]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int PostId { get; set; }
+
+        [Required]
+        public int PostType { get; set; }
 
         [Required]
         public int BandId { get; set; }
@@ -34,6 +55,17 @@ namespace test.Models.Dashboard
 
     public class MessageBoardPostModel
     {
+        public MessageBoardPostModel() {}
+        public MessageBoardPostModel(int postId, int posterId, string posterName, PostType postType, DateTime postTime, string content)
+        {
+            this.PostId = postId;
+            this.PosterId = posterId;
+            this.PosterName = posterName;
+            this.PostType = postType;
+            this.PostTime = postTime;
+            this.Content = content;
+        }
+
         [Required]
         [Display(Name = "ID")]
         public int PostId { get; set; }
@@ -45,6 +77,9 @@ namespace test.Models.Dashboard
         [Required]
         [Display(Name = "Name")]
         public string PosterName { get; set; }
+
+        [Required]
+        public PostType PostType { get; set; }
 
         [Required]
         [Display(Name = "Time")]

@@ -54,16 +54,16 @@ namespace test.Controllers
             return View(model);
         }
 
-        //public ActionResult CreateAdmin()
-        //{
-        //    WebSecurity.CreateUserAndAccount("admin", "password", new { DisplayName = "admin" });
-        //    Roles.CreateRole("Administrator");
-        //    Roles.AddUserToRole("admin", "Administrator");
+        public ActionResult CreateAdmin()
+        {
+            WebSecurity.CreateUserAndAccount("admin", "password", new { DisplayName = "admin" });
+            Roles.CreateRole("Administrator");
+            Roles.AddUserToRole("admin", "Administrator");
 
-        //    ViewBag.StatusMessage = "Admin account created!";
+            ViewBag.StatusMessage = "Admin account created!";
 
-        //    return View("Success");
-        //}
+            return View("Success");
+        }
 
         public ActionResult DateTest()
         {
