@@ -6,6 +6,7 @@ using test.Models.Calendar;
 using test.Models.Dashboard;
 using test.Models.FileCabinet;
 using test.Models.Test;
+using test.Models.Rolodex;
 
 namespace test.Models
 {
