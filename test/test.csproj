@@ -183,7 +183,7 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\BandModels.cs" />
     <Compile Include="Models\CalendarModels.cs" />
-    <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\RolodexModels.cs" />
     <Compile Include="Models\FileCabinetModels.cs" />
     <Compile Include="Models\DatabaseContext.cs" />
     <Compile Include="Models\DashboardModels.cs" />
