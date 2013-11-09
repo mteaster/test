@@ -4,6 +4,7 @@ using test.Stuff;
 using WebMatrix.WebData;
 using test.Models.Band;
 using System.Web.Security;
+using test.Models.Rolodex;
 
 namespace band.Controllers
 {
