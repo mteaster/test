@@ -329,36 +329,5 @@ namespace test.Stuff
                 return bands;
             }
         }
-
-        // Testing
-
-        public static int SuperRegister(string bandName, int creatorId, string password)
-        {
-            using (DatabaseContext database = new DatabaseContext())
-            {
-                BandProfile profile = new BandProfile(bandName, creatorId, Crypto.HashPassword(password));
-
-                database.BandProfiles.Add(profile);
-
-                BandMembership membership = new BandMembership(profile.BandId, creatorId);
-                database.BandMemberships.Add(membership);
-
-                database.SaveChanges();
-
-                return profile.BandId;
-            }
-        }
-
-        public static void SuperJoin(int bandId, int userId)
-        {
-            using (DatabaseContext database = new DatabaseContext())
-            {
-                BandProfile profile = BandProfileFor(bandId, database);
-
-                BandMembership membership = new BandMembership(bandId, userId);
-                database.BandMemberships.Add(membership);
-                database.SaveChanges();
-            }
-        }
     }
 }

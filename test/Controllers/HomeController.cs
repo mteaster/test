@@ -77,15 +77,15 @@ namespace test.Controllers
             WebSecurity.CreateUserAndAccount("test6", "password", new { DisplayName = "James" });
             WebSecurity.CreateUserAndAccount("test7", "password", new { DisplayName = "Toby" });
 
-            int testBandId = BandUtil.SuperRegister("Thomas and Friends", WebSecurity.GetUserId("admin"), "password");
+            int testBandId = TestUtil.MakeBand("Thomas and Friends", WebSecurity.GetUserId("admin"), "password");
 
-            BandUtil.SuperJoin(testBandId, WebSecurity.GetUserId("test1"));
-            BandUtil.SuperJoin(testBandId, WebSecurity.GetUserId("test2"));
-            BandUtil.SuperJoin(testBandId, WebSecurity.GetUserId("test3"));
-            BandUtil.SuperJoin(testBandId, WebSecurity.GetUserId("test4"));
-            BandUtil.SuperJoin(testBandId, WebSecurity.GetUserId("test5"));
-            BandUtil.SuperJoin(testBandId, WebSecurity.GetUserId("test6"));
-            BandUtil.SuperJoin(testBandId, WebSecurity.GetUserId("test7"));
+            TestUtil.PutInBand(testBandId, WebSecurity.GetUserId("test1"));
+            TestUtil.PutInBand(testBandId, WebSecurity.GetUserId("test2"));
+            TestUtil.PutInBand(testBandId, WebSecurity.GetUserId("test3"));
+            TestUtil.PutInBand(testBandId, WebSecurity.GetUserId("test4"));
+            TestUtil.PutInBand(testBandId, WebSecurity.GetUserId("test5"));
+            TestUtil.PutInBand(testBandId, WebSecurity.GetUserId("test6"));
+            TestUtil.PutInBand(testBandId, WebSecurity.GetUserId("test7"));
 
             ViewBag.SuccessMessage = "Choo choo!";
             return View("Success");
