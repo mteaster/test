@@ -10,9 +10,9 @@ namespace test.Models.Dashboard
     public enum PostType
     {
         Message,
-        MemberJoin,
-        MemberLeave,
-        FileUpload
+        Join,
+        Leave,
+        File
     }
 
     [Table("MessageBoardPost")]

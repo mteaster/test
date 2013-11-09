@@ -90,7 +90,7 @@ namespace band.Controllers
 
             if (ModelState.IsValid)
             {
-                MessageBoardUtil.AddMessage(bandId, model.Content);
+                MessageBoardUtil.AddMessagePost(bandId, model.Content);
                 ViewBag.SuccessMessage = "Message posted!";
             }
             else

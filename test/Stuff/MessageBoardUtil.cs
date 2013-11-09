@@ -16,7 +16,7 @@ namespace test.Stuff
 
     public class MessageBoardUtil
     {
-        public static void AddMessage(int bandId, string content)
+        public static void AddMessagePost(int bandId, string content)
         {
             using (DatabaseContext database = new DatabaseContext())
             {
@@ -24,37 +24,37 @@ namespace test.Stuff
             }
         }
 
-        public static void AddMemberJoin(int bandId)
+        public static void AddJoinPost(int bandId)
         {
             using (DatabaseContext database = new DatabaseContext())
             {
                 string content = database.UserProfiles.Find(WebSecurity.CurrentUserId).DisplayName + " joined the band.";
-                AddPost(bandId, PostType.MemberJoin, content, database);
+                AddPost(bandId, PostType.Join, content, database);
             }
         }
 
-        public static void AddMemberLeave(int bandId)
+        public static void AddLeavePost(int bandId)
         {
             using (DatabaseContext database = new DatabaseContext())
             {
                 string content = database.UserProfiles.Find(WebSecurity.CurrentUserId).DisplayName + " left the band.";
-                AddPost(bandId, PostType.MemberLeave, content, database);
+                AddPost(bandId, PostType.Leave, content, database);
             }
         }
 
-        public static void AddFileUpload(int bandId, int fileId)
+        public static void AddFilePost(int bandId, int fileId)
         {
             using (DatabaseContext database = new DatabaseContext())
             {
                 string content = database.UserProfiles.Find(WebSecurity.CurrentUserId).DisplayName + " uploaded a file.";
-                AddPost(bandId, PostType.FileUpload, content, database);
+                AddPost(bandId, PostType.File, content, database);
             }
         }
 
         private static void AddPost(int bandId, PostType type, string content, DatabaseContext database)
         {
             MessageBoardPost post = new MessageBoardPost(bandId, WebSecurity.CurrentUserId,
-                            PostType.MemberLeave, DateTime.UtcNow, content);
+                            PostType.Leave, DateTime.UtcNow, content);
 
             database.MessageBoardPosts.Add(post);
             database.SaveChanges();

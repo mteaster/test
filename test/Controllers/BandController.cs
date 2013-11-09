@@ -99,6 +99,7 @@ namespace test.Controllers
 
             if (BandUtil.Join(bandId, model.Password))
             {
+                MessageBoardUtil.AddJoinPost(bandId);
                 return RedirectToAction("Index", "Dashboard");
             }
             else
@@ -114,6 +115,7 @@ namespace test.Controllers
 
             if (BandUtil.Leave(bandId))
             {
+                MessageBoardUtil.AddLeavePost(bandId);
                 ViewBag.SuccessMessage = "You left '" + bandProfile.BandName + "'.";
                 return View("Success");
             }
