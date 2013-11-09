@@ -60,6 +60,7 @@ namespace band.Controllers
                 // If all is good, post to DB
                 using (DatabaseContext database = new DatabaseContext())
                 {
+                    bandContact.BandId = ViewBag.BandId;
                     database.BandContacts.Add(bandContact);
                     database.SaveChanges();
                 }
