@@ -140,9 +140,10 @@ namespace band.Content
                 return RedirectToAction("Join", "Band");
             }
 
-            if (file.ContentLength <= 0 || file.ContentLength > 100)
+            if (file.ContentLength <= 0 || file.ContentLength > 1048576)
             {
-                return null;
+                ViewBag.ErrorMessage = "file sucks";
+                return View("Error");
             }
 
             FileEntry fileEntry = new FileEntry(Path.GetFileName(file.FileName), bandId, groupId, WebSecurity.CurrentUserId);
