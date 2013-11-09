@@ -54,7 +54,7 @@ namespace test.Stuff
         private static void AddPost(int bandId, PostType type, string content, DatabaseContext database)
         {
             MessageBoardPost post = new MessageBoardPost(bandId, WebSecurity.CurrentUserId,
-                            PostType.Leave, DateTime.UtcNow, content);
+                            type, DateTime.UtcNow, content);
 
             database.MessageBoardPosts.Add(post);
             database.SaveChanges();
