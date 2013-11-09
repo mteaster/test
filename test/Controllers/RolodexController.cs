@@ -57,13 +57,20 @@ namespace band.Controllers
 
 
 
-
-                // If all is good, post to DB
-                using (DatabaseContext database = new DatabaseContext())
+                if (bandContact.BandId == null)
                 {
-                    
-                    database.BandContacts.Add(bandContact);
-                    database.SaveChanges();
+                    ModelState.AddModelError("", "No BandId Set");
+                }
+                else
+                {
+
+                    // If all is good, post to DB
+                    using (DatabaseContext database = new DatabaseContext())
+                    {
+
+                        database.BandContacts.Add(bandContact);
+                        database.SaveChanges();
+                    }
                 }
             }
             return RedirectToAction("Index", "Home");
