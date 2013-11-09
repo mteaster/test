@@ -172,7 +172,9 @@ namespace band.Content
 
             StreamReader reader = new StreamReader(file.InputStream);
             @ViewBag.Content = reader.ReadToEnd() + file.ContentType;
-            
+
+            MessageBoardUtil.AddFilePost(bandId, fileEntry.FileId);
+
             return View(fileEntry);
         }
 
