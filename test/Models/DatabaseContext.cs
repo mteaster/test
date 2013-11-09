@@ -21,6 +21,7 @@ namespace test.Models
         public DbSet<FileEntry> FileEntries { get; set; }
         public DbSet<FileGroup> FileGroups { get; set; }
         public DbSet<Log> Logs { get; set; }
+        public DbSet<BandContact> BandContacts { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

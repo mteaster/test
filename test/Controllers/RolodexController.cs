@@ -46,6 +46,21 @@ namespace band.Controllers
         [HttpPost]
         public ActionResult CreateBandContact(BandContact bandContact)
         {
+            
+            if (ModelState.IsValid)
+            {
+                // Validation Code Here
+
+
+
+
+                // If all is good, post to DB
+                using (DatabaseContext database = new DatabaseContext())
+                {
+                    database.BandContacts.Add(bandContact);
+                    database.SaveChanges();
+                }
+            }
             return RedirectToAction("Index", "Home");
         }
 
