@@ -9,18 +9,26 @@
         {
             <li id="post-container-@item.PostId">
                 <div class="post" id="post-@item.PostId">
-                    <span class="messageBoardName">@Html.DisplayFor(modelItem => item.PosterName)</span><br />
-                    <span class="messageBoardTime">@Html.DisplayFor(modelItem => item.PostTime)</span><br />
-
-                    <div id="post-content-@item.PostId" class="messageBoardMessage">@Html.Raw(item.Content)</div>
-
-                    @if (item.PosterId == WebSecurity.CurrentUserId)
+                    @if (item.PostType == test.Models.Dashboard.PostType.Message)
                     {
-                        <a class="messageBoardLink" href="javascript:initiateEdit(@item.PostId);">Edit</a>
-                        @Html.ActionLink("Delete", "DeletePost", "Dashboard", new { PostId = item.PostId }, new { @class = "messageBoardLink" })
-                    }    
+                        <span class="messageBoardName">@Html.DisplayFor(modelItem => item.PosterName)</span><br />
+                        <span class="messageBoardTime">@Html.DisplayFor(modelItem => item.PostTime)</span><br />
+
+                        <div id="post-content-@item.PostId" class="messageBoardMessage">@Html.Raw(item.Content)</div>
+
+                        if (item.PosterId == WebSecurity.CurrentUserId)
+                        {
+                            <a class="messageBoardLink" href="javascript:initiateEdit(@item.PostId);">Edit</a>
+                            @Html.ActionLink("Delete", "DeletePost", "Dashboard", new { PostId = item.PostId }, new { @class = "messageBoardLink" })
+                        }    
+                    }
+                    else
+                    {
+                        <div id="post-content-@item.PostId" class="messageBoardMessage">@Html.Raw(item.Content)</div>
+                    }
                 </div>
             </li>
+
         }
     </ol>
 }
