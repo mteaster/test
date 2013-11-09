@@ -67,7 +67,7 @@ namespace test.Controllers
         {
             WebSecurity.CreateUserAndAccount("admin", "password", new { DisplayName = "Sir Topham Hatt" });
             Roles.CreateRole("Administrator");
-            Roles.AddUserToRole("Sir Topham Hatt", "Administrator");
+            Roles.AddUserToRole("admin", "Administrator");
 
             WebSecurity.CreateUserAndAccount("test1", "password", new { DisplayName = "Thomas" });
             WebSecurity.CreateUserAndAccount("test2", "password", new { DisplayName = "Edward" });
