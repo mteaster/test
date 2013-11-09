@@ -54,12 +54,17 @@ namespace band.Controllers
             if (ModelState.IsValid)
             {
                 // Validation Code Here
-                
+                if (!bandContact.Email.Contains('@'))
+                {
+                    ModelState.AddModelError("", "Please enter a valid email address");
+                    return View(bandContact);
+                }
 
 
                 if (bandContact.BandId == null)
                 {
                     ModelState.AddModelError("", "No BandId Set");
+                    return View(bandContact);
                 }
                 else
                 {
