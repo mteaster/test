@@ -191,6 +191,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Stuff\BandUtil.cs" />
     <Compile Include="Stuff\CalendarUtil.cs" />
+    <Compile Include="Stuff\TestUtil.cs" />
     <Compile Include="Stuff\MessageBoardUtil.cs" />
   </ItemGroup>
   <ItemGroup>
