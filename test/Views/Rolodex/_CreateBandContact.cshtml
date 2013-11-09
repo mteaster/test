@@ -1,7 +1,7 @@
 ﻿@model test.Models.Rolodex.BandContact
 
 
-@using (Html.BeginForm("CreateBandContact", "Rolodex", new { bandId = ViewBag.BandId }))
+@using (Html.BeginForm("CreateBandContact", "Rolodex"))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
@@ -30,6 +30,7 @@
                 @Html.TextBoxFor(m => m.Notes)
             </li>
         </ol>
+        <input type ="hidden" name="BandId" value="@ViewBag.BandId" /> 
         <input type="submit" value="Save" />
     </fieldset>
 }

@@ -48,13 +48,13 @@ namespace band.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateBandContact(BandContact bandContact, int bandId)
+        public ActionResult CreateBandContact(BandContact bandContact)
         {
             
             if (ModelState.IsValid)
             {
                 // Validation Code Here
-                bandContact.BandId = bandId;
+                
 
 
                 if (bandContact.BandId == null)
