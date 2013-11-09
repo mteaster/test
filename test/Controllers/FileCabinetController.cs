@@ -172,7 +172,8 @@ namespace band.Content
 
                 MessageBoardUtil.AddFilePost(bandId, fileEntry.FileId);
 
-                return View(fileEntry);
+                ViewBag.SuccessMessage = fileEntry.FileName + " uploaded.";
+                return View("Success");
             }
         }
 
