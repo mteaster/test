@@ -54,45 +54,41 @@ namespace test.Controllers
             return View(model);
         }
 
-        public ActionResult CreateAdmin()
+        public ActionResult Admin()
         {
-            WebSecurity.CreateUserAndAccount("admin", "password", new { DisplayName = "admin" });
-            Roles.CreateRole("Administrator");
-            Roles.AddUserToRole("admin", "Administrator");
 
-            ViewBag.StatusMessage = "Admin account created!";
+
+            ViewBag.SuccessMessage = "Admin account created!";
 
             return View("Success");
         }
 
-        public ActionResult DateTest()
+        public ActionResult ThomasAndFriends()
         {
-            ViewBag.StatusMessage = "what am i doing here";
+            WebSecurity.CreateUserAndAccount("admin", "password", new { DisplayName = "Sir Topham Hatt" });
+            Roles.CreateRole("Administrator");
+            Roles.AddUserToRole("Sir Topham Hatt", "Administrator");
 
-            //WebSecurity.CreateUserAndAccount("admin", "password", new { DisplayName = "admin" });
-            //Roles.CreateRole("Administrator");
-            //Roles.AddUserToRole("admin", "Administrator");
+            WebSecurity.CreateUserAndAccount("test1", "password", new { DisplayName = "Thomas" });
+            WebSecurity.CreateUserAndAccount("test2", "password", new { DisplayName = "Edward" });
+            WebSecurity.CreateUserAndAccount("test3", "password", new { DisplayName = "Henry" });
+            WebSecurity.CreateUserAndAccount("test4", "password", new { DisplayName = "Gordon" });
+            WebSecurity.CreateUserAndAccount("test5", "password", new { DisplayName = "Percy" });
+            WebSecurity.CreateUserAndAccount("test6", "password", new { DisplayName = "James" });
+            WebSecurity.CreateUserAndAccount("test7", "password", new { DisplayName = "Toby" });
 
-            return View();
-        }
+            int testBandId = BandUtil.SuperRegister("Thomas and Friends", WebSecurity.GetUserId("admin"), "password");
 
-        public ActionResult FileUpload()
-        {
-            return View();
-        }
+            BandUtil.SuperJoin(testBandId, WebSecurity.GetUserId("test1"));
+            BandUtil.SuperJoin(testBandId, WebSecurity.GetUserId("test2"));
+            BandUtil.SuperJoin(testBandId, WebSecurity.GetUserId("test3"));
+            BandUtil.SuperJoin(testBandId, WebSecurity.GetUserId("test4"));
+            BandUtil.SuperJoin(testBandId, WebSecurity.GetUserId("test5"));
+            BandUtil.SuperJoin(testBandId, WebSecurity.GetUserId("test6"));
+            BandUtil.SuperJoin(testBandId, WebSecurity.GetUserId("test7"));
 
-        [HttpPost]
-        public ActionResult FileUpload(HttpPostedFileBase file)
-        {
-            @ViewBag.Content = "IT'S NOTHING";
-
-            if (file.ContentLength > 0)
-            {
-                StreamReader reader = new StreamReader(file.InputStream);
-                @ViewBag.Content = reader.ReadToEnd();
-            }
-
-            return View();
+            ViewBag.SuccessMessage = "Choo choo!";
+            return View("Success");
         }
     }
 }

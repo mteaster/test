@@ -409,9 +409,6 @@
     <Content Include="Views\Shared\_MembersPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Home\FileUpload.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Home\DateTest.cshtml" />
   </ItemGroup>
   <ItemGroup>
