@@ -8,6 +8,10 @@ using test.Models;
 using WebMatrix.WebData;
 using test.Models.Band;
 using test.Models.Dashboard;
+using test.Models.Calendar;
+using test.Models.FileCabinet;
+using System.Web;
+using System.IO;
 
 namespace test.Stuff
 {
@@ -81,7 +85,8 @@ namespace test.Stuff
             }
         }
 
-        public static bool Delete(int bandId)
+        // Might just want to pass the band directory here, not the HttpServerUtilityBase
+        public static bool Delete(int bandId, HttpServerUtilityBase server)
         {
             using (DatabaseContext database = new DatabaseContext())
             {
@@ -104,6 +109,27 @@ namespace test.Stuff
                 foreach (MessageBoardPost post in posts)
                 {
                     database.MessageBoardPosts.Remove(post);
+                }
+
+                IQueryable<CalendarEvent> events = database.CalendarEvents.Where(e => e.BandId == bandId);
+                foreach (CalendarEvent evt in events)
+                {
+                    database.CalendarEvents.Remove(evt);
+                }
+
+                string directory = server.MapPath("~/App_data/" + bandId + "/");
+                IQueryable<FileEntry> files = database.FileEntries.Where(f => f.BandId == bandId);
+                foreach (FileEntry file in files)
+                {
+                    File.Delete(directory + file.FileId);
+                    database.FileEntries.Remove(file);
+                }
+                System.IO.Directory.Delete(directory);
+
+                IQueryable<FileGroup> groups= database.FileGroups.Where(g => g.BandId == bandId);
+                foreach (FileGroup group in groups)
+                {
+                    database.FileGroups.Remove(group);
                 }
 
                 database.SaveChanges();

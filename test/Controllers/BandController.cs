@@ -176,7 +176,7 @@ namespace test.Controllers
 
         public ActionResult Delete(int bandId)
         {
-            if (BandUtil.Delete(bandId))
+            if (BandUtil.Delete(bandId, Server))
             {
                 ViewBag.SuccessMessage = "Your band has been deleted.";
                 return View("Success");
