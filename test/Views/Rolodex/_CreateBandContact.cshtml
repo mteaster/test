@@ -5,6 +5,7 @@
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
+    @(Model.BandId = ViewBag.BandId);
     <fieldset>
         <legend>Registration Form</legend>
         <ol>
