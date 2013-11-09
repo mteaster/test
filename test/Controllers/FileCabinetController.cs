@@ -210,14 +210,14 @@ namespace band.Content
                     return RedirectToAction("Join", "Band");
                 }
 
-
                 string path = Server.MapPath("~/App_Data/" + fileEntry.BandId + "/" + fileId);
 
                 System.IO.File.Delete(path);
                 database.FileEntries.Remove(fileEntry);
                 database.SaveChanges();
 
-                return File(path, "application/" + Path.GetExtension(fileEntry.FileName), fileEntry.FileName);
+                ViewBag.SuccessMessage = fileEntry.FileName + " deleted.";
+                return View("Success");
             }
         }
 
