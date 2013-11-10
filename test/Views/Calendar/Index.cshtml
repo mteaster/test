@@ -150,4 +150,13 @@
 
 @Html.ActionLink("Next Month", "Month", "Calendar",
                         new { bandId = ViewBag.BandId, month = Model.NextMonth, year = Model.NextMonthYear }, null)
+@{
+    List<SelectListItem> yearList = new List<SelectListItem>();
+    yearList.Add(new SelectListItem { Text = (Model.CurrentMonthYear - 1).ToString(), Value = (Model.CurrentMonthYear - 1).ToString() });
+    yearList.Add(new SelectListItem { Text = Model.CurrentMonthYear.ToString(), Value = Model.CurrentMonthYear.ToString(), Selected = true });
+    yearList.Add(new SelectListItem { Text = (Model.CurrentMonthYear + 1).ToString(), Value = (Model.CurrentMonthYear + 1).ToString() });
+}
 
+@Html.DropDownList("yearSelect",yearList)
+
+<a id="goTo" href="URL"> Go to month </a>
