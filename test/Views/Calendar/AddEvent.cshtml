@@ -5,6 +5,10 @@
 }
 
 <style type="text/css">
+    #horiz ul{
+        list-style: none;
+    }
+
     #horiz li{
         display: inline;
     }
@@ -39,7 +43,10 @@
                 @Html.LabelFor(m => m.EventYear)
                 @Html.TextBoxFor(m => m.EventYear)
             </li>
-            <li id="horiz">
+
+        </ol>
+        <ul id="horiz">
+            <li >
                 @Html.LabelFor(m => m.EventHour)
                 @{
                     List<SelectListItem> items = new List<SelectListItem>();
@@ -59,16 +66,17 @@
                
                 @Html.DropDownListFor(m => m.EventHour, items)
             </li>
-            <li id ="horiz">
+            <li>
                 @Html.LabelFor(m => m.EventMinute)
                 @Html.TextBoxFor(m => m.EventMinute)
             </li>
-            <li id="horiz">
+            <li>
                 @Html.LabelFor(m => m.EventPeriod)
                 @Html.TextBoxFor(m => m.EventPeriod)
             </li>
+        </ul>
 
-        </ol>
+        
 
         <input type="submit" value="Add Event" />
     </fieldset>
