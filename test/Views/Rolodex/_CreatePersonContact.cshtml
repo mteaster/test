@@ -1,7 +1,7 @@
 ﻿@model test.Models.Rolodex.PeopleContact
 
 
-@using (Html.BeginForm("CreatePeopleContact", "Rolodex"))
+@using (Html.BeginForm("CreatePersonContact", "Rolodex", new { bandId = ViewBag.BandId }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()

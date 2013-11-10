@@ -43,64 +43,191 @@ namespace band.Controllers
 
         public ActionResult CreateBandContact(int BandId)
         {
+            // Check if band exists - if it does, get band profile
+            BandProfile bandProfile = BandUtil.BandProfileFor(BandId);
+
             ViewBag.BandId = BandId;
+            ViewBag.BandName = bandProfile.BandName;
+
+            // Check if the user is in the band
+            // If not, redirect to join a band page
+            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, BandId) && !Roles.IsUserInRole("Administrator"))
+            {
+                return RedirectToAction("Join", "Band");
+            }
+
+            // This will also display contacts for the band
             return PartialView("_CreateBandContact");
         }
 
         [HttpPost]
-        public ActionResult CreateBandContact(BandContact bandContact)
+        public ActionResult CreateBandContact( BandContact bandContact, int bandId)
         {
+            string error = "";
+            string success = "";
+            bool badData = false;
             
             if (ModelState.IsValid)
             {
                 // Validation Code Here
-                if (!bandContact.Email.Contains('@'))
+                if (bandContact.Name == "")
                 {
-                    ModelState.AddModelError("", "Please enter a valid email address");
-                    
+                    error = "Please Enter a Valid Name for this contact";
+                    badData = true;
+                }
+                if (bandContact.PhoneNumber == "" && !badData)
+                {
+                    error = "Please enter in a valid phone number";
+                    badData = true;
+                }
+                if (!bandContact.Email.Contains('@') && !badData)
+                {
+                    error = "Please Enter a Valid Email Address";
+                    badData = true;
                 }
 
-
-                if (bandContact.BandId == null)
+                if (!badData) // If all is good, post to DB
                 {
-                    ModelState.AddModelError("", "No BandId Set");
-                    
-                }
-                else
-                {
-
-                    // If all is good, post to DB
                     using (DatabaseContext database = new DatabaseContext())
                     {
-
+                        success = "Contact Added!";
+                        bandContact.BandId = bandId;
                         database.BandContacts.Add(bandContact);
                         database.SaveChanges();
                     }
                 }
             }
-            return RedirectToAction("Index", "Home");
+
+            ViewBag.bandId = bandId;
+            ViewBag.SuccessMessage = success;
+            ViewBag.ErrorMessage = error;
+            return RedirectToAction("CreateContact", "Rolodex", new { bandId = bandId});
         }
 
         public ActionResult CreatePersonContact(int BandId)
         {
+            // Check if band exists - if it does, get band profile
+            BandProfile bandProfile = BandUtil.BandProfileFor(BandId);
+
+            ViewBag.BandId = BandId;
+            ViewBag.BandName = bandProfile.BandName;
+
+            // Check if the user is in the band
+            // If not, redirect to join a band page
+            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, BandId) && !Roles.IsUserInRole("Administrator"))
+            {
+                return RedirectToAction("Join", "Band");
+            }
+
+            // This will also display contacts for the band
             return PartialView("_CreatePersonContact");
         }
 
         [HttpPost]
-        public ActionResult CreatePersonContact(PeopleContact peopleContract)
+        public ActionResult CreatePersonContact(PeopleContact peopleContact, int bandId)
         {
-            return RedirectToAction("Index", "Home");
+            string error = "";
+            string success = "";
+            bool badData = false;
+
+            if (ModelState.IsValid)
+            {
+                // Validation Code Here
+                if (peopleContact.Name == "")
+                {
+                    error = "Please Enter a Valid Name for this contact";
+                    badData = true;
+                }
+                if (peopleContact.PhoneNumber == "" && !badData)
+                {
+                    error = "Please enter in a valid phone number";
+                    badData = true;
+                }
+                if (!peopleContact.Email.Contains('@') && !badData)
+                {
+                    error = "Please Enter a Valid Email Address";
+                    badData = true;
+                }
+
+                if (!badData) // If all is good, post to DB
+                {
+                    using (DatabaseContext database = new DatabaseContext())
+                    {
+                        success = "Contact Added!";
+                        peopleContact.BandId = bandId;
+                        database.PeopleContacts.Add(peopleContact);
+                        database.SaveChanges();
+                    }
+                }
+            }
+
+            ViewBag.bandId = bandId;
+            ViewBag.SuccessMessage = success;
+            ViewBag.ErrorMessage = error;
+            return RedirectToAction("CreateContact", "Rolodex", new { bandId = bandId });
         }
 
         public ActionResult CreateVenueContact(int BandId)
         {
+            // Check if band exists - if it does, get band profile
+            BandProfile bandProfile = BandUtil.BandProfileFor(BandId);
+
+            ViewBag.BandId = BandId;
+            ViewBag.BandName = bandProfile.BandName;
+
+            // Check if the user is in the band
+            // If not, redirect to join a band page
+            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, BandId) && !Roles.IsUserInRole("Administrator"))
+            {
+                return RedirectToAction("Join", "Band");
+            }
+
+            // This will also display contacts for the band
             return PartialView("_CreateVenueContact");
         }
 
         [HttpPost]
-        public ActionResult CreateVenueContact(VenueContact venueContact)
+        public ActionResult CreateVenueContact(VenueContact venueContact, int bandId)
         {
-            return RedirectToAction("Index", "Home");
+            string error = "";
+            string success = "";
+            bool badData = false;
+
+            if (ModelState.IsValid)
+            {
+                // Validation Code Here
+                if (venueContact.Name == "")
+                {
+                    error = "Please Enter a Valid Name for this contact";
+                    badData = true;
+                }
+                if (venueContact.PhoneNumber == "" && !badData)
+                {
+                    error = "Please enter in a valid phone number";
+                    badData = true;
+                }
+                if (!venueContact.Email.Contains('@') && !badData)
+                {
+                    error = "Please Enter a Valid Email Address";
+                    badData = true;
+                }
+
+                if (!badData) // If all is good, post to DB
+                {
+                    using (DatabaseContext database = new DatabaseContext())
+                    {
+                        success = "Contact Added!";
+                        venueContact.BandId = bandId;
+                        database.VenueContacts.Add(venueContact);
+                        database.SaveChanges();
+                    }
+                }
+            }
+
+            ViewBag.bandId = bandId;
+            ViewBag.SuccessMessage = success;
+            ViewBag.ErrorMessage = error;
+            return RedirectToAction("CreateContact", "Rolodex", new { bandId = bandId });
         }
 
         [ChildActionOnly]

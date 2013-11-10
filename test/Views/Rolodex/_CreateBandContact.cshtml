@@ -1,11 +1,11 @@
 ﻿@model test.Models.Rolodex.BandContact
+<p class="message-success">@ViewBag.SuccessMessage</p>
+<p class="message-error">@ViewBag.ErrorMessage</p>
 
-
-@using (Html.BeginForm("CreateBandContact", "Rolodex"))
+@using (Html.BeginForm("CreateBandContact", "Rolodex", new { bandId = ViewBag.BandId }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
-    //@(Model.BandId = ViewBag.BandId);
     <fieldset>
         <legend>Registration Form</legend>
         <ol>
@@ -30,7 +30,6 @@
                 @Html.TextBoxFor(m => m.Notes)
             </li>
         </ol>
-        <input type ="hidden" name="BandId" value="@ViewBag.BandId" /> 
         <input type="submit" value="Save" />
     </fieldset>
 }
