@@ -25,6 +25,7 @@
                 @Html.TextBoxFor(m => m.EventTitle)
             </li>
             <li>
+                Description
                 @Html.EditorFor(model => model.EventDescription)
             </li>
             <li>
@@ -41,14 +42,13 @@
                 @Html.LabelFor(m => m.EventYear)
                 @Html.TextBoxFor(m => m.EventYear)
             </li>
-
         </ol>
 
         <br>
         
         <ul>
             <li>
-                @Html.LabelFor(m => m.EventHour)
+                Time
                 @{
                     List<SelectListItem> hours = new List<SelectListItem>();
                     hours.Add(new SelectListItem { Text = "1", Value = "1", Selected = true});
@@ -63,12 +63,11 @@
                     hours.Add(new SelectListItem { Text = "10", Value = "10" });
                     hours.Add(new SelectListItem { Text = "11", Value = "11" });
                     hours.Add(new SelectListItem { Text = "12", Value = "12" });
-                }
-               
+                }               
                 @Html.DropDownListFor(m => m.EventHour, hours)
             </li>
             <li>
-                @Html.LabelFor(m => m.EventMinute)
+                
                 @{
                     List<SelectListItem> min = new List<SelectListItem>();
                     min.Add(new SelectListItem { Text = "00", Value = "00", Selected = true });
@@ -87,7 +86,7 @@
                 @Html.DropDownListFor(m => m.EventMinute, min)
             </li>
             <li>
-                @Html.LabelFor(m => m.EventPeriod)
+                
                 @{
                     List<SelectListItem> period = new List<SelectListItem>();
                     period.Add(new SelectListItem { Text = "AM", Value = "AM", Selected = true });
