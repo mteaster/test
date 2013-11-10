@@ -70,15 +70,12 @@ namespace test.Models.Calendar
         [Display(Name = "Description")]
         public string EventDescription { get; set; }
 
-        [Required]
         [Display(Name = "Month (Number)")]
         public int EventMonth { get; set; }
 
-        [Required]
         [Display(Name = "Day (Number)")]
         public int EventDay { get; set; }
 
-        [Required]
         [Display(Name = "Year (Number)")]
         public int EventYear { get; set; }
 
