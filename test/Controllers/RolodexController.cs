@@ -419,6 +419,8 @@ namespace band.Controllers
 
         public ActionResult EditContact(int bandId, int contactId, Contact.ContactType type)
         {
+            BandContact bContact;
+
             ViewBag.BandId = bandId;
             ViewBag.BandName = BandUtil.BandProfileFor(bandId).BandName;
 
@@ -429,14 +431,26 @@ namespace band.Controllers
 
             if (type == Contact.ContactType.Band)
             {
-                return EditBand(bandId, contactId);
+                using (DatabaseContext db = new DatabaseContext())
+                {
+                    bContact = db.BandContacts.Find(contactId);
+                }
+                return EditBand(bContact);
             }
             else if (type == Contact.ContactType.People)
             {
+                using (DatabaseContext db = new DatabaseContext())
+                {
+                    PeopleContact pContact = db.PeopleContacts.Find(contactId);
+                }
                 return EditPeople(bandId, contactId);
             }
             else if (type == Contact.ContactType.Venue)
             {
+                using (DatabaseContext db = new DatabaseContext())
+                {
+                    VenueContact vContact = db.VenueContacts.Find(contactId);
+                }
                 return EditVenue(bandId, contactId);
             }
             else
@@ -445,17 +459,19 @@ namespace band.Controllers
             }
         }
 
-        public ActionResult EditBand(int bandId, int contactId)
+        public ActionResult EditBand(BandContact bContact)
         {
-            ViewBag.BandId = bandId;
-            ViewBag.BandName = BandUtil.BandProfileFor(bandId).BandName;
+            ViewBag.BandId = bContact.BandId;
+            ViewBag.BandName = BandUtil.BandProfileFor(bContact.BandId).BandName;
 
-            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
+            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bContact.BandId) && !Roles.IsUserInRole("Administrator"))
             {
                 return RedirectToAction("Join", "Band");
             }
 
-            return View();
+
+
+            return View(bContact);
         }
 
         public ActionResult EditPeople(int bandId, int contactId)
