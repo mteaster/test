@@ -44,8 +44,8 @@
 
         </ol>
         
-        <ul>
-            <li id="horiz">
+        <ol id="horiz">
+            <li>
                 @Html.LabelFor(m => m.EventHour)
                 @{
                     List<SelectListItem> items = new List<SelectListItem>();
@@ -65,15 +65,15 @@
                
                 @Html.DropDownListFor(m => m.EventHour, items)
             </li>
-            <li id="horiz">
+            <li>
                 @Html.LabelFor(m => m.EventMinute)
                 @Html.TextBoxFor(m => m.EventMinute)
             </li>
-            <li id="horiz">
+            <li>
                 @Html.LabelFor(m => m.EventPeriod)
                 @Html.TextBoxFor(m => m.EventPeriod)
             </li>
-        </ul>
+        </ol>
         
 
         
