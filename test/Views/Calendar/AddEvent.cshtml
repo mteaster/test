@@ -68,7 +68,8 @@
                 }               
                 @Html.DropDownListFor(m => m.EventHour, hours)
             </li>
-            <li>   
+            <li>  
+                <label for="">:</label> 
                 @{
                     List<SelectListItem> min = new List<SelectListItem>();
                     min.Add(new SelectListItem { Text = "00", Value = "00", Selected = true });
