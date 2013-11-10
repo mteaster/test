@@ -72,6 +72,10 @@
         padding:12px;
         text-align: center;
     }
+    td.event
+    {
+        background-color: #B0B0B0;
+    }
 </style>
 
 <span>Events for @Model.MonthName @Model.CurrentMonthYear</span>
@@ -126,15 +130,18 @@
                     }
                 }
                 
-               if(hasEvent)
-               {
-                   //change color of td or something
-                   @:<td style="background-color: #B0B0B0" onmouseover="this.style.backgroundColor='#CCFFFF'" onmouseout="this.style.backgroundColor='#B0B0B0'"><a href="/Calendar/@currentDay/Day/@ViewBag.BandId/@Model.CurrentMonth/@Model.CurrentMonthYear">@currentDay</a></td>
-               }
-               else
-               {
-                   @:<td><a href="/Calendar/@ViewBag.BandId/Day/@currentDay/@Model.CurrentMonth/@Model.CurrentMonthYear">@currentDay</a></td>
-               }              
+                if(hasEvent)
+                {
+                    <td class="event">
+                        @Html.ActionLink(currentDay.ToString(), "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.ActionLink(currentDay.ToString(), "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
+                    </td>
+                }              
         
                 currentDayOfWeek++;
                 currentDay++;   
