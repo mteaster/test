@@ -25,7 +25,7 @@
                 @Html.TextBoxFor(m => m.EventTitle)
             </li>
             <li>
-                Description
+                @Html.LabelFor(m => m.EventDescription)
                 @Html.EditorFor(model => model.EventDescription)
             </li>
             <li>
@@ -48,7 +48,7 @@
         
         <ul>
             <li>
-                @Html.DisplayText("Description")
+            
                 @{
                     List<SelectListItem> hours = new List<SelectListItem>();
                     hours.Add(new SelectListItem { Text = "1", Value = "1", Selected = true});
