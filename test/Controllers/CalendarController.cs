@@ -58,7 +58,7 @@ namespace band.Controllers
         //
         // GET: /Calendar/AddEvent
 
-        public ActionResult AddEvent(int bandId)
+        public ActionResult AddEvent(int bandId, int day, int month, int year)
         {
             // Check if band exists - if it does, get band profile
             BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
@@ -77,7 +77,7 @@ namespace band.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddEvent(int bandId, CalendarEventModel model)
+        public ActionResult AddEvent(int bandId, int day, int month, int year, CalendarEventModel model)
         {
             // Check if band exists - if it does, get band profile
             BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
@@ -109,7 +109,7 @@ namespace band.Controllers
                     actualHour = 0;
                 }
 
-                calendarEvent.EventTime = new DateTime(model.EventYear, model.EventMonth, model.EventDay,
+                calendarEvent.EventTime = new DateTime(year, month, day,
                                                             actualHour, model.EventMinute, 0, DateTimeKind.Unspecified);
                 calendarEvent.EventDescription = model.EventDescription;
 
@@ -224,6 +224,9 @@ namespace band.Controllers
 
         public ActionResult Day(int bandId, int day, int month, int year)
         {
+            ViewBag.Day = day;
+            ViewBag.Month = month;
+            ViewBag.Year = year;
             return View(CalendarUtil.EventsForDay(bandId, day, month, year));
         }
 
