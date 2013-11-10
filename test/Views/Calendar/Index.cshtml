@@ -26,7 +26,7 @@ function goToClick()
     document.getElementById("goTo").innerHTML = goToLink;
 }
 </script>
-
+<body onload="goToClick()">
 <p class="message-success">@ViewBag.SuccessMessage</p>
 <p class="message-error">@ViewBag.ErrorMessage</p>
 
@@ -192,4 +192,5 @@ function goToClick()
 
 @Html.DropDownList("monthSelect",monthList)
 
-<a id="goTo" href="asdfdf" onclick="goToClick"> Go to month </a>
+<a id="goTo" href="asdfdf" onclick="goToClick()"> Go to month </a>
+</body>
