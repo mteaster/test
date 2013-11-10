@@ -47,8 +47,8 @@
         <br>
         
         <ul>
+            @Html.Name("Time")
             <li>
-            
                 @{
                     List<SelectListItem> hours = new List<SelectListItem>();
                     hours.Add(new SelectListItem { Text = "1", Value = "1", Selected = true});
@@ -66,8 +66,7 @@
                 }               
                 @Html.DropDownListFor(m => m.EventHour, hours)
             </li>
-            <li>
-                
+            <li>   
                 @{
                     List<SelectListItem> min = new List<SelectListItem>();
                     min.Add(new SelectListItem { Text = "00", Value = "00", Selected = true });
@@ -86,7 +85,6 @@
                 @Html.DropDownListFor(m => m.EventMinute, min)
             </li>
             <li>
-                
                 @{
                     List<SelectListItem> period = new List<SelectListItem>();
                     period.Add(new SelectListItem { Text = "AM", Value = "AM", Selected = true });
