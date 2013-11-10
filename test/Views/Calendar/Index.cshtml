@@ -15,11 +15,15 @@
 function goToClick()
 {
     var yearList = document.getElementById("selectYear");
-    var yearList = document.getElementById("selectMonth");
-
+    var monthList = document.getElementById("selectMonth");
+    var goToText = "Go to month";
+    var linkText = "../";
+    linkText = linkText.concat(document.getElementById("selectMonth")[monthList.selectedIndex].text);
+    var goToLink = goToText.link();
+    //monthSelect
     //[favorite.selectedIndex].text = mylist.options[mylist.selectedIndex].text;
 
-    //document.getElementById("goTo").
+    document.getElementById("goTo").innerHTML = goToLink;
 }
 </script>
 
