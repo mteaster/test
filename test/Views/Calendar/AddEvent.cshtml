@@ -4,6 +4,12 @@
     ViewBag.Title = "Calendar";
 }
 
+<style type="text/css">
+    #horiz li{
+        display: inline;
+    }
+</style>
+
 @using (Html.BeginForm("AddEvent", "Calendar", new { bandId = ViewBag.BandId }, FormMethod.Post))
 {
     @Html.AntiForgeryToken()
@@ -33,7 +39,8 @@
                 @Html.LabelFor(m => m.EventYear)
                 @Html.TextBoxFor(m => m.EventYear)
             </li>
-            <li>
+            <li id="horiz">
+                @Html.LabelFor(m => m.EventHour)
                 @{
                     List<SelectListItem> items = new List<SelectListItem>();
                     items.Add(new SelectListItem { Text = "1", Value = "1", Selected = true});
@@ -52,11 +59,11 @@
                
                 @Html.DropDownListFor(m => m.EventHour, items)
             </li>
-            <li>
+            <li id ="horiz">
                 @Html.LabelFor(m => m.EventMinute)
                 @Html.TextBoxFor(m => m.EventMinute)
             </li>
-            <li>
+            <li id="horiz">
                 @Html.LabelFor(m => m.EventPeriod)
                 @Html.TextBoxFor(m => m.EventPeriod)
             </li>
