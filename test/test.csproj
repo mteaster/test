@@ -337,9 +337,6 @@
     <Content Include="Views\Band\Manage.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Calendar\Index2.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\FileCabinet\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

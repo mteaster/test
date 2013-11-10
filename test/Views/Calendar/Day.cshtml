@@ -17,16 +17,23 @@
         <th>Delete</th>
     </tr>
 
-    @foreach (var item in Model)
+    @if (!Model.Any())
     {
-        <tr>
-            <td>@Html.DisplayFor(modelItem => item.EventId)</td>
-            <td>@Html.DisplayFor(modelItem => item.EventTitle)</td>
-            <td>@Html.DisplayFor(modelItem => item.EventTime)</td>
-            <td>@Html.DisplayFor(modelItem => item.EventDescription)</td>
-            <td>@Html.ActionLink("Edit", "EditEvent", new { bandId = ViewBag.BandId, eventId = item.EventId })</td>
-            <td>@Html.ActionLink("Delete", "DeleteEvent", new { eventId = item.EventId })</td>
-        </tr>
+        <span>No events found</span>
+    }
+    else
+    {
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.EventId)</td>
+                <td>@Html.DisplayFor(modelItem => item.EventTitle)</td>
+                <td>@Html.DisplayFor(modelItem => item.EventTime)</td>
+                <td>@Html.DisplayFor(modelItem => item.EventDescription)</td>
+                <td>@Html.ActionLink("Edit", "EditEvent", new { bandId = ViewBag.BandId, eventId = item.EventId })</td>
+                <td>@Html.ActionLink("Delete", "DeleteEvent", new { eventId = item.EventId })</td>
+            </tr>
+        }
     }
 </table>
 

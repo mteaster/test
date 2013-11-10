@@ -13,37 +13,15 @@ namespace band.Controllers
     {
         public ActionResult Index(int bandId)
         {
-            // Check if band exists - if it does, get band profile
-            BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
-
-            ViewBag.BandId = bandId;
-            ViewBag.BandName = bandProfile.BandName;
-
-            // Check if the user is in the band
-            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
-            {
-                return RedirectToAction("Join", "Band");
-            }
-
-            ViewBag.SuccessMessage = TempData["SuccessMessage"];
-            ViewBag.ErrorMessage = TempData["ErrorMessage"];
-
             DateTime now = DateTime.UtcNow;
-            MonthModel monthModel = new MonthModel(now.Month, now.Year);
-            monthModel.Events = CalendarUtil.EventsForMonth(bandId, monthModel.CurrentMonth, monthModel.CurrentMonthYear);
-
-            return View(monthModel);
+            return RedirectToAction("Month", new { bandId = bandId, month = now.Month, year = now.Year });
         }
 
         public ActionResult Month(int bandId, int month, int year)
         {
-            // Check if band exists - if it does, get band profile
-            BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
-
             ViewBag.BandId = bandId;
-            ViewBag.BandName = bandProfile.BandName;
+            ViewBag.BandName = BandUtil.BandProfileFor(bandId).BandName;
 
-            // Check if the user is in the band
             if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))
             {
                 return RedirectToAction("Join", "Band");
@@ -60,11 +38,8 @@ namespace band.Controllers
 
         public ActionResult AddEvent(int bandId, int day, int month, int year)
         {
-            // Check if band exists - if it does, get band profile
-            BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
-
             ViewBag.BandId = bandId;
-            ViewBag.BandName = bandProfile.BandName;
+            ViewBag.BandName = BandUtil.BandProfileFor(bandId).BandName;
             ViewBag.Day = day;
             ViewBag.Month = month;
             ViewBag.Year = year;
@@ -82,13 +57,9 @@ namespace band.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddEvent(int bandId, int day, int month, int year, CalendarEventModel model)
         {
-            // Check if band exists - if it does, get band profile
-            BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
-
             ViewBag.BandId = bandId;
-            ViewBag.BandName = bandProfile.BandName;
+            ViewBag.BandName = BandUtil.BandProfileFor(bandId).BandName;
 
-            // Check if the user is in the band
             if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))
             {
                 return RedirectToAction("Join", "Band");
@@ -131,11 +102,8 @@ namespace band.Controllers
 
         public ActionResult EditEvent(int bandId, int eventId)
         {
-            // Check if band exists - if it does, get band profile
-            BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
-
             ViewBag.BandId = bandId;
-            ViewBag.BandName = bandProfile.BandName;
+            ViewBag.BandName = BandUtil.BandProfileFor(bandId).BandName;
             ViewBag.EventId = eventId;
 
             // Check if the user is in the band
@@ -159,11 +127,8 @@ namespace band.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditEvent(int bandId, int eventId, CalendarEventModel model)
         {
-            // Check if band exists - if it does, get band profile
-            BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
-
             ViewBag.BandId = bandId;
-            ViewBag.BandName = bandProfile.BandName;
+            ViewBag.BandName = BandUtil.BandProfileFor(bandId).BandName;
 
             // Check if the user is in the band
             if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))
@@ -204,7 +169,6 @@ namespace band.Controllers
             {
                 CalendarEvent calendarEvent = database.CalendarEvents.Find(eventId);
 
-                // Check if the user is in the band
                 if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, calendarEvent.BandId))
                 {
                     ViewBag.ErrorMessage = "you're not in this band idiot";
@@ -231,11 +195,6 @@ namespace band.Controllers
             ViewBag.Month = month;
             ViewBag.Year = year;
             return View(CalendarUtil.EventsForDay(bandId, day, month, year));
-        }
-
-        public ActionResult Index2(int bandId)
-        {
-            return View();
         }
     }
 }

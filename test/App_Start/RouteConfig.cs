@@ -29,14 +29,14 @@ namespace test
 
             routes.MapRoute(
                 name: "Month",
-                url: "Calendar/Month/{bandId}/{month}/{year}",
+                url: "Calendar/{bandId}/Month/{month}/{year}",
                 defaults: new { controller = "Calendar", action = "Month" },
                 constraints: new { bandId = @"\d+", month = @"\d+", year = @"\d+" }
             );
 
             routes.MapRoute(
                 name: "Day",
-                url: "Calendar/Day/{bandId}/{day}/{month}/{year}",
+                url: "Calendar/{bandId}/Day/{day}/{month}/{year}",
                 defaults: new { controller = "Calendar", action = "Day" },
                 constraints: new { bandId = @"\d+", day = @"\d+", month = @"\d+", year = @"\d+" }
             );
