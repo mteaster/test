@@ -45,17 +45,12 @@
     <script>
         $(function ()
         {
-            console.log(@Model.EventDate);
-            var myDate = new Date();
-            var prettyDate = (myDate.getMonth() + 1) + '/' + myDate.getDate() + '/' +
-                    myDate.getFullYear();
-            console.log(prettyDate);
-            $("#datepicker").val(@Model.EventDate);
+            $("#datepicker").val("@Model.EventDate");
             $("#datepicker").datepicker();
         });
     </script>
 
-    <p>Date: <input type="text" id="datepicker" /></p>
+    <p>Date: <input type="text" name="EventDate" id="datepicker" /></p>
     
     <fieldset>
         <br>
@@ -63,7 +58,7 @@
         <ul>
             <li>
                 @{
-    List<SelectListItem> hours = new List<SelectListItem>();
+                    List<SelectListItem> hours = new List<SelectListItem>();
                     hours.Add(new SelectListItem { Text = "1", Value = "1", Selected = true});
                     hours.Add(new SelectListItem { Text = "2", Value = "2" });
                     hours.Add(new SelectListItem { Text = "3", Value = "3" });
