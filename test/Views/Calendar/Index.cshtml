@@ -11,6 +11,18 @@
     @Html.Partial("_BandHeaderPartial")
 }
 
+<script>
+function goToClick()
+{
+    var yearList = document.getElementById("selectYear");
+    var yearList = document.getElementById("selectMonth");
+
+    //[favorite.selectedIndex].text = mylist.options[mylist.selectedIndex].text;
+
+    //document.getElementById("goTo").
+}
+</script>
+
 <p class="message-success">@ViewBag.SuccessMessage</p>
 <p class="message-error">@ViewBag.ErrorMessage</p>
 
@@ -176,4 +188,4 @@
 
 @Html.DropDownList("monthSelect",monthList)
 
-<a id="goTo" href="URL"> Go to month </a>
+<a id="goTo" onclick="goToClick"> Go to month </a>
