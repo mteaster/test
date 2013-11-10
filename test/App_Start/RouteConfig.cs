@@ -15,9 +15,9 @@ namespace test
 
             routes.MapRoute(
                 name: "Add Event",
-                url: "Calendar/AddEvent/{bandId}",
+                url: "Calendar/AddEvent/{bandId}/{day}/{month}/{year}",
                 defaults: new { controller = "Calendar", action = "AddEvent" },
-                constraints: new { bandId = @"\d+" }
+                constraints: new { bandId = @"\d+", day = @"\d+", month = @"\d+", year = @"\d+"}
             );
 
             routes.MapRoute(
