@@ -81,63 +81,62 @@
     <tbody>
 
         <tr>
-        @for (int i = 0; i < Model.FirstDayOfWeek; i++ )
-        {
-            <td></td>   
-        }
-
-        @{
-            int currentDayOfWeek = Model.FirstDayOfWeek;
-            int currentDay = 1;
-
-            var monthEvents = Model.Events;
-           
-            bool hasEvent;
-            
-            while(currentDay <= Model.DaysInMonth)
-            {
-                hasEvent = false;
-                if(currentDayOfWeek == 7)
-                {
-                    currentDayOfWeek = 0;
-                    @:</tr><tr>
-                }
-                
-                if(monthEvents != null)
-                {
-                    //checking to see if a given day has an event(s) for indicating if it has events
-                    foreach ( test.Models.Calendar.CalendarEvent ev in monthEvents)
-                    {
-                        if (ev.EventTime.Day == currentDay)
-                        {
-                            hasEvent = true;
-                        }
-                    }
-                }
-                
-                if(hasEvent)
-                {
-                    <td class="event">
-                        @Html.ActionLink(currentDay.ToString(), "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
-                    </td>
-                }
-                else
-                {
-                    <td>
-                        @Html.ActionLink(currentDay.ToString(), "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
-                    </td>
-                }              
-        
-                currentDayOfWeek++;
-                currentDay++;   
-            }
-            
-            for (; currentDayOfWeek < 7; currentDayOfWeek++)
+            @for (int i = 0; i < Model.FirstDayOfWeek; i++ )
             {
                 <td></td>   
             }
-        }
 
+            @{
+                int currentDayOfWeek = Model.FirstDayOfWeek;
+                int currentDay = 1;
+
+                var monthEvents = Model.Events;
+           
+                bool hasEvent;
+            
+                while(currentDay <= Model.DaysInMonth)
+                {
+                    hasEvent = false;
+                    if(currentDayOfWeek == 7)
+                    {
+                        currentDayOfWeek = 0;
+                        @:</tr><tr>
+                    }
+                
+                    if(monthEvents != null)
+                    {
+                        //checking to see if a given day has an event(s) for indicating if it has events
+                        foreach ( test.Models.Calendar.CalendarEvent ev in monthEvents)
+                        {
+                            if (ev.EventTime.Day == currentDay)
+                            {
+                                hasEvent = true;
+                            }
+                        }
+                    }
+                
+                    if(hasEvent)
+                    {
+                        <td class="event">
+                            @Html.ActionLink(currentDay.ToString(), "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            @Html.ActionLink(currentDay.ToString(), "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
+                        </td>
+                    }              
+        
+                    currentDayOfWeek++;
+                    currentDay++;   
+                }
+            
+                for (; currentDayOfWeek < 7; currentDayOfWeek++)
+                {
+                    <td></td>   
+                }
+            }
         </tr>
     </tbody>
 </table>
