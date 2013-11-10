@@ -29,6 +29,7 @@
                 @Html.TextBoxFor(m => m.EventTitle)
             </li>
             <li>
+                @Html.LabelFor(m => m.EventDescription)
                 @Html.EditorFor(model => model.EventDescription)
             </li>
             <li>
@@ -44,9 +45,8 @@
                 @Html.TextBoxFor(m => m.EventYear)
             </li>
         </ol>
-
+        <br>
         <label for="Time">Time</label>
-
         <ul>
             <li>
                 @{
@@ -93,7 +93,7 @@
                 @Html.DropDownListFor(m => m.EventPeriod, period)
             </li>
         </ul>
-
+        <br>
         <input type="submit" value="Add Event" />
     </fieldset>
 }
