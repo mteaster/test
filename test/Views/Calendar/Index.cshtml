@@ -63,6 +63,7 @@
 
 <table id="calendar-table" cellpadding="0" cellspacing="0">
     <thead>
+        <tr>@Model.MonthName @Model.CurrentMonthYear</tr>
         <tr>
             <th>Sunday</th>
             <th>Monday</th>
@@ -114,6 +115,7 @@
                     {
                         <td class="event">
                             @Html.ActionLink(@currentDay.ToString(), "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
+                       
                         </td>
                     }
                     else
