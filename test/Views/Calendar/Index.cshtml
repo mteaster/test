@@ -47,11 +47,6 @@
     {
         background: #6699FF !important;
     }
-    td a
-    {
-        width:100%;
-        display:block;
-    }
     #calendar-table td p
     {
         text-align: center;
@@ -118,8 +113,7 @@
                     if(hasEvent)
                     {
                         <td class="event">
-                            @Html.ActionLink("", "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
-                            @currentDay
+                            @Html.ActionLink("<div style=\"height:100%;width:100%\">" + currentDay + "</div>", "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
                         </td>
                     }
                     else
