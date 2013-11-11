@@ -38,7 +38,14 @@ namespace band.Controllers
         public ActionResult CreateContact(int BandId)
         {
             ViewBag.BandId = BandId;
-            return View("CreateContact");
+            ViewBag.BandName = BandUtil.BandProfileFor(BandId).BandName;
+
+            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, BandId) && !Roles.IsUserInRole("Administrator"))
+            {
+                return RedirectToAction("Join", "Band");
+            }
+
+            return View();
         }
 
         public ActionResult CreateBandContact(int BandId)
