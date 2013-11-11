@@ -118,14 +118,15 @@
                     if(hasEvent)
                     {
                         <td class="event">
-
-                            @Html.ActionLink(currentDay.ToString(), "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
+                            @Html.ActionLink("", "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
+                            @currentDay
                         </td>
                     }
                     else
                     {
                         <td>
-                            @Html.ActionLink(currentDay.ToString(), "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
+                            @Html.ActionLink("", "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
+                            @currentDay
                         </td>
                     }              
         
