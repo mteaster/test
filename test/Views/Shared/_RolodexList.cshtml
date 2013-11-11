@@ -1,5 +1,10 @@
 ﻿@model IEnumerable<test.Models.Rolodex.Contact>
 
+<form>
+    <input type="text" name="searchString" />
+    <input type="submit" value="Search" />
+</form>
+
 <table>
     <tr>
         <th style="width:10%;">@Html.DisplayNameFor(m => m.ContactId)</th>
