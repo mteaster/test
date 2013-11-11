@@ -237,8 +237,8 @@ namespace band.Controllers
             return RedirectToAction("CreateContact", "Rolodex", new { bandId = bandId });
         }
 
-        [ChildActionOnly]
-        public ActionResult RolodexList(int bandId)
+        [ActionName("RolodexList")]
+        public ActionResult RolodexListGet(int bandId)
         {
             List<Contact> contacts = new List<Contact>();
             Contact tmpContact = new Contact();
@@ -319,9 +319,9 @@ namespace band.Controllers
             return PartialView("_RolodexList", contacts);
         }
 
-        [ChildActionOnly]
         [HttpPost]
-        public ActionResult RolodexList(int bandId)
+        [ActionName("RolodexList")]
+        public ActionResult RolodexListPost(int bandId)
         {
             List<Contact> contacts = new List<Contact>();
             Contact tmpContact = new Contact();
@@ -345,7 +345,7 @@ namespace band.Controllers
 
                 var venueResults = from v in db.VenueContacts
                                    where v.BandId == bandId
-                                  && (p.Name.Contains(searchString))
+                                  && (v.Name.Contains(searchString))
                                    select new { v.ContactId, v.Name, v.PhoneNumber, v.Email };
 
 
