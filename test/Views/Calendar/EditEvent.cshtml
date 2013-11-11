@@ -44,6 +44,13 @@
                 @Html.LabelFor(m => m.EventYear)
                 @Html.TextBoxFor(m => m.EventYear)
             </li>
+
+            <asp:TextBox ID="DateTextBox" runat="server"  />
+<asp:Image ID="Image1" runat="server" ImageUrl="Calendar_scheduleHS.png" />
+<ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" 
+    TargetControlID="DateTextBox" PopupButtonID="Image1">
+</ajaxToolkit:CalendarExtender>
+
         </ol>
         <br>
         <label for="Time">Time</label>
