@@ -326,8 +326,10 @@ namespace band.Controllers
             List<Contact> contacts = new List<Contact>();
             Contact tmpContact = new Contact();
             string searchString = "";
+            string type = "";
 
             searchString = Request["searchString"].ToString();
+            type = Request["type"].ToString();
 
             using (DatabaseContext db = new DatabaseContext())
             {
