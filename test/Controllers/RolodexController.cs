@@ -48,6 +48,7 @@ namespace band.Controllers
             return View();
         }
 
+        
         public ActionResult CreateBandContact(int BandId)
         {
             // Check if band exists - if it does, get band profile
@@ -64,51 +65,27 @@ namespace band.Controllers
             }
 
             // This will also display contacts for the band
-            return PartialView("_CreateBandContact");
+            return View();
         }
 
+
         [HttpPost]
-        public ActionResult CreateBandContact( BandContact bandContact, int bandId)
-        {
-            string error = "";
-            string success = "";
-            bool badData = false;
-            
+        public ActionResult CreateBandContact(BandContact bandContact, int bandId)
+        {  
             if (ModelState.IsValid)
             {
-                // Validation Code Here
-                if (bandContact.Name == "")
-                {
-                    error = "Please Enter a Valid Name for this contact";
-                    badData = true;
-                }
-                if (bandContact.PhoneNumber == "" && !badData)
-                {
-                    error = "Please enter in a valid phone number";
-                    badData = true;
-                }
-                if (!bandContact.Email.Contains('@') && !badData)
-                {
-                    error = "Please Enter a Valid Email Address";
-                    badData = true;
-                }
-
-                if (!badData) // If all is good, post to DB
-                {
-                    using (DatabaseContext database = new DatabaseContext())
-                    {
-                        success = "Contact Added!";
-                        bandContact.BandId = bandId;
-                        database.BandContacts.Add(bandContact);
-                        database.SaveChanges();
-                    }
-                }
+               
+               using (DatabaseContext database = new DatabaseContext())
+               {
+                    bandContact.BandId = bandId;
+                    database.BandContacts.Add(bandContact);
+                    database.SaveChanges();
+               }
             }
+        
 
-            ViewBag.bandId = bandId;
-            ViewBag.SuccessMessage = success;
-            ViewBag.ErrorMessage = error;
-            return RedirectToAction("CreateContact", "Rolodex", new { bandId = bandId});
+            ViewBag.BandId = bandId;
+            return RedirectToAction("CreateContact", "Rolodex", new { BandId = bandId});
         }
 
         public ActionResult CreatePersonContact(int BandId)
@@ -127,51 +104,23 @@ namespace band.Controllers
             }
 
             // This will also display contacts for the band
-            return PartialView("_CreatePersonContact");
+            return View();
         }
 
         [HttpPost]
         public ActionResult CreatePersonContact(PeopleContact peopleContact, int bandId)
         {
-            string error = "";
-            string success = "";
-            bool badData = false;
-
             if (ModelState.IsValid)
             {
-                // Validation Code Here
-                if (peopleContact.Name == "")
-                {
-                    error = "Please Enter a Valid Name for this contact";
-                    badData = true;
-                }
-                if (peopleContact.PhoneNumber == "" && !badData)
-                {
-                    error = "Please enter in a valid phone number";
-                    badData = true;
-                }
-                if (!peopleContact.Email.Contains('@') && !badData)
-                {
-                    error = "Please Enter a Valid Email Address";
-                    badData = true;
-                }
-
-                if (!badData) // If all is good, post to DB
-                {
-                    using (DatabaseContext database = new DatabaseContext())
+                using (DatabaseContext database = new DatabaseContext())
                     {
-                        success = "Contact Added!";
                         peopleContact.BandId = bandId;
                         database.PeopleContacts.Add(peopleContact);
                         database.SaveChanges();
                     }
-                }
             }
-
-            ViewBag.bandId = bandId;
-            ViewBag.SuccessMessage = success;
-            ViewBag.ErrorMessage = error;
-            return RedirectToAction("CreateContact", "Rolodex", new { bandId = bandId });
+            ViewBag.BandId = bandId;
+            return RedirectToAction("CreateContact", "Rolodex", new { BandId = bandId });
         }
 
         public ActionResult CreateVenueContact(int BandId)
@@ -190,51 +139,25 @@ namespace band.Controllers
             }
 
             // This will also display contacts for the band
-            return PartialView("_CreateVenueContact");
+            return View();
         }
 
         [HttpPost]
         public ActionResult CreateVenueContact(VenueContact venueContact, int bandId)
         {
-            string error = "";
-            string success = "";
-            bool badData = false;
-
             if (ModelState.IsValid)
             {
-                // Validation Code Here
-                if (venueContact.Name == "")
-                {
-                    error = "Please Enter a Valid Name for this contact";
-                    badData = true;
-                }
-                if (venueContact.PhoneNumber == "" && !badData)
-                {
-                    error = "Please enter in a valid phone number";
-                    badData = true;
-                }
-                if (!venueContact.Email.Contains('@') && !badData)
-                {
-                    error = "Please Enter a Valid Email Address";
-                    badData = true;
-                }
-
-                if (!badData) // If all is good, post to DB
-                {
                     using (DatabaseContext database = new DatabaseContext())
                     {
-                        success = "Contact Added!";
                         venueContact.BandId = bandId;
                         database.VenueContacts.Add(venueContact);
                         database.SaveChanges();
                     }
-                }
+                
             }
 
-            ViewBag.bandId = bandId;
-            ViewBag.SuccessMessage = success;
-            ViewBag.ErrorMessage = error;
-            return RedirectToAction("CreateContact", "Rolodex", new { bandId = bandId });
+           
+            return RedirectToAction("CreateContact", "Rolodex", new { BandId = bandId });
         }
 
         [ActionName("RolodexList")]

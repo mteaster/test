@@ -13,34 +13,11 @@
 
 <h2>CreateContact</h2>
 
-    <p class="message-success">@ViewBag.SuccessMessage</p>
-    <p class="message-error">@ViewBag.ErrorMessage</p>
-@Ajax.ActionLink(
-    "Create a Band Contact",
-    "CreateBandContact",
-    new { BandId = @ViewBag.BandId },
-    new AjaxOptions { UpdateTargetId = "dvForm" }
-    )
-
- | 
-
-@Ajax.ActionLink(
-    "Create a Person Contact",
-    "CreatePersonContact",
-    new { BandId = @ViewBag.BandId },
-    new AjaxOptions { UpdateTargetId = "dvForm" }
-    )
-
- | 
-
-@Ajax.ActionLink(
-    "Create a Venue Contact",
-    "CreateVenueContact",
-    new { BandId = @ViewBag.BandId },
-    new AjaxOptions { UpdateTargetId = "dvForm" }
-    )
-
-
+  
+@Html.ActionLink("Create Band Contact", "CreateBandContact", new{bandId = ViewBag.BandId})
+@Html.ActionLink("Create Person Contact", "CreatePersonContact", new{bandId = ViewBag.BandId})
+@Html.ActionLink("Create Venue Contact", "CreateVenueContact", new {bandId = ViewBag.BandId})
 
 
 <div id="dvForm"></div> 
+

@@ -28,6 +28,24 @@ namespace test
             );
 
             routes.MapRoute(
+                name: "Create Band Contact",
+                url: "Rolodex/CreateBandContact/{bandId}",
+                defaults: new { controller = "Rolodex", action = "CreateBandContact" },
+                constraints: new { bandId = @"\d+" }
+            );
+            routes.MapRoute(
+                name: "Create Person Contact",
+                url: "Rolodex/CreatePersonContact/{bandId}",
+                defaults: new { controller = "Rolodex", action = "CreatePersonContact" },
+                constraints: new { bandId = @"\d+" }
+            );
+            routes.MapRoute(
+                name: "Create Venue Contact",
+                url: "Rolodex/CreateVenueContact/{bandId}",
+                defaults: new { controller = "Rolodex", action = "CreateVenueContact" },
+                constraints: new { bandId = @"\d+" }
+            );
+            routes.MapRoute(
                 name: "Another Calendar",
                 url: "Calendar/{bandId}/{month}/{year}",
                 defaults: new { controller = "Calendar", action = "Index" },

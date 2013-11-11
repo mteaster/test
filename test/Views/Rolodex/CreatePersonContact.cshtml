@@ -1,13 +1,26 @@
-﻿@model test.Models.Rolodex.BandContact
+﻿@model test.Models.Rolodex.PeopleContact
 
+@{
+    ViewBag.Title = "CreatePersonContact";
+}
 @section Scripts
 {
     @Scripts.Render("~/bundles/jqueryval")
 }
-@using (Html.BeginForm("CreateBandContact", "Rolodex", new { bandId = ViewBag.BandId }))
+@section featured 
+{
+    @Html.Partial("_BandHeaderPartial")
+}
+
+<h2>CreatePersonContact</h2>
+@Html.ActionLink("Create Band Contact", "CreateBandContact", new{bandId = ViewBag.BandId})
+@Html.ActionLink("Create Person Contact", "CreatePersonContact", new{bandId = ViewBag.BandId})
+@Html.ActionLink("Create Venue Contact", "CreateVenueContact", new {bandId = ViewBag.BandId})
+@using (Html.BeginForm("CreatePersonContact", "Rolodex", new { bandId = ViewBag.BandId }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
+
     <fieldset>
         <legend>Registration Form</legend>
         <ol>
@@ -24,8 +37,8 @@
                 @Html.TextBoxFor(m => m.Email)
             </li>
             <li>
-                @Html.LabelFor(m => m.MusicalStyle)
-                @Html.TextBoxFor(m => m.MusicalStyle)
+                @Html.LabelFor(m => m.Skill)
+                @Html.TextBoxFor(m => m.Skill)
             </li>
             <li>
                 @Html.LabelFor(m => m.Notes)
