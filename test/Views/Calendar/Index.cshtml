@@ -30,6 +30,15 @@
         background: #f8f8f8;
         border: 1px solid #b1b1b1;
     }
+     #calendar-table tt
+    {
+        vertical-align: top;
+        width: 716px;
+        height: 20px;
+        padding: 4px;
+        background: #f8f8f8;
+        border: 1px solid #b1b1b1;
+    }
     #calendar-table td
     {
         vertical-align: top;
@@ -64,9 +73,7 @@
 <table id="calendar-table" cellpadding="0" cellspacing="0">
     <thead>
         <tr>
-            <th>
-            @Model.MonthName @Model.CurrentMonthYear
-            </th>
+        <td>@Model.MonthName @Model.CurrentMonthYear</td>
         </tr>
         <tr>
             <th>Sunday</th>
