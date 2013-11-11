@@ -331,77 +331,85 @@ namespace band.Controllers
             searchString = Request["searchString"].ToString();
             type = Request["type"].ToString();
 
-            ViewBag.error = type;
 
             using (DatabaseContext db = new DatabaseContext())
             {
-                var bandResults = from b in db.BandContacts
-                                  where b.BandId == bandId
-                                  && (b.Name.Contains(searchString))
-                                  select new { b.ContactId, b.Name, b.PhoneNumber, b.Email };
+                if (!string.IsNullOrEmpty(type) && type.Equals("band"))
+                {
+                    var bandResults = from b in db.BandContacts
+                                      where b.BandId == bandId
+                                      && (b.Name.Contains(searchString))
+                                      select new { b.ContactId, b.Name, b.PhoneNumber, b.Email };
 
 
-                var peopleResults = from p in db.PeopleContacts
+                    if (bandResults != null)
+                    {
+                        foreach (var band in bandResults)
+                        {
+                            tmpContact = new Contact();
+
+                            tmpContact.ContactId = band.ContactId;
+                            tmpContact.Name = band.Name;
+                            tmpContact.PhoneNumber = band.PhoneNumber;
+                            tmpContact.Email = band.Email;
+                            tmpContact.Type = Contact.ContactType.Band;
+
+                            contacts.Add(tmpContact);
+                        }
+                    }
+                }
+                
+                if (!string.IsNullOrEmpty(type) && type.Equals("people"))
+                {
+                    var peopleResults = from p in db.PeopleContacts
                                     where p.BandId == bandId
                                   && (p.Name.Contains(searchString))
                                     select new { p.ContactId, p.Name, p.PhoneNumber, p.Email };
 
-
-                var venueResults = from v in db.VenueContacts
-                                   where v.BandId == bandId
-                                  && (v.Name.Contains(searchString))
-                                   select new { v.ContactId, v.Name, v.PhoneNumber, v.Email };
-
-
-                if (bandResults != null)
-                {
-                    foreach (var band in bandResults)
+                    if (peopleResults != null)
                     {
-                        tmpContact = new Contact();
+                        foreach (var person in peopleResults)
+                        {
+                            tmpContact = new Contact();
 
-                        tmpContact.ContactId = band.ContactId;
-                        tmpContact.Name = band.Name;
-                        tmpContact.PhoneNumber = band.PhoneNumber;
-                        tmpContact.Email = band.Email;
-                        tmpContact.Type = Contact.ContactType.Band;
+                            tmpContact.ContactId = person.ContactId;
+                            tmpContact.Name = person.Name;
+                            tmpContact.PhoneNumber = person.PhoneNumber;
+                            tmpContact.Email = person.Email;
+                            tmpContact.Type = Contact.ContactType.People;
 
-                        contacts.Add(tmpContact);
+                            contacts.Add(tmpContact);
+                        }
                     }
                 }
 
 
-                if (peopleResults != null)
+                if (!string.IsNullOrEmpty(type) && type.Equals("venue"))
                 {
-                    foreach (var person in peopleResults)
+                    var venueResults = from v in db.VenueContacts
+                                       where v.BandId == bandId
+                                      && (v.Name.Contains(searchString))
+                                       select new { v.ContactId, v.Name, v.PhoneNumber, v.Email };
+
+                    if (venueResults != null)
                     {
-                        tmpContact = new Contact();
+                        foreach (var venue in venueResults)
+                        {
+                            tmpContact = new Contact();
 
-                        tmpContact.ContactId = person.ContactId;
-                        tmpContact.Name = person.Name;
-                        tmpContact.PhoneNumber = person.PhoneNumber;
-                        tmpContact.Email = person.Email;
-                        tmpContact.Type = Contact.ContactType.People;
+                            tmpContact.ContactId = venue.ContactId;
+                            tmpContact.Name = venue.Name;
+                            tmpContact.PhoneNumber = venue.PhoneNumber;
+                            tmpContact.Email = venue.Email;
+                            tmpContact.Type = Contact.ContactType.Venue;
 
-                        contacts.Add(tmpContact);
+                            contacts.Add(tmpContact);
+                        }
                     }
                 }
+               
 
 
-                if (venueResults != null)
-                {
-                    foreach (var venue in venueResults)
-                    {
-                        tmpContact = new Contact();
-
-                        tmpContact.ContactId = venue.ContactId;
-                        tmpContact.Name = venue.Name;
-                        tmpContact.PhoneNumber = venue.PhoneNumber;
-                        tmpContact.Email = venue.Email;
-                        tmpContact.Type = Contact.ContactType.Venue;
-
-                        contacts.Add(tmpContact);
-                    }
-                }
             }
 
 
