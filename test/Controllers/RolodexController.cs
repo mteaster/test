@@ -331,6 +331,8 @@ namespace band.Controllers
             searchString = Request["searchString"].ToString();
             type = Request["type"].ToString();
 
+            ViewBag.error = type;
+
             using (DatabaseContext db = new DatabaseContext())
             {
                 var bandResults = from b in db.BandContacts
