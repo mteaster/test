@@ -47,11 +47,10 @@
     {
         background: #6699FF !important;
     }
-    a.boxlink
+    td a
     {
-        width: 100%;
-        height: 100%;
-        display: block;
+        width:100%;
+        display:block;}
     }
     #calendar-table td p
     {
@@ -61,6 +60,8 @@
     {
         background-color: #E0E0E0 !important;
     }
+    
+   
 </style>
 
 <span>Events for @Model.MonthName @Model.CurrentMonthYear</span>
@@ -79,7 +80,6 @@
     </thead> 
 
     <tbody>
-
         <tr>
             @for (int i = 0; i < Model.FirstDayOfWeek; i++ )
             {
@@ -118,6 +118,7 @@
                     if(hasEvent)
                     {
                         <td class="event">
+
                             @Html.ActionLink(currentDay.ToString(), "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
                         </td>
                     }
