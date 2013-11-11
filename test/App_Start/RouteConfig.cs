@@ -21,6 +21,13 @@ namespace test
             );
 
             routes.MapRoute(
+                name: "Create Contact",
+                url: "Rolodex/CreateContact/{bandId}",
+                defaults: new { controller = "Rolodex", action = "CreateContact" },
+                constraints: new { bandId = @"\d+" }
+            );
+
+            routes.MapRoute(
                 name: "Another Calendar",
                 url: "Calendar/{bandId}/{month}/{year}",
                 defaults: new { controller = "Calendar", action = "Index" },
