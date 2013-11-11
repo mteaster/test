@@ -119,8 +119,7 @@
                     else
                     {
                         <td>
-                            @Html.ActionLink("", "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
-                            @currentDay
+                            @Html.ActionLink(@currentDay.ToString(), "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
                         </td>
                     }              
         
