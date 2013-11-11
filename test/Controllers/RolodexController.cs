@@ -35,12 +35,12 @@ namespace band.Controllers
             return View();
         }
 
-        public ActionResult CreateContact(int BandId)
+        public ActionResult CreateContact(int bandId)
         {
-            ViewBag.BandId = BandId;
-            ViewBag.BandName = BandUtil.BandProfileFor(BandId).BandName;
+            ViewBag.BandId = bandId;
+            ViewBag.BandName = BandUtil.BandProfileFor(bandId).BandName;
 
-            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, BandId) && !Roles.IsUserInRole("Administrator"))
+            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
             {
                 return RedirectToAction("Join", "Band");
             }
