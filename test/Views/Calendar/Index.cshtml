@@ -27,16 +27,7 @@
         width: 100px;
         height: 20px;
         padding: 4px;
-        background: #f8f8f8;
-        border: 1px solid #b1b1b1;
-    }
-     #calendar-table tt
-    {
-        vertical-align: top;
-        width: 716px;
-        height: 20px;
-        padding: 4px;
-        background: #f8f8f8;
+        background: #ffffff;
         border: 1px solid #b1b1b1;
     }
     #calendar-table td
@@ -45,7 +36,7 @@
         width: 100px;
         height: 100px;
         padding: 4px;
-        background: #f8f8f8;
+        background: #ffffff;
         border: 1px solid #b1b1b1;
     }
     #calendar-table td:hover
@@ -64,6 +55,10 @@
     {
         background-color: #E0E0E0 !important;
     }
+    td.noday
+    {
+        background-color: #f8f8f8;
+    }
     
    
 </style>
@@ -72,9 +67,6 @@
 
 <table id="calendar-table" cellpadding="0" cellspacing="0">
     <thead>
-        <tr>
-        <tt>@Model.MonthName @Model.CurrentMonthYear</tt>
-        </tr>
         <tr>
             <th>Sunday</th>
             <th>Monday</th>
@@ -90,7 +82,7 @@
         <tr>
             @for (int i = 0; i < Model.FirstDayOfWeek; i++ )
             {
-                <td></td>   
+                <td class="noday"></td>   
             }
 
             @{
@@ -142,7 +134,7 @@
             
                 for (; currentDayOfWeek < 7; currentDayOfWeek++)
                 {
-                    <td></td>   
+                    <td class="noday"></td>   
                 }
             }
         </tr>
