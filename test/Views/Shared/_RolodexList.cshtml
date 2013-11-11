@@ -2,8 +2,17 @@
 
 <form method="post">
     <input type="text" name="searchString" />
+    <ul style="display:inline;">
+        <li><input type="radio" name="type" value="band" />Band</li>
+        <li><input type="radio" name="type" value="people" />People</li>
+        <li><input type="radio" name="type" value="venue" />Venue</li>
+    </ul>
+    <br />
     <input type="submit" value="Search" />
 </form>
+
+@ViewBag.error
+a
 
 <table>
     <tr>
