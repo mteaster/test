@@ -167,25 +167,22 @@ namespace test.Controllers
             return RedirectToAction("Manage");
         }
 
-        public ActionResult UploadAvatar()
-        {
-            return View();
-        }
-
         [HttpPost]
         public ActionResult UploadAvatar(HttpPostedFileBase file)
         {
             if (file.ContentLength <= 0 || file.ContentLength > 1048576)
             {
-                ViewBag.ErrorMessage = "file sucks";
-                return View("Error");
+                TempData["ErrorMessage"] = "Something was wrong with the avatar you uploaded.";
+            }
+            else
+            {
+                string path = Server.MapPath("~/App_Data/UserAvatars/" + WebSecurity.CurrentUserId + ".jpg");
+                file.SaveAs(path);
+                TempData["ErrorMessage"] = "Avatar changed.";
             }
 
-            string path = Server.MapPath("~/App_Data/UserAvatars/" + WebSecurity.CurrentUserId + ".jpg");
-            file.SaveAs(path);
 
-            ViewBag.SuccessMessage = "Avatar uploaded. - " + file.FileName;
-            return View("Success");
+            return RedirectToAction("Manage");
         }
 
         public ActionResult DownloadAvatar(int userId)

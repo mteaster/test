@@ -79,7 +79,7 @@ namespace test.Controllers
                 Directory.CreateDirectory(bandAvatars);
             }
 
-            ViewBag.StatusMessage = "it probably worked";
+            ViewBag.SuccessMessage = "it probably worked";
             return View("Success");
         }
 
