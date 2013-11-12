@@ -6,6 +6,7 @@ using System.Web.Security;
 using test.Models;
 using WebMatrix.WebData;
 using test.Models.Account;
+using System.Web;
 
 namespace test.Controllers
 {
@@ -164,6 +165,28 @@ namespace test.Controllers
             }
 
             return RedirectToAction("Manage");
+        }
+
+        public ActionResult UploadAvatar(HttpPostedFileBase file)
+        {
+            if (file.ContentLength <= 0 || file.ContentLength > 1048576)
+            {
+                ViewBag.ErrorMessage = "file sucks";
+                return View("Error");
+            }
+
+            string path = Server.MapPath("~/App_Data/UserAvatars/" + WebSecurity.CurrentUserId);
+            file.SaveAs(path);
+
+            ViewBag.SuccessMessage = "Avatar uploaded. - " + file.FileName;
+            return View("Success");
+        }
+
+        public ActionResult DownloadAvatar(int userId)
+        {
+            string path = Server.MapPath("~/App_Data/UserAvatars/" + userId + ".jpg");
+
+            return File(path, "image/jpeg");
         }
 
         #region Helpers

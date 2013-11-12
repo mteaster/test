@@ -221,16 +221,5 @@ namespace band.Content
                 return View("Success");
             }
         }
-
-        private byte[] ReadFile(string s)
-        {
-            System.IO.FileStream fs = System.IO.File.OpenRead(s);
-            byte[] data = new byte[fs.Length];
-            int br = fs.Read(data, 0, data.Length);
-            if (br != fs.Length)
-                throw new System.IO.IOException(s);
-            return data;
-        }
-
     }
 }
