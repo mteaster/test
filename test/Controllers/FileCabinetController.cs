@@ -75,6 +75,8 @@ namespace band.Content
 
         public ActionResult Files(int bandId, int groupId)
         {
+            ViewBag.BandId = bandId;
+            ViewBag.GroupId = groupId;
             return View();
         }
 
