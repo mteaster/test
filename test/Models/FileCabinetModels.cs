@@ -92,7 +92,7 @@ namespace test.Models.FileCabinet
             this.FileDescription = fileDescription;
             this.FileType = fileType.ToString();
             this.UploaderName = uploaderName;
-            this.ModifiedTime = modifiedTime;
+            this.ModifiedTime = modifiedTime.ToShortDateString();
         }
 
         public int FileId { get; set; }
@@ -101,7 +101,7 @@ namespace test.Models.FileCabinet
         public string FileType { get; set; }
         public int FileSize { get; set; }
         public string UploaderName { get; set; }
-        public DateTime ModifiedTime { get; set; }
+        public string ModifiedTime { get; set; }
     }
 
     public class UploadFileModel
