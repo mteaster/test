@@ -11,6 +11,8 @@
                 <div class="post" id="post-@item.PostId">
                     @if (item.PostType == test.Models.Dashboard.PostType.Message)
                     {
+                        <img alt="" src="@Url.Action("DownloadAvatar", new { userId = item.PosterId})" height="50" width="50" class="photo" />
+                        
                         <span class="messageBoardName">@Html.DisplayFor(modelItem => item.PosterName)</span><br />
                         <span class="messageBoardTime">@Html.DisplayFor(modelItem => item.PostTime)</span><br />
 
@@ -20,7 +22,7 @@
                         {
                             <a class="messageBoardLink" href="javascript:initiateEdit(@item.PostId);">Edit</a>
                             @Html.ActionLink("Delete", "DeletePost", "Dashboard", new { PostId = item.PostId }, new { @class = "messageBoardLink" })
-                        }    
+                        }
                     }
                     else
                     {
