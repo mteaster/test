@@ -705,12 +705,12 @@ img.post-avatar
 {
     position: relative; 
     float: left;
-    margin-right: 5px;
+    margin-right: 10px;
 }
 
 div.post-header
 {
-    display: table-cell
+    display: table-cell;
 }
 
 span.post-time
@@ -734,7 +734,6 @@ a.post-link
 {
     padding: 0 3px 0 0;
 }
-
 
 table.pretty
 {
