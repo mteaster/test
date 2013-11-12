@@ -73,6 +73,11 @@ namespace band.Content
             }
         }
 
+        public JsonResult GetJson(int groupId)
+        {
+            return Json(groupId);
+        }
+
         public ActionResult Groups(int bandId)
         {
             // Check if band exists - if it does, get band profile

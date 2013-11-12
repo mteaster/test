@@ -16,7 +16,8 @@ body
     padding: 0;
 }
 
-a {
+a 
+{
     color: #333;
     outline: none;
     padding-left: 3px;
@@ -25,34 +26,41 @@ a {
 }
 
     a:link, a:visited,
-    a:active, a:hover {
+    a:active, a:hover 
+    {
         color: #333;
     }
 
-    a:hover {
+    a:hover 
+    {
         background-color: #c7d1d6;
     }
 
 header, footer, hgroup,
-nav, section {
+nav, section 
+{
     display: block;
 }
 
-mark {
+mark 
+{
     background-color: #a6dbed;
     padding-left: 5px;
     padding-right: 5px;
 }
 
-.float-left {
+.float-left
+{
     float: left;
 }
 
-.float-right {
+.float-right
+{
     float: right;
 }
 
-.clear-fix:after {
+.clear-fix:after
+{
     content: ".";
     clear: both;
     display: block;
@@ -61,34 +69,41 @@ mark {
 }
 
 h1, h2, h3,
-h4, h5, h6 {
+h4, h5, h6
+{
     color: #000;
     margin-bottom: 0;
     margin-top: 0;
     padding-bottom: 0;
 }
 
-h1 {
+h1
+{
     font-size: 2em;
 }
 
-h2 {
+h2
+{
     font-size: 1.75em;
 }
 
-h3 {
+h3
+{
     font-size: 1.2em;
 }
 
-h4 {
+h4
+{
     font-size: 1.1em;
 }
 
-h5, h6 {
+h5, h6
+{
     font-size: 1em;
 }
 
-    h5 a:link, h5 a:visited, h5 a:active {
+    h5 a:link, h5 a:visited, h5 a:active
+    {
         padding: 0;
         text-decoration: none;
     }
@@ -102,7 +117,8 @@ h5, h6 {
     max-width: 960px;
 }
 
-#body {
+#body
+{
     background-color: #efeeef;
     clear: both;
     padding-bottom: 35px;
