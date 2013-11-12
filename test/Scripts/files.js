@@ -6,6 +6,27 @@ filesApp.controller('FilesController', function FilesController($scope, $http)
 
     $scope.files = [];
 
+    $scope.sort = 
+    {
+        column: '',
+        descending: false
+    };
+
+    $scope.changeSorting = function(column)
+    {
+        var sort = $scope.sort;
+
+        if (sort.column == column)
+        {
+            sort.descending = !sort.descending;
+        } 
+        else
+        {
+            sort.column = column;
+            sort.descending = false;
+        }
+    };
+
     var filesUrl = '/FileCabinet/GetJson?bandId=' + bandId + '&groupId=' + groupId;
     $http({ method: 'GET', url: filesUrl }).
         success(function (data, status, headers, config)

@@ -7,8 +7,8 @@
 
     <table class="pretty" border="0" cellpadding="0" cellspacing="0">
         <tr>
-            <th>File ID</th>
-            <th>Name</th>
+            <th ng-click="changeSorting('FileID')">File ID</th>
+            <th ng-click="changeSorting('Name')>Name</th>
             <th>Group ID</th>
             <th>Band ID</th>
             <th>Uploader ID</th>
@@ -16,7 +16,7 @@
             <th>Delete</th>
         </tr>
 
-        <tr ng-repeat="file in files">
+        <tr ng-repeat="file in files | orderBy: sort.column : sort.descending">
                 <td>{{ file.FileId }}</td>
                 <td>{{ file.FileName }}</td>
                 <td>{{ file.GroupId }}</td>
