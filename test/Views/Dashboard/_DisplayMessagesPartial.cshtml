@@ -13,7 +13,7 @@
                     {
                         <img style="width: 50px; height: 50px;vertical-align:middle" alt="" src="@Url.Action("DownloadAvatar", "Account", new { userId = item.PosterId})" height="50" width="50" class="photo" />
                                    
-                        <div>  
+                        <div style="display:inline">  
                             <span class="messageBoardName">@Html.DisplayFor(modelItem => item.PosterName)</span><br />
                             <span class="messageBoardTime">@Html.DisplayFor(modelItem => item.PostTime)</span><br />
                         </div>  
