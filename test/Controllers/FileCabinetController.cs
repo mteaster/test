@@ -73,25 +73,24 @@ namespace band.Content
             }
         }
 
-        public ActionResult Files()
+        public ActionResult Files(int bandId, int groupId)
         {
             return View();
         }
 
-        public JsonResult GetJson(int groupId)
+        public JsonResult GetJson(int bandId, int groupId)
         {
-            return Json(groupId, JsonRequestBehavior.AllowGet);
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                return Json(database.FileEntries.Where(f => f.BandId == bandId && f.GroupId == groupId).ToList(), JsonRequestBehavior.AllowGet);
+            }
         }
 
         public ActionResult Groups(int bandId)
         {
-            // Check if band exists - if it does, get band profile
-            BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
-
             ViewBag.BandId = bandId;
-            ViewBag.BandName = bandProfile.BandName;
+            ViewBag.BandName = BandUtil.BandProfileFor(bandId).BandName;
 
-            // Check if the user is in the band
             if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
             {
                 return RedirectToAction("Join", "Band");
@@ -105,13 +104,9 @@ namespace band.Content
 
         public ActionResult ListFiles(int bandId, int groupId)
         {
-            // Check if band exists - if it does, get band profile
-            BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
-
             ViewBag.BandId = bandId;
-            ViewBag.BandName = bandProfile.BandName;
+            ViewBag.BandName = BandUtil.BandProfileFor(bandId).BandName;
 
-            // Check if the user is in the band
             if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
             {
                 return RedirectToAction("Join", "Band");
@@ -125,9 +120,8 @@ namespace band.Content
 
         public ActionResult UploadFile(int bandId, int groupId)
         {
-            BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
             ViewBag.BandId = bandId;
-            ViewBag.BandName = bandProfile.BandName;
+            ViewBag.BandName = BandUtil.BandProfileFor(bandId).BandName;
             ViewBag.GroupId = groupId;
             if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
             {
