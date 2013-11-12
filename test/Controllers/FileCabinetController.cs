@@ -193,8 +193,9 @@ namespace band.Content
                     return View("Error");
                 }
 
+                string description = (model.FileDescription == null) ? "" : model.FileDescription;
                 FileEntry fileEntry = new FileEntry(fileName, bandId, groupId, WebSecurity.CurrentUserId, FileType.File,
-                                                        model.File.ContentLength, model.FileDescription, DateTime.UtcNow);
+                                                        model.File.ContentLength, description, DateTime.UtcNow);
 
                 database.FileEntries.Add(fileEntry);
                 database.SaveChanges();
