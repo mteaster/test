@@ -11,24 +11,24 @@
                 <div class="post" id="post-@item.PostId">
                     @if (item.PostType == test.Models.Dashboard.PostType.Message)
                     {
-                        <img style="position: relative; float: left;" alt="" src="@Url.Action("DownloadAvatar", "Account", new { userId = item.PosterId})" height="50" width="50" class="photo" />
+                        <img class="post-avatar" alt="" src="@Url.Action("DownloadAvatar", "Account", new { userId = item.PosterId})" height="50" width="50" class="photo" />
                                    
-                        <div style="display: table-cell">  
-                            <span class="messageBoardName">@Html.DisplayFor(modelItem => item.PosterName)</span><br />
-                            <span class="messageBoardTime">@Html.DisplayFor(modelItem => item.PostTime)</span><br />
+                        <div class="post-header">  
+                            <span class="post-username">@Html.DisplayFor(modelItem => item.PosterName)</span><br />
+                            <span class="post-time">@Html.DisplayFor(modelItem => item.PostTime)</span><br />
                         </div>  
                         
-                        <div id="post-content-@item.PostId" class="messageBoardMessage">@Html.Raw(item.Content)</div>
+                        <div class="post-content" id="post-content-@item.PostId">@Html.Raw(item.Content)</div>
 
                         if (item.PosterId == WebSecurity.CurrentUserId)
                         {
-                            <a class="messageBoardLink" href="javascript:initiateEdit(@item.PostId);">Edit</a>
+                            <a class="post-link" href="javascript:initiateEdit(@item.PostId);">Edit</a>
                             @Html.ActionLink("Delete", "DeletePost", "Dashboard", new { PostId = item.PostId }, new { @class = "messageBoardLink" })
                         }
                     }
                     else
                     {
-                        <div id="post-content-@item.PostId" class="messageBoardMessage">@Html.Raw(item.Content)</div>
+                        <div class="post-content" id="post-content-@item.PostId">@Html.Raw(item.Content)</div>
                     }
                 </div>
             </li>

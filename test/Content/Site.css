@@ -409,23 +409,6 @@ aside
         width: auto;
     }
 
-#socialLoginForm
-{
-    margin-left: 40px;
-    float: left;
-    width: 40%;
-}
-
-    #socialLoginForm h2
-    {
-        margin-bottom:  5px;
-    }
-
-#socialLoginList button
-{
-    margin-bottom: 12px;
-}
-
 #logoutForm
 {
     display: inline;
@@ -716,27 +699,42 @@ section.half
     width: 50%;   
 }
 
-span.messageBoardName
+/* message board stuff */
+
+img.post-avatar
 {
-    color: #000000;
-    font-size: 1.2em;
+    position: relative; 
+    float: left;
+    margin-right: 5px;
 }
 
-div.messageBoardMessage 
+div.post-header
 {
-    padding: 10px 0;
+    display: table-cell
 }
 
-span.messageBoardTime 
+span.post-time
 {
     font-weight: normal;
     font-size: small;
 }
 
-a.messageBoardLink
+span.post-username
+{
+    color: #000000;
+    font-size: 1.2em;
+}
+
+div.post-content
+{
+    padding: 10px 0;
+}
+
+a.post-link
 {
     padding: 0 3px 0 0;
 }
+
 
 table.pretty
 {
