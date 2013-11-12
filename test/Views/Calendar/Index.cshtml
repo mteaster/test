@@ -69,7 +69,7 @@
 <table id="calendar-table" cellpadding="0" cellspacing="0">
     <thead>
         <tr>
-            <th colspan="716" style="background-color:gray;">@Model.MonthName @Model.CurrentMonthYear</th> 
+            <th colspan="716" style="background-color:lightgray;">@Model.MonthName @Model.CurrentMonthYear</th> 
         </tr>
         <tr>
             <th>Sunday</th>
@@ -145,9 +145,9 @@
     </tbody>
 </table>
 
-@Html.ActionLink(Model.PreviousMonth.ToString(), "Month", "Calendar", 
+@Html.ActionLink("Previous Month", "Month", "Calendar", 
                         new { bandId = ViewBag.BandId, month = Model.PreviousMonth, year = Model.PreviousMonthYear }, null)
 
-@Html.ActionLink("Next month", "Month", "Calendar",
+@Html.ActionLink("Next Month", "Month", "Calendar",
                         new { bandId = ViewBag.BandId, month = Model.NextMonth, year = Model.NextMonthYear }, null)
     
