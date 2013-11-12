@@ -26,6 +26,9 @@ filesApp.controller('FilesController', function FilesController($scope, $http)
             sort.column = column;
             sort.descending = false;
         }
+
+        console.log($sort.column);
+        console.log($sort.descending);
     };
 
     var filesUrl = '/FileCabinet/GetJson?bandId=' + bandId + '&groupId=' + groupId;
