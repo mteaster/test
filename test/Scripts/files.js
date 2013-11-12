@@ -4,7 +4,7 @@ filesApp.controller('FilesController', function FilesController($scope, $http)
 {
     console.log("running controller");
 
-    $status.files = [];
+    $sscope.files = [];
 
     var filesUrl = '/FileCabinet/GetJson?bandId=' + bandId + '&groupId=' + groupId;
     $http({ method: 'GET', url: filesUrl }).
@@ -12,7 +12,7 @@ filesApp.controller('FilesController', function FilesController($scope, $http)
         {
             console.log("success");
             console.log(data);
-            $status.files = data;
+            $scope.files = data;
         }).
         error(function (data, status, headers, config)
         {
