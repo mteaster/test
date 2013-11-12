@@ -86,7 +86,15 @@ namespace band.Content
             using (DatabaseContext database = new DatabaseContext())
             {
                 List<FileEntry> entries = database.FileEntries.Where(f => f.BandId == bandId && f.GroupId == groupId).ToList();
-                return Json(entries, JsonRequestBehavior.AllowGet);
+
+                List<FileEntryModel> models = new List<FileEntryModel>();
+                foreach (FileEntry entry in entries)
+                {
+                    FileEntryModel model = new FileEntryModel(entry.FileId, entry.FileName, entry.BandId, entry.GroupId, entry.UploaderId);
+                    models.Add(model);
+                }
+                
+                return Json(models, JsonRequestBehavior.AllowGet);
             }
         }
 

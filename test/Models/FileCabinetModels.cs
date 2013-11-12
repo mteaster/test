@@ -58,4 +58,23 @@ namespace test.Models.FileCabinet
         [ForeignKey("BandId")]
         public virtual BandProfile BandProfile { get; set; }
     }
+
+    public class FileEntryModel
+    {
+        public FileEntryModel() { }
+        public FileEntryModel(int fileId, string fileName, int bandId, int groupId, int uploaderId)
+        {
+            this.FileId = fileId;
+            this.FileName = fileName;
+            this.GroupId = groupId;
+            this.BandId = bandId;
+            this.UploaderId = uploaderId;
+        }
+
+        public int FileId { get; set; }
+        public string FileName { get; set; }
+        public int BandId { get; set; }
+        public int GroupId { get; set; }
+        public int UploaderId { get; set; }
+    }
 }
