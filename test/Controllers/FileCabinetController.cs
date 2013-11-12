@@ -73,6 +73,11 @@ namespace band.Content
             }
         }
 
+        public ActionResult Files()
+        {
+            return View();
+        }
+
         public JsonResult GetJson(int groupId)
         {
             return Json(groupId);
