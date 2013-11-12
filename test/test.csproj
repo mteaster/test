@@ -257,8 +257,10 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\bootstrap-timepicker.min.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\files.js" />
     <Content Include="Scripts\messageboard.js" />
     <Content Include="Scripts\test.js" />
     <Content Include="Scripts\jquery-1.7.1-vsdoc.js" />
@@ -450,6 +452,9 @@
     <Content Include="Views\Shared\_RolodexList.cshtml">
       <SubType>Code</SubType>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\FileCabinet\Files.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
