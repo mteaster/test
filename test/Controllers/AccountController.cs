@@ -167,6 +167,12 @@ namespace test.Controllers
             return RedirectToAction("Manage");
         }
 
+        public ActionResult UploadAvatar()
+        {
+            return View();
+        }
+
+        [HttpPost]
         public ActionResult UploadAvatar(HttpPostedFileBase file)
         {
             if (file.ContentLength <= 0 || file.ContentLength > 1048576)
