@@ -4,7 +4,7 @@ filesApp.controller('FilesController', function FilesController($scope, $http)
 {
     console.log("running controller");
 
-    $sscope.files = [];
+    $scope.files = [];
 
     var filesUrl = '/FileCabinet/GetJson?bandId=' + bandId + '&groupId=' + groupId;
     $http({ method: 'GET', url: filesUrl }).
