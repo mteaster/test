@@ -80,7 +80,7 @@ namespace band.Content
 
         public JsonResult GetJson(int groupId)
         {
-            return Json(groupId);
+            return Json(groupId, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Groups(int bandId)
