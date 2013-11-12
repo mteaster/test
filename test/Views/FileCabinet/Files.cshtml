@@ -16,8 +16,7 @@
             <th>Delete</th>
         </tr>
 
-
-        <tr ng-repeat-start="file in files">
+        <tr ng-repeat="file in files">
                 <td>{{ file.FileId }}</td>
                 <td>{{ file.FileName }}</td>
                 <td>{{ file.GroupId }}</td>
@@ -25,7 +24,7 @@
                 <td>{{ file.UploaderId }}</td>
                 <td><a ng-href="/FileCabinet/DownloadFile?fileId={{ file.FileId }}">Download</a></td>
                 <td><a ng-href="/FileCabinet/DeleteFile?fileId={{ file.FileId }}">Delete</a></td>
-        </tr ng-repeat-end>
+        </tr>
     </table>
 
 
@@ -44,3 +43,4 @@
     <script type="text/javascript" src="@Url.Content("/Scripts/angular.min.js")"></script>
     <script type="text/javascript" src="@Url.Content("/Scripts/files.js")"></script>
 }
+
