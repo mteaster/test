@@ -16,7 +16,7 @@
             <th>Delete</th>
         </tr>
 
-        <tr ng-repeat="file in files | orderBy: sort.column : sort.descending">
+        <tr ng-repeat="file in files|orderBy:sort.column:sort.descending">
                 <td>{{ file.FileId }}</td>
                 <td>{{ file.FileName }}</td>
                 <td>{{ file.GroupId }}</td>
