@@ -181,7 +181,7 @@ namespace test.Controllers
                 return View("Error");
             }
 
-            string path = Server.MapPath("~/App_Data/UserAvatars/" + WebSecurity.CurrentUserId);
+            string path = Server.MapPath("~/App_Data/UserAvatars/" + WebSecurity.CurrentUserId + ".jpg");
             file.SaveAs(path);
 
             ViewBag.SuccessMessage = "Avatar uploaded. - " + file.FileName;
@@ -192,7 +192,14 @@ namespace test.Controllers
         {
             string path = Server.MapPath("~/App_Data/UserAvatars/" + userId + ".jpg");
 
-            return File(path, "image/jpeg");
+            if (System.IO.File.Exists(path))
+            {
+                return File(path, "image/jpeg");
+            }
+            else
+            {
+                return File(Server.MapPath("~/App_Data/UserAvatars/default.jpg"), "image/jpeg");
+            }
         }
 
         #region Helpers
