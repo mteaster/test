@@ -28,7 +28,7 @@
         width: 100px;
         height: 20px;
         padding: 4px;
-        background: #ffffff;
+        background: #acacac;
         border: 1px solid #b1b1b1;
     }
     #calendar-table td
@@ -69,7 +69,7 @@
 <table id="calendar-table" cellpadding="0" cellspacing="0">
     <thead>
         <tr>
-            <th colspan="716" align="center">@Model.MonthName @Model.CurrentMonthYear</th> 
+            <th colspan="716" style="background-color:gray;">@Model.MonthName @Model.CurrentMonthYear</th> 
         </tr>
         <tr>
             <th>Sunday</th>
@@ -145,7 +145,7 @@
     </tbody>
 </table>
 
-@Html.ActionLink("Last month", "Month", "Calendar", 
+@Html.ActionLink(Model.PreviousMonth.ToString(), "Month", "Calendar", 
                         new { bandId = ViewBag.BandId, month = Model.PreviousMonth, year = Model.PreviousMonthYear }, null)
 
 @Html.ActionLink("Next month", "Month", "Calendar",
