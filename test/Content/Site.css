@@ -711,6 +711,7 @@ img.post-avatar
     position: relative; 
     float: left;
     margin-right: 10px;
+    border: 1px solid black;
 }
 
 div.post-header
