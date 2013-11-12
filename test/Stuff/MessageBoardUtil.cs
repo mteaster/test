@@ -5,6 +5,7 @@ using test.Models;
 using test.Models.Dashboard;
 using WebMatrix.WebData;
 using test.Models.Account;
+using System.Web.Security;
 
 namespace test.Stuff
 {
@@ -92,7 +93,7 @@ namespace test.Stuff
             {
                 MessageBoardPost post = PostFor(postId, database);
 
-                if (post.PosterId != WebSecurity.CurrentUserId)
+                if (post.PosterId != WebSecurity.CurrentUserId && !Roles.IsUserInRole("Administrator"))
                 {
                     return false;
                 }
@@ -110,7 +111,7 @@ namespace test.Stuff
             {
                 MessageBoardPost post = PostFor(postId, database);
                 
-                if (post.PosterId != WebSecurity.CurrentUserId)
+                if (post.PosterId != WebSecurity.CurrentUserId && !Roles.IsUserInRole("Administrator"))
                 {
                     return false;
                 }
