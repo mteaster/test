@@ -457,7 +457,7 @@
     <Content Include="Views\Rolodex\CreateVenueContact.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Account\UploadAvatar.cshtml" />
+    <Content Include="Views\Account\_ChangeAvatarPartial.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
