@@ -710,6 +710,11 @@ img.post-avatar
 
 div.post-header
 {
+    margin-bottom: 10px;
+}
+
+div.post-info
+{
     display: table-cell;
 }
 

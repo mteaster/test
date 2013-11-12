@@ -11,12 +11,14 @@
                 <div class="post" id="post-@item.PostId">
                     @if (item.PostType == test.Models.Dashboard.PostType.Message)
                     {
-                        <img class="post-avatar" alt="" src="@Url.Action("DownloadAvatar", "Account", new { userId = item.PosterId})" height="50" width="50" />
-                                   
                         <div class="post-header">  
-                            <span class="post-username">@Html.DisplayFor(modelItem => item.PosterName)</span><br />
-                            <span class="post-time">@Html.DisplayFor(modelItem => item.PostTime)</span><br />
-                        </div>  
+                            <img class="post-avatar" alt="" src="@Url.Action("DownloadAvatar", "Account", new { userId = item.PosterId})" height="50" width="50" />
+                                   
+                            <div class="post-info">  
+                                <span class="post-username">@Html.DisplayFor(modelItem => item.PosterName)</span><br />
+                                <span class="post-time">@Html.DisplayFor(modelItem => item.PostTime)</span><br />
+                            </div>
+                        </div>
                         
                         <div class="post-content" id="post-content-@item.PostId">@Html.Raw(item.Content)</div>
 
