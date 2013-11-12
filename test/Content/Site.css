@@ -701,6 +701,11 @@ section.half
 
 /* message board stuff */
 
+h2.messageboard-header
+{
+    margin-bottom: 20px;
+}
+
 img.post-avatar
 {
     position: relative; 
