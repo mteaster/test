@@ -2,13 +2,13 @@
 
 <form method="post">
     <input type="text" name="searchString" />
-    <table>
-        <tr>
-            <td><input type="radio" name="type" value="band" style="vertical-align: middle" />Band</td>
-            <td><input type="radio" name="type" value="people" style="vertical-align: middle"  />People</td>
-            <td><input type="radio" name="type" value="venue" style="vertical-align: middle" />Venue</td>
-        </tr>
-    </table>
+    <ul>
+        <li style="list-style:none; display:inline;">
+            <input type="radio" name="type" value="band" style="display:inline" />Band
+            <input type="radio" name="type" value="people" style="display:inline"  />People
+            <input type="radio" name="type" value="venue" style="display:inline" />Venue
+        </li>
+    </ul>
     <input type="submit" value="Search" />
 </form>
 
