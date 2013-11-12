@@ -63,6 +63,26 @@ namespace test.Controllers
             return View("Success");
         }
 
+        public ActionResult AvatarDirectories()
+        {
+            string userAvatars = Server.MapPath("~/App_Data/UserAvatars/");
+
+            if (!Directory.Exists(userAvatars))
+            {
+                Directory.CreateDirectory(userAvatars);
+            }
+
+            string bandAvatars = Server.MapPath("~/App_Data/BandAvatars/");
+
+            if (!Directory.Exists(bandAvatars))
+            {
+                Directory.CreateDirectory(bandAvatars);
+            }
+
+            ViewBag.StatusMessage = "it probably worked";
+            return View("Success");
+        }
+
         public ActionResult ThomasAndFriends()
         {
             WebSecurity.CreateUserAndAccount("admin", "password", new { DisplayName = "Sir Topham Hatt" });
