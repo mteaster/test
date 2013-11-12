@@ -185,6 +185,7 @@ namespace test.Controllers
             return RedirectToAction("Manage");
         }
 
+        [OutputCache(Duration = 60, VaryByParam = "userId")]
         public ActionResult DownloadAvatar(int userId)
         {
             string path = Server.MapPath("~/App_Data/UserAvatars/" + userId + ".jpg");
