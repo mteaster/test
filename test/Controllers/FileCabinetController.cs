@@ -8,6 +8,7 @@ using test.Models.Band;
 using test.Models.FileCabinet;
 using test.Stuff;
 using WebMatrix.WebData;
+using System.Collections.Generic;
 
 namespace band.Content
 {
@@ -84,7 +85,8 @@ namespace band.Content
         {
             using (DatabaseContext database = new DatabaseContext())
             {
-                return Json(database.FileEntries.Where(f => f.BandId == bandId && f.GroupId == groupId).ToList(), JsonRequestBehavior.AllowGet);
+                List<FileEntry> entries = database.FileEntries.Where(f => f.BandId == bandId && f.GroupId == groupId).ToList();
+                return Json(entries, JsonRequestBehavior.AllowGet);
             }
         }
 
