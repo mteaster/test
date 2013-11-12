@@ -18,7 +18,7 @@ namespace test.Models.FileCabinet
     public class FileEntry
     {
         public FileEntry() {}
-        public FileEntry(string fileName, int bandId, int groupId, int uploaderId, FileType fileType, string fileSize, string fileDescription, DateTime modifiedTime)
+        public FileEntry(string fileName, int bandId, int groupId, int uploaderId, FileType fileType, int fileSize, string fileDescription, DateTime modifiedTime)
         {
             this.FileName = fileName;
             this.GroupId = groupId;
@@ -56,7 +56,7 @@ namespace test.Models.FileCabinet
         public int FileType { get; set; }
 
         [Required]
-        public string FileSize { get; set; }
+        public int FileSize { get; set; }
 
         [Required]
         public string FileDescription { get; set; }

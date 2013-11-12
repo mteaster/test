@@ -174,9 +174,8 @@ namespace band.Content
                     return View("Error");
                 }
 
-                string size = ((float)model.File.ContentLength / 1024f).ToString("0.0") + "kb";
                 FileEntry fileEntry = new FileEntry(fileName, bandId, groupId, WebSecurity.CurrentUserId, FileType.File,
-                                                        size, model.FileDescription, DateTime.UtcNow);
+                                                        model.File.ContentLength, model.FileDescription, DateTime.UtcNow);
 
                 database.FileEntries.Add(fileEntry);
                 database.SaveChanges();
