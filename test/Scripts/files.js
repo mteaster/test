@@ -6,20 +6,21 @@ filesApp.controller('FilesController', function FilesController($scope, $http)
 
     $scope.files = [];
 
-    $scope.sort = 
+    $scope.sort =
     {
         column: '',
         descending: false
     };
 
-    $scope.changeSorting = function(column)
+    $scope.changeSorting = function (column)
     {
+        console.log("change sorting");
         var sort = $scope.sort;
 
         if (sort.column == column)
         {
             sort.descending = !sort.descending;
-        } 
+        }
         else
         {
             sort.column = column;
