@@ -88,10 +88,29 @@ namespace band.Content
             {
                 List<FileEntry> entries = database.FileEntries.Where(f => f.BandId == bandId && f.GroupId == groupId).ToList();
 
+                var results = from f in database.FileEntries
+                              join u in database.UserProfiles
+                              on f.UploaderId equals u.UserId
+                              where f.BandId == bandId && f.GroupId == groupId
+                              orderby f.FileName descending
+                              select new
+                              {
+                                  f.FileId,
+                                  f.FileName,
+                                  f.FileDescription,
+                                  f.FileType,
+                                  f.FileSize,
+                                  u.UserName,
+                                  f.ModifiedTime
+                              };
+
+ 
                 List<FileEntryModel> models = new List<FileEntryModel>();
-                foreach (FileEntry entry in entries)
+                foreach (var result in results)
                 {
-                    FileEntryModel model = new FileEntryModel(entry.FileId, entry.FileName, entry.BandId, entry.GroupId, entry.UploaderId);
+                    FileEntryModel model = new FileEntryModel(result.FileId, result.FileName, result.FileDescription,
+                                                                (FileType)result.FileType, result.FileSize, result.UserName, 
+                                                                result.ModifiedTime);
                     models.Add(model);
                 }
                 

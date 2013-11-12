@@ -9,9 +9,10 @@
         <tr>
             <th ng-click="changeSorting('FileId')">File ID</th>
             <th ng-click="changeSorting('FileName')">Name</th>
-            <th>Group ID</th>
-            <th>Band ID</th>
-            <th>Uploader ID</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Uploader</th>
+            <th>Modified</th>
             <th>Download</th>
             <th>Delete</th>
         </tr>
@@ -19,9 +20,10 @@
         <tr ng-repeat="file in files | orderBy : sort.column : sort.descending">
                 <td>{{ file.FileId }}</td>
                 <td>{{ file.FileName }}</td>
-                <td>{{ file.GroupId }}</td>
-                <td>{{ file.BandId }}</td>
-                <td>{{ file.UploaderId }}</td>
+                <td>{{ file.FileDescription }}</td>
+                <td>{{ file.FileType}}</td>
+                <td>{{ file.UploaderName }}</td>
+                <td>{{ file.ModifiedTime }}</td>
                 <td><a ng-href="/FileCabinet/DownloadFile?fileId={{ file.FileId }}">Download</a></td>
                 <td><a ng-href="/FileCabinet/DeleteFile?fileId={{ file.FileId }}">Delete</a></td>
         </tr>

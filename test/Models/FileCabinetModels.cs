@@ -85,20 +85,23 @@ namespace test.Models.FileCabinet
     public class FileEntryModel
     {
         public FileEntryModel() { }
-        public FileEntryModel(int fileId, string fileName, int bandId, int groupId, int uploaderId)
+        public FileEntryModel(int fileId, string fileName, string fileDescription, FileType fileType, int fileSize, string uploaderName, DateTime modifiedTime)
         {
             this.FileId = fileId;
             this.FileName = fileName;
-            this.GroupId = groupId;
-            this.BandId = bandId;
-            this.UploaderId = uploaderId;
+            this.FileDescription = fileDescription;
+            this.FileType = fileType.ToString();
+            this.UploaderName = uploaderName;
+            this.ModifiedTime = modifiedTime;
         }
 
         public int FileId { get; set; }
         public string FileName { get; set; }
-        public int BandId { get; set; }
-        public int GroupId { get; set; }
-        public int UploaderId { get; set; }
+        public string FileDescription { get; set; }
+        public string FileType { get; set; }
+        public int FileSize { get; set; }
+        public string UploaderName { get; set; }
+        public DateTime ModifiedTime { get; set; }
     }
 
     public class UploadFileModel
