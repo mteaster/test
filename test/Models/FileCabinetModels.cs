@@ -92,7 +92,7 @@ namespace test.Models.FileCabinet
             this.FileDescription = fileDescription;
             this.FileType = fileType.ToString();
             this.UploaderName = uploaderName;
-            this.ModifiedTime = modifiedTime.ToLongDateString();
+            this.ModifiedTime = modifiedTime.ToLongTimeString();
         }
 
         public int FileId { get; set; }
