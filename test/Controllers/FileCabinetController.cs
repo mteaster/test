@@ -9,6 +9,7 @@ using test.Models.FileCabinet;
 using test.Stuff;
 using WebMatrix.WebData;
 using System.Collections.Generic;
+using System;
 
 namespace band.Content
 {
@@ -144,7 +145,7 @@ namespace band.Content
         }
 
         [HttpPost]
-        public ActionResult UploadFile(int bandId, int groupId, HttpPostedFileBase file)
+        public ActionResult UploadFile(int bandId, int groupId, UploadFileModel model)
         {
             using (DatabaseContext database = new DatabaseContext())
             {
@@ -157,13 +158,13 @@ namespace band.Content
                     return RedirectToAction("Join", "Band");
                 }
 
-                if (file.ContentLength <= 0 || file.ContentLength > 1048576)
+                if (model.File.ContentLength <= 0 || model.File.ContentLength > 1048576)
                 {
                     ViewBag.ErrorMessage = "file sucks";
                     return View("Error");
                 }
 
-                string fileName = Path.GetFileName(file.FileName);
+                string fileName = Path.GetFileName(model.File.FileName);
 
                 if (database.FileEntries.Where(f => f.BandId == bandId
                                         && f.GroupId == groupId
@@ -173,7 +174,9 @@ namespace band.Content
                     return View("Error");
                 }
 
-                FileEntry fileEntry = new FileEntry(fileName, bandId, groupId, WebSecurity.CurrentUserId);
+                string size = ((float)model.File.ContentLength / 1024f).ToString("0.0") + "kb";
+                FileEntry fileEntry = new FileEntry(fileName, bandId, groupId, WebSecurity.CurrentUserId, FileType.File,
+                                                        size, model.FileDescription, DateTime.UtcNow);
 
                 database.FileEntries.Add(fileEntry);
                 database.SaveChanges();
@@ -184,7 +187,7 @@ namespace band.Content
                 {
                     Directory.CreateDirectory(directory);
                 }
-                file.SaveAs(directory + fileEntry.FileId);
+                model.File.SaveAs(directory + fileEntry.FileId);
 
                 MessageBoardUtil.AddFilePost(bandId, fileEntry.FileId);
 

@@ -4,19 +4,30 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Web.Mvc;
 using test.Models.Account;
 using test.Models.Band;
+using System;
+using System.Web;
 
 namespace test.Models.FileCabinet
 {
+    public enum FileType
+    {
+        File
+    }
+
     [Table("FileEntry")]
     public class FileEntry
     {
         public FileEntry() {}
-        public FileEntry(string fileName, int bandId, int groupId, int uploaderId)
+        public FileEntry(string fileName, int bandId, int groupId, int uploaderId, FileType fileType, string fileSize, string fileDescription, DateTime modifiedTime)
         {
             this.FileName = fileName;
             this.GroupId = groupId;
             this.BandId = bandId;
             this.UploaderId = uploaderId;
+            this.FileType = (int)fileType;
+            this.FileSize = fileSize;
+            this.FileDescription = fileDescription;
+            this.ModifiedTime = modifiedTime;
         }
 
         [Key]
@@ -40,6 +51,18 @@ namespace test.Models.FileCabinet
         public int UploaderId { get; set; }
         [ForeignKey("UploaderId")]
         public virtual UserProfile UploaderProfile { get; set; }
+
+        [Required]
+        public int FileType { get; set; }
+
+        [Required]
+        public string FileSize { get; set; }
+
+        [Required]
+        public string FileDescription { get; set; }
+
+        [Required]
+        public DateTime ModifiedTime { get; set; }
     }
 
     [Table("FileGroup")]
@@ -76,5 +99,16 @@ namespace test.Models.FileCabinet
         public int BandId { get; set; }
         public int GroupId { get; set; }
         public int UploaderId { get; set; }
+    }
+
+    public class UploadFileModel
+    {
+        [Required]
+        [Display(Name = "Filename")]
+        public HttpPostedFileBase File { get; set; }
+
+        [Required]
+        [Display(Name = "File description")]
+        public string FileDescription { get; set; }
     }
 }
