@@ -22,9 +22,9 @@ namespace test
 
             routes.MapRoute(
                 name: "Files",
-                url: "FileCabinet/Files/{groupId}",
+                url: "FileCabinet/{bandId}/Files/{groupId}",
                 defaults: new { controller = "FileCabinet", action = "Files" },
-                constraints: new { groupId = @"\d+" }
+                constraints: new {  bandId = @"\d+", groupId = @"\d+" }
             );
 
             routes.MapRoute(

@@ -76,7 +76,7 @@ namespace band.Content
             }
         }
 
-        public ActionResult Files(int groupId)
+        public ActionResult Files(int groupId, int bandId)
         {
             using (DatabaseContext database = new DatabaseContext())
             {
