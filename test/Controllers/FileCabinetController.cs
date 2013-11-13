@@ -85,6 +85,7 @@ namespace band.Content
                 ViewBag.GroupId = groupId;
                 ViewBag.GroupName = fileGroup.GroupName;
                 ViewBag.BandId = fileGroup.BandId;
+                ViewBag.BandName = fileGroup.BandProfile.BandName;
                 if (database.BandMemberships.Find(fileGroup.BandId, WebSecurity.CurrentUserId) == null && !Roles.IsUserInRole("Administrator"))
                 {
                     ViewBag.ErrorMessage = "You are not a member of this band.";
