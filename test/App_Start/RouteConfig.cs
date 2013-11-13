@@ -28,6 +28,13 @@ namespace test
             );
 
             routes.MapRoute(
+                name: "Get Groups",
+                url: "FileCabinet/GetGroups/{bandId}",
+                defaults: new { controller = "FileCabinet", action = "GetGroups" },
+                constraints: new { bandId = @"\d+" }
+            );
+
+            routes.MapRoute(
                 name: "Files",
                 url: "FileCabinet/{bandId}/Files/{groupId}",
                 defaults: new { controller = "FileCabinet", action = "Files" },
