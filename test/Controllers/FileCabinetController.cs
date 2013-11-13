@@ -58,21 +58,24 @@ namespace band.Content
         {
             using (DatabaseContext database = new DatabaseContext())
             {
-
                 if (database.FileGroups.Where(f => f.BandId == bandId && f.GroupName == groupName).Any())
                 {
-                    ViewBag.ErrorMessage = "group already exists";
-                    return View("Error");
+                    ViewBag.ErrorMessage = groupName + " already exists.";
+
+                }
+                else
+                {
+
+                    FileGroup fileGroup = new FileGroup();
+                    fileGroup.BandId = bandId;
+                    fileGroup.GroupName = groupName;
+                    database.FileGroups.Add(fileGroup);
+                    database.SaveChanges();
+
+                    ViewBag.SuccessMessage = groupName + " created.";
                 }
 
-                FileGroup fileGroup = new FileGroup();
-                fileGroup.BandId = bandId;
-                fileGroup.GroupName = groupName;
-                database.FileGroups.Add(fileGroup);
-                database.SaveChanges();
-
-                ViewBag.SuccessMessage = "group created";
-                return View("Success");
+                return View("Index");
             }
         }
 
