@@ -15,9 +15,16 @@ namespace test
 
             routes.MapRoute(
                 name: "Get Files",
-                url: "FileCabinet/GetFiles/{bandId}/{groupId}",
-                defaults: new { controller = "Calendar", action = "AddEvent" },
-                constraints: new { bandId = @"\d+", day = @"\d+", month = @"\d+", year = @"\d+" }
+                url: "FileCabinet/GetFiles/{groupId}",
+                defaults: new { controller = "FileCabinet", action = "GetFiles" },
+                constraints: new { groupId = @"\d+" }
+            );
+
+            routes.MapRoute(
+                name: "Files",
+                url: "FileCabinet/Files/{groupId}",
+                defaults: new { controller = "FileCabinet", action = "Files" },
+                constraints: new { groupId = @"\d+" }
             );
 
             routes.MapRoute(
