@@ -48,5 +48,23 @@ namespace test.Stuff
                 database.SaveChanges();
             }
         }
+
+        public static void DeleteUserAvatars(HttpServerUtilityBase server)
+        {
+            DirectoryInfo userAvatarDirectory = new DirectoryInfo(server.MapPath("~/App_Data/UserAvatars/"));
+
+            foreach (FileInfo file in userAvatarDirectory.GetFiles())
+            {
+                file.Delete();
+            }
+        }
+
+        public static void GiveUserAvatar(int userId, string avatarFileName, HttpServerUtilityBase server)
+        {
+            string sourcePath = server.MapPath("~/App_Data/TestData/" + avatarFileName);
+            string destinationPath = server.MapPath("~/App_Data/UserAvatars/" + userId + ".jpg");
+
+            File.Copy(sourcePath, destinationPath, true);
+        }
     }
 }

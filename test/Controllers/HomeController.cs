@@ -83,11 +83,21 @@ namespace test.Controllers
             return View("Success");
         }
 
-        public ActionResult ThomasAndFriends()
+
+
+        public ActionResult Test()
         {
+            // Clear out all the user avatars
+            TestUtil.DeleteUserAvatars(Server);
+
+            // Make admin account
             WebSecurity.CreateUserAndAccount("admin", "password", new { DisplayName = "Sir Topham Hatt" });
             Roles.CreateRole("Administrator");
             Roles.AddUserToRole("admin", "Administrator");
+            TestUtil.GiveUserAvatar(WebSecurity.GetUserId("admin"), "AdminAvatar.jpg", Server);
+
+            // Make Thomas and Friends
+            int testBandId = TestUtil.MakeBand("Thomas and Friends", WebSecurity.GetUserId("admin"), "password");
 
             WebSecurity.CreateUserAndAccount("test1", "password", new { DisplayName = "Thomas" });
             WebSecurity.CreateUserAndAccount("test2", "password", new { DisplayName = "Edward" });
@@ -97,8 +107,6 @@ namespace test.Controllers
             WebSecurity.CreateUserAndAccount("test6", "password", new { DisplayName = "James" });
             WebSecurity.CreateUserAndAccount("test7", "password", new { DisplayName = "Toby" });
 
-            int testBandId = TestUtil.MakeBand("Thomas and Friends", WebSecurity.GetUserId("admin"), "password");
-
             TestUtil.PutInBand(testBandId, WebSecurity.GetUserId("test1"));
             TestUtil.PutInBand(testBandId, WebSecurity.GetUserId("test2"));
             TestUtil.PutInBand(testBandId, WebSecurity.GetUserId("test3"));
@@ -106,6 +114,10 @@ namespace test.Controllers
             TestUtil.PutInBand(testBandId, WebSecurity.GetUserId("test5"));
             TestUtil.PutInBand(testBandId, WebSecurity.GetUserId("test6"));
             TestUtil.PutInBand(testBandId, WebSecurity.GetUserId("test7"));
+
+            // Make Cookie Monster
+            WebSecurity.CreateUserAndAccount("cookiemonster", "password", new { DisplayName = "Cookie Monster" });
+            TestUtil.GiveUserAvatar(WebSecurity.GetUserId("cookiemonster"), "CookieAvatar.jpg", Server);
 
             ViewBag.SuccessMessage = "Choo choo!";
             return View("Success");

@@ -110,7 +110,6 @@ namespace test.Models.FileCabinet
         [Display(Name = "Filename")]
         public HttpPostedFileBase File { get; set; }
 
-        [Required]
         [Display(Name = "File description")]
         public string FileDescription { get; set; }
     }
