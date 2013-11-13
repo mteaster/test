@@ -459,6 +459,18 @@
   <ItemGroup>
     <Content Include="Views\Account\_ChangeAvatarPartial.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Rolodex\EditContact.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Rolodex\EditBand.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Rolodex\EditPeople.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Rolodex\EditVenue.cshtml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

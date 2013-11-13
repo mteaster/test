@@ -343,5 +343,74 @@ namespace band.Controllers
             return PartialView("_RolodexList", contacts);
         }
 
+        public ActionResult EditContact(int bandId, int contactId, Contact.ContactType type)
+        {
+            ViewBag.BandId = bandId;
+            ViewBag.BandName = BandUtil.BandProfileFor(bandId).BandName;
+
+            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
+            {
+                return RedirectToAction("Join", "Band");
+            }
+
+            if (type == Contact.ContactType.Band)
+            {
+                return EditBand(bandId, contactId);
+            }
+            else if (type == Contact.ContactType.People)
+            {
+                return EditPeople(bandId, contactId);
+            }
+            else if (type == Contact.ContactType.Venue)
+            {
+                return EditVenue(bandId, contactId);
+            }
+            else
+            {
+                return View("Error");
+            }
+        }
+
+        public ActionResult EditBand(int bandId, int contactId)
+        {
+            ViewBag.BandId = bandId;
+            ViewBag.BandName = BandUtil.BandProfileFor(bandId).BandName;
+
+            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
+            {
+                return RedirectToAction("Join", "Band");
+            }
+
+            return View();
+        }
+
+        public ActionResult EditPeople(int bandId, int contactId)
+        {
+
+            ViewBag.BandId = bandId;
+            ViewBag.BandName = BandUtil.BandProfileFor(bandId).BandName;
+
+            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
+            {
+                return RedirectToAction("Join", "Band");
+            }
+
+            return View();
+        }
+
+        public ActionResult EditVenue(int bandId, int contactId)
+        {
+
+            ViewBag.BandId = bandId;
+            ViewBag.BandName = BandUtil.BandProfileFor(bandId).BandName;
+
+            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
+            {
+                return RedirectToAction("Join", "Band");
+            }
+
+            return View();
+        }
+
     }
 }

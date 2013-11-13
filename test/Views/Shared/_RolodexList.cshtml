@@ -24,6 +24,7 @@
         <th style="width:10%;">@Html.DisplayNameFor(m => m.Type)</th>
         <th style="width:10%;">@Html.DisplayNameFor(m => m.PhoneNumber)</th>
         <th style="width:10%;">@Html.DisplayNameFor(m => m.Email)</th>
+        <th style="width:10%;"></th>
     </tr>
 
     @foreach (test.Models.Rolodex.Contact contact in Model)
@@ -34,6 +35,7 @@
             <td>@Html.DisplayFor(ModelItem => contact.Type)</td>
             <td>@Html.DisplayFor(ModelItem => contact.PhoneNumber)</td>
             <td>@Html.DisplayFor(ModelItem => contact.Email)</td>
+            <td>@Html.ActionLink("View/Edit", "EditContact", new {bandId = ViewBag.BandId, contactId = contact.ContactId, type = contact.Type})</td>
         </tr>
     }
 </table>
