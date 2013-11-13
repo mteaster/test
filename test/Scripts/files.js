@@ -9,10 +9,10 @@ filesApp.controller('FilesController', function FilesController($scope, $http)
         $scope.url = url;
     };
 
-    var url = '/FileCabinet/GetJson?bandId=' + bandId + '&groupId=' + groupId;
+    console.log($scope.url);
 
     $scope.data = [];
-    $http({ method: 'GET', url: url }).success(function (data) { $scope.files = data; });
+    $http({ method: 'GET', url: $scope.url }).success(function (data) { $scope.files = data; });
 
     $scope.column = '';
     $scope.descending = false;
