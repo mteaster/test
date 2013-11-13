@@ -14,6 +14,13 @@ namespace test
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "CreateGroup",
+                url: "FileCabinet/{bandId}/CreateGroup/{groupName}",
+                defaults: new { controller = "FileCabinet", action = "CreateGroup" },
+                constraints: new { bandId = @"\d+" }
+            );
+
+            routes.MapRoute(
                 name: "Get Files",
                 url: "FileCabinet/GetFiles/{groupId}",
                 defaults: new { controller = "FileCabinet", action = "GetFiles" },
