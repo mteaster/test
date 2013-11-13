@@ -10,6 +10,25 @@
 <p class="message-success">@ViewBag.SuccessMessage</p>
 <p class="message-error">@ViewBag.ErrorMessage</p>
 
-@{ Html.RenderAction("Groups"); }
-
 @Html.ActionLink("Create group", "CreateGroup", new { bandId = ViewBag.BandId } )
+
+<div ng-app="sortable" ng-controller="SortableController" ng-init="init('/FileCabinet/GetGroups/@ViewBag.BandId')">
+    <table class="pretty" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <th ng-click="sort('GroupId')">Group ID</th>
+            <th ng-click="sort('GroupName')">Name</th>
+        </tr>
+
+        <tr ng-repeat="group in data | orderBy : column : descending">
+                <td>{{ group.GroupId }}</td>
+                <td><a ng-href="/FileCabinet/{{ group.BandId}}/Files/{{ group.GroupId }}">{{ group.GroupName }}</a>
+        </tr>
+    </table>
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript" src="@Url.Content("/Scripts/angular.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/Scripts/sortable.js")"></script>
+}
+

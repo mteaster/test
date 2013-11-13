@@ -104,6 +104,21 @@ namespace test.Models.FileCabinet
         public string ModifiedTime { get; set; }
     }
 
+    public class FileGroupModel
+    {
+        public FileGroupModel() { }
+        public FileGroupModel(int groupId, int bandId, string groupName)
+        {
+            this.GroupId = groupId;
+            this.BandId = bandId;
+            this.GroupName = groupName;
+        }
+
+        public int GroupId { get; set; }
+        public int BandId { get; set; }
+        public string GroupName { get; set; }
+    }
+
     public class UploadFileModel
     {
         [Required]

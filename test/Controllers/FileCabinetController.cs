@@ -159,6 +159,29 @@ namespace band.Content
             }
         }
 
+        public ActionResult GetGroups(int bandId)
+        {
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                if (database.BandMemberships.Find(bandId, WebSecurity.CurrentUserId) == null && !Roles.IsUserInRole("Administrator"))
+                {
+                    ViewBag.ErrorMessage = "You are not a member of this band.";
+                    return View("Error");
+                }
+
+                List<FileGroup> groups = database.FileGroups.Where(g => g.BandId == bandId).ToList();
+
+                List<FileGroupModel> models = new List<FileGroupModel>();
+                foreach (var group in groups)
+                {
+                    FileGroupModel model = new FileGroupModel(group.GroupId, group.GroupName);
+                    models.Add(model);
+                }
+
+                return Json(models, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         public ActionResult ListFiles(int bandId, int groupId)
         {
             ViewBag.BandId = bandId;
