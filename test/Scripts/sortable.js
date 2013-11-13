@@ -16,7 +16,7 @@ sortableApp.controller('SortableController', function FilesController($scope, $h
 
     $scope.sort = function (column)
     {
-        console.log("sorting");
+
 
         if ($scope.column == column)
         {
@@ -28,7 +28,6 @@ sortableApp.controller('SortableController', function FilesController($scope, $h
             $scope.descending = false;
         }
 
-        console.log("sorting by column " + $scope.column);
-        console.log("descending = " + $scope.descending);
+        console.log("sorting by column " + $scope.column + ", " + ($scope.descending) ? "descending" : "ascending" );
     };
 });
