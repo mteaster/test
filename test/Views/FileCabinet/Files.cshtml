@@ -7,6 +7,8 @@
     @Html.Partial("_BandHeaderPartial")
 }
 
+<h2>@ViewBag.GroupName</h2>
+
 @Html.ActionLink("Upload", "UploadFile", new { bandId = ViewBag.BandId, groupId = ViewBag.GroupId })
 
 <div ng-app="sortable" ng-controller="SortableController" ng-init="init('/FileCabinet/GetFiles/@ViewBag.GroupId')">
