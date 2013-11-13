@@ -28,6 +28,6 @@ sortableApp.controller('SortableController', function FilesController($scope, $h
             $scope.descending = false;
         }
 
-        console.log("sorting by column " + $scope.column + ", " + ($scope.descending) ? "descending" : "ascending" );
+        console.log("sorting by column " + $scope.column + ", " + ($scope.descending ? "descending" : "ascending"));
     };
 });
