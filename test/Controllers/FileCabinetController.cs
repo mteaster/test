@@ -58,14 +58,15 @@ namespace band.Content
         {
             using (DatabaseContext database = new DatabaseContext())
             {
+                ViewBag.BandId = bandId;
+                ViewBag.BandName = database.BandProfiles.Find(bandId).BandName;
+
                 if (database.FileGroups.Where(f => f.BandId == bandId && f.GroupName == groupName).Any())
                 {
                     ViewBag.ErrorMessage = groupName + " already exists.";
-
                 }
                 else
                 {
-
                     FileGroup fileGroup = new FileGroup();
                     fileGroup.BandId = bandId;
                     fileGroup.GroupName = groupName;
