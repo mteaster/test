@@ -174,7 +174,7 @@ namespace band.Content
                 List<FileGroupModel> models = new List<FileGroupModel>();
                 foreach (var group in groups)
                 {
-                    FileGroupModel model = new FileGroupModel(group.GroupId, group.GroupName);
+                    FileGroupModel model = new FileGroupModel(group.GroupId, group.BandId, group.GroupName);
                     models.Add(model);
                 }
 
