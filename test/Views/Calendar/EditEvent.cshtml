@@ -34,104 +34,29 @@
                 @Html.EditorFor(model => model.EventDescription)
             </li>
         </ol>
-
-        </fieldset>
-<!doctype html>
- 
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <title>jQuery UI Datepicker - Default functionality</title>
-  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-  <link rel="stylesheet" href="/resources/demos/style.css" />
-  <script>
-      $(function () {
-          $("#datepicker").datepicker();
-      });
-  </script>
-</head>
-<body>
- 
-<p>Date: <input type="text" id="datepicker" /></p>
- 
- 
-</body>
-</html>
-<fieldset>
-        <br>
-        <label for="Date">Date</label>
-        <ul>
-
-            <li>
-                @{
-    List<SelectListItem> month = new List<SelectListItem>();
-                    month.Add(new SelectListItem { Text = "1", Value = "1", Selected = true});
-                    month.Add(new SelectListItem { Text = "2", Value = "2" });
-                    month.Add(new SelectListItem { Text = "3", Value = "3" });
-                    month.Add(new SelectListItem { Text = "4", Value = "4" });
-                    month.Add(new SelectListItem { Text = "5", Value = "5" });
-                    month.Add(new SelectListItem { Text = "6", Value = "6" });
-                    month.Add(new SelectListItem { Text = "7", Value = "7" });
-                    month.Add(new SelectListItem { Text = "8", Value = "8" });
-                    month.Add(new SelectListItem { Text = "9", Value = "9" });
-                    month.Add(new SelectListItem { Text = "10", Value = "10" });
-                    month.Add(new SelectListItem { Text = "11", Value = "11" });
-                    month.Add(new SelectListItem { Text = "12", Value = "12" });
-                }               
-                @Html.DropDownListFor(m => m.EventMonth, month)
-            </li>
-            <li>
-                @{
-                    List<SelectListItem> day = new List<SelectListItem>();
-                    day.Add(new SelectListItem { Text = "1", Value = "1", Selected = true });
-                    day.Add(new SelectListItem { Text = "2", Value = "2" });
-                    day.Add(new SelectListItem { Text = "3", Value = "3" });
-                    day.Add(new SelectListItem { Text = "4", Value = "4" });
-                    day.Add(new SelectListItem { Text = "5", Value = "5" });
-                    day.Add(new SelectListItem { Text = "6", Value = "6" });
-                    day.Add(new SelectListItem { Text = "7", Value = "7" });
-                    day.Add(new SelectListItem { Text = "8", Value = "8" });
-                    day.Add(new SelectListItem { Text = "9", Value = "9" });
-                    day.Add(new SelectListItem { Text = "10", Value = "10" });
-                    day.Add(new SelectListItem { Text = "11", Value = "11" });
-                    day.Add(new SelectListItem { Text = "12", Value = "12" });
-                    day.Add(new SelectListItem { Text = "13", Value = "13" });
-                    day.Add(new SelectListItem { Text = "14", Value = "14" });
-                    day.Add(new SelectListItem { Text = "15", Value = "15" });
-                    day.Add(new SelectListItem { Text = "16", Value = "16" });
-                    day.Add(new SelectListItem { Text = "17", Value = "17" });
-                    day.Add(new SelectListItem { Text = "18", Value = "18" });
-                    day.Add(new SelectListItem { Text = "19", Value = "19" });
-                    day.Add(new SelectListItem { Text = "20", Value = "20" });
-                    day.Add(new SelectListItem { Text = "21", Value = "21" });
-                    day.Add(new SelectListItem { Text = "22", Value = "22" });
-                    day.Add(new SelectListItem { Text = "23", Value = "23" });
-                    day.Add(new SelectListItem { Text = "24", Value = "24" });
-                    day.Add(new SelectListItem { Text = "25", Value = "25" });
-                    day.Add(new SelectListItem { Text = "26", Value = "26" });
-                    day.Add(new SelectListItem { Text = "27", Value = "27" });
-                    day.Add(new SelectListItem { Text = "28", Value = "28" });
-                    day.Add(new SelectListItem { Text = "29", Value = "29" });
-                    day.Add(new SelectListItem { Text = "30", Value = "30" });
-                    day.Add(new SelectListItem { Text = "31", Value = "31" });
-                }               
-                @Html.DropDownListFor(m => m.EventDay, day)
-            </li>
-            <li>
-                @{
-                    List<SelectListItem> year = new List<SelectListItem>();
-                    year.Add(new SelectListItem { Text = "2013", Value = "2013", Selected = true });
-                    year.Add(new SelectListItem { Text = "2014", Value = "2014" });
-                    year.Add(new SelectListItem { Text = "2015", Value = "2015" });
-                }               
-                @Html.DropDownListFor(m => m.EventYear, year)
-            </li>
-        </ul>
-        <br>
-        
-
+    </fieldset>
+    
+    <!doctype html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>jQuery UI Datepicker - Default functionality</title>
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <link rel="stylesheet" href="/resources/demos/style.css" />
+        <script>
+            $(function () {
+                $("#datepicker").datepicker();
+            });
+        </script>
+    </head>
+    <body>
+        <p>Date: <input type="text" id="datepicker" /></p>
+    </body>
+    </html>
+    
+    <fieldset>
         <br>
         <label for="Time">Time</label>
         <ul>
