@@ -151,14 +151,3 @@
 @Html.ActionLink("Next Month", "Month", "Calendar",
                         new { bandId = ViewBag.BandId, month = Model.NextMonth, year = Model.NextMonthYear }, null)
 
- @{
-                    List<SelectListItem> selectMonth = new List<SelectListItem>();
-                    selectMonth.Add(new SelectListItem { Text = (Model.CurrentMonthYear - 1).ToString(), Value = (Model.CurrentMonthYear - 1).ToString() });
-                    selectMonth.Add(new SelectListItem { Text = Model.CurrentMonthYear.ToString(), Value = Model.CurrentMonthYear.ToString(), Selected = true });
-                    selectMonth.Add(new SelectListItem { Text = (Model.CurrentMonthYear + 1).ToString(), Value = (Model.CurrentMonthYear + 1).ToString() });
-                    var selectMonthList = Html.DropDownList("selectMonthList", selectMonth);
-}
-
-
-@Html.ActionLink("Go to Month", "Month", "Calendar",
-                        new { bandId = ViewBag.BandId, month = selectMonthList, year = Model.NextMonthYear }, null)    
