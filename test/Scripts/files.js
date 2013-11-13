@@ -4,15 +4,13 @@ filesApp.controller('FilesController', function FilesController($scope, $http)
 {
     console.log("running controller");
 
+    $scope.data = [];
+
     $scope.init = function (url)
     {
-        $scope.url = url;
+        console.log(url);
+        $http({ method: 'GET', url: url }).success(function (data) { $scope.files = data; });
     };
-
-    console.log($scope.url);
-
-    $scope.data = [];
-    $http({ method: 'GET', url: $scope.url }).success(function (data) { $scope.files = data; });
 
     $scope.column = '';
     $scope.descending = false;
