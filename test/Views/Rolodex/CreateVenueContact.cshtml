@@ -1,20 +1,4 @@
 ﻿@model test.Models.Rolodex.VenueContact
-@{
-    ViewBag.Title = "CreateVenueContact";
-}
-@section Scripts
-{
-    @Scripts.Render("~/bundles/jqueryval")
-}
-@section featured 
-{
-    @Html.Partial("_BandHeaderPartial")
-}
-<h2>CreateVenueContact</h2>
-@Html.ActionLink("Create Band Contact", "CreateBandContact", new{bandId = ViewBag.BandId})
-@Html.ActionLink("Create Person Contact", "CreatePersonContact", new{bandId = ViewBag.BandId})
-@Html.ActionLink("Create Venue Contact", "CreateVenueContact", new {bandId = ViewBag.BandId})
-
 
 
 @using (Html.BeginForm("CreateVenueContact", "Rolodex", new { bandId = ViewBag.BandId }))

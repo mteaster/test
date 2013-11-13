@@ -431,13 +431,13 @@
     <Content Include="Views\Rolodex\CreateContact.cshtml">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="Views\Rolodex\_CreateBandContact.cshtml" />
+    <Content Include="Views\Rolodex\CreateBandContact.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Rolodex\_CreatePersonContact.cshtml" />
+    <Content Include="Views\Rolodex\CreatePersonContact.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Rolodex\_CreateVenueContact.cshtml" />
+    <Content Include="Views\Rolodex\CreateVenueContact.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Calendar\Day.cshtml" />
