@@ -13,7 +13,7 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td>@Html.ActionLink(item.GroupName, "Files", new { groupId = item.GroupId })</td>
+            <td>@Html.ActionLink(item.GroupName, "Files", new { bandId = ViewBag.BandId, groupId = item.GroupId })</td>
             <td>@Html.ActionLink("Upload", "UploadFile", new { bandId = ViewBag.BandId, groupId = item.GroupId })</td>
         </tr>
     }
