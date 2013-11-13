@@ -13,6 +13,7 @@ using System;
 
 namespace band.Content
 {
+    [Authorize]
     public class FileCabinetController : Controller
     {
         //
@@ -75,17 +76,36 @@ namespace band.Content
             }
         }
 
-        public ActionResult Files(int bandId, int groupId)
-        {
-            ViewBag.BandId = bandId;
-            ViewBag.GroupId = groupId;
-            return View();
-        }
-
-        public JsonResult GetJson(int bandId, int groupId)
+        public ActionResult Files(int groupId)
         {
             using (DatabaseContext database = new DatabaseContext())
             {
+                FileGroup fileGroup = database.FileGroups.Find(groupId);
+                
+                ViewBag.GroupId = groupId;
+                ViewBag.GroupName = fileGroup.GroupName;
+                ViewBag.BandId = fileGroup.BandId;
+                if (database.BandMemberships.Find(fileGroup.BandId, WebSecurity.CurrentUserId) == null && !Roles.IsUserInRole("Administrator"))
+                {
+                    ViewBag.ErrorMessage = "You are not a member of this band.";
+                    return View("Error");
+                }
+                return View();
+            }
+        }
+
+        public ActionResult GetFiles(int groupId)
+        {
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                int bandId = database.FileGroups.Find(groupId).BandId;
+                
+                if(database.BandMemberships.Find(bandId, WebSecurity.CurrentUserId) == null && !Roles.IsUserInRole("Administrator"))
+                {
+                    ViewBag.ErrorMessage = "You are not a member of this band.";
+                    return View("Error");
+                }
+
                 List<FileEntry> entries = database.FileEntries.Where(f => f.BandId == bandId && f.GroupId == groupId).ToList();
 
                 var results = from f in database.FileEntries
@@ -150,17 +170,23 @@ namespace band.Content
             }
         }
 
-        public ActionResult UploadFile(int bandId, int groupId)
+        public ActionResult UploadFile(int groupId)
         {
-            ViewBag.BandId = bandId;
-            ViewBag.BandName = BandUtil.BandProfileFor(bandId).BandName;
-            ViewBag.GroupId = groupId;
-            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
+            using (DatabaseContext database = new DatabaseContext())
             {
-                return RedirectToAction("Join", "Band");
-            }
+                FileGroup fileGroup = database.FileGroups.Find(groupId);
 
-            return View();
+                ViewBag.GroupId = groupId;
+                ViewBag.BandId = fileGroup.BandId;
+                ViewBag.BandName = database.BandProfiles.Find(fileGroup.BandId).BandName;
+
+                if (database.BandMemberships.Find(fileGroup.BandId, WebSecurity.CurrentUserId) == null && !Roles.IsUserInRole("Administrator"))
+                {
+                    return RedirectToAction("Join", "Band");
+                }
+
+                return View();
+            }
         }
 
         [HttpPost]

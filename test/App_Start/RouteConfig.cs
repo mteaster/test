@@ -14,6 +14,13 @@ namespace test
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Get Files",
+                url: "FileCabinet/GetFiles/{bandId}/{groupId}",
+                defaults: new { controller = "Calendar", action = "AddEvent" },
+                constraints: new { bandId = @"\d+", day = @"\d+", month = @"\d+", year = @"\d+" }
+            );
+
+            routes.MapRoute(
                 name: "Add Event",
                 url: "Calendar/AddEvent/{bandId}/{day}/{month}/{year}",
                 defaults: new { controller = "Calendar", action = "AddEvent" },

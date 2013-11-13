@@ -4,45 +4,34 @@ filesApp.controller('FilesController', function FilesController($scope, $http)
 {
     console.log("running controller");
 
-    var url = '/FileCabinet/GetJson?bandId=' + bandId + '&groupId=' + groupId;
-
-    $scope.files = [];
-
-    $http({ method: 'GET', url: url }).
-        success(function (data, status, headers, config)
-        {
-            console.log("success");
-            console.log(data);
-            $scope.files = data;
-        }).
-        error(function (data, status, headers, config)
-        {
-            console.log("error");
-            console.log(data);
-        });
-
-    $scope.sort =
+    $scope.init = function (url)
     {
-        column: '',
-        descending: false
+        $scope.url = url;
     };
 
-    $scope.changeSorting = function (column)
-    {
-        console.log("change sorting");
-        var sort = $scope.sort;
+    var url = '/FileCabinet/GetJson?bandId=' + bandId + '&groupId=' + groupId;
 
-        if (sort.column == column)
+    $scope.data = [];
+    $http({ method: 'GET', url: url }).success(function (data) { $scope.files = data; });
+
+    $scope.column = '';
+    $scope.descending = false;
+
+    $scope.sort = function (column)
+    {
+        console.log("sorting");
+
+        if ($scope.column == column)
         {
-            sort.descending = !sort.descending;
+            $scope.descending = !$scope.descending;
         }
         else
         {
-            sort.column = column;
-            sort.descending = false;
+            $scope.column = column;
+            $scope.descending = false;
         }
 
-        console.log($scope.sort.column);
-        console.log($scope.sort.descending);
+        console.log("sorting by column " + $scope.column);
+        console.log("descending = " + $scope.descending);
     };
 });
