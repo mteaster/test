@@ -419,9 +419,6 @@
     <Content Include="Views\FileCabinet\UploadFile.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\FileCabinet\ListFiles.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Calendar\EditEvent.cshtml" />
   </ItemGroup>
   <ItemGroup>
