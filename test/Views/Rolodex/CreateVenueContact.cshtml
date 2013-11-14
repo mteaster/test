@@ -1,6 +1,11 @@
 ﻿@model test.Models.Rolodex.VenueContact
 
 
+@section featured 
+{
+    @Html.Partial("_BandHeaderPartial")
+}
+
 @using (Html.BeginForm("CreateVenueContact", "Rolodex", new { bandId = ViewBag.BandId }))
 {
     @Html.AntiForgeryToken()
