@@ -7,7 +7,7 @@
 
 body 
 {
-    background-color: #fff;
+    background-color: #000;
     border-top: solid 10px #000;
     color: #333;
     font-size: .85em;
@@ -154,7 +154,7 @@ footer
 ----------------------------------------------------------*/
 .site-title 
 {
-    color: #000000;
+    color: #c8c8c8;
     font-family: Rockwell, Consolas, "Courier New", Courier, monospace;
     font-size: 2.3em;
     margin: 0;
@@ -162,7 +162,7 @@ footer
 
 .site-title a, .site-title a:hover, .site-title a:active {
     background: none;
-    color: #000000;
+    color: #c8c8c8;
     outline: none;
     text-decoration: none;
 }
