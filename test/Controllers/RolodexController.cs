@@ -435,7 +435,14 @@ namespace band.Controllers
                 {
                     bContact = db.BandContacts.Find(contactId);
                 }
-                return RedirectToAction("EditBand", new { bContact = bContact });
+                if (bContact != null)
+                {
+                    return RedirectToAction("EditBand", new { bandId = bandId, bContact = bContact });
+                }
+                else
+                {
+                    return View("Error");
+                }
             }
             else if (type == Contact.ContactType.People)
             {
@@ -459,12 +466,12 @@ namespace band.Controllers
             }
         }
 
-        public ActionResult EditBand(BandContact bContact)
+        public ActionResult EditBand(int bandId, BandContact bContact)
         {
-            ViewBag.BandId = bContact.BandId;
-            ViewBag.BandName = BandUtil.BandProfileFor(bContact.BandId).BandName;
+            ViewBag.BandId = bandId;
+            ViewBag.BandName = BandUtil.BandProfileFor(bandId).BandName;
 
-            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bContact.BandId) && !Roles.IsUserInRole("Administrator"))
+            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
             {
                 return RedirectToAction("Join", "Band");
             }
