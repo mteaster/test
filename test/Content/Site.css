@@ -719,6 +719,21 @@ ol.groups li
 
 /* message board stuff */
 
+ol.messages
+{
+    padding: 0;
+    margin: 0;   
+}
+
+ol.messages li
+{
+    border: 1px solid #C3C3C3;
+    list-style-type: none;
+    padding: 12px;
+    margin-bottom: 20px;
+    background: white;
+}
+
 h2.messageboard-header
 {
     margin-bottom: 20px;
