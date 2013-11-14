@@ -11,6 +11,18 @@
     @Html.Partial("_BandHeaderPartial")
 }
 
+<script>
+function goToClick()
+{
+    var yearList = document.getElementById("selectYear");
+    var yearList = document.getElementById("selectMonth");
+
+    //[favorite.selectedIndex].text = mylist.options[mylist.selectedIndex].text;
+
+    //document.getElementById("goTo").
+}
+</script>
+
 <p class="message-success">@ViewBag.SuccessMessage</p>
 <p class="message-error">@ViewBag.ErrorMessage</p>
 
@@ -60,8 +72,6 @@
     {
         background-color: #f8f8f8 !important;
     }
-    
-   
 </style>
 
 
@@ -150,4 +160,32 @@
 
 @Html.ActionLink("Next Month", "Month", "Calendar",
                         new { bandId = ViewBag.BandId, month = Model.NextMonth, year = Model.NextMonthYear }, null)
+@{
+    List<SelectListItem> yearList = new List<SelectListItem>();
+    yearList.Add(new SelectListItem { Text = (Model.CurrentMonthYear - 1).ToString(), Value = (Model.CurrentMonthYear - 1).ToString() });
+    yearList.Add(new SelectListItem { Text = Model.CurrentMonthYear.ToString(), Value = Model.CurrentMonthYear.ToString(), Selected = true });
+    yearList.Add(new SelectListItem { Text = (Model.CurrentMonthYear + 1).ToString(), Value = (Model.CurrentMonthYear + 1).ToString() });
+}
 
+@Html.DropDownList("yearSelect",yearList)
+
+@{
+    List<SelectListItem> monthList = new List<SelectListItem>();
+    monthList.Add(new SelectListItem { Text = "January", Value = "1", Selected = true });
+    monthList.Add(new SelectListItem { Text = "February", Value = "2"});
+    monthList.Add(new SelectListItem { Text = "March", Value = "3" });
+    monthList.Add(new SelectListItem { Text = "April", Value = "4" });
+    monthList.Add(new SelectListItem { Text = "May", Value = "5" });
+    monthList.Add(new SelectListItem { Text = "June", Value = "6" });
+    monthList.Add(new SelectListItem { Text = "July", Value = "7" });
+    monthList.Add(new SelectListItem { Text = "August", Value = "8" });
+    monthList.Add(new SelectListItem { Text = "September", Value = "9" });
+    monthList.Add(new SelectListItem { Text = "October", Value = "10" });
+    monthList.Add(new SelectListItem { Text = "November", Value = "11" });
+    monthList.Add(new SelectListItem { Text = "December", Value = "12" });
+    
+    }
+
+@Html.DropDownList("monthSelect",monthList)
+
+<a id="goTo" onclick="goToClick"> Go to month </a>

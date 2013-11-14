@@ -90,6 +90,55 @@ namespace test.Models.Calendar
         [Required]
         [Display(Name = "Period (AM or PM)")]
         public string EventPeriod { get; set; }
+    }
+
+    public class EditEventModel
+    {
+        public EditEventModel() {}
+
+        public EditEventModel(CalendarEvent calendarEvent)
+        {
+            this.EventTitle = calendarEvent.EventTitle;
+            this.EventDescription = calendarEvent.EventDescription;
+            this.EventDate = calendarEvent.EventTime.ToShortDateString();
+
+            if (calendarEvent.EventTime.Hour > 12)
+            {
+                this.EventHour = calendarEvent.EventTime.Hour - 12;
+                this.EventPeriod = "PM";
+            }
+            else
+            {
+                this.EventHour = calendarEvent.EventTime.Hour;
+                this.EventPeriod = "AM";
+            }
+
+            this.EventMinute = calendarEvent.EventTime.Minute;
+        }
+
+        [Required]
+        [Display(Name = "Title")]
+        public string EventTitle { get; set; }
+
+        [Required]
+        [DataType(DataType.MultilineText)]
+        [Display(Name = "Description")]
+        public string EventDescription { get; set; }
+
+        [Display(Name = "Date")]
+        public string EventDate { get; set; }
+
+        [Required]
+        [Display(Name = "Hour (Number)")]
+        public int EventHour { get; set; }
+
+        [Required]
+        [Display(Name = "Minute (Number)")]
+        public int EventMinute { get; set; }
+
+        [Required]
+        [Display(Name = "Period (AM or PM)")]
+        public string EventPeriod { get; set; }
 
     }
 

@@ -106,26 +106,24 @@ namespace band.Controllers
             ViewBag.BandName = BandUtil.BandProfileFor(bandId).BandName;
             ViewBag.EventId = eventId;
 
-            // Check if the user is in the band
             if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))
             {
                 return RedirectToAction("Join", "Band");
             }
 
-            CalendarEventModel calendarEventModel;
+            EditEventModel model;
 
             using (DatabaseContext database = new DatabaseContext())
             {
-                CalendarEvent calendarEvent = database.CalendarEvents.Find(eventId);
-                calendarEventModel = new CalendarEventModel(calendarEvent);
+                model = new EditEventModel(database.CalendarEvents.Find(eventId));
             }
 
-            return View(calendarEventModel);
+            return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditEvent(int bandId, int eventId, CalendarEventModel model)
+        public ActionResult EditEvent(int bandId, int eventId, EditEventModel model)
         {
             ViewBag.BandId = bandId;
             ViewBag.BandName = BandUtil.BandProfileFor(bandId).BandName;
@@ -150,8 +148,10 @@ namespace band.Controllers
                     {
                         actualHour += 12;
                     }
-                    calendarEvent.EventTime = new DateTime(model.EventYear, model.EventMonth, model.EventDay,
-                                                            actualHour, model.EventMinute, 0, DateTimeKind.Unspecified);
+
+                    DateTime date = DateTime.Parse(model.EventDate);
+                    TimeSpan span = new TimeSpan(actualHour, model.EventMinute, 0);
+                    calendarEvent.EventTime = date.Date + span;
 
                     database.SaveChanges();
                 }
