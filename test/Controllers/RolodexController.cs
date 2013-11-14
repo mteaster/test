@@ -193,7 +193,7 @@ namespace band.Controllers
                         tmpContact.Name = band.Name;
                         tmpContact.PhoneNumber = band.PhoneNumber;
                         tmpContact.Email = band.Email;
-                        tmpContact.Type = Contact.ContactType.Band;
+                        tmpContact.Type = ContactType.Band;
 
                         contacts.Add(tmpContact);
                     }
@@ -210,7 +210,7 @@ namespace band.Controllers
                         tmpContact.Name = person.Name;
                         tmpContact.PhoneNumber = person.PhoneNumber;
                         tmpContact.Email = person.Email;
-                        tmpContact.Type = Contact.ContactType.People;
+                        tmpContact.Type = ContactType.People;
 
                         contacts.Add(tmpContact);
                     }
@@ -227,7 +227,7 @@ namespace band.Controllers
                         tmpContact.Name = venue.Name;
                         tmpContact.PhoneNumber = venue.PhoneNumber;
                         tmpContact.Email = venue.Email;
-                        tmpContact.Type = Contact.ContactType.Venue;
+                        tmpContact.Type = ContactType.Venue;
 
                         contacts.Add(tmpContact);
                     }
@@ -278,7 +278,7 @@ namespace band.Controllers
                             tmpContact.Name = band.Name;
                             tmpContact.PhoneNumber = band.PhoneNumber;
                             tmpContact.Email = band.Email;
-                            tmpContact.Type = Contact.ContactType.Band;
+                            tmpContact.Type = ContactType.Band;
 
                             contacts.Add(tmpContact);
                         }
@@ -302,7 +302,7 @@ namespace band.Controllers
                             tmpContact.Name = person.Name;
                             tmpContact.PhoneNumber = person.PhoneNumber;
                             tmpContact.Email = person.Email;
-                            tmpContact.Type = Contact.ContactType.People;
+                            tmpContact.Type = ContactType.People;
 
                             contacts.Add(tmpContact);
                         }
@@ -327,7 +327,7 @@ namespace band.Controllers
                             tmpContact.Name = venue.Name;
                             tmpContact.PhoneNumber = venue.PhoneNumber;
                             tmpContact.Email = venue.Email;
-                            tmpContact.Type = Contact.ContactType.Venue;
+                            tmpContact.Type = ContactType.Venue;
 
                             contacts.Add(tmpContact);
                         }
@@ -364,7 +364,7 @@ namespace band.Controllers
                             tmpContact.Name = band.Name;
                             tmpContact.PhoneNumber = band.PhoneNumber;
                             tmpContact.Email = band.Email;
-                            tmpContact.Type = Contact.ContactType.Band;
+                            tmpContact.Type = ContactType.Band;
 
                             contacts.Add(tmpContact);
                         }
@@ -381,7 +381,7 @@ namespace band.Controllers
                             tmpContact.Name = person.Name;
                             tmpContact.PhoneNumber = person.PhoneNumber;
                             tmpContact.Email = person.Email;
-                            tmpContact.Type = Contact.ContactType.People;
+                            tmpContact.Type = ContactType.People;
 
                             contacts.Add(tmpContact);
                         }
@@ -398,7 +398,7 @@ namespace band.Controllers
                             tmpContact.Name = venue.Name;
                             tmpContact.PhoneNumber = venue.PhoneNumber;
                             tmpContact.Email = venue.Email;
-                            tmpContact.Type = Contact.ContactType.Venue;
+                            tmpContact.Type = ContactType.Venue;
 
                             contacts.Add(tmpContact);
                         }
@@ -417,7 +417,7 @@ namespace band.Controllers
             return PartialView("_RolodexList", contacts);
         }
 
-        public ActionResult EditContact(int bandId, int contactId, Contact.ContactType type)
+        public ActionResult EditContact(int bandId, int contactId, ContactType type)
         {
             BandContact bContact;
 
@@ -429,7 +429,7 @@ namespace band.Controllers
                 return RedirectToAction("Join", "Band");
             }
 
-            if (type == Contact.ContactType.Band)
+            if (type == ContactType.Band)
             {
                 using (DatabaseContext db = new DatabaseContext())
                 {
@@ -444,7 +444,7 @@ namespace band.Controllers
                     return View("Error");
                 }
             }
-            else if (type == Contact.ContactType.People)
+            else if (type == ContactType.People)
             {
                 using (DatabaseContext db = new DatabaseContext())
                 {
@@ -452,7 +452,7 @@ namespace band.Controllers
                 }
                 return EditPeople(bandId, contactId);
             }
-            else if (type == Contact.ContactType.Venue)
+            else if (type == ContactType.Venue)
             {
                 using (DatabaseContext db = new DatabaseContext())
                 {
