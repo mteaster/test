@@ -14,10 +14,6 @@ namespace band.Controllers
         public ActionResult Index(int bandId)
         {
             DateTime now = DateTime.UtcNow;
-
-            ViewBag.SuccessMessage = TempData["SuccessMessage"];
-            ViewBag.ErrorMessage = TempData["ErrorMessage"];
-
             return RedirectToAction("Month", new { bandId = bandId, month = now.Month, year = now.Year });
         }
 
@@ -33,6 +29,9 @@ namespace band.Controllers
 
             MonthModel monthModel = new MonthModel(month, year);
             monthModel.Events = CalendarUtil.EventsForMonth(bandId, monthModel.CurrentMonth, monthModel.CurrentMonthYear);
+
+            ViewBag.SuccessMessage = TempData["SuccessMessage"];
+            ViewBag.ErrorMessage = TempData["ErrorMessage"];
 
             return View("Index", monthModel);
         }
