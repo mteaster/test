@@ -439,11 +439,7 @@ namespace band.Controllers
             }
             else if (type == Contact.ContactType.Venue)
             {
-                using (DatabaseContext db = new DatabaseContext())
-                {
-                    VenueContact vContact = db.VenueContacts.Find(contactId);
-                }
-                return EditVenue(bandId, contactId);
+                return RedirectToAction("EditVenue", new { bandId = bandId, contactId = contactId });
             }
             else
             {
