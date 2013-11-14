@@ -16,12 +16,10 @@
   <input type="submit" value="Create group" />
 </form>
 
-<h2>Groups</h2>
-
 <div ng-app="sortable" ng-controller="SortableController" ng-init="init('/FileCabinet/GetGroups/@ViewBag.BandId')">
     <ol class="groups">
         <li ng-repeat="group in data | orderBy : column : descending">
-            <a ng-href="/FileCabinet/{{ group.BandId}}/Files/{{ group.GroupId }}">{{ group.GroupName }}</a>
+            <a ng-href="/FileCabinet/{{ group.BandId}}/Files/{{ group.GroupId }}"><h2>{{ group.GroupName }}</h2></a>
         </li>
     </ol>
 </div>
