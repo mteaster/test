@@ -708,6 +708,8 @@ ol.groups
     margin: 0;   
 }
 
+
+
 ol.groups li
 {
     width: auto;
@@ -716,6 +718,12 @@ ol.groups li
     padding: 12px;
     margin-bottom: 20px;
     background: white;
+}
+
+ol.groups li h2
+{
+    margin: 0;
+    padding: 0;
 }
 
 /* message board stuff */
