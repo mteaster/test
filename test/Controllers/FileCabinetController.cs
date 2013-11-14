@@ -72,7 +72,7 @@ namespace band.Content
                     TempData["SuccessMessage"] = groupName + " created.";
                 }
 
-                return RedirectToAction(
+                return RedirectToLocal(Request.UrlReferrer.AbsolutePath);
             }
         }
 
@@ -307,6 +307,18 @@ namespace band.Content
 
                 ViewBag.SuccessMessage = fileEntry.FileName + " deleted.";
                 return View("Success");
+            }
+        }
+
+        private ActionResult RedirectToLocal(string returnUrl)
+        {
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
             }
         }
     }
