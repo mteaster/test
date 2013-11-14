@@ -252,7 +252,10 @@ namespace band.Controllers
             string type = "";
 
             searchString = Request["searchString"].ToString();
-            type = Request["type"].ToString();
+            if (Request["type"] != null)
+            {
+                type = Request["type"].ToString();
+            }
 
 
             using (DatabaseContext db = new DatabaseContext())
