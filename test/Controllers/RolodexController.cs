@@ -419,8 +419,6 @@ namespace band.Controllers
 
         public ActionResult EditContact(int bandId, int contactId, ContactType type)
         {
-            BandContact bContact;
-
             ViewBag.BandId = bandId;
             ViewBag.BandName = BandUtil.BandProfileFor(bandId).BandName;
 
@@ -431,34 +429,17 @@ namespace band.Controllers
 
             if (type == ContactType.Band)
             {
-                using (DatabaseContext db = new DatabaseContext())
-                {
-                    bContact = db.BandContacts.Find(contactId);
-                }
-                if (bContact != null)
-                {
-                    return RedirectToAction("EditBand", new { bandId = bandId, bContact = bContact });
-                }
-                else
-                {
-                    return View("Error");
-                }
+                return RedirectToAction("EditBand", new { bandId = bandId, contactId = contactId});
+                
             }
             else if (type == ContactType.People)
             {
-                using (DatabaseContext db = new DatabaseContext())
-                {
-                    PeopleContact pContact = db.PeopleContacts.Find(contactId);
-                }
-                return EditPeople(bandId, contactId);
+
+                return RedirectToAction("EditPeople", new { bandId = bandId, contactId = contactId });
             }
             else if (type == ContactType.Venue)
             {
-                using (DatabaseContext db = new DatabaseContext())
-                {
-                    VenueContact vContact = db.VenueContacts.Find(contactId);
-                }
-                return EditVenue(bandId, contactId);
+                return RedirectToAction("EditVenue", new { bandId = bandId, contactId = contactId });
             }
             else
             {
@@ -466,8 +447,10 @@ namespace band.Controllers
             }
         }
 
-        public ActionResult EditBand(int bandId, BandContact bContact)
+        public ActionResult EditBand(int bandId, int contactId)
         {
+            BandContact bContact;
+
             ViewBag.BandId = bandId;
             ViewBag.BandName = BandUtil.BandProfileFor(bandId).BandName;
 
@@ -477,12 +460,24 @@ namespace band.Controllers
             }
 
 
+            using (DatabaseContext db = new DatabaseContext())
+            {
+                bContact = db.BandContacts.Find(contactId);
+            }
+            if (bContact != null)
+            {
+                return View(bContact);
+            }
+            else
+            {
+                return View("Error");
+            }
 
-            return View(bContact);
         }
 
         public ActionResult EditPeople(int bandId, int contactId)
         {
+            PeopleContact pContact;
 
             ViewBag.BandId = bandId;
             ViewBag.BandName = BandUtil.BandProfileFor(bandId).BandName;
@@ -492,11 +487,17 @@ namespace band.Controllers
                 return RedirectToAction("Join", "Band");
             }
 
-            return View();
+            using (DatabaseContext db = new DatabaseContext())
+            {
+                pContact = db.PeopleContacts.Find(contactId);
+            }
+
+            return View(pContact);
         }
 
         public ActionResult EditVenue(int bandId, int contactId)
         {
+            VenueContact vContact;
 
             ViewBag.BandId = bandId;
             ViewBag.BandName = BandUtil.BandProfileFor(bandId).BandName;
@@ -506,7 +507,12 @@ namespace band.Controllers
                 return RedirectToAction("Join", "Band");
             }
 
-            return View();
+            using (DatabaseContext db = new DatabaseContext())
+            {
+                vContact = db.VenueContacts.Find(contactId);
+            }
+
+            return View(vContact);
         }
 
     }
