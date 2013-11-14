@@ -33,6 +33,9 @@ namespace band.Content
                 return RedirectToAction("Join", "Band");
             }
 
+            ViewBag.SuccessMessage = TempData["SuccessMessage"];
+            ViewBag.ErrorMessage = TempData["ErrorMessage"];
+
             return View();
         }
 

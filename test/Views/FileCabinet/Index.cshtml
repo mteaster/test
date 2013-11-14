@@ -10,12 +10,9 @@
 <p class="message-success">@ViewBag.SuccessMessage</p>
 <p class="message-error">@ViewBag.ErrorMessage</p>
 
-<h2>Create Group</h2>
-
 <form action="/FileCabinet/CreateGroup?bandId=@ViewBag.BandId" method="post">
   <label for="groupName">Group name:</label>
   <input type="text" name="groupName" id="groupName" />
-  <br />
   <input type="submit" value="Create group" />
 </form>
 
