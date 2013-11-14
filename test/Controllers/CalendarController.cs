@@ -106,7 +106,6 @@ namespace band.Controllers
             ViewBag.BandName = BandUtil.BandProfileFor(bandId).BandName;
             ViewBag.EventId = eventId;
 
-            // Check if the user is in the band
             if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))
             {
                 return RedirectToAction("Join", "Band");

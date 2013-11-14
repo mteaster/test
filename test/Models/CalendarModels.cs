@@ -94,13 +94,14 @@ namespace test.Models.Calendar
 
     public class EditEventModel
     {
-        public EditEventModel() { }
+        public EditEventModel() {}
 
         public EditEventModel(CalendarEvent calendarEvent)
         {
             this.EventTitle = calendarEvent.EventTitle;
             this.EventDescription = calendarEvent.EventDescription;
             this.EventDate = calendarEvent.EventTime.ToShortDateString();
+
             if (calendarEvent.EventTime.Hour > 12)
             {
                 this.EventHour = calendarEvent.EventTime.Hour - 12;
