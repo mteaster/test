@@ -334,7 +334,7 @@ namespace band.Controllers
                     }
                 }
 
-                if (type == null)
+                if (type == "")
                 {
                     var bandResults = from b in db.BandContacts
                                       where b.BandId == bandId
