@@ -710,6 +710,7 @@ ol.groups
 
 ol.groups li
 {
+    width: 500px;
     border: 1px solid #C3C3C3;
     list-style-type: none;
     padding: 12px;
