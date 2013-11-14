@@ -551,7 +551,7 @@ namespace band.Controllers
 
                 string path = Server.MapPath("~/App_Data/" + contactType.ToString() + "ContactAvatars/" + contactId + ".jpg");
                 file.SaveAs(path);
-                TempData["SuccessMessage"] = "Avatar changed.";
+                ViewData["SuccessMessage"] = "Avatar changed.";
                 return View("Success");
             }
         }
