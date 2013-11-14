@@ -419,8 +419,6 @@ namespace band.Controllers
 
         public ActionResult EditContact(int bandId, int contactId, Contact.ContactType type)
         {
-            BandContact bContact;
-
             ViewBag.BandId = bandId;
             ViewBag.BandName = BandUtil.BandProfileFor(bandId).BandName;
 
@@ -431,11 +429,8 @@ namespace band.Controllers
 
             if (type == Contact.ContactType.Band)
             {
-                using (DatabaseContext db = new DatabaseContext())
-                {
-                    bContact = db.BandContacts.Find(contactId);
-                }
-                return RedirectToAction("EditBand", new { bContact = bContact });
+                return RedirectToAction("EditBand", new { bandId = bandId, contactId = contactId});
+                
             }
             else if (type == Contact.ContactType.People)
             {
@@ -459,19 +454,32 @@ namespace band.Controllers
             }
         }
 
-        public ActionResult EditBand(BandContact bContact)
+        public ActionResult EditBand(int bandId, int contactId)
         {
-            ViewBag.BandId = bContact.BandId;
-            ViewBag.BandName = BandUtil.BandProfileFor(bContact.BandId).BandName;
+            BandContact bContact;
 
-            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bContact.BandId) && !Roles.IsUserInRole("Administrator"))
+            ViewBag.BandId = bandId;
+            ViewBag.BandName = BandUtil.BandProfileFor(bandId).BandName;
+
+            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
             {
                 return RedirectToAction("Join", "Band");
             }
 
 
+            using (DatabaseContext db = new DatabaseContext())
+            {
+                bContact = db.BandContacts.Find(contactId);
+            }
+            if (bContact != null)
+            {
+                return View(bContact);
+            }
+            else
+            {
+                return View("Error");
+            }
 
-            return View(bContact);
         }
 
         public ActionResult EditPeople(int bandId, int contactId)
