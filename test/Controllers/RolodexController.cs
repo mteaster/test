@@ -435,7 +435,7 @@ namespace band.Controllers
                 {
                     bContact = db.BandContacts.Find(contactId);
                 }
-                return EditBand(bContact);
+                return RedirectToAction("EditBand", new { bContact = bContact });
             }
             else if (type == Contact.ContactType.People)
             {
