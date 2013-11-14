@@ -7,6 +7,9 @@
     @Html.Partial("_BandHeaderPartial")
 }
 
+<p class="message-success">@ViewBag.SuccessMessage</p>
+<p class="message-error">@ViewBag.ErrorMessage</p>
+
 @{ Html.RenderAction("Groups"); }
 
 @Html.ActionLink("Create group", "CreateGroup", new { bandId = ViewBag.BandId } )
