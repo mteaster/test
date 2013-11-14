@@ -35,6 +35,8 @@
         </ol>
     </fieldset>
     
+
+    
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
@@ -43,12 +45,17 @@
     <script>
         $(function ()
         {
+            console.log(@Model.EventDate);
+            var myDate = new Date();
+            var prettyDate = (myDate.getMonth() + 1) + '/' + myDate.getDate() + '/' +
+                    myDate.getFullYear();
+            console.log(prettyDate);
             $("#datepicker").val(@Model.EventDate);
             $("#datepicker").datepicker();
         });
     </script>
 
-    Date: <input type="text" id="datepicker" />
+    <p>Date: <input type="text" id="datepicker" /></p>
     
     <fieldset>
         <br>
@@ -56,7 +63,7 @@
         <ul>
             <li>
                 @{
-                    List<SelectListItem> hours = new List<SelectListItem>();
+    List<SelectListItem> hours = new List<SelectListItem>();
                     hours.Add(new SelectListItem { Text = "1", Value = "1", Selected = true});
                     hours.Add(new SelectListItem { Text = "2", Value = "2" });
                     hours.Add(new SelectListItem { Text = "3", Value = "3" });
