@@ -4,16 +4,7 @@
 {
     @Scripts.Render("~/bundles/jqueryval")
 }
-@section featured 
-{
-    @Html.Partial("_BandHeaderPartial")
-}
-
-<h2>Create Band Contact</h2>
-@Html.ActionLink("Create Band Contact", "CreateBandContact", new{bandId = ViewBag.BandId})
-@Html.ActionLink("Create Person Contact", "CreatePersonContact", new{bandId = ViewBag.BandId})
-@Html.ActionLink("Create Venue Contact", "CreateVenueContact", new {bandId = ViewBag.BandId})
-@using (Html.BeginForm("CreateBandContact", "Rolodex", new { BandId = ViewBag.BandId }))
+@using (Html.BeginForm("CreateBandContact", "Rolodex", new { bandId = ViewBag.BandId }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
