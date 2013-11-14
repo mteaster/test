@@ -21,7 +21,7 @@
 <div ng-app="sortable" ng-controller="SortableController" ng-init="init('/FileCabinet/GetGroups/@ViewBag.BandId')">
     <ol class="groups">
         <li ng-repeat="group in data | orderBy : column : descending">
-                <td><a ng-href="/FileCabinet/{{ group.BandId}}/Files/{{ group.GroupId }}">{{ group.GroupName }}</a>
+            <a ng-href="/FileCabinet/{{ group.BandId}}/Files/{{ group.GroupId }}">{{ group.GroupName }}</a>
         </li>
     </ol>
 </div>
