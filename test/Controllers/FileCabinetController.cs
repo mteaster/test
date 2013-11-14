@@ -38,13 +38,9 @@ namespace band.Content
 
         public ActionResult CreateGroup(int bandId)
         {
-            // Check if band exists - if it does, get band profile
-            BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
-
             ViewBag.BandId = bandId;
-            ViewBag.BandName = bandProfile.BandName;
+            ViewBag.BandName = BandUtil.BandProfileFor(bandId).BandName;
 
-            // Check if the user is in the band
             if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
             {
                 return RedirectToAction("Join", "Band");
@@ -63,7 +59,7 @@ namespace band.Content
 
                 if (database.FileGroups.Where(f => f.BandId == bandId && f.GroupName == groupName).Any())
                 {
-                    ViewBag.ErrorMessage = groupName + " already exists.";
+                    TempData["ErrorMessage"] = groupName + " already exists.";
                 }
                 else
                 {
@@ -73,10 +69,10 @@ namespace band.Content
                     database.FileGroups.Add(fileGroup);
                     database.SaveChanges();
 
-                    ViewBag.SuccessMessage = groupName + " created.";
+                    TempData["SuccessMessage"] = groupName + " created.";
                 }
 
-                return View("Index");
+                return RedirectToAction(
             }
         }
 

@@ -16,8 +16,6 @@ sortableApp.controller('SortableController', function FilesController($scope, $h
 
     $scope.sort = function (column)
     {
-
-
         if ($scope.column == column)
         {
             $scope.descending = !$scope.descending;
