@@ -139,7 +139,6 @@ namespace test.Models.Calendar
         [Required]
         [Display(Name = "Period (AM or PM)")]
         public string EventPeriod { get; set; }
-
     }
 
     public class MonthModel
