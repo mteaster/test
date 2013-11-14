@@ -330,6 +330,77 @@ namespace band.Controllers
                         }
                     }
                 }
+
+                if (type == null)
+                {
+                    var bandResults = from b in db.BandContacts
+                                      where b.BandId == bandId
+                                      && (b.Name.Contains(searchString))
+                                      select new { b.ContactId, b.Name, b.PhoneNumber, b.Email };
+
+
+                    var peopleResults = from p in db.PeopleContacts
+                                        where p.BandId == bandId
+                                      && (p.Name.Contains(searchString))
+                                        select new { p.ContactId, p.Name, p.PhoneNumber, p.Email };
+
+
+                    var venueResults = from v in db.VenueContacts
+                                       where v.BandId == bandId
+                                      && (v.Name.Contains(searchString))
+                                       select new { v.ContactId, v.Name, v.PhoneNumber, v.Email };
+
+
+                    if (bandResults != null)
+                    {
+                        foreach (var band in bandResults)
+                        {
+                            tmpContact = new Contact();
+
+                            tmpContact.ContactId = band.ContactId;
+                            tmpContact.Name = band.Name;
+                            tmpContact.PhoneNumber = band.PhoneNumber;
+                            tmpContact.Email = band.Email;
+                            tmpContact.Type = Contact.ContactType.Band;
+
+                            contacts.Add(tmpContact);
+                        }
+                    }
+
+
+                    if (peopleResults != null)
+                    {
+                        foreach (var person in peopleResults)
+                        {
+                            tmpContact = new Contact();
+
+                            tmpContact.ContactId = person.ContactId;
+                            tmpContact.Name = person.Name;
+                            tmpContact.PhoneNumber = person.PhoneNumber;
+                            tmpContact.Email = person.Email;
+                            tmpContact.Type = Contact.ContactType.People;
+
+                            contacts.Add(tmpContact);
+                        }
+                    }
+
+
+                    if (venueResults != null)
+                    {
+                        foreach (var venue in venueResults)
+                        {
+                            tmpContact = new Contact();
+
+                            tmpContact.ContactId = venue.ContactId;
+                            tmpContact.Name = venue.Name;
+                            tmpContact.PhoneNumber = venue.PhoneNumber;
+                            tmpContact.Email = venue.Email;
+                            tmpContact.Type = Contact.ContactType.Venue;
+
+                            contacts.Add(tmpContact);
+                        }
+                    }
+                }
                
 
 

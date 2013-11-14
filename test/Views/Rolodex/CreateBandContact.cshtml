@@ -4,6 +4,12 @@
 {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+@section featured 
+{
+    @Html.Partial("_BandHeaderPartial")
+}
+
 @using (Html.BeginForm("CreateBandContact", "Rolodex", new { bandId = ViewBag.BandId }))
 {
     @Html.AntiForgeryToken()
