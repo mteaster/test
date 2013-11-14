@@ -515,5 +515,47 @@ namespace band.Controllers
             return View(vContact);
         }
 
+        [HttpPost]
+        public ActionResult ChangeAvatar(int contactId, ContactType contactType, HttpPostedFileBase file)
+        {
+            if (file.ContentLength <= 0 || file.ContentLength > 1048576)
+            {
+                ViewBag.ErrorMessage = "file sucks";
+                return View("Error");
+            }
+
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                int bandId;
+
+                switch (contactType)
+                {
+                    case ContactType.Band:
+                        bandId = database.BandContacts.Find(contactId).BandId;
+                        break;
+                    case ContactType.People:
+                        bandId = database.BandContacts.Find(contactId).BandId;
+                        break;
+                    case ContactType.Venue:
+                        bandId = database.BandContacts.Find(contactId).BandId;
+                        break;
+                    default:
+                        return View("Error");
+                }
+
+                if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
+                {
+                    return RedirectToAction("Join", "Band");
+                }
+
+                contactType.ToString();
+
+                string path = Server.MapPath("~/App_Data/" + contactType.ToString() + "ContactAvatars/" + contactId + ".jpg");
+                file.SaveAs(path);
+                TempData["ErrorMessage"] = "Avatar changed.";
+            }
+
+            return View();
+        }
     }
 }
