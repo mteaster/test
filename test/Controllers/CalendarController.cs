@@ -14,6 +14,10 @@ namespace band.Controllers
         public ActionResult Index(int bandId)
         {
             DateTime now = DateTime.UtcNow;
+
+            ViewBag.SuccessMessage = TempData["SuccessMessage"];
+            ViewBag.ErrorMessage = TempData["ErrorMessage"];
+
             return RedirectToAction("Month", new { bandId = bandId, month = now.Month, year = now.Year });
         }
 
@@ -32,9 +36,6 @@ namespace band.Controllers
 
             return View("Index", monthModel);
         }
-
-        //
-        // GET: /Calendar/AddEvent
 
         public ActionResult AddEvent(int bandId, int day, int month, int year)
         {
@@ -83,8 +84,7 @@ namespace band.Controllers
                     actualHour = 0;
                 }
 
-                calendarEvent.EventTime = new DateTime(year, month, day,
-                                                            actualHour, model.EventMinute, 0, DateTimeKind.Unspecified);
+                calendarEvent.EventTime = new DateTime(year, month, day, actualHour, model.EventMinute, 0, DateTimeKind.Unspecified);
                 calendarEvent.EventDescription = model.EventDescription;
 
                 using (DatabaseContext database = new DatabaseContext())
@@ -128,7 +128,6 @@ namespace band.Controllers
             ViewBag.BandId = bandId;
             ViewBag.BandName = BandUtil.BandProfileFor(bandId).BandName;
 
-            // Check if the user is in the band
             if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))
             {
                 return RedirectToAction("Join", "Band");
