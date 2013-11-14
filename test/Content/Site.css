@@ -720,10 +720,12 @@ ol.groups li
     background: white;
 }
 
-ol.groups li h2
+.menuitem a 
 {
-    margin: 0;
-    padding: 0;
+    text-decoration: none;
+    display: block;
+    color: #000;
+    padding: 10px 20px 10px 20px;
 }
 
 /* message board stuff */
