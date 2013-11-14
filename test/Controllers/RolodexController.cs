@@ -517,7 +517,7 @@ namespace band.Controllers
         }
 
         [HttpPost]
-        public ActionResult ChangeAvatar(int contactId, ContactType contactType, HttpPostedFileBase file)
+        public ActionResult UploadAvatar(int contactId, ContactType contactType, HttpPostedFileBase file)
         {
             if (file.ContentLength <= 0 || file.ContentLength > 1048576)
             {
@@ -549,14 +549,11 @@ namespace band.Controllers
                     return RedirectToAction("Join", "Band");
                 }
 
-                contactType.ToString();
-
                 string path = Server.MapPath("~/App_Data/" + contactType.ToString() + "ContactAvatars/" + contactId + ".jpg");
                 file.SaveAs(path);
-                TempData["ErrorMessage"] = "Avatar changed.";
+                TempData["SuccessMessage"] = "Avatar changed.";
+                return View("Success");
             }
-
-            return View();
         }
     }
 }
