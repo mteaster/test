@@ -8,6 +8,8 @@ using System.Web;
 namespace test.Models.Rolodex
 {
 
+    public enum ContactType { Band, People, Venue }
+
     // This class is used to generalize results from the database for band, people, and venue records
     //      it will be used for the contact list/rolodex
     public class Contact
@@ -16,7 +18,7 @@ namespace test.Models.Rolodex
         public int ContactId { get; set; }
 
 
-        public enum ContactType { Band, People, Venue }
+
         [Display(Name = "Type")]
         public ContactType Type { get; set; }
 

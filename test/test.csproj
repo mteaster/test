@@ -457,9 +457,6 @@
     <Content Include="Views\Account\_ChangeAvatarPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Rolodex\EditContact.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Rolodex\EditBand.cshtml" />
   </ItemGroup>
   <ItemGroup>

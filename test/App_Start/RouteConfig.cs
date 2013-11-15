@@ -14,6 +14,13 @@ namespace test
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Upload avatar",
+                url: "Rolodex/UploadAvatar/{contactId}/{contactType}",
+                defaults: new { controller = "Rolodex", action = "UploadAvatar" },
+                constraints: new { contactId = @"\d+" }
+            );
+
+            routes.MapRoute(
                 name: "CreateGroup",
                 url: "FileCabinet/{bandId}/CreateGroup/{groupName}",
                 defaults: new { controller = "FileCabinet", action = "CreateGroup" },

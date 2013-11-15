@@ -181,7 +181,6 @@ namespace test.Controllers
                 TempData["ErrorMessage"] = "Avatar changed.";
             }
 
-
             return RedirectToAction("Manage");
         }
 

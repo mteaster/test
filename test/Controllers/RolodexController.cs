@@ -7,6 +7,7 @@ using System.Web.Security;
 using test.Models.Rolodex;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 
 namespace band.Controllers
 {
@@ -193,7 +194,7 @@ namespace band.Controllers
                         tmpContact.Name = band.Name;
                         tmpContact.PhoneNumber = band.PhoneNumber;
                         tmpContact.Email = band.Email;
-                        tmpContact.Type = Contact.ContactType.Band;
+                        tmpContact.Type = ContactType.Band;
 
                         contacts.Add(tmpContact);
                     }
@@ -210,7 +211,7 @@ namespace band.Controllers
                         tmpContact.Name = person.Name;
                         tmpContact.PhoneNumber = person.PhoneNumber;
                         tmpContact.Email = person.Email;
-                        tmpContact.Type = Contact.ContactType.People;
+                        tmpContact.Type = ContactType.People;
 
                         contacts.Add(tmpContact);
                     }
@@ -227,7 +228,7 @@ namespace band.Controllers
                         tmpContact.Name = venue.Name;
                         tmpContact.PhoneNumber = venue.PhoneNumber;
                         tmpContact.Email = venue.Email;
-                        tmpContact.Type = Contact.ContactType.Venue;
+                        tmpContact.Type = ContactType.Venue;
 
                         contacts.Add(tmpContact);
                     }
@@ -278,7 +279,7 @@ namespace band.Controllers
                             tmpContact.Name = band.Name;
                             tmpContact.PhoneNumber = band.PhoneNumber;
                             tmpContact.Email = band.Email;
-                            tmpContact.Type = Contact.ContactType.Band;
+                            tmpContact.Type = ContactType.Band;
 
                             contacts.Add(tmpContact);
                         }
@@ -302,7 +303,7 @@ namespace band.Controllers
                             tmpContact.Name = person.Name;
                             tmpContact.PhoneNumber = person.PhoneNumber;
                             tmpContact.Email = person.Email;
-                            tmpContact.Type = Contact.ContactType.People;
+                            tmpContact.Type = ContactType.People;
 
                             contacts.Add(tmpContact);
                         }
@@ -327,7 +328,7 @@ namespace band.Controllers
                             tmpContact.Name = venue.Name;
                             tmpContact.PhoneNumber = venue.PhoneNumber;
                             tmpContact.Email = venue.Email;
-                            tmpContact.Type = Contact.ContactType.Venue;
+                            tmpContact.Type = ContactType.Venue;
 
                             contacts.Add(tmpContact);
                         }
@@ -364,7 +365,7 @@ namespace band.Controllers
                             tmpContact.Name = band.Name;
                             tmpContact.PhoneNumber = band.PhoneNumber;
                             tmpContact.Email = band.Email;
-                            tmpContact.Type = Contact.ContactType.Band;
+                            tmpContact.Type = ContactType.Band;
 
                             contacts.Add(tmpContact);
                         }
@@ -381,7 +382,7 @@ namespace band.Controllers
                             tmpContact.Name = person.Name;
                             tmpContact.PhoneNumber = person.PhoneNumber;
                             tmpContact.Email = person.Email;
-                            tmpContact.Type = Contact.ContactType.People;
+                            tmpContact.Type = ContactType.People;
 
                             contacts.Add(tmpContact);
                         }
@@ -398,7 +399,7 @@ namespace band.Controllers
                             tmpContact.Name = venue.Name;
                             tmpContact.PhoneNumber = venue.PhoneNumber;
                             tmpContact.Email = venue.Email;
-                            tmpContact.Type = Contact.ContactType.Venue;
+                            tmpContact.Type = ContactType.Venue;
 
                             contacts.Add(tmpContact);
                         }
@@ -417,7 +418,7 @@ namespace band.Controllers
             return PartialView("_RolodexList", contacts);
         }
 
-        public ActionResult EditContact(int bandId, int contactId, Contact.ContactType type)
+        public ActionResult EditContact(int bandId, int contactId, ContactType type)
         {
             ViewBag.BandId = bandId;
             ViewBag.BandName = BandUtil.BandProfileFor(bandId).BandName;
@@ -427,17 +428,17 @@ namespace band.Controllers
                 return RedirectToAction("Join", "Band");
             }
 
-            if (type == Contact.ContactType.Band)
+            if (type == ContactType.Band)
             {
                 return RedirectToAction("EditBand", new { bandId = bandId, contactId = contactId});
                 
             }
-            else if (type == Contact.ContactType.People)
+            else if (type == ContactType.People)
             {
 
                 return RedirectToAction("EditPeople", new { bandId = bandId, contactId = contactId });
             }
-            else if (type == Contact.ContactType.Venue)
+            else if (type == ContactType.Venue)
             {
                 return RedirectToAction("EditVenue", new { bandId = bandId, contactId = contactId });
             }
@@ -515,5 +516,44 @@ namespace band.Controllers
             return View(vContact);
         }
 
+        [HttpPost]
+        public ActionResult UploadAvatar(int contactId, ContactType contactType, HttpPostedFileBase file)
+        {
+            if (file.ContentLength <= 0 || file.ContentLength > 1048576)
+            {
+                ViewBag.ErrorMessage = "file sucks";
+                return View("Error");
+            }
+
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                int bandId;
+
+                switch (contactType)
+                {
+                    case ContactType.Band:
+                        bandId = database.BandContacts.Find(contactId).BandId;
+                        break;
+                    case ContactType.People:
+                        bandId = database.BandContacts.Find(contactId).BandId;
+                        break;
+                    case ContactType.Venue:
+                        bandId = database.BandContacts.Find(contactId).BandId;
+                        break;
+                    default:
+                        return View("Error");
+                }
+
+                if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
+                {
+                    return RedirectToAction("Join", "Band");
+                }
+
+                string path = Server.MapPath("~/App_Data/" + contactType.ToString() + "ContactAvatars/" + contactId + ".jpg");
+                file.SaveAs(path);
+                ViewData["SuccessMessage"] = "Avatar changed.";
+                return View("Success");
+            }
+        }
     }
 }
