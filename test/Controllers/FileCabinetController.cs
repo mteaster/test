@@ -230,7 +230,7 @@ namespace band.Content
 
                 database.FileEntries.Add(fileEntry);
                 database.SaveChanges();
-
+                 
                 string directory = Server.MapPath("~/App_Data/" + bandId + "/");
 
                 if (!Directory.Exists(directory))
