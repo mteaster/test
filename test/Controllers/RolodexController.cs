@@ -18,17 +18,9 @@ namespace band.Controllers
 
         public ActionResult Index(int bandId)
         {
-            // Check if band exists - if it does, get band profile
-            BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
-
-            ViewBag.BandId = bandId;
-            ViewBag.BandName = bandProfile.BandName;
-
-            // Check if the user is in the band
-            // If not, redirect to join a band page
-            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
+            if (!BandUtil.Authenticate(bandId, this))
             {
-                return RedirectToAction("Join", "Band");
+                return View("Error");
             }
 
             // This will also display contacts for the band
@@ -38,12 +30,9 @@ namespace band.Controllers
 
         public ActionResult CreateContact(int bandId)
         {
-            ViewBag.BandId = bandId;
-            ViewBag.BandName = BandUtil.BandProfileFor(bandId).BandName;
-
-            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
+            if (!BandUtil.Authenticate(bandId, this))
             {
-                return RedirectToAction("Join", "Band");
+                return View("Error");
             }
 
             return View();
@@ -89,19 +78,11 @@ namespace band.Controllers
             return RedirectToAction("CreateContact", "Rolodex", new { BandId = bandId});
         }
 
-        public ActionResult CreatePersonContact(int BandId)
+        public ActionResult CreatePersonContact(int bandId)
         {
-            // Check if band exists - if it does, get band profile
-            BandProfile bandProfile = BandUtil.BandProfileFor(BandId);
-
-            ViewBag.BandId = BandId;
-            ViewBag.BandName = bandProfile.BandName;
-
-            // Check if the user is in the band
-            // If not, redirect to join a band page
-            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, BandId) && !Roles.IsUserInRole("Administrator"))
+            if (!BandUtil.Authenticate(bandId, this))
             {
-                return RedirectToAction("Join", "Band");
+                return View("Error");
             }
 
             // This will also display contacts for the band
@@ -124,19 +105,11 @@ namespace band.Controllers
             return RedirectToAction("CreateContact", "Rolodex", new { BandId = bandId });
         }
 
-        public ActionResult CreateVenueContact(int BandId)
+        public ActionResult CreateVenueContact(int bandId)
         {
-            // Check if band exists - if it does, get band profile
-            BandProfile bandProfile = BandUtil.BandProfileFor(BandId);
-
-            ViewBag.BandId = BandId;
-            ViewBag.BandName = bandProfile.BandName;
-
-            // Check if the user is in the band
-            // If not, redirect to join a band page
-            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, BandId) && !Roles.IsUserInRole("Administrator"))
+            if (!BandUtil.Authenticate(bandId, this))
             {
-                return RedirectToAction("Join", "Band");
+                return View("Error");
             }
 
             // This will also display contacts for the band
@@ -420,12 +393,9 @@ namespace band.Controllers
 
         public ActionResult EditContact(int bandId, int contactId, ContactType type)
         {
-            ViewBag.BandId = bandId;
-            ViewBag.BandName = BandUtil.BandProfileFor(bandId).BandName;
-
-            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
+            if (!BandUtil.Authenticate(bandId, this))
             {
-                return RedirectToAction("Join", "Band");
+                return View("Error");
             }
 
             if (type == ContactType.Band)
@@ -452,14 +422,10 @@ namespace band.Controllers
         {
             BandContact bContact;
 
-            ViewBag.BandId = bandId;
-            ViewBag.BandName = BandUtil.BandProfileFor(bandId).BandName;
-
-            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
+            if (!BandUtil.Authenticate(bandId, this))
             {
-                return RedirectToAction("Join", "Band");
+                return View("Error");
             }
-
 
             using (DatabaseContext db = new DatabaseContext())
             {
@@ -480,12 +446,9 @@ namespace band.Controllers
         {
             PeopleContact pContact;
 
-            ViewBag.BandId = bandId;
-            ViewBag.BandName = BandUtil.BandProfileFor(bandId).BandName;
-
-            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
+            if (!BandUtil.Authenticate(bandId, this))
             {
-                return RedirectToAction("Join", "Band");
+                return View("Error");
             }
 
             using (DatabaseContext db = new DatabaseContext())
@@ -500,12 +463,9 @@ namespace band.Controllers
         {
             VenueContact vContact;
 
-            ViewBag.BandId = bandId;
-            ViewBag.BandName = BandUtil.BandProfileFor(bandId).BandName;
-
-            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
+            if (!BandUtil.Authenticate(bandId, this))
             {
-                return RedirectToAction("Join", "Band");
+                return View("Error");
             }
 
             using (DatabaseContext db = new DatabaseContext())
