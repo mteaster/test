@@ -32,6 +32,39 @@ namespace test.Stuff
             }
         }
 
+        public static bool BandExists(int bandId)
+        {
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                return database.BandProfiles.Find(bandId) != null;
+            }
+        }
+
+        public static bool Authenticate(int bandId, ControllerBase controller)
+        {
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                BandProfile profile = database.BandProfiles.Find(bandId);
+
+                if (profile == null)
+                {
+                    controller.ViewBag.ErrorMessage = "THE BAND DOESN'T EXIST, IDIOT";
+                    return false;
+                }
+
+                if (database.BandMemberships.Find(WebSecurity.CurrentUserId, bandId) == null && !Roles.IsUserInRole("Administrator"))
+                {
+                    controller.ViewBag.ErrorMessage = "YOU'RE NOT IN THIS BAND, IDIOT";
+                    return false;
+                }
+
+                controller.ViewBag.BandId = bandId;
+                controller.ViewBag.BandName = profile.BandName;
+
+                return true;
+            }
+        }
+
         public static int Register(RegisterBandModel model)
         {
             using (DatabaseContext database = new DatabaseContext())
@@ -290,11 +323,6 @@ namespace test.Stuff
 
                 return bandModels;
             }
-        }
-
-        public static void ViewBagTest(ControllerBase controller)
-        {
-            controller.ViewBag.SuccessMessage = "I came from BandUtil.ViewBagTest";
         }
 
         private static BandModel BandModelFor(int bandId, DatabaseContext database, bool membersFlag = false)

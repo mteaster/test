@@ -125,14 +125,10 @@ namespace test.Controllers
 
         public ActionResult Manage(int bandId)
         {
-            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
+            if (!BandUtil.Authenticate(bandId, this))
             {
-                ViewBag.ErrorMessage = "You must be a member of this band to change its preferences.";
                 return View("Error");
             }
-
-            ViewBag.BandId = bandId;
-            ViewBag.BandName = BandUtil.BandNameFor(bandId);
 
             ViewBag.SuccessMessage = TempData["SuccessMessage"];
             ViewBag.ErrorMessage = TempData["ErrorMessage"];
@@ -184,18 +180,6 @@ namespace test.Controllers
             return RedirectToLocal(Request.UrlReferrer.AbsolutePath);
         }
 
-        private ActionResult RedirectToLocal(string returnUrl)
-        {
-            if (Url.IsLocalUrl(returnUrl))
-            {
-                return Redirect(returnUrl);
-            }
-            else
-            {
-                return RedirectToAction("Index", "Home");
-            }
-        }
-
         [HttpPost]
         public ActionResult UploadAvatar(int bandId, HttpPostedFileBase file)
         {
@@ -233,6 +217,18 @@ namespace test.Controllers
             else
             {
                 return File(Server.MapPath("~/App_Data/UserAvatars/default.jpg"), "image/jpeg");
+            }
+        }
+
+        private ActionResult RedirectToLocal(string returnUrl)
+        {
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
             }
         }
     }
