@@ -16,18 +16,11 @@ namespace band.Content
     [Authorize]
     public class FileCabinetController : Controller
     {
-        //
-        // GET: /FileCabinet/
-
         public ActionResult Index(int bandId)
         {
-            // Check if band exists - if it does, get band profile
-            BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
-
             ViewBag.BandId = bandId;
-            ViewBag.BandName = bandProfile.BandName;
+            ViewBag.BandName = BandUtil.BandProfileFor(bandId).BandName;
 
-            // Check if the user is in the band
             if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
             {
                 return RedirectToAction("Join", "Band");

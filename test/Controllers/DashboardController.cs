@@ -69,20 +69,15 @@ namespace band.Controllers
         [HttpPost]
         public ActionResult Index(int bandId, PostMessageModel model)
         {
-            // Check if band exists - if it does, get band profile
-            BandProfile bandProfile = BandUtil.BandProfileFor(bandId);
-
             ViewBag.BandId = bandId;
-            ViewBag.BandName = bandProfile.BandName;
+            ViewBag.BandName = BandUtil.BandNameFor(bandId);
 
-            // Check if the user is in the band
             if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
             {
                 return RedirectToAction("Join", "Band");
             }
 
             DashboardViewModel dvm = new DashboardViewModel();
-            dvm.PostMessageModel = model;
 
             if (ModelState.IsValid)
             {
@@ -91,6 +86,7 @@ namespace band.Controllers
             }
             else
             {
+                dvm.PostMessageModel = model;
                 ViewBag.ErrorMessage = "We don't like empty messages.";
             }
 
