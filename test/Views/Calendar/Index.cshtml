@@ -83,16 +83,16 @@ function goToClick()
 <table id="calendar-table" cellpadding="0" cellspacing="0">
     <thead>
         <tr>
-            <th colspan="716" style="background-color:black;" >@Model.MonthName @Model.CurrentMonthYear</th> 
+            <th colspan="816" style="background-color:black; height:50px" >@Model.MonthName @Model.CurrentMonthYear</th> 
         </tr>
         <tr>
-            <th>Sunday</th>
+            <th style="border-left-width:50px; border-color:black">Sunday</th>
             <th>Monday</th>
             <th>Tuesday</th>
             <th>Wednesday</th>
             <th>Thursday</th>
             <th>Friday</th>
-            <th>Saturday</th>
+            <th style="border-right-width:50px; border-color:black">Saturday</th>
         </tr>
     </thead> 
 
@@ -136,10 +136,17 @@ function goToClick()
                     {
                         if ((currentDayOfWeek+1)%7==0)
                         {
-                            <td class="event" style="border-right-width:50px">
+                            <td class="event" style="border-right-width:50px; border-color:black">
                                 @Html.ActionLink(@currentDay.ToString(), "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
                             </td>
-                        }else
+                        }
+                        else if ((currentDayOfWeek + 1) % 7 == 1)
+                        {
+                            <td class="event" style="border-left-width:50px; border-color:black">
+                                @Html.ActionLink(@currentDay.ToString(), "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
+                            </td>
+                        }
+                        else
                         {
                             <td class="event">
                                 @Html.ActionLink(@currentDay.ToString(), "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
@@ -148,33 +155,39 @@ function goToClick()
                     }
                     else
                     {
-                         if ((currentDayOfWeek+1)%7==0)
+                        if ((currentDayOfWeek + 1) % 7 == 0)
                         {
-                            <td style="border-right-width:50px">
+                            <td style="border-right-width:50px; border-color:black">
                                 @Html.ActionLink(@currentDay.ToString(), "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
                             </td>
-                        }else
+                        }
+                        else if ((currentDayOfWeek + 1) % 7 == 1)
+                        {
+                            <td style="border-left-width:50px; border-color:black">
+                                @Html.ActionLink(@currentDay.ToString(), "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
+                            </td>
+                        }
+                        else
                         {
                             <td>
                                 @Html.ActionLink(@currentDay.ToString(), "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
                             </td>
                         }
-                    }              
-        
-                    currentDayOfWeek++;
-                    currentDay++;   
-                }
-            
-                for (; currentDayOfWeek < 7; currentDayOfWeek++)
-                {
+
+                        currentDayOfWeek++;
+                        currentDay++;
+                    }
+
+                    for (; currentDayOfWeek < 7; currentDayOfWeek++)
+                    {
                     <td class="noday"></td>   
+                    }
                 }
-            }
         </tr>
     </tbody>
 </table>
 
-@Html.ActionLink("Previous Month", "Month", "Calendar", 
+@Html.ActionLink("Previous Month", "Month", "Calendar",
                         new { bandId = ViewBag.BandId, month = Model.PreviousMonth, year = Model.PreviousMonthYear }, null)
 
 @Html.ActionLink("Next Month", "Month", "Calendar",
@@ -186,12 +199,12 @@ function goToClick()
     yearList.Add(new SelectListItem { Text = (Model.CurrentMonthYear + 1).ToString(), Value = (Model.CurrentMonthYear + 1).ToString() });
 }
 
-@Html.DropDownList("yearSelect",yearList)
+@Html.DropDownList("yearSelect", yearList)
 
 @{
     List<SelectListItem> monthList = new List<SelectListItem>();
     monthList.Add(new SelectListItem { Text = "January", Value = "1", Selected = true });
-    monthList.Add(new SelectListItem { Text = "February", Value = "2"});
+    monthList.Add(new SelectListItem { Text = "February", Value = "2" });
     monthList.Add(new SelectListItem { Text = "March", Value = "3" });
     monthList.Add(new SelectListItem { Text = "April", Value = "4" });
     monthList.Add(new SelectListItem { Text = "May", Value = "5" });
@@ -205,7 +218,7 @@ function goToClick()
     
     }
 
-@Html.DropDownList("monthSelect",monthList)
+@Html.DropDownList("monthSelect", monthList)
 
 <a id="goTo" href="asdfdf" onclick="goToClick()"> Go to month </a>
 </body>
