@@ -19,7 +19,6 @@ namespace band.Controllers
 
         public ActionResult Month(int bandId, int month, int year)
         {
-            return View("Success");
             /*
             if (!BandUtil.Authenticate(bandId, this))
             {
