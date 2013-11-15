@@ -19,6 +19,8 @@ namespace band.Controllers
 
         public ActionResult Month(int bandId, int month, int year)
         {
+            return View("Success");
+            /*
             if (!BandUtil.Authenticate(bandId, this))
             {
                 return View("Error");
@@ -31,6 +33,7 @@ namespace band.Controllers
             ViewBag.ErrorMessage = TempData["ErrorMessage"];
 
             return View("Index", monthModel);
+            */
         }
 
         public ActionResult AddEvent(int bandId, int day, int month, int year)
