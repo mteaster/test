@@ -13,18 +13,12 @@ namespace test.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        //
-        // GET: /Account/Login
-
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
-
-        //
-        // POST: /Account/Login
 
         [HttpPost]
         [AllowAnonymous]
@@ -41,9 +35,6 @@ namespace test.Controllers
             return View(model);
         }
 
-        //
-        // POST: /Account/LogOff
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
@@ -53,18 +44,12 @@ namespace test.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        //
-        // GET: /Account/Register
-
         [AllowAnonymous]
         public ActionResult Register()
         {
 
             return View();
         }
-
-        //
-        // POST: /Account/Register
 
         [HttpPost]
         [AllowAnonymous]
@@ -73,7 +58,6 @@ namespace test.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Attempt to register the user
                 try
                 {
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password, new { DisplayName = model.DisplayName } );
@@ -91,19 +75,12 @@ namespace test.Controllers
             return View(model);
         }
 
-        //
-        // GET: /Account/Manage
-
         public ActionResult Manage()
         {
             ViewBag.SuccessMessage = TempData["SuccessMessage"];
             ViewBag.ErrorMessage = TempData["ErrorMessage"];
             return View();
         }
-
-
-        //
-        // POST: /Account/ChangeDisplayName
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -129,10 +106,6 @@ namespace test.Controllers
             return RedirectToAction("Manage");
         }
         
-
-        //
-        // POST: /Account/ChangePassword
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult ChangePassword(UserPasswordModel model)
