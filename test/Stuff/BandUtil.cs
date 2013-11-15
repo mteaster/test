@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Helpers;
+using System.Web.Mvc;
 using System.Web.Security;
 using test.Models;
 using test.Models.Band;
@@ -289,6 +290,11 @@ namespace test.Stuff
 
                 return bandModels;
             }
+        }
+
+        public static void ViewBagTest(ControllerBase controller)
+        {
+            controller.ViewBag.SuccessMessage = "I came from BandUtil.ViewBagTest";
         }
 
         private static BandModel BandModelFor(int bandId, DatabaseContext database, bool membersFlag = false)
