@@ -25,13 +25,6 @@ namespace test.Controllers
             return View();
         }
 
-        public ActionResult ViewBagTest()
-        {
-            BandUtil.ViewBagTest(this);
-            return View("Success");
-        }
-
-
         [ChildActionOnly]
         public ActionResult UserList()
         {
