@@ -74,8 +74,6 @@ namespace band.Content
 
         public ActionResult Files(int groupId)
         {
-
-
             using (DatabaseContext database = new DatabaseContext())
             {
                 FileGroup fileGroup = database.FileGroups.Find(groupId);
@@ -198,6 +196,9 @@ namespace band.Content
                 {
                     return View("Error");
                 }
+
+                ViewBag.SuccessMessage = TempData["SuccessMessage"];
+                ViewBag.ErrorMessage = TempData["ErrorMessage"];
 
                 return View();
             }
