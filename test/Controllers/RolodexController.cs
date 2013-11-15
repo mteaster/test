@@ -39,19 +39,11 @@ namespace band.Controllers
         }
 
         
-        public ActionResult CreateBandContact(int BandId)
+        public ActionResult CreateBandContact(int bandId)
         {
-            // Check if band exists - if it does, get band profile
-            BandProfile bandProfile = BandUtil.BandProfileFor(BandId);
-
-            ViewBag.BandId = BandId;
-            ViewBag.BandName = bandProfile.BandName;
-
-            // Check if the user is in the band
-            // If not, redirect to join a band page
-            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, BandId) && !Roles.IsUserInRole("Administrator"))
+            if (!BandUtil.Authenticate(bandId, this))
             {
-                return RedirectToAction("Join", "Band");
+                return View("Error");
             }
 
             // This will also display contacts for the band
