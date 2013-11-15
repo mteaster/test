@@ -98,12 +98,12 @@ function goToClick()
 
     <tbody>
         <tr>
-            @for (int i = 0; i < Model.FirstDayOfWeek; i++ )
-            {
-                <td class="noday"></td>   
-            }
-
             @{
+                for (int i = 0; i < Model.FirstDayOfWeek; i++)
+                {
+                    <td class="noday"></td>   
+                }
+                
                 int currentDayOfWeek = Model.FirstDayOfWeek;
                 int currentDay = 1;
 
@@ -134,15 +134,15 @@ function goToClick()
                 
                     if(hasEvent)
                     {
-                        if ((currentDayOfWeek+1)%7==0)
+                        if ((currentDayOfWeek +1 ) % 7 == 0)
                         {
-                            <td class="event" style="border-right-width:50px; border-color:black">
+                            <td class="event" style="border-right-width: 50px; border-color: black">
                                 @Html.ActionLink(@currentDay.ToString(), "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
                             </td>
                         }
                         else if ((currentDayOfWeek + 1) % 7 == 1)
                         {
-                            <td class="event" style="border-left-width:50px; border-color:black">
+                            <td class="event" style="border-left-width: 50px; border-color: black">
                                 @Html.ActionLink(@currentDay.ToString(), "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
                             </td>
                         }
@@ -157,13 +157,13 @@ function goToClick()
                     {
                         if ((currentDayOfWeek + 1) % 7 == 0)
                         {
-                            <td style="border-right-width:50px; border-color:black">
+                            <td style="border-right-width: 50px; border-color: black">
                                 @Html.ActionLink(@currentDay.ToString(), "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
                             </td>
                         }
                         else if ((currentDayOfWeek + 1) % 7 == 1)
                         {
-                            <td style="border-left-width:50px; border-color:black">
+                            <td style="border-left-width: 50px; border-color: black">
                                 @Html.ActionLink(@currentDay.ToString(), "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
                             </td>
                         }
@@ -173,17 +173,17 @@ function goToClick()
                                 @Html.ActionLink(@currentDay.ToString(), "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
                             </td>
                         }
-
-                        currentDayOfWeek++;
-                        currentDay++;
-                    }
                     }
 
-                    for (; currentDayOfWeek < 7; currentDayOfWeek++)
-                    {
-                    <td class="noday"></td>   
-                    }
+                    currentDayOfWeek++;
+                    currentDay++;
                 }
+                
+                for (; currentDayOfWeek < 7; currentDayOfWeek++)
+                {
+                        @:<td class="noday"></td>   
+                }
+            }
         </tr>
     </tbody>
 </table>

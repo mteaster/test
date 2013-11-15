@@ -30,8 +30,8 @@ namespace band.Controllers
             ViewBag.SuccessMessage = TempData["SuccessMessage"];
             ViewBag.ErrorMessage = TempData["ErrorMessage"];
 
-            return View("Success");
-            //return View("Index", monthModel);
+            //return View("Success");
+            return View("Index", monthModel);
         }
 
         public ActionResult AddEvent(int bandId, int day, int month, int year)
