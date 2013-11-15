@@ -4,12 +4,8 @@
     ViewBag.Title = "Upload File";
 }
 
-@if (Model != null)
-{
-    <p>File uploaded successfully..</p>
-    <p>@ViewBag.Content</p>
-    @Html.DisplayForModel();
-}
+<p class="message-success">@ViewBag.SuccessMessage</p>
+<p class="message-error">@ViewBag.ErrorMessage</p>
 
 @using (Html.BeginForm("UploadFile", "FileCabinet", new { bandId = ViewBag.BandId, groupId = ViewBag.GroupId }, FormMethod.Post, new { enctype = "multipart/form-data" } ))
 {

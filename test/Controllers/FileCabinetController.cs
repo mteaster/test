@@ -241,8 +241,8 @@ namespace band.Content
 
                 MessageBoardUtil.AddFilePost(bandId, fileEntry.FileId);
 
-                ViewBag.SuccessMessage = fileEntry.FileName + " uploaded.";
-                return View("Success");
+                TempData["SuccessMessage"] = fileEntry.FileName + " uploaded.";
+                return RedirectToLocal(Request.UrlReferrer.AbsolutePath);
             }
         }
 
@@ -280,8 +280,8 @@ namespace band.Content
                 database.FileEntries.Remove(fileEntry);
                 database.SaveChanges();
 
-                ViewBag.SuccessMessage = fileEntry.FileName + " deleted.";
-                return View("Success");
+                TempData["SuccessMessage"] = fileEntry.FileName + " deleted.";
+                return RedirectToLocal(Request.UrlReferrer.AbsolutePath);
             }
         }
 
