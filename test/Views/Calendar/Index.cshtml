@@ -134,16 +134,31 @@ function goToClick()
                 
                     if(hasEvent)
                     {
-                        <td class="event">
-                            @Html.ActionLink(@currentDay.ToString(), "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
-                       
-                        </td>
+                        if ((currentDayOfWeek+1)%7==0)
+                        {
+                            <td class="event" style="border-right-width:50px">
+                                @Html.ActionLink(@currentDay.ToString(), "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
+                            </td>
+                        }else
+                        {
+                            <td class="event">
+                                @Html.ActionLink(@currentDay.ToString(), "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
+                            </td>
+                        }
                     }
                     else
                     {
-                        <td>
-                            @Html.ActionLink(@currentDay.ToString(), "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
-                        </td>
+                         if ((currentDayOfWeek+1)%7==0)
+                        {
+                            <td style="border-right-width:50px">
+                                @Html.ActionLink(@currentDay.ToString(), "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
+                            </td>
+                        }else
+                        {
+                            <td>
+                                @Html.ActionLink(@currentDay.ToString(), "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
+                            </td>
+                        }
                     }              
         
                     currentDayOfWeek++;
