@@ -52,7 +52,7 @@ namespace test.Stuff
                     return false;
                 }
 
-                if (database.BandMemberships.Find(WebSecurity.CurrentUserId, bandId) == null && !Roles.IsUserInRole("Administrator"))
+                if (database.BandMemberships.Find(bandId, WebSecurity.CurrentUserId) == null && !Roles.IsUserInRole("Administrator"))
                 {
                     controller.ViewBag.ErrorMessage = "YOU'RE NOT IN THIS BAND, IDIOT";
                     return false;
