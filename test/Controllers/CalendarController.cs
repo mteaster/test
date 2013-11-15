@@ -19,12 +19,9 @@ namespace band.Controllers
 
         public ActionResult Month(int bandId, int month, int year)
         {
-            ViewBag.BandId = bandId;
-            ViewBag.BandName = BandUtil.BandProfileFor(bandId).BandName;
-
-            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))
+            if (!BandUtil.Authenticate(bandId, this))
             {
-                return RedirectToAction("Join", "Band");
+                return View("Error");
             }
 
             MonthModel monthModel = new MonthModel(month, year);
@@ -38,17 +35,14 @@ namespace band.Controllers
 
         public ActionResult AddEvent(int bandId, int day, int month, int year)
         {
-            ViewBag.BandId = bandId;
-            ViewBag.BandName = BandUtil.BandProfileFor(bandId).BandName;
+            if (!BandUtil.Authenticate(bandId, this))
+            {
+                return View("Error");
+            }
+
             ViewBag.Day = day;
             ViewBag.Month = month;
             ViewBag.Year = year;
-
-            // Check if the user is in the band
-            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))
-            {
-                return RedirectToAction("Join", "Band");
-            }
 
             return View();
         }
@@ -57,12 +51,9 @@ namespace band.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddEvent(int bandId, int day, int month, int year, CalendarEventModel model)
         {
-            ViewBag.BandId = bandId;
-            ViewBag.BandName = BandUtil.BandProfileFor(bandId).BandName;
-
-            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))
+            if (!BandUtil.Authenticate(bandId, this))
             {
-                return RedirectToAction("Join", "Band");
+                return View("Error");
             }
 
             if (ModelState.IsValid)
@@ -101,14 +92,12 @@ namespace band.Controllers
 
         public ActionResult EditEvent(int bandId, int eventId)
         {
-            ViewBag.BandId = bandId;
-            ViewBag.BandName = BandUtil.BandProfileFor(bandId).BandName;
-            ViewBag.EventId = eventId;
-
-            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))
+            if (!BandUtil.Authenticate(bandId, this))
             {
-                return RedirectToAction("Join", "Band");
+                return View("Error");
             }
+
+            ViewBag.EventId = eventId;
 
             EditEventModel model;
 
@@ -124,12 +113,9 @@ namespace band.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditEvent(int bandId, int eventId, EditEventModel model)
         {
-            ViewBag.BandId = bandId;
-            ViewBag.BandName = BandUtil.BandProfileFor(bandId).BandName;
-
-            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId))
+            if (!BandUtil.Authenticate(bandId, this))
             {
-                return RedirectToAction("Join", "Band");
+                return View("Error");
             }
 
             if (ModelState.IsValid)
@@ -167,9 +153,8 @@ namespace band.Controllers
             {
                 CalendarEvent calendarEvent = database.CalendarEvents.Find(eventId);
 
-                if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, calendarEvent.BandId))
+                if (!BandUtil.Authenticate(calendarEvent.BandId, this))
                 {
-                    ViewBag.ErrorMessage = "you're not in this band idiot";
                     return View("Error");
                 }
 
@@ -179,12 +164,6 @@ namespace band.Controllers
                 TempData["SuccessMessage"] = "we edited ur calendar event LOL";
                 return RedirectToAction("Index", new { bandId = calendarEvent.BandId });
             }
-        }
-
-
-        public ActionResult EventsForMonth(int bandId, int month, int year)
-        {
-            return View(CalendarUtil.EventsForMonth(bandId, month, year));
         }
 
         public ActionResult Day(int bandId, int day, int month, int year)
