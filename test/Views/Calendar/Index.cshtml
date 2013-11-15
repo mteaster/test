@@ -134,7 +134,7 @@ function goToClick()
                 
                     if(hasEvent)
                     {
-                        if (currentDayOfWeek%7==0)
+                        if ((currentDayOfWeek+1)%7==0)
                         {
                             <td class="event" style="border-right-width:50px">
                                 @Html.ActionLink(@currentDay.ToString(), "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
@@ -148,7 +148,7 @@ function goToClick()
                     }
                     else
                     {
-                         if (currentDayOfWeek%7==0)
+                         if ((currentDayOfWeek+1)%7==0)
                         {
                             <td style="border-right-width:50px">
                                 @Html.ActionLink(@currentDay.ToString(), "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
