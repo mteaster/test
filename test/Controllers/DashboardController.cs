@@ -48,15 +48,12 @@ namespace band.Controllers
 
         public ActionResult Index(int bandId)
         {
-            DashboardViewModel dvm = new DashboardViewModel();
-
-            ViewBag.BandId = bandId;
-            ViewBag.BandName = BandUtil.BandProfileFor(bandId).BandName;
-
-            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
+            if (!BandUtil.Authenticate(bandId, this))
             {
                 return RedirectToAction("Join", "Band");
             }
+
+            DashboardViewModel dvm = new DashboardViewModel();
 
             ViewBag.SuccessMessage = TempData["SuccessMessage"];
             ViewBag.ErrorMessage = TempData["ErrorMessage"];
@@ -69,10 +66,7 @@ namespace band.Controllers
         [HttpPost]
         public ActionResult Index(int bandId, PostMessageModel model)
         {
-            ViewBag.BandId = bandId;
-            ViewBag.BandName = BandUtil.BandNameFor(bandId);
-
-            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
+            if (!BandUtil.Authenticate(bandId, this))
             {
                 return RedirectToAction("Join", "Band");
             }

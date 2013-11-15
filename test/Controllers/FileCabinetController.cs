@@ -74,19 +74,18 @@ namespace band.Content
 
         public ActionResult Files(int groupId, int bandId)
         {
+            if (!BandUtil.Authenticate(bandId, this))
+            {
+                return View("Error");
+            }
+
             using (DatabaseContext database = new DatabaseContext())
             {
                 FileGroup fileGroup = database.FileGroups.Find(groupId);
                 
                 ViewBag.GroupId = groupId;
                 ViewBag.GroupName = fileGroup.GroupName;
-                ViewBag.BandId = fileGroup.BandId;
-                ViewBag.BandName = fileGroup.BandProfile.BandName;
-                if (database.BandMemberships.Find(fileGroup.BandId, WebSecurity.CurrentUserId) == null && !Roles.IsUserInRole("Administrator"))
-                {
-                    ViewBag.ErrorMessage = "You are not a member of this band.";
-                    return View("Error");
-                }
+
                 return View();
             }
         }
@@ -96,11 +95,10 @@ namespace band.Content
             using (DatabaseContext database = new DatabaseContext())
             {
                 int bandId = database.FileGroups.Find(groupId).BandId;
-                
-                if(database.BandMemberships.Find(bandId, WebSecurity.CurrentUserId) == null && !Roles.IsUserInRole("Administrator"))
+
+                if (!BandUtil.Authenticate(bandId, this))
                 {
-                    ViewBag.ErrorMessage = "You are not a member of this band.";
-                    return View("Error");
+                    return RedirectToAction("Join", "Band");
                 }
 
                 List<FileEntry> entries = database.FileEntries.Where(f => f.BandId == bandId && f.GroupId == groupId).ToList();
@@ -137,12 +135,9 @@ namespace band.Content
 
         public ActionResult Groups(int bandId)
         {
-            ViewBag.BandId = bandId;
-            ViewBag.BandName = BandUtil.BandProfileFor(bandId).BandName;
-
-            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
+            if (!BandUtil.Authenticate(bandId, this))
             {
-                return RedirectToAction("Join", "Band");
+                return View("Error");
             }
 
             using (DatabaseContext database = new DatabaseContext())
@@ -153,14 +148,13 @@ namespace band.Content
 
         public ActionResult GetGroups(int bandId)
         {
+            if (!BandUtil.Authenticate(bandId, this))
+            {
+                return View("Error");
+            }
+
             using (DatabaseContext database = new DatabaseContext())
             {
-                if (database.BandMemberships.Find(bandId, WebSecurity.CurrentUserId) == null && !Roles.IsUserInRole("Administrator"))
-                {
-                    ViewBag.ErrorMessage = "You are not a member of this band.";
-                    return View("Error");
-                }
-
                 List<FileGroup> groups = database.FileGroups.Where(g => g.BandId == bandId).ToList();
 
                 List<FileGroupModel> models = new List<FileGroupModel>();
@@ -176,12 +170,9 @@ namespace band.Content
 
         public ActionResult ListFiles(int bandId, int groupId)
         {
-            ViewBag.BandId = bandId;
-            ViewBag.BandName = BandUtil.BandProfileFor(bandId).BandName;
-
-            if (!BandUtil.IsUserInBand(WebSecurity.CurrentUserId, bandId) && !Roles.IsUserInRole("Administrator"))
+            if (!BandUtil.Authenticate(bandId, this))
             {
-                return RedirectToAction("Join", "Band");
+                return View("Error");
             }
 
             using (DatabaseContext database = new DatabaseContext())
@@ -197,12 +188,10 @@ namespace band.Content
                 FileGroup fileGroup = database.FileGroups.Find(groupId);
 
                 ViewBag.GroupId = groupId;
-                ViewBag.BandId = fileGroup.BandId;
-                ViewBag.BandName = database.BandProfiles.Find(fileGroup.BandId).BandName;
-
-                if (database.BandMemberships.Find(fileGroup.BandId, WebSecurity.CurrentUserId) == null && !Roles.IsUserInRole("Administrator"))
+                
+                if (!BandUtil.Authenticate(fileGroup.BandId, this))
                 {
-                    return RedirectToAction("Join", "Band");
+                    return View("Error");
                 }
 
                 return View();
@@ -214,13 +203,9 @@ namespace band.Content
         {
             using (DatabaseContext database = new DatabaseContext())
             {
-                ViewBag.BandId = bandId;
-                ViewBag.BandName = database.BandProfiles.Find(bandId).BandName;
-
-                if (database.BandMemberships.Find(bandId, WebSecurity.CurrentUserId) == null
-                    && !Roles.IsUserInRole("Administrator"))
+                if (!BandUtil.Authenticate(bandId, this))
                 {
-                    return RedirectToAction("Join", "Band");
+                    return View("Error");
                 }
 
                 if (model.File.ContentLength <= 0 || model.File.ContentLength > 1048576)
@@ -266,13 +251,10 @@ namespace band.Content
             using (DatabaseContext database = new DatabaseContext())
             {
                 FileEntry fileEntry = database.FileEntries.Find(fileId);
-                ViewBag.BandId = fileEntry.BandId;
-                ViewBag.BandName = database.BandProfiles.Find(fileEntry.BandId).BandName;
-
-                if (database.BandMemberships.Find(fileEntry.BandId, WebSecurity.CurrentUserId) == null
-                    && !Roles.IsUserInRole("Administrator"))
+                
+                if (!BandUtil.Authenticate(fileEntry.BandId, this))
                 {
-                    return RedirectToAction("Join", "Band");
+                    return View("Error");
                 }
 
                 string path = Server.MapPath("~/App_Data/" + fileEntry.BandId + "/" + fileId);
@@ -286,13 +268,10 @@ namespace band.Content
             using (DatabaseContext database = new DatabaseContext())
             {
                 FileEntry fileEntry = database.FileEntries.Find(fileId);
-                ViewBag.BandId = fileEntry.BandId;
-                ViewBag.BandName = database.BandProfiles.Find(fileEntry.BandId).BandName;
-
-                if (database.BandMemberships.Find(fileEntry.BandId, WebSecurity.CurrentUserId) == null
-                    && !Roles.IsUserInRole("Administrator"))
+                
+                if (!BandUtil.Authenticate(fileEntry.BandId, this))
                 {
-                    return RedirectToAction("Join", "Band");
+                    return View("Error");
                 }
 
                 string path = Server.MapPath("~/App_Data/" + fileEntry.BandId + "/" + fileId);
