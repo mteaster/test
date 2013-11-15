@@ -72,19 +72,24 @@ namespace band.Content
             }
         }
 
-        public ActionResult Files(int groupId, int bandId)
+        public ActionResult Files(int groupId)
         {
-            if (!BandUtil.Authenticate(bandId, this))
-            {
-                return View("Error");
-            }
+
 
             using (DatabaseContext database = new DatabaseContext())
             {
                 FileGroup fileGroup = database.FileGroups.Find(groupId);
-                
+
+                if (!BandUtil.Authenticate(fileGroup.BandId, this))
+                {
+                    return View("Error");
+                }
+
                 ViewBag.GroupId = groupId;
                 ViewBag.GroupName = fileGroup.GroupName;
+
+                ViewBag.SuccessMessage = TempData["SuccessMessage"];
+                ViewBag.ErrorMessage = TempData["ErrorMessage"];
 
                 return View();
             }
