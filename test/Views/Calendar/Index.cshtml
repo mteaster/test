@@ -78,14 +78,11 @@
     }
     #nav-a a 
     {
-        position:absolute;
-        right:0px;
+        float:right;
     }
     #nav-select select 
     {
-        padding-right:200px;
-        position:absolute;
-        right:20px;
+        float:right;
     }
     td.event
     {
@@ -219,7 +216,7 @@
         <option>@(Model.CurrentMonthYear + 1)</option>
     </select>
 
-    <select id="monthSelect" onchange="changeLink()" >
+    <select id="monthSelect" onchange="changeLink()" class="nav-select">
         <option>1</option>
         <option>2</option>
         <option>3</option>
