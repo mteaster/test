@@ -14,7 +14,7 @@
     @Html.Partial("_BandHeaderPartial")
 }
 
-@using (Html.BeginForm("CreateBandContact", "Rolodex", new { bandId = ViewBag.BandId }))
+@using (Html.BeginForm("EditBand", "Rolodex", new { bandId = ViewBag.BandId }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()

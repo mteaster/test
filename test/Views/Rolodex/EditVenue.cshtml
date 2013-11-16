@@ -14,7 +14,7 @@
 
 <h2>Edit Venue</h2>
 
-@using (Html.BeginForm("CreateVenueContact", "Rolodex", new { bandId = ViewBag.BandId }))
+@using (Html.BeginForm("EditVenue", "Rolodex", new { bandId = ViewBag.BandId }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
