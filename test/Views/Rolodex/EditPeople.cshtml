@@ -12,7 +12,7 @@
 
 <h2>Edit People</h2>
 
-@using (Html.BeginForm("EditPeople", "Rolodex", new { bandId = ViewBag.BandId }))
+@using (Html.BeginForm("EditPeople", "Rolodex", new { bandId = ViewBag.BandId, contactId = Model.ContactId }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
