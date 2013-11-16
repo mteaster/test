@@ -1,11 +1,11 @@
-﻿@model IEnumerable<test.Models.Dashboard.MessageBoardPostModel>
+﻿@model test.Models.Dashboard.PageModel
 
 <h2 class="messageboard-header">Messages</h2>
 
-@if (Model != null && Model.Any())
+@if (Model != null && Model.Posts.Any())
 {
     <ol class="messages">
-        @foreach (var item in Model)
+        @foreach (var item in Model.Posts)
         {
             <li id="post-container-@item.PostId">
                 <div class="post" id="post-@item.PostId">
