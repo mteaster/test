@@ -51,7 +51,9 @@
         });
     </script>
 
-    <p>Date: <input type="text" name="EventDate" id="datepicker" /></p>
+    <label for="Date">Date</label>
+    
+    <p><input type="text" name="EventDate" id="datepicker" /></p>
     
     <fieldset>
         <br>
@@ -59,45 +61,45 @@
         <ul>
             <li>
                 @{
-                    List<SelectListItem> hours = new List<SelectListItem>();
-                    hours.Add(new SelectListItem { Text = "1", Value = "1", Selected = true});
-                    hours.Add(new SelectListItem { Text = "2", Value = "2" });
-                    hours.Add(new SelectListItem { Text = "3", Value = "3" });
-                    hours.Add(new SelectListItem { Text = "4", Value = "4" });
-                    hours.Add(new SelectListItem { Text = "5", Value = "5" });
-                    hours.Add(new SelectListItem { Text = "6", Value = "6" });
-                    hours.Add(new SelectListItem { Text = "7", Value = "7" });
-                    hours.Add(new SelectListItem { Text = "8", Value = "8" });
-                    hours.Add(new SelectListItem { Text = "9", Value = "9" });
-                    hours.Add(new SelectListItem { Text = "10", Value = "10" });
-                    hours.Add(new SelectListItem { Text = "11", Value = "11" });
-                    hours.Add(new SelectListItem { Text = "12", Value = "12" });
+    List<SelectListItem> hours = new List<SelectListItem>();
+    hours.Add(new SelectListItem { Text = "1", Value = "1", Selected = true });
+    hours.Add(new SelectListItem { Text = "2", Value = "2" });
+    hours.Add(new SelectListItem { Text = "3", Value = "3" });
+    hours.Add(new SelectListItem { Text = "4", Value = "4" });
+    hours.Add(new SelectListItem { Text = "5", Value = "5" });
+    hours.Add(new SelectListItem { Text = "6", Value = "6" });
+    hours.Add(new SelectListItem { Text = "7", Value = "7" });
+    hours.Add(new SelectListItem { Text = "8", Value = "8" });
+    hours.Add(new SelectListItem { Text = "9", Value = "9" });
+    hours.Add(new SelectListItem { Text = "10", Value = "10" });
+    hours.Add(new SelectListItem { Text = "11", Value = "11" });
+    hours.Add(new SelectListItem { Text = "12", Value = "12" });
                 }               
                 @Html.DropDownListFor(m => m.EventHour, hours)
             </li>
             <li>   
                 @{
-                    List<SelectListItem> min = new List<SelectListItem>();
-                    min.Add(new SelectListItem { Text = "00", Value = "00", Selected = true });
-                    min.Add(new SelectListItem { Text = "05", Value = "05" });
-                    min.Add(new SelectListItem { Text = "10", Value = "10" });
-                    min.Add(new SelectListItem { Text = "15", Value = "15" });
-                    min.Add(new SelectListItem { Text = "20", Value = "20" });
-                    min.Add(new SelectListItem { Text = "25", Value = "25" });
-                    min.Add(new SelectListItem { Text = "30", Value = "30" });
-                    min.Add(new SelectListItem { Text = "35", Value = "35" });
-                    min.Add(new SelectListItem { Text = "40", Value = "40" });
-                    min.Add(new SelectListItem { Text = "45", Value = "45" });
-                    min.Add(new SelectListItem { Text = "50", Value = "50" });
-                    min.Add(new SelectListItem { Text = "55", Value = "55" });
+    List<SelectListItem> min = new List<SelectListItem>();
+    min.Add(new SelectListItem { Text = "00", Value = "00", Selected = true });
+    min.Add(new SelectListItem { Text = "05", Value = "05" });
+    min.Add(new SelectListItem { Text = "10", Value = "10" });
+    min.Add(new SelectListItem { Text = "15", Value = "15" });
+    min.Add(new SelectListItem { Text = "20", Value = "20" });
+    min.Add(new SelectListItem { Text = "25", Value = "25" });
+    min.Add(new SelectListItem { Text = "30", Value = "30" });
+    min.Add(new SelectListItem { Text = "35", Value = "35" });
+    min.Add(new SelectListItem { Text = "40", Value = "40" });
+    min.Add(new SelectListItem { Text = "45", Value = "45" });
+    min.Add(new SelectListItem { Text = "50", Value = "50" });
+    min.Add(new SelectListItem { Text = "55", Value = "55" });
                 }
                 @Html.DropDownListFor(m => m.EventMinute, min)
             </li>
             <li>
                 @{
-                    List<SelectListItem> period = new List<SelectListItem>();
-                    period.Add(new SelectListItem { Text = "AM", Value = "AM", Selected = true });
-                    period.Add(new SelectListItem { Text = "PM", Value = "PM" });
+    List<SelectListItem> period = new List<SelectListItem>();
+    period.Add(new SelectListItem { Text = "AM", Value = "AM", Selected = true });
+    period.Add(new SelectListItem { Text = "PM", Value = "PM" });
                 }
                 @Html.DropDownListFor(m => m.EventPeriod, period)
             </li>
