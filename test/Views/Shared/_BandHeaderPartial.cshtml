@@ -6,12 +6,12 @@
         </hgroup>
 
         <ul class="horizontal">
-            <li>@Html.ActionLink("Dashboard", "Index", "Dashboard", new { bandId = ViewBag.BandId } )</li>
-            <li>@Html.ActionLink("Rolodex", "Index", "Rolodex", new { bandId = ViewBag.BandId } )</li>
-            <li>@Html.ActionLink("Calendar", "Index", "Calendar", new { bandId = ViewBag.BandId } ))</li>
-            <li>@Html.ActionLink("File Cabinet", "Index", "FileCabinet", new { bandId = ViewBag.BandId }))</li>
-            <li>@Html.ActionLink("Budget", "Index", "Budget", new { bandId = ViewBag.BandId }))</li>
-            <li>@Html.ActionLink("Online", "Index", "Online", new { bandId = ViewBag.BandId }))</li>
+            <li>@Html.ActionLink("Dashboard", "Index", "Dashboard", new { bandId = ViewBag.BandId }, null)</li>
+            <li>@Html.ActionLink("Rolodex", "Index", "Rolodex", new { bandId = ViewBag.BandId }, null)</li>
+            <li>@Html.ActionLink("Calendar", "Index", "Calendar", new { bandId = ViewBag.BandId }, null)</li>
+            <li>@Html.ActionLink("File Cabinet", "Index", "FileCabinet", new { bandId = ViewBag.BandId }, null)</li>
+            <li>@Html.ActionLink("Budget", "Index", "Budget", new { bandId = ViewBag.BandId }, null)</li>
+            <li>@Html.ActionLink("Online", "Index", "Online", new { bandId = ViewBag.BandId }, null)</li>
 
             <li class="right">@Html.ActionLink("Manage", "Manage", "Band")</li>
         </ul>
