@@ -107,7 +107,7 @@ namespace test.Stuff
 
                 pageModel.TotalPages = results.Count() / POSTS_PER_PAGE;
 
-                var postsOnPage = results.Skip(0).Concat(results.Take(POSTS_PER_PAGE));
+                var postsOnPage = results.Take(POSTS_PER_PAGE);
 
                 foreach (var page in postsOnPage)
                 {
