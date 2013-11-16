@@ -20,11 +20,9 @@
             var monthList = document.getElementById("monthSelect");
             var goToLink = document.getElementById("goTo");
             var linkText = "../";
-            linkText = linkText.concat(document.getElementById("selectMonth")[monthList.selectedIndex].text);
+            linkText = linkText.concat(document.getElementById("monthSelect")[monthList.selectedIndex].text);
             goToLink.href = linkText;
-            //monthSelect
-            //[favorite.selectedIndex].text = mylist.options[mylist.selectedIndex].text;
-
+            //need full path still, just trying to get events working
             document.getElementById("goTo").innerHTML = goToLink;
         }
 </script>
