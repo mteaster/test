@@ -218,28 +218,28 @@
 
 @Html.ActionLink("Next Month", "Month", "Calendar",
                         new { bandId = ViewBag.BandId, month = Model.NextMonth, year = Model.NextMonthYear }, null)
-    <div>
-    <select id="yearSelect" onchange="changeLink()" class="nav-select">
-        <option>@(Model.CurrentMonthYear - 1)</option>
-        <option selected>@(Model.CurrentMonthYear)</option>
-        <option>@(Model.CurrentMonthYear + 1)</option>
-    </select>
+    <div style="float:right">
+        <select id="yearSelect" onchange="changeLink()" class="nav-select">
+            <option>@(Model.CurrentMonthYear - 1)</option>
+            <option selected>@(Model.CurrentMonthYear)</option>
+            <option>@(Model.CurrentMonthYear + 1)</option>
+        </select>
 
-    <select id="monthSelect" onchange="changeLink()" class="nav-select">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-        <option>6</option>
-        <option>7</option>
-        <option>8</option>
-        <option>9</option>
-        <option>10</option>
-        <option>11</option>
-        <option>12</option>
-    </select>
+        <select id="monthSelect" onchange="changeLink()" class="nav-select">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+            <option>11</option>
+            <option>12</option>
+        </select>
        
-    <a id="goTo" href="garbage" class="nav-a"> Go to month </a>
+        <a id="goTo" href="garbage" class="nav-a"> Go to month </a>
     </div>
 </body>
