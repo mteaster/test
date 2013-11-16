@@ -502,18 +502,22 @@ namespace band.Controllers
             {
                 using (DatabaseContext database = new DatabaseContext())
                 {
+                    //original = database.PeopleContacts.Find(peopleContact.ContactId);
+
+                    //original.Email = peopleContact.Email;
+                    //original.Name = peopleContact.Name;
+                    //original.Notes = peopleContact.Notes;
+                    //original.PhoneNumber = peopleContact.PhoneNumber;
+                    //original.Picture = peopleContact.Picture;
+                    //original.AssociatedContactId = peopleContact.AssociatedContactId;
+                    //original.AssociatedContactTypeValue = peopleContact.AssociatedContactTypeValue;
+                    //original.Skill = peopleContact.Skill;
+
+                    //database.Entry(original).State = EntityState.Modified;
+                    //database.SaveChanges();
+
                     original = database.PeopleContacts.Find(peopleContact.ContactId);
-
-                    original.Email = peopleContact.Email;
-                    original.Name = peopleContact.Name;
-                    original.Notes = peopleContact.Notes;
-                    original.PhoneNumber = peopleContact.PhoneNumber;
-                    original.Picture = peopleContact.Picture;
-                    original.AssociatedContactId = peopleContact.AssociatedContactId;
-                    original.AssociatedContactTypeValue = peopleContact.AssociatedContactTypeValue;
-                    original.Skill = peopleContact.Skill;
-
-                    database.Entry(original).State = EntityState.Modified;
+                    database.Entry(original).CurrentValues.SetValues(peopleContact);
                     database.SaveChanges();
                 }
                 return View("Index");
