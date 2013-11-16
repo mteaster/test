@@ -581,8 +581,21 @@ namespace band.Controllers
                 ViewData["SuccessMessage"] = "Avatar changed.";
                 return View("Success");
             }
-        }
 
+        }
+        public ActionResult DownloadAvatar(int bandId, string type)
+        {
+            string path = Server.MapPath("~/App_Data/"+ type +"ContactAvatars/" + bandId + ".jpg");
+
+            if (System.IO.File.Exists(path))
+            {
+                return File(path, "image/jpeg");
+            }
+            else
+            {
+                return File(Server.MapPath("~/App_Data/UserAvatars/default.jpg"), "image/jpeg");
+            }
+        }
         public static List<SelectListItem> GetSelectList(int bandId, string callingType)
         {
             List<SelectListItem> returnValue = new List<SelectListItem>();
