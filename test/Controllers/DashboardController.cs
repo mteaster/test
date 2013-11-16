@@ -48,6 +48,11 @@ namespace band.Controllers
 
         public ActionResult Index(int bandId)
         {
+            return RedirectToAction("Page", new { bandId = bandId, pageNumber = 0 });
+        }
+
+        public ActionResult Page(int bandId, int pageNumber)
+        {
             if (!BandUtil.Authenticate(bandId, this))
             {
                 return RedirectToAction("Join", "Band");
@@ -58,9 +63,9 @@ namespace band.Controllers
             ViewBag.SuccessMessage = TempData["SuccessMessage"];
             ViewBag.ErrorMessage = TempData["ErrorMessage"];
 
-            dvm.DisplayMessagesModel = MessageBoardUtil.PostsFor(bandId);
-            
-            return View(dvm);
+            dvm.DisplayMessagesModel = MessageBoardUtil.GetPage(bandId, 0);
+
+            return View("Index", dvm);
         }
 
         [HttpPost]
@@ -84,7 +89,7 @@ namespace band.Controllers
                 ViewBag.ErrorMessage = "We don't like empty messages.";
             }
 
-            dvm.DisplayMessagesModel = MessageBoardUtil.PostsFor(bandId);
+            dvm.DisplayMessagesModel = MessageBoardUtil.GetPage(bandId, 0);
 
             return View(dvm);
         }

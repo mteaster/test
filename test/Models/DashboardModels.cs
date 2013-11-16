@@ -96,7 +96,7 @@ namespace test.Models.Dashboard
         // model for the post given to the server
         public PostMessageModel PostMessageModel { get; set; }
         // model for the messages returned by the server
-        public List<MessageBoardPostModel> DisplayMessagesModel { get; set; }
+        public PageModel DisplayMessagesModel { get; set; }
     }
 
     public class PostMessageModel
@@ -104,5 +104,12 @@ namespace test.Models.Dashboard
         [Required]
         [DataType(DataType.MultilineText)]
         public string Content { get; set; }
+    }
+
+    public class PageModel
+    {
+        public int PageNumber { get; set; }
+        public int TotalPages { get; set; }
+        public List<MessageBoardPostModel> Posts { get; set; }
     }
 }

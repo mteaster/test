@@ -17,6 +17,8 @@ namespace test.Stuff
 
     public class MessageBoardUtil
     {
+        const int POSTS_PER_PAGE = 10;
+
         public static void AddMessagePost(int bandId, string content)
         {
             using (DatabaseContext database = new DatabaseContext())
@@ -84,6 +86,40 @@ namespace test.Stuff
                 }
 
                 return postModels;
+            }
+        }
+
+        public static PageModel GetPage(int bandId, int pageNumber)
+        {
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                PageModel pageModel = new PageModel();
+                pageModel.PageNumber = pageNumber;
+
+                var results = from p in database.MessageBoardPosts
+                              join u in database.UserProfiles
+                              on p.PosterId equals u.UserId
+                              where p.BandId == bandId
+                              orderby p.PostTime descending
+                              select new { p.PostId, p.PostType, p.PostTime, p.Content, u.UserId, u.DisplayName };
+
+                List<MessageBoardPostModel> postModels = new List<MessageBoardPostModel>();
+
+                pageModel.TotalPages = results.Count();
+
+                var postsOnPage = results.ToList().GetRange(pageNumber * POSTS_PER_PAGE, POSTS_PER_PAGE);
+
+                foreach (var page in postsOnPage)
+                {
+                    MessageBoardPostModel postModel = new MessageBoardPostModel(page.PostId, page.UserId, page.DisplayName,
+                                                                                    (PostType)page.PostType, page.PostTime, page.Content);
+
+                    postModels.Add(postModel);
+                }
+
+                pageModel.Posts = postModels;
+
+                return pageModel;
             }
         }
 
