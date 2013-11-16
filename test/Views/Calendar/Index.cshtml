@@ -11,12 +11,12 @@
     @Html.Partial("_BandHeaderPartial")
 }
 
-<script>
-function goToClick()
+<script  type='text/javascript'>
+function changeLink()
 {
     var yearList = document.getElementById("selectYear");
     var monthList = document.getElementById("selectMonth");
-    var goToText = "Go to month";
+    var goToLink = document.getElementById("goTo");
     var linkText = "../";
     linkText = linkText.concat(document.getElementById("selectMonth")[monthList.selectedIndex].text);
     var goToLink = goToText.link();
@@ -193,33 +193,33 @@ function goToClick()
 
 @Html.ActionLink("Next Month", "Month", "Calendar",
                         new { bandId = ViewBag.BandId, month = Model.NextMonth, year = Model.NextMonthYear }, null)
-@{
-    List<SelectListItem> yearList = new List<SelectListItem>();
-    yearList.Add(new SelectListItem { Text = (Model.CurrentMonthYear - 1).ToString(), Value = (Model.CurrentMonthYear - 1).ToString() });
-    yearList.Add(new SelectListItem { Text = Model.CurrentMonthYear.ToString(), Value = Model.CurrentMonthYear.ToString(), Selected = true });
-    yearList.Add(new SelectListItem { Text = (Model.CurrentMonthYear + 1).ToString(), Value = (Model.CurrentMonthYear + 1).ToString() });
-}
 
-@Html.DropDownList("yearSelect", yearList)
+    <select id="yearSelect" onchange="changeLink()">
+        <option>@Model.CurrentMonthYear - 1</option>
+        <option>@Model.CurrentMonthYear</option>
+        <option>@Model.CurrentMonthYear + 1</option>
+    </select>
 
-@{
-    List<SelectListItem> monthList = new List<SelectListItem>();
-    monthList.Add(new SelectListItem { Text = "January", Value = "1", Selected = true });
-    monthList.Add(new SelectListItem { Text = "February", Value = "2" });
-    monthList.Add(new SelectListItem { Text = "March", Value = "3" });
-    monthList.Add(new SelectListItem { Text = "April", Value = "4" });
-    monthList.Add(new SelectListItem { Text = "May", Value = "5" });
-    monthList.Add(new SelectListItem { Text = "June", Value = "6" });
-    monthList.Add(new SelectListItem { Text = "July", Value = "7" });
-    monthList.Add(new SelectListItem { Text = "August", Value = "8" });
-    monthList.Add(new SelectListItem { Text = "September", Value = "9" });
-    monthList.Add(new SelectListItem { Text = "October", Value = "10" });
-    monthList.Add(new SelectListItem { Text = "November", Value = "11" });
-    monthList.Add(new SelectListItem { Text = "December", Value = "12" });
-    
+    <select id="monthSelect" onchange="changeLink()">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+        <option>9</option>
+        <option>10</option>
+        <option>11</option>
+        <option>12</option>
+    </select>
+
+    @{
+        var initLink = "http://dnab.azurewebsites.net/Calendar//Month";
+        initLink = initLink + ViewBag.BandId + "/Month/" + Model.CurrentMonth.ToString() + Model.CurrentMonthYear.ToString();
     }
 
-@Html.DropDownList("monthSelect", monthList)
 
-<a id="goTo" href="asdfdf" onclick="goToClick()"> Go to month </a>
+<a id="goTo" href=initLink> Go to month </a>
 </body>
