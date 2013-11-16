@@ -674,6 +674,11 @@ tr.pager td
 
 /* MIKE'S CSS ADDITIONS */
 
+a.right
+{
+    float: right;    
+}
+
 ul.horizontal
 {
     padding: 0;
