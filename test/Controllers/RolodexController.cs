@@ -451,7 +451,7 @@ namespace band.Controllers
                     database.Entry(original).CurrentValues.SetValues(bandContact);
                     database.SaveChanges();
                 }
-                return View("Index");
+                return RedirectToAction("Index", new { bandId = bandId });
 
             }
             else
@@ -492,7 +492,7 @@ namespace band.Controllers
                     database.Entry(original).CurrentValues.SetValues(peopleContact);
                     database.SaveChanges();
                 }
-                return View("Index");
+                return RedirectToAction("Index", new { bandId = bandId });
 
             }
             else
@@ -534,7 +534,7 @@ namespace band.Controllers
                     database.Entry(original).CurrentValues.SetValues(venueContact);
                     database.SaveChanges();
                 }
-                return View("Index");
+                return RedirectToAction("Index", new { bandId = bandId });
 
             }
             else
