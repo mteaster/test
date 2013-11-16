@@ -8,6 +8,7 @@ using test.Models.Rolodex;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data;
 
 namespace band.Controllers
 {
@@ -410,7 +411,8 @@ namespace band.Controllers
             }
         }
 
-        public ActionResult EditBand(int bandId, int contactId)
+        [ActionName("EditBand")]
+        public ActionResult EditBandGet(int bandId, int contactId)
         {
             BandContact bContact;
 
@@ -434,7 +436,44 @@ namespace band.Controllers
 
         }
 
-        public ActionResult EditPeople(int bandId, int contactId)
+        [HttpPost]
+        [ActionName("EditBand")]
+        public ActionResult EditBandPost(int bandId, BandContact bandContact)
+        {
+            BandContact original;
+
+            ViewBag.BandId = bandId;
+
+            if (ModelState.IsValid)
+            {
+                using (DatabaseContext database = new DatabaseContext())
+                {
+                    original = database.BandContacts.Find(bandContact.ContactId);
+
+                    original.Email = bandContact.Email;
+                    original.MusicalStyle = bandContact.MusicalStyle;
+                    original.Name = bandContact.Name;
+                    original.Notes = bandContact.Notes;
+                    original.PhoneNumber = bandContact.PhoneNumber;
+                    original.Picture = bandContact.Picture;
+                    original.PopularityLevel = bandContact.PopularityLevel;
+                    original.PrimaryPeopleContactId = bandContact.PrimaryPeopleContactId;
+                    original.SkillLevel = bandContact.SkillLevel;
+
+                    database.Entry(original).State = EntityState.Modified;
+                    database.SaveChanges();
+                }
+                return View("Index");
+
+            }
+            else
+            {
+                return View("EditBand");
+            }
+        }
+
+        [ActionName("EditPeople")]
+        public ActionResult EditPeopleGet(int bandId, int contactId)
         {
             PeopleContact pContact;
 
@@ -451,7 +490,43 @@ namespace band.Controllers
             return View(pContact);
         }
 
-        public ActionResult EditVenue(int bandId, int contactId)
+        [HttpPost]
+        [ActionName("EditPeople")]
+        public ActionResult EditPeoplePost(int bandId, PeopleContact peopleContact)
+        {
+            PeopleContact original;
+
+            ViewBag.BandId = bandId;
+
+            if (ModelState.IsValid)
+            {
+                using (DatabaseContext database = new DatabaseContext())
+                {
+                    original = database.PeopleContacts.Find(peopleContact.ContactId);
+
+                    original.Email = peopleContact.Email;
+                    original.Name = peopleContact.Name;
+                    original.Notes = peopleContact.Notes;
+                    original.PhoneNumber = peopleContact.PhoneNumber;
+                    original.Picture = peopleContact.Picture;
+                    original.AssociatedContactId = peopleContact.AssociatedContactId;
+                    original.AssociatedContactTypeValue = peopleContact.AssociatedContactTypeValue;
+                    original.Skill = peopleContact.Skill;
+
+                    database.Entry(original).State = EntityState.Modified;
+                    database.SaveChanges();
+                }
+                return View("Index");
+
+            }
+            else
+            {
+                return View("EditPeople");
+            }
+        }
+
+        [ActionName("EditVenue")]
+        public ActionResult EditVenueGet(int bandId, int contactId)
         {
             VenueContact vContact;
 
@@ -466,6 +541,44 @@ namespace band.Controllers
             }
 
             return View(vContact);
+        }
+
+        [HttpPost]
+        [ActionName("EditVenue")]
+        public ActionResult EditVenuePost(int bandId, VenueContact venueContact)
+        {
+
+            VenueContact original;
+
+            ViewBag.BandId = bandId;
+
+            if (ModelState.IsValid)
+            {
+                using (DatabaseContext database = new DatabaseContext())
+                {
+                    original = database.VenueContacts.Find(venueContact.ContactId);
+
+                    original.Email = venueContact.Email;
+                    original.Name = venueContact.Name;
+                    original.Notes = venueContact.Notes;
+                    original.PhoneNumber = venueContact.PhoneNumber;
+                    original.Picture = venueContact.Picture;
+                    original.CoverCharge = venueContact.CoverCharge;
+                    original.FreeBeer = venueContact.FreeBeer;
+                    original.MerchSpace = venueContact.MerchSpace;
+                    original.PrimaryPeopleContactId = venueContact.PrimaryPeopleContactId;
+                    original.StageSizeValue = venueContact.StageSizeValue;
+
+                    database.Entry(original).State = EntityState.Modified;
+                    database.SaveChanges();
+                }
+                return View("Index");
+
+            }
+            else
+            {
+                return View("EditVenue");
+            }
         }
 
         [HttpPost]
