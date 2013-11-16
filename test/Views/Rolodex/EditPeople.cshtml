@@ -12,7 +12,7 @@
 
 <h2>Edit People</h2>
 
-@using (Html.BeginForm("EditPeople", "Rolodex", new { bandId = ViewBag.BandId, contactId = Model.ContactId }))
+@using (Html.BeginForm("EditPeople", "Rolodex", new { bandId = ViewBag.BandId }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
@@ -20,6 +20,10 @@
     <fieldset>
         <legend>Registration Form</legend>
         <ol>
+            <li style="visibility:hidden;">
+                @Html.TextBoxFor(m => m.ContactId)
+                @Html.TextBoxFor(m => m.BandId)
+            </li>
             <li>
                 @Html.LabelFor(m => m.Name)
                 @Html.TextBoxFor(m => m.Name)
