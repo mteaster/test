@@ -44,6 +44,14 @@
                 @Html.LabelFor(m => m.Notes)
                 @Html.TextBoxFor(m => m.Notes)
             </li>
+            <li>
+                @Html.LabelFor(m => m.BandContactId)
+                @Html.DropDownListFor(m => m.BandContactId, (List<SelectListItem>) band.Controllers.RolodexController.GetSelectList(ViewBag.BandId, "Person-band"), "N/A")
+            </li>
+            <li>
+                @Html.LabelFor(m => m.VenueContactId)
+                @Html.DropDownListFor(m => m.VenueContactId, (List<SelectListItem>) band.Controllers.RolodexController.GetSelectList(ViewBag.BandId, "Person-venue"), "N/A")
+            </li>
         </ol>
         <input type="submit" value="Save" />
     </fieldset>
