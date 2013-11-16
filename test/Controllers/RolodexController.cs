@@ -494,8 +494,6 @@ namespace band.Controllers
         [ActionName("EditPeople")]
         public ActionResult EditPeoplePost(int bandId, PeopleContact peopleContact)
         {
-            PeopleContact original;
-
             ViewBag.BandId = bandId;
 
             if (ModelState.IsValid)
@@ -516,7 +514,7 @@ namespace band.Controllers
                     //database.Entry(original).State = EntityState.Modified;
                     //database.SaveChanges();
 
-                    original = database.PeopleContacts.Find(peopleContact.ContactId);
+                    PeopleContact original = database.PeopleContacts.Find(peopleContact.ContactId);
                     database.Entry(original).CurrentValues.SetValues(peopleContact);
                     database.SaveChanges();
                 }
