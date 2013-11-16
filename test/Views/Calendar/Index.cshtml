@@ -136,13 +136,13 @@
                     {
                         if ((currentDayOfWeek +1 ) % 7 == 0)
                         {
-                            <td class="event" style="border-right-width: 50px; border-color: black">
+                            <td class="event" >
                                 @Html.ActionLink(@currentDay.ToString(), "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
                             </td>
                         }
                         else if ((currentDayOfWeek + 1) % 7 == 1)
                         {
-                            <td class="event" style="border-left-width: 50px; border-color: black">
+                            <td class="event" >
                                 @Html.ActionLink(@currentDay.ToString(), "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
                             </td>
                         }
@@ -157,13 +157,13 @@
                     {
                         if ((currentDayOfWeek + 1) % 7 == 0)
                         {
-                            <td style="border-right-width: 50px; border-color: black">
+                            <td>
                                 @Html.ActionLink(@currentDay.ToString(), "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
                             </td>
                         }
                         else if ((currentDayOfWeek + 1) % 7 == 1)
                         {
-                            <td style="border-left-width: 50px; border-color: black">
+                            <td>
                                 @Html.ActionLink(@currentDay.ToString(), "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
                             </td>
                         }
@@ -214,12 +214,7 @@
         <option>11</option>
         <option>12</option>
     </select>
+       
+<a id="goTo" href=garbage> Go to month </a>
 
-    @{
-        var initLink = "http://dnab.azurewebsites.net/Calendar//Month";
-        initLink = initLink + ViewBag.BandId + "/Month/" + Model.CurrentMonth.ToString() + Model.CurrentMonthYear.ToString();
-    }
-
-   
-<a id="goTo" href=initLink> Go to month </a>
 </body>
