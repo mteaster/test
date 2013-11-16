@@ -63,7 +63,7 @@ namespace band.Controllers
             ViewBag.SuccessMessage = TempData["SuccessMessage"];
             ViewBag.ErrorMessage = TempData["ErrorMessage"];
 
-            dvm.DisplayMessagesModel = MessageBoardUtil.GetPage(bandId, 0);
+            dvm.DisplayMessagesModel = MessageBoardUtil.GetPage(bandId, pageNumber);
 
             return View("Index", dvm);
         }
