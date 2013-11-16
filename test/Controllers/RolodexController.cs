@@ -583,7 +583,7 @@ namespace band.Controllers
             }
         }
 
-        public List<SelectListItem> GetSelectList(int bandId, string callingType)
+        public static List<SelectListItem> GetSelectList(int bandId, string callingType)
         {
             List<SelectListItem> returnValue = new List<SelectListItem>();
 
