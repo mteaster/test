@@ -583,9 +583,9 @@ namespace band.Controllers
             }
 
         }
-        public ActionResult DownloadAvatar(int bandId, string type)
+        public ActionResult DownloadBandAvatar(int bandId)
         {
-            string path = Server.MapPath("~/App_Data/"+ type +"ContactAvatars/" + bandId + ".jpg");
+            string path = Server.MapPath("~/App_Data/BandContactAvatars/" + bandId + ".jpg");
 
             if (System.IO.File.Exists(path))
             {
