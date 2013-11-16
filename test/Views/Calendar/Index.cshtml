@@ -24,8 +24,6 @@
             linkText = linkText.concat("/");
             linkText = linkText.concat(document.getElementById("yearSelect")[yearList.selectedIndex].text);
             goToLink.href = linkText;
-            //need full path still, just trying to get events working
-
         }
 </script>
 
@@ -198,7 +196,7 @@
 
     <select id="yearSelect" onchange="changeLink()">
         <option>@(Model.CurrentMonthYear - 1)</option>
-        <option>@(Model.CurrentMonthYear)</option>
+        <option selected>@(Model.CurrentMonthYear)</option>
         <option>@(Model.CurrentMonthYear + 1)</option>
     </select>
 
