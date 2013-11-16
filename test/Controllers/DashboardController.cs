@@ -89,7 +89,7 @@ namespace band.Controllers
                 ViewBag.ErrorMessage = "We don't like empty messages.";
             }
 
-            dvm.DisplayMessagesModel = MessageBoardUtil.GetPage(bandId, 0);
+            dvm.DisplayMessagesModel = MessageBoardUtil.GetPage(bandId, 1);
 
             return View(dvm);
         }
