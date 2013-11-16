@@ -48,7 +48,7 @@ namespace band.Controllers
 
         public ActionResult Index(int bandId)
         {
-            return RedirectToAction("Page", new { bandId = bandId, pageNumber = 0 });
+            return RedirectToAction("Page", new { bandId = bandId, pageNumber = 1 });
         }
 
         public ActionResult Page(int bandId, int pageNumber)
