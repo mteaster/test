@@ -21,9 +21,11 @@
             var goToLink = document.getElementById("goTo");
             var linkText = "../";
             linkText = linkText.concat(document.getElementById("monthSelect")[monthList.selectedIndex].text);
+            linkText = linkText.concat("/");
+            linkText = linkText.concat(document.getElementById("yearSelect")[yearList.selectedIndex].text);
             goToLink.href = linkText;
             //need full path still, just trying to get events working
-            document.getElementById("goTo").innerHTML = goToLink;
+
         }
 </script>
 
