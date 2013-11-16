@@ -218,7 +218,7 @@
 
 @Html.ActionLink("Next Month", "Month", "Calendar",
                         new { bandId = ViewBag.BandId, month = Model.NextMonth, year = Model.NextMonthYear }, null)
-    <div style="float:right">
+    <div style="padding-left:250px">
         <select id="yearSelect" onchange="changeLink()" class="nav-select">
             <option>@(Model.CurrentMonthYear - 1)</option>
             <option selected>@(Model.CurrentMonthYear)</option>
