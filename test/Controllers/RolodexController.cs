@@ -587,7 +587,7 @@ namespace band.Controllers
         {
             List<SelectListItem> returnValue = new List<SelectListItem>();
 
-            if (callingType.ToUpper().Equals("BAND"))
+            if (callingType.ToUpper().Equals("BAND") || callingType.ToUpper().Equals("VENUE"))
             {
                 // the calling page is create/edit band. Show people contacts
                 using (DatabaseContext database = new DatabaseContext())
@@ -601,6 +601,36 @@ namespace band.Controllers
                         returnValue.Add(new SelectListItem() {Text = person.Name, Value = person.ContactId.ToString()});
                     }
 
+                }
+            }
+            else if (callingType.ToUpper().Equals("PERSON-BAND"))
+            {
+                // the calling page is create/edit band. Show people contacts
+                using (DatabaseContext database = new DatabaseContext())
+                {
+                    var bands = from b in database.BandContacts
+                                 where b.BandId == bandId
+                                 select new { b.ContactId, b.Name };
+
+                    foreach (var band in bands)
+                    {
+                        returnValue.Add(new SelectListItem() { Text = band.Name, Value = band.ContactId.ToString() });
+                    }
+                }
+            }
+            else if (callingType.ToUpper().Equals("PERSON-VENUE"))
+            {
+                // the calling page is create/edit band. Show people contacts
+                using (DatabaseContext database = new DatabaseContext())
+                {
+                    var venues = from v in database.VenueContacts
+                                where v.BandId == bandId
+                                select new { v.ContactId, v.Name };
+
+                    foreach (var venue in venues)
+                    {
+                        returnValue.Add(new SelectListItem() { Text = venue.Name, Value = venue.ContactId.ToString() });
+                    }
                 }
             }
 

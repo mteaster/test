@@ -109,12 +109,11 @@ namespace test.Models.Rolodex
         [Display(Name = "Job/Skill")]
         public string Skill { get; set; }
 
-        // A contact can be linked to a band/venue. This id holds that contact's id
-        // The enum AsscociatedContactType will hold which type of contact this person
-        //      is associated with
-        public int AssociatedContactId { get; set; }
-        public enum AssociatedContactType { BandContact, VenueContact }
-        public AssociatedContactType AssociatedContactTypeValue { get; set; }
+        [Display(Name="Associated Band")]
+        public int BandContactId { get; set; }
+
+        [Display(Name = "Associated Venue")]
+        public int VenueContactId { get; set; }
 
         [Display(Name = "Notes")]
         public string Notes { get; set; }
