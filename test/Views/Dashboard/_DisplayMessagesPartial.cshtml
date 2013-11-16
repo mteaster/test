@@ -42,7 +42,7 @@
     {
         @Html.ActionLink("Previous Page", "Page", new { bandId = ViewBag.BandId, pageNumber = Model.PageNumber - 1 });
     }
-    if (Model.PageNumber < Model.TotalPages)
+    if (Model.PageNumber <= Model.TotalPages)
     {
         @Html.ActionLink("Next Page", "Page", new { bandId = ViewBag.BandId, pageNumber = Model.PageNumber + 1 }, new { @class = "right" });
     }
