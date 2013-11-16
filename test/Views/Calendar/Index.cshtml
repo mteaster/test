@@ -14,7 +14,7 @@
 
 <body onload="changeLink()">
 
-<script  type='text/javascript'>
+<script  type="text/javascript">
         function changeLink() {
             var yearList = document.getElementById("selectYear");
             var monthList = document.getElementById("selectMonth");
@@ -197,9 +197,9 @@
                         new { bandId = ViewBag.BandId, month = Model.NextMonth, year = Model.NextMonthYear }, null)
 
     <select id="yearSelect" onchange="changeLink()">
-        <option>@Model.CurrentMonthYear - 1</option>
-        <option>@Model.CurrentMonthYear</option>
-        <option>@Model.CurrentMonthYear + 1</option>
+        <option>@(Model.CurrentMonthYear - 1)</option>
+        <option>@(Model.CurrentMonthYear)</option>
+        <option>@(Model.CurrentMonthYear + 1)</option>
     </select>
 
     <select id="monthSelect" onchange="changeLink()">
