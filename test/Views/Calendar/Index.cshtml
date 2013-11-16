@@ -21,7 +21,7 @@
             var goToLink = document.getElementById("goTo");
             var linkText = "../";
             linkText = linkText.concat(document.getElementById("selectMonth")[monthList.selectedIndex].text);
-            goToLink = goToText.link();
+            goToLink.href = linkText;
             //monthSelect
             //[favorite.selectedIndex].text = mylist.options[mylist.selectedIndex].text;
 
