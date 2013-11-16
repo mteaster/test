@@ -83,6 +83,7 @@
     }
     #nav-select select 
     {
+        padding-right:200px;
         position:absolute;
         right:20px;
     }
@@ -212,14 +213,13 @@
 @Html.ActionLink("Next Month", "Month", "Calendar",
                         new { bandId = ViewBag.BandId, month = Model.NextMonth, year = Model.NextMonthYear }, null)
 
-<section>
     <select id="yearSelect" onchange="changeLink()" class="nav-select">
         <option>@(Model.CurrentMonthYear - 1)</option>
         <option selected>@(Model.CurrentMonthYear)</option>
         <option>@(Model.CurrentMonthYear + 1)</option>
     </select>
 
-    <select id="monthSelect" onchange="changeLink()" class="nav-select">
+    <select id="monthSelect" onchange="changeLink()" >
         <option>1</option>
         <option>2</option>
         <option>3</option>
@@ -235,6 +235,5 @@
     </select>
        
     <a id="goTo" href="garbage" class="nav-a"> Go to month </a>
-</section>
 
 </body>
