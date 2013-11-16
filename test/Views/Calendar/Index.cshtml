@@ -19,7 +19,7 @@ function changeLink()
     var goToLink = document.getElementById("goTo");
     var linkText = "../";
     linkText = linkText.concat(document.getElementById("selectMonth")[monthList.selectedIndex].text);
-    var goToLink = goToText.link();
+    goToLink = goToText.link();
     //monthSelect
     //[favorite.selectedIndex].text = mylist.options[mylist.selectedIndex].text;
 
@@ -220,6 +220,6 @@ function changeLink()
         initLink = initLink + ViewBag.BandId + "/Month/" + Model.CurrentMonth.ToString() + Model.CurrentMonthYear.ToString();
     }
 
-
+    @Html.RouteLink("Go to Month",)
 <a id="goTo" href=initLink> Go to month </a>
 </body>
