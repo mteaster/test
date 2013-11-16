@@ -582,5 +582,29 @@ namespace band.Controllers
                 return View("Success");
             }
         }
+
+        public List<SelectListItem> GetSelectList(int bandId, string callingType)
+        {
+            List<SelectListItem> returnValue = new List<SelectListItem>();
+
+            if (callingType.ToUpper().Equals("BAND"))
+            {
+                // the calling page is create/edit band. Show people contacts
+                using (DatabaseContext database = new DatabaseContext())
+                {
+                    var people = from p in database.PeopleContacts
+                                 where p.BandId == bandId
+                                 select new {p.ContactId, p.Name};
+
+                    foreach (var person in people)
+                    {
+                        returnValue.Add(new SelectListItem() {Text = person.Name, Value = person.ContactId.ToString()});
+                    }
+
+                }
+            }
+
+            return returnValue;
+        }
     }
 }

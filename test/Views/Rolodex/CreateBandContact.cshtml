@@ -37,6 +37,9 @@
                 @Html.LabelFor(m => m.Notes)
                 @Html.TextBoxFor(m => m.Notes)
             </li>
+            <li>
+                @Html.DropDownList("PrimaryContact", test.Models.Rolodex.GetSelectList(ViewBag.BandId, "Band"), "Select Primary Contact")
+            </li>
         </ol>
         <input type="submit" value="Save" />
     </fieldset>
