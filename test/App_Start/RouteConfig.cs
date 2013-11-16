@@ -144,6 +144,13 @@ namespace test
             );
 
             routes.MapRoute(
+                name: "Messageboard Page",
+                url: "Dashboard/{bandId}/Page/{pageNumber}",
+                defaults: new { controller = "Dashboard", action = "Page" },
+                constraints: new { bandId = @"\d+", pageNumber = @"\d+" }
+            );
+
+            routes.MapRoute(
                 name: "Dashboard",
                 url: "Dashboard/{bandId}",
                 defaults: new { controller = "Dashboard", action = "Index" },
