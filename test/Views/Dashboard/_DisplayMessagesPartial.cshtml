@@ -38,7 +38,7 @@
         }
     </ol>
     
-    if (Model.PageNumber != 0)
+    if (Model.PageNumber != 1)
     {
         @Html.ActionLink("Previous Page", "Page", new { bandId = ViewBag.BandId, pageNumber = Model.PageNumber - 1 });
     }
