@@ -596,6 +596,32 @@ namespace band.Controllers
                 return File(Server.MapPath("~/App_Data/UserAvatars/default.jpg"), "image/jpeg");
             }
         }
+        public ActionResult DownloadPeopleAvatar(int bandId)
+        {
+            string path = Server.MapPath("~/App_Data/PeopleContactAvatars/" + bandId + ".jpg");
+
+            if (System.IO.File.Exists(path))
+            {
+                return File(path, "image/jpeg");
+            }
+            else
+            {
+                return File(Server.MapPath("~/App_Data/UserAvatars/default.jpg"), "image/jpeg");
+            }
+        }
+        public ActionResult DownloadVenueAvatar(int bandId)
+        {
+            string path = Server.MapPath("~/App_Data/VenueContactAvatars/" + bandId + ".jpg");
+
+            if (System.IO.File.Exists(path))
+            {
+                return File(path, "image/jpeg");
+            }
+            else
+            {
+                return File(Server.MapPath("~/App_Data/UserAvatars/default.jpg"), "image/jpeg");
+            }
+        }
         public static List<SelectListItem> GetSelectList(int bandId, string callingType)
         {
             List<SelectListItem> returnValue = new List<SelectListItem>();

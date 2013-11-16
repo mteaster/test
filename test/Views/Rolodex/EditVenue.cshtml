@@ -13,7 +13,7 @@
 }
 
 <h2>Edit Venue</h2>
-
+<img alt="" src="@Url.Action("DownloadVenueAvatar", new { bandId = ViewBag.BandId})" height="100" width="100" class="photo" />
 @using (Html.BeginForm("EditVenue", "Rolodex", new { bandId = ViewBag.BandId }))
 {
     @Html.AntiForgeryToken()
