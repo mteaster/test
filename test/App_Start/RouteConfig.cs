@@ -81,6 +81,25 @@ namespace test
                 constraints: new { bandId = @"\d+" }
             );
             routes.MapRoute(
+                name: "Edit Band Contact",
+                url: "Rolodex/EditBandContact/{bandId}",
+                defaults: new { controller = "Rolodex", action = "EditBand" },
+                constraints: new { bandId = @"\d+" }
+            );
+            routes.MapRoute(
+                name: "Edit Person Contact",
+                url: "Rolodex/EditPersonContact/{bandId}",
+                defaults: new { controller = "Rolodex", action = "EditPerson" },
+                constraints: new { bandId = @"\d+" }
+            );
+            routes.MapRoute(
+                name: "Edit Venue Contact",
+                url: "Rolodex/EditVenueContact/{bandId}",
+                defaults: new { controller = "Rolodex", action = "EditVenue" },
+                constraints: new { bandId = @"\d+" }
+            );
+
+            routes.MapRoute(
                 name: "Another Calendar",
                 url: "Calendar/{bandId}/{month}/{year}",
                 defaults: new { controller = "Calendar", action = "Index" },

@@ -22,6 +22,10 @@
     <fieldset>
         <legend>Registration Form</legend>
         <ol>
+            <li style="visibility:hidden;">
+                @Html.TextBoxFor(m => m.ContactId)
+                @Html.TextBoxFor(m => m.BandId)
+            </li>
             <li>
                 @Html.LabelFor(m => m.Name)
                 @Html.TextBoxFor(m => m.Name)

@@ -440,7 +440,6 @@ namespace band.Controllers
         [ActionName("EditBand")]
         public ActionResult EditBandPost(int bandId, BandContact bandContact)
         {
-            BandContact original;
 
             ViewBag.BandId = bandId;
 
@@ -448,19 +447,8 @@ namespace band.Controllers
             {
                 using (DatabaseContext database = new DatabaseContext())
                 {
-                    original = database.BandContacts.Find(bandContact.ContactId);
-
-                    original.Email = bandContact.Email;
-                    original.MusicalStyle = bandContact.MusicalStyle;
-                    original.Name = bandContact.Name;
-                    original.Notes = bandContact.Notes;
-                    original.PhoneNumber = bandContact.PhoneNumber;
-                    original.Picture = bandContact.Picture;
-                    original.PopularityLevel = bandContact.PopularityLevel;
-                    original.PrimaryPeopleContactId = bandContact.PrimaryPeopleContactId;
-                    original.SkillLevel = bandContact.SkillLevel;
-
-                    database.Entry(original).State = EntityState.Modified;
+                    BandContact original = database.BandContacts.Find(bandContact.ContactId);
+                    database.Entry(original).CurrentValues.SetValues(bandContact);
                     database.SaveChanges();
                 }
                 return View("Index");
@@ -500,20 +488,6 @@ namespace band.Controllers
             {
                 using (DatabaseContext database = new DatabaseContext())
                 {
-                    //original = database.PeopleContacts.Find(peopleContact.ContactId);
-
-                    //original.Email = peopleContact.Email;
-                    //original.Name = peopleContact.Name;
-                    //original.Notes = peopleContact.Notes;
-                    //original.PhoneNumber = peopleContact.PhoneNumber;
-                    //original.Picture = peopleContact.Picture;
-                    //original.AssociatedContactId = peopleContact.AssociatedContactId;
-                    //original.AssociatedContactTypeValue = peopleContact.AssociatedContactTypeValue;
-                    //original.Skill = peopleContact.Skill;
-
-                    //database.Entry(original).State = EntityState.Modified;
-                    //database.SaveChanges();
-
                     PeopleContact original = database.PeopleContacts.Find(peopleContact.ContactId);
                     database.Entry(original).CurrentValues.SetValues(peopleContact);
                     database.SaveChanges();
@@ -550,28 +524,14 @@ namespace band.Controllers
         public ActionResult EditVenuePost(int bandId, VenueContact venueContact)
         {
 
-            VenueContact original;
-
             ViewBag.BandId = bandId;
 
             if (ModelState.IsValid)
             {
                 using (DatabaseContext database = new DatabaseContext())
                 {
-                    original = database.VenueContacts.Find(venueContact.ContactId);
-
-                    original.Email = venueContact.Email;
-                    original.Name = venueContact.Name;
-                    original.Notes = venueContact.Notes;
-                    original.PhoneNumber = venueContact.PhoneNumber;
-                    original.Picture = venueContact.Picture;
-                    original.CoverCharge = venueContact.CoverCharge;
-                    original.FreeBeer = venueContact.FreeBeer;
-                    original.MerchSpace = venueContact.MerchSpace;
-                    original.PrimaryPeopleContactId = venueContact.PrimaryPeopleContactId;
-                    original.StageSizeValue = venueContact.StageSizeValue;
-
-                    database.Entry(original).State = EntityState.Modified;
+                    VenueContact original = database.VenueContacts.Find(venueContact.ContactId);
+                    database.Entry(original).CurrentValues.SetValues(venueContact);
                     database.SaveChanges();
                 }
                 return View("Index");
