@@ -11,41 +11,6 @@ namespace band.Controllers
     [Authorize]
     public class DashboardController : Controller
     {
-        public ActionResult DeletePost(int postId)
-        {
-            if (MessageBoardUtil.DeletePost(postId))
-            {
-                TempData["SuccessMessage"] = "Post deleted!";
-            }
-            else
-            {
-                TempData["ErrorMessage"] = "You cannot delete someone else's post!";
-            }
-
-            return RedirectToLocal(Request.UrlReferrer.AbsolutePath); //Takes you back to the view you came from
-        }
-
-        [HttpPost]
-        public ActionResult EditPost(int postId, PostMessageModel model)
-        {
-            if (MessageBoardUtil.EditPost(postId, model.Content))
-            {
-                TempData["SuccessMessage"] = "Post edited!";
-            }
-            else
-            {
-                TempData["ErrorMessage"] = "You cannot edit someone else's post!";
-            }
-
-            return RedirectToLocal(Request.UrlReferrer.AbsolutePath);
-        }
-
-        public ActionResult EditPost(int postId)
-        {
-            ViewBag.PostId = postId;
-            return View();
-        }
-
         public ActionResult Index(int bandId)
         {
             return RedirectToAction("Page", new { bandId = bandId, pageNumber = 1 });
@@ -92,6 +57,71 @@ namespace band.Controllers
             dvm.DisplayMessagesModel = MessageBoardUtil.GetPage(bandId, 1);
 
             return View(dvm);
+        }
+
+        public ActionResult DeletePost(int postId)
+        {
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                MessageBoardPost post = database.MessageBoardPosts.Find(postId);
+
+                if (post == null)
+                {
+                    ViewBag.ErrorMessage = "Post not found.";
+                    return View("Error");
+                }
+
+                if (!BandUtil.Authenticate(post.BandId, this))
+                {
+                    return View("Error");
+                }
+
+                if (post.PosterId != WebSecurity.CurrentUserId && !Roles.IsUserInRole("Administrator"))
+                {
+                    ViewBag.ErrorMessage = "You can't delete someone else's post.";
+                    return View("Error");
+                }
+
+                database.MessageBoardPosts.Remove(post);
+                database.SaveChanges();
+
+                TempData["SuccessMessage"] = "Post deleted!";
+
+                return RedirectToAction("Index", new { bandId = post.BandId, pageNumber = 1 });
+            }
+        }
+
+        [HttpPost]
+        public ActionResult EditPost(int postId, PostMessageModel model)
+        {
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                MessageBoardPost post = database.MessageBoardPosts.Find(postId);
+
+                if (post == null)
+                {
+                    ViewBag.ErrorMessage = "Post not found.";
+                    return View("Error");
+                }
+
+                if (!BandUtil.Authenticate(post.BandId, this))
+                {
+                    return View("Error");
+                }
+
+                if (post.PosterId != WebSecurity.CurrentUserId && !Roles.IsUserInRole("Administrator"))
+                {
+                    ViewBag.ErrorMessage = "You can't edit someone else's post.";
+                    return View("Error");
+                }
+
+                post.Content = model.Content;
+                database.SaveChanges();
+
+                TempData["SuccessMessage"] = "Post edited!";
+
+                return RedirectToAction("Index", new { bandId = post.BandId, pageNumber = 1 });
+            }
         }
 
         private ActionResult RedirectToLocal(string returnUrl)
