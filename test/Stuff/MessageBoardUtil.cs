@@ -105,9 +105,9 @@ namespace test.Stuff
 
                 List<MessageBoardPostModel> postModels = new List<MessageBoardPostModel>();
 
-                pageModel.TotalPages = results.Count();
+                pageModel.TotalPages = results.Count() / POSTS_PER_PAGE;
 
-                var postsOnPage = results.Skip((pageNumber - 1) * POSTS_PER_PAGE).Concat(results.Take(POSTS_PER_PAGE));
+                var postsOnPage = results.Skip(0).Concat(results.Take(POSTS_PER_PAGE));
 
                 foreach (var page in postsOnPage)
                 {
