@@ -37,6 +37,15 @@
 
         }
     </ol>
+    
+    if (Model.PageNumber != 0)
+    {
+        @Html.ActionLink("Previous Page", "Page", new { bandId = ViewBag.BandId, pageNumber = Model.PageNumber - 1 });
+    }
+    if (Model.PageNumber < Model.TotalPages)
+    {
+        @Html.ActionLink("Previous Page", "Page", new { bandId = ViewBag.BandId, pageNumber = Model.PageNumber + 1 });
+    }
 }
 else
 {
