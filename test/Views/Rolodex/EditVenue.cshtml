@@ -62,3 +62,11 @@
         <input type="submit" value="Save" />
     </fieldset>
 }
+<h3>Change avatar</h3>
+
+<form action="/Rolodex/UploadAvatar/@Model.ContactId/@test.Models.Rolodex.ContactType.Venue" method="post" enctype="multipart/form-data">
+    <label for="file">Filename:</label>
+    <input type="file" name="file" id="file" />
+    <br />
+    <input type="submit" value="Change Avatar" />
+</form>
