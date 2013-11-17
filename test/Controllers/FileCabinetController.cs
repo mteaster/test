@@ -345,7 +345,7 @@ namespace band.Content
 
                 if (fileEntry.FileType == (int)FileType.Document)
                 {
-                    return RedirectToAction("Document", new { file = Server.MapPath("~/App_Data/" + fileEntry.BandId + "/" + fileId) });
+                    return RedirectToAction("Document", new { file = "http://dnab.azurewebsites.net/FileCabinet/DownloadDocument?fileId=" + fileId } );
                 }
                 if (fileEntry.FileType == (int)FileType.Text)
                 {
@@ -402,6 +402,18 @@ namespace band.Content
                 string path = Server.MapPath("~/App_Data/" + fileEntry.BandId + "/" + fileId);
                 string extension = Path.GetExtension(fileEntry.FileName).Replace(".", "");
                 return File(path, "video/" + extension);
+            }
+        }
+
+        public ActionResult DownloadDocument(int fileId)
+        {
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                FileEntry fileEntry = database.FileEntries.Find(fileId);
+
+                string path = Server.MapPath("~/App_Data/" + fileEntry.BandId + "/" + fileId);
+                string extension = Path.GetExtension(fileEntry.FileName).Replace(".", "");
+                return File(path, "application/pdf");
             }
         }
     }
