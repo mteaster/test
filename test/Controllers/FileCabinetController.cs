@@ -338,13 +338,13 @@ namespace band.Content
                 }
 
                 string path = Server.MapPath("~/App_Data/" + fileEntry.BandId + "/" + fileId);
-                string content = String.Empty;
+                TextFileModel model = new TextFileModel();
                 using (StreamReader stream = new StreamReader(path))
                 {
-                    content = stream.ReadToEnd();
+                    model.Content = stream.ReadToEnd();
                 }
 
-                return View("Text", content);
+                return View("Text", model);
             }
         }
     }
