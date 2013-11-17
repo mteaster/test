@@ -321,7 +321,7 @@ namespace band.Content
             }
         }
 
-        public ActionResult Document(string file)
+        public ActionResult PDF(string file)
         {
             return View();
         }
@@ -345,7 +345,15 @@ namespace band.Content
 
                 if (fileEntry.FileType == (int)FileType.Document)
                 {
-                    return RedirectToAction("Document", new { file = "http://dnab.azurewebsites.net/FileCabinet/DownloadDocument?fileId=" + fileId } );
+                    if (Path.GetExtension(fileEntry.FileName) == ".pdf")
+                    {
+                        return RedirectToAction("PDF", new { file = "http://dnab.azurewebsites.net/FileCabinet/DownloadPDF?fileId=" + fileId });
+                    }
+                    else
+                    {
+                        ViewBag.ErrorMessage = "Unsupported filetype";
+                        return View("Error");
+                    }
                 }
                 if (fileEntry.FileType == (int)FileType.Text)
                 {
@@ -405,7 +413,7 @@ namespace band.Content
             }
         }
 
-        public ActionResult DownloadDocument(int fileId)
+        public ActionResult DownloadPDF(int fileId)
         {
             using (DatabaseContext database = new DatabaseContext())
             {

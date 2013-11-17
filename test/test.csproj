@@ -383,14 +383,13 @@
     <Content Include="Scripts\knockout-2.1.0.debug.js" />
     <Content Include="Scripts\knockout-2.1.0.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
-    <Content Include="Views\FileCabinet\Document.cshtml" />
+    <Content Include="Views\FileCabinet\PDF.cshtml" />
     <None Include="Scripts\pdf.js\external\jasmine\MIT.LICENSE" />
     <None Include="Scripts\pdf.js\external\jpgjs\LICENSE" />
     <None Include="Scripts\pdf.js\external\shelljs\LICENSE" />
     <None Include="Scripts\pdf.js\external\shelljs\package.json" />
     <None Include="Scripts\pdf.js\external\shelljs\README.md" />
     <None Include="Scripts\pdf.js\external\webL10n\README.md" />
-    <None Include="Views\FileCabinet\Document2.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
