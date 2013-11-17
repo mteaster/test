@@ -13,7 +13,7 @@ namespace test.Stuff
 
         public static FileType GetFileType(string fileName)
         {
-            string extension = Path.GetExtension(fileName);
+            string extension = Path.GetExtension(fileName).Replace(".", "");
 
             if (document.Contains(extension))
             {
