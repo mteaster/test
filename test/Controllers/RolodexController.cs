@@ -421,6 +421,8 @@ namespace band.Controllers
                 return View("Error");
             }
 
+            ViewBag.ContactId = contactId;
+
             using (DatabaseContext db = new DatabaseContext())
             {
                 bContact = db.BandContacts.Find(contactId);
@@ -583,9 +585,9 @@ namespace band.Controllers
             }
 
         }
-        public ActionResult DownloadBandAvatar(int bandId)
+        public ActionResult DownloadBandAvatar(int contactId)
         {
-            string path = Server.MapPath("~/App_Data/BandContactAvatars/" + bandId + ".jpg");
+            string path = Server.MapPath("~/App_Data/BandContactAvatars/" + contactId + ".jpg");
 
             if (System.IO.File.Exists(path))
             {
@@ -596,9 +598,9 @@ namespace band.Controllers
                 return File(Server.MapPath("~/App_Data/UserAvatars/default.jpg"), "image/jpeg");
             }
         }
-        public ActionResult DownloadPeopleAvatar(int bandId)
+        public ActionResult DownloadPeopleAvatar(int contactId)
         {
-            string path = Server.MapPath("~/App_Data/PeopleContactAvatars/" + bandId + ".jpg");
+            string path = Server.MapPath("~/App_Data/PeopleContactAvatars/" + contactId + ".jpg");
 
             if (System.IO.File.Exists(path))
             {
