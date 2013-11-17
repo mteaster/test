@@ -1,0 +1,12 @@
+﻿<img alt="" src="@Url.Action("DownloadImage", "FileCabinet", new { fileId = ViewBag.FileId })" />
+
+<article class="audio">
+    <header>
+        <h2>Some audio</h2>
+    </header>
+
+    <audio controls>
+        <source src="@Url.Action("DownloadAudio", "FileCabinet", new { fileId = ViewBag.FileId })" type="audio/mp3" />
+        <p>Your browser does not support HTML 5 audio element</p>
+    </audio>
+</article>

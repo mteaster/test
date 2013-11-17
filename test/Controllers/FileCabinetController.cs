@@ -347,6 +347,11 @@ namespace band.Content
                     ViewBag.FileId = fileId;
                     return View("Image");
                 }
+                if (fileEntry.FileType == (int)FileType.Audio)
+                {
+                    ViewBag.FileId = fileId;
+                    return View("Audio");
+                }
 
                 ViewBag.ErrorMessage = "Unsupported filetype";
                 return View("Error");
@@ -360,8 +365,20 @@ namespace band.Content
                 FileEntry fileEntry = database.FileEntries.Find(fileId);
 
                 string path = Server.MapPath("~/App_Data/" + fileEntry.BandId + "/" + fileId);
+                string extension = Path.GetExtension(fileEntry.FileName).Replace(".", "");
+                return File(path, "image/" + extension);
+            }
+        }
 
-                return File(path, "image/jpeg");
+        public ActionResult DownloadAudio(int fileId)
+        {
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                FileEntry fileEntry = database.FileEntries.Find(fileId);
+
+                string path = Server.MapPath("~/App_Data/" + fileEntry.BandId + "/" + fileId);
+                string extension = Path.GetExtension(fileEntry.FileName).Replace(".", "");
+                return File(path, "audio/mp3");
             }
         }
     }
