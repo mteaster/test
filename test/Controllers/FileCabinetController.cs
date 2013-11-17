@@ -341,7 +341,7 @@ namespace band.Content
                 if (fileEntry.FileType == (int)FileType.Document)
                 {
                     ViewBag.FilePath = Server.MapPath("~/App_Data/" + fileEntry.BandId + "/" + fileId);
-                    return View("Error");
+                    return View("Document");
                 }
                 if (fileEntry.FileType == (int)FileType.Text)
                 {
