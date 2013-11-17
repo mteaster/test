@@ -134,6 +134,13 @@ namespace test.Models.FileCabinet
         public string FileDescription { get; set; }
     }
 
+    public class FileModel
+    {
+        public int FileId { get; set; }
+        public string FileName { get; set; }
+        public string ContentType { get; set; } 
+    }
+
     public class TextFileModel
     {
         public string Content { get; set; }

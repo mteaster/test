@@ -231,7 +231,6 @@ namespace band.Content
                     return View("Error");
                 }
 
-                
                 //if (model.File.ContentLength <= 0 || model.File.ContentLength > 1048576)
                 if (model.File.ContentLength <= 0 || model.File.ContentLength > 52428800)
                 {
@@ -333,30 +332,31 @@ namespace band.Content
                     return View("Error");
                 }
 
+                if (fileEntry.FileType == (int)FileType.File)
+                {
+                    ViewBag.ErrorMessage = "Unsupported filetype";
+                    return View("Error");
+                }
+
                 if (fileEntry.FileType == (int)FileType.Text)
                 {
                     string path = Server.MapPath("~/App_Data/" + fileEntry.BandId + "/" + fileId);
-                    TextFileModel model = new TextFileModel();
+                    TextFileModel textFileModel = new TextFileModel();
                     using (StreamReader stream = new StreamReader(path))
                     {
-                        model.Content = stream.ReadToEnd();
+                        textFileModel.Content = stream.ReadToEnd();
                     }
 
-                    return View("Text", model);
-                }
-                if (fileEntry.FileType == (int)FileType.Image)
-                {
-                    ViewBag.FileId = fileId;
-                    return View("Image");
-                }
-                if (fileEntry.FileType == (int)FileType.Audio)
-                {
-                    ViewBag.FileId = fileId;
-                    return View("Audio");
+                    return View("Text", textFileModel);
                 }
 
-                ViewBag.ErrorMessage = "Unsupported filetype";
-                return View("Error");
+                // roll into a constructor
+                FileModel fileModel = new FileModel();
+                fileModel.FileId = fileEntry.FileId;
+                fileModel.FileName = fileEntry.FileName;
+                fileModel.ContentType = Path.GetExtension(fileEntry.FileName).Replace(".", "");
+
+                return View(fileEntry.FileType.ToString(), fileModel);
             }
         }
 
@@ -380,7 +380,19 @@ namespace band.Content
 
                 string path = Server.MapPath("~/App_Data/" + fileEntry.BandId + "/" + fileId);
                 string extension = Path.GetExtension(fileEntry.FileName).Replace(".", "");
-                return File(path, "audio/mp3");
+                return File(path, "audio/" + extension);
+            }
+        }
+
+        public ActionResult DownloadVideo(int fileId)
+        {
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                FileEntry fileEntry = database.FileEntries.Find(fileId);
+
+                string path = Server.MapPath("~/App_Data/" + fileEntry.BandId + "/" + fileId);
+                string extension = Path.GetExtension(fileEntry.FileName).Replace(".", "");
+                return File(path, "video/" + extension);
             }
         }
     }

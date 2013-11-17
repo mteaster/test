@@ -10,7 +10,7 @@ namespace test.Stuff
         public static List<string> document = new List<string>() { "doc", "docx", "pdf" };
         public static List<string> image = new List<string>() { "jpg", "gif", "png" };
         public static List<string> audio = new List<string>() { "mp3" };
-        public static List<string> video = new List<string>() { "avi" };
+        public static List<string> video = new List<string>() { "avi", "wmv", "mp4" };
 
         public static FileType GetFileType(string fileName)
         {

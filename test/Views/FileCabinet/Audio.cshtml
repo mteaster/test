@@ -1,4 +1,8 @@
-﻿<img alt="" src="@Url.Action("DownloadImage", "FileCabinet", new { fileId = ViewBag.FileId })" />
+﻿@model test.Models.FileCabinet.FileModel
+
+<h2>@Model.FileName</h2>
+
+<img alt="" src="@Url.Action("DownloadImage", "FileCabinet", new { fileId = Model.FileId })" />
 
 <article class="audio">
     <header>
@@ -6,7 +10,7 @@
     </header>
 
     <audio controls>
-        <source src="@Url.Action("DownloadAudio", "FileCabinet", new { fileId = ViewBag.FileId })" type="audio/mp3" />
+        <source src="@Url.Action("DownloadAudio", "FileCabinet", new { fileId = Model.FileId })" type="video/@Model.ContentType" />
         <p>Your browser does not support HTML 5 audio element</p>
     </audio>
 </article>
