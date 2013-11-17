@@ -231,7 +231,9 @@ namespace band.Content
                     return View("Error");
                 }
 
-                if (model.File.ContentLength <= 0 || model.File.ContentLength > 1048576)
+                
+                //if (model.File.ContentLength <= 0 || model.File.ContentLength > 1048576)
+                if (model.File.ContentLength <= 0 || model.File.ContentLength > 52428800)
                 {
                     ViewBag.ErrorMessage = "file sucks";
                     return View("Error");
