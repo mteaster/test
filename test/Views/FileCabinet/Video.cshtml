@@ -2,15 +2,7 @@
 
 <h2>@Model.FileName</h2>
 
-<img alt="" src="@Url.Action("DownloadImage", "FileCabinet", new { fileId = Model.FileId })" />
-
-<article class="video">
-    <header>
-        <h2>Some video</h2>
-    </header>
-
-    <video width="356" height="200" controls>
-        <source src="@Url.Action("DownloadVideo", "FileCabinet", new { fileId = Model.FileId })" type="video/@Model.ContentType" />
-        <p>Your browser does not support HTML 5 video element</p>
-    </audio>
-</article>
+<video width="356" height="200" controls>
+    <source src="@Url.Action("DownloadVideo", "FileCabinet", new { fileId = Model.FileId })" type="video/@Model.ContentType" />
+    <p>Your browser does not support HTML 5 video element</p>
+</audio>
