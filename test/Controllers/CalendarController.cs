@@ -30,8 +30,20 @@ namespace band.Controllers
             ViewBag.SuccessMessage = TempData["SuccessMessage"];
             ViewBag.ErrorMessage = TempData["ErrorMessage"];
 
-            //return View("Success");
             return View("Index", monthModel);
+        }
+
+        public ActionResult Day(int bandId, int day, int month, int year)
+        {
+            if (!BandUtil.Authenticate(bandId, this))
+            {
+                return View("Error");
+            }
+
+            DayModel model = new DayModel(day, month, year);
+            model.Events = CalendarUtil.EventsForDay(bandId, day, month, year);
+
+            return View(model);
         }
 
         public ActionResult AddEvent(int bandId, int day, int month, int year)
@@ -165,13 +177,6 @@ namespace band.Controllers
                 TempData["SuccessMessage"] = "we edited ur calendar event LOL";
                 return RedirectToAction("Index", new { bandId = calendarEvent.BandId });
             }
-        }
-
-        public ActionResult Day(int bandId, int day, int month, int year)
-        {
-            DayModel model = new DayModel(day, month, year);
-            model.Events = CalendarUtil.EventsForDay(bandId, day, month, year);
-            return View(model);
         }
     }
 }
