@@ -353,7 +353,6 @@ namespace band.Content
             }
         }
 
-        [ChildActionOnly]
         public ActionResult DownloadImage(int fileId)
         {
             using (DatabaseContext database = new DatabaseContext())
