@@ -338,6 +338,11 @@ namespace band.Content
                     return View("Error");
                 }
 
+                if (fileEntry.FileType == (int)FileType.Document)
+                {
+                    ViewBag.FilePath = Server.MapPath("~/App_Data/" + fileEntry.BandId + "/" + fileId);
+                    return View("Document");
+                }
                 if (fileEntry.FileType == (int)FileType.Text)
                 {
                     string path = Server.MapPath("~/App_Data/" + fileEntry.BandId + "/" + fileId);
