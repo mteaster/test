@@ -13,7 +13,7 @@
 {
     @Html.Partial("_BandHeaderPartial")
 }
-<img alt="" src="@Url.Action("DownloadBandAvatar", new { bandId = ViewBag.ContactId } )" height="100" width="100" class="photo" />
+<img alt="" src="@Url.Action("DownloadBandAvatar", new { contactId = ViewBag.ContactId } )" height="100" width="100" class="photo" />
 @using (Html.BeginForm("EditBand", "Rolodex", new { bandId = ViewBag.BandId }))
 {
     @Html.AntiForgeryToken()
