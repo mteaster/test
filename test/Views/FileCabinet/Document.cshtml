@@ -57,15 +57,7 @@ limitations under the License.
     <script type="text/javascript" src="@Url.Content("/Scripts/pdf.js/src/display/metadata.js")"></script>
     <script type="text/javascript" src="@Url.Content("/Scripts/pdf.js/src/display/canvas.js")"></script>
     <script type="text/javascript" src="@Url.Content("/Scripts/pdf.js/src/display/font_loader.js")"></script>
-      <script type="text/javascript">
-          //Now we assign the path of the file on server which we stored in our ViewBag to the THEFILEPATH variable
-          //which is on line 2 of viewer.js, alternatively we could have returned a querystring with a file param
-          //which would point to the file, e.g: "Viewer?file=/MyPDFs/Pdf1.pdf"
-          var THEFILEPATH = ("@ViewBag.FilePath");
-          // instantiate the PDF.JS web worker.
-          var url = '@Url.Content("/Scripts/pdf.js/src/worker_loader.js")';
-          PDFJS.workerSrc = url;
-  </script>
+    <script type="text/javascript">PDFJS.workerSrc = '@Url.Content("/Scripts/pdf.js/src/worker_loader.js")';</script>
 <!--#endif-->
 
 <!--#if GENERIC -->

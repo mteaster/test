@@ -321,6 +321,11 @@ namespace band.Content
             }
         }
 
+        public ActionResult Document(string file)
+        {
+            return View();
+        }
+
         public ActionResult ViewFile(int fileId)
         {
             using (DatabaseContext database = new DatabaseContext())
@@ -340,8 +345,7 @@ namespace band.Content
 
                 if (fileEntry.FileType == (int)FileType.Document)
                 {
-                    ViewBag.FilePath = Server.MapPath("~/App_Data/" + fileEntry.BandId + "/" + fileId);
-                    return View("Document");
+                    return RedirectToAction("Document", new { file = Server.MapPath("~/App_Data/" + fileEntry.BandId + "/" + fileId) });
                 }
                 if (fileEntry.FileType == (int)FileType.Text)
                 {
