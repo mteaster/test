@@ -319,5 +319,33 @@ namespace band.Content
                 return RedirectToAction("Index", "Home");
             }
         }
+
+        public ActionResult ViewFile(int fileId)
+        {
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                FileEntry fileEntry = database.FileEntries.Find(fileId);
+
+                if (!BandUtil.Authenticate(fileEntry.BandId, this))
+                {
+                    return View("Error");
+                }
+
+                if (fileEntry.FileType != (int)FileType.Text)
+                {
+                    ViewBag.ErrorMessage = "Unsupported filetype";
+                    return View("Error");
+                }
+
+                string path = Server.MapPath("~/App_Data/" + fileEntry.BandId + "/" + fileId);
+                string content = String.Empty;
+                using (StreamReader stream = new StreamReader(path))
+                {
+                    content = stream.ReadToEnd();
+                }
+
+                return View("Text", content);
+            }
+        }
     }
 }

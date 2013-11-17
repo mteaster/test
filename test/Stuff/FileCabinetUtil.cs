@@ -6,7 +6,8 @@ namespace test.Stuff
 {
     public class FileCabinetUtil
     {
-        public static List<string> document = new List<string>() { "txt", "doc", "docx" };
+        public static List<string> text = new List<string>() { "txt" };
+        public static List<string> document = new List<string>() { "doc", "docx", "pdf" };
         public static List<string> image = new List<string>() { "jpg", "gif", "png" };
         public static List<string> audio = new List<string>() { "mp3" };
         public static List<string> video = new List<string>() { "avi" };
@@ -15,6 +16,10 @@ namespace test.Stuff
         {
             string extension = Path.GetExtension(fileName).Replace(".", "");
 
+            if (text.Contains(extension))
+            {
+                return FileType.Text;
+            }
             if (document.Contains(extension))
             {
                 return FileType.Document;

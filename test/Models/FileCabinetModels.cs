@@ -12,6 +12,7 @@ namespace test.Models.FileCabinet
     public enum FileType
     {
         File,
+        Text,
         Document,
         Image,
         Audio,

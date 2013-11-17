@@ -25,6 +25,7 @@
             <th ng-click="sort('ModifiedTime')">Modified</th>
             <th>Download</th>
             <th>Delete</th>
+            <th>View</th>
         </tr>
 
         <tr ng-repeat="file in data | orderBy : column : descending">
@@ -36,6 +37,7 @@
                 <td>{{ file.ModifiedTime }}</td>
                 <td><a ng-href="/FileCabinet/DownloadFile?fileId={{ file.FileId }}">Download</a></td>
                 <td><a ng-href="/FileCabinet/DeleteFile?fileId={{ file.FileId }}">Delete</a></td>
+                <td><a ng-href="/FileCabinet/ViewFile?fileId={{ file.FileId }}">View</a></td>
         </tr>
     </table>
 </div>
