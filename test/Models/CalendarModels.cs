@@ -192,4 +192,16 @@ namespace test.Models.Calendar
 
         public IEnumerable<test.Models.Calendar.CalendarEvent> Events;
     }
+
+    public class DayModel
+    {
+        public DayModel() {}
+        public DayModel(int day, int month, int year)
+        {
+            Date = new DateTime(year, month, day);
+        }
+
+        public DateTime Date { get; set; }
+        public IEnumerable<test.Models.Calendar.CalendarEvent> Events;
+    }
 }

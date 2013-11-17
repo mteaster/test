@@ -1,4 +1,4 @@
-﻿@model IEnumerable<test.Models.Calendar.CalendarEvent>
+﻿@model test.Models.Calendar.DayModel
 
 @{
     ViewBag.Title = "Day";
@@ -6,6 +6,8 @@
 
 <p class="message-success">@ViewBag.SuccessMessage</p>
 <p class="message-error">@ViewBag.ErrorMessage</p>
+
+<h2>@Model.Date.ToString("D")</h2>
 
 <table class="pretty" border="0" cellpadding="0" cellspacing="0">
     <tr>
@@ -17,13 +19,13 @@
         <th>Delete</th>
     </tr>
 
-    @if (!Model.Any())
+    @if (!Model.Events.Any())
     {
         <span>No events found</span>
     }
     else
     {
-        foreach (var item in Model)
+        foreach (var item in Model.Events)
         {
             <tr>
                 <td>@Html.DisplayFor(modelItem => item.EventId)</td>
@@ -36,8 +38,6 @@
         }
     }
 </table>
-
-
 
 <br />                   
 

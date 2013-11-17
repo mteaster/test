@@ -169,10 +169,9 @@ namespace band.Controllers
 
         public ActionResult Day(int bandId, int day, int month, int year)
         {
-            ViewBag.Day = day;
-            ViewBag.Month = month;
-            ViewBag.Year = year;
-            return View(CalendarUtil.EventsForDay(bandId, day, month, year));
+            DayModel model = new DayModel(day, month, year);
+            model.Events = CalendarUtil.EventsForDay(bandId, day, month, year);
+            return View(model);
         }
     }
 }
