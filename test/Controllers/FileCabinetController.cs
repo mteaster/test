@@ -48,11 +48,13 @@ namespace band.Content
         [HttpPost]
         public ActionResult CreateGroup(int bandId, string groupName)
         {
+            if (!BandUtil.Authenticate(bandId, this))
+            {
+                return View("Error");
+            }
+
             using (DatabaseContext database = new DatabaseContext())
             {
-                ViewBag.BandId = bandId;
-                ViewBag.BandName = database.BandProfiles.Find(bandId).BandName;
-
                 if (database.FileGroups.Where(f => f.BandId == bandId && f.GroupName == groupName).Any())
                 {
                     TempData["ErrorMessage"] = groupName + " already exists.";
@@ -67,6 +69,34 @@ namespace band.Content
 
                     TempData["SuccessMessage"] = groupName + " created.";
                 }
+
+                return RedirectToLocal(Request.UrlReferrer.AbsolutePath);
+            }
+        }
+
+        public ActionResult DeleteGroup(int groupId)
+        {
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                FileGroup fileGroup = database.FileGroups.Find(groupId);
+
+                if (!BandUtil.Authenticate(fileGroup.BandId, this))
+                {
+                    return View("Error");
+                }
+
+                var fileEntries = database.FileEntries.Where(f => f.GroupId == groupId);
+
+                foreach (var fileEntry in fileEntries)
+                {
+                    System.IO.File.Delete(Server.MapPath("~/App_Data/" + fileEntry.BandId + "/" + fileEntry.FileId));
+                    database.FileEntries.Remove(fileEntry);
+                }
+
+                database.FileGroups.Remove(fileGroup);
+                database.SaveChanges();
+
+                TempData["SuccessMessage"] = "Group deleted.";
 
                 return RedirectToLocal(Request.UrlReferrer.AbsolutePath);
             }
