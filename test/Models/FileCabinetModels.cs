@@ -11,7 +11,11 @@ namespace test.Models.FileCabinet
 {
     public enum FileType
     {
-        File
+        File,
+        Document,
+        Image,
+        Audio,
+        Video
     }
 
     [Table("FileEntry")]

@@ -261,7 +261,7 @@ namespace band.Content
                 }
 
                 string description = (model.FileDescription == null) ? "" : model.FileDescription;
-                FileEntry fileEntry = new FileEntry(fileName, bandId, groupId, WebSecurity.CurrentUserId, FileType.File,
+                FileEntry fileEntry = new FileEntry(fileName, bandId, groupId, WebSecurity.CurrentUserId, FileCabinetUtil.GetFileType(fileName),
                                                         model.File.ContentLength, description, DateTime.UtcNow);
 
                 database.FileEntries.Add(fileEntry);
