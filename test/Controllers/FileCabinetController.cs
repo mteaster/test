@@ -331,20 +331,38 @@ namespace band.Content
                     return View("Error");
                 }
 
-                if (fileEntry.FileType != (int)FileType.Text)
+                if (fileEntry.FileType == (int)FileType.Text)
                 {
-                    ViewBag.ErrorMessage = "Unsupported filetype";
-                    return View("Error");
+                    string path = Server.MapPath("~/App_Data/" + fileEntry.BandId + "/" + fileId);
+                    TextFileModel model = new TextFileModel();
+                    using (StreamReader stream = new StreamReader(path))
+                    {
+                        model.Content = stream.ReadToEnd();
+                    }
+
+                    return View("Text", model);
                 }
+                if (fileEntry.FileType == (int)FileType.Image)
+                {
+                    ViewBag.FileId = fileId;
+                    return View("Image");
+                }
+
+                ViewBag.ErrorMessage = "Unsupported filetype";
+                return View("Error");
+            }
+        }
+
+        [ChildActionOnly]
+        public ActionResult DownloadImage(int fileId)
+        {
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                FileEntry fileEntry = database.FileEntries.Find(fileId);
 
                 string path = Server.MapPath("~/App_Data/" + fileEntry.BandId + "/" + fileId);
-                TextFileModel model = new TextFileModel();
-                using (StreamReader stream = new StreamReader(path))
-                {
-                    model.Content = stream.ReadToEnd();
-                }
 
-                return View("Text", model);
+                return File(path, "image/jpeg");
             }
         }
     }
