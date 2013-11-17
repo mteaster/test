@@ -440,12 +440,6 @@
     <Content Include="Views\Calendar\Day.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\FileCabinet\CreateGroup.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\FileCabinet\_GroupsPartial.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Shared\_RolodexList.cshtml">
       <SubType>Code</SubType>
     </Content>
