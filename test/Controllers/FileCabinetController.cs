@@ -355,8 +355,8 @@ namespace band.Content
                 fileModel.FileId = fileEntry.FileId;
                 fileModel.FileName = fileEntry.FileName;
                 fileModel.ContentType = Path.GetExtension(fileEntry.FileName).Replace(".", "");
-
-                return View(fileEntry.FileType.ToString(), fileModel);
+                string viewName = ((FileType)fileEntry.FileType).ToString();
+                return View(viewName, fileModel);
             }
         }
 
