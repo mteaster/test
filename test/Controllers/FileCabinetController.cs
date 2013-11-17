@@ -359,6 +359,8 @@ namespace band.Content
                 {
                     string path = Server.MapPath("~/App_Data/" + fileEntry.BandId + "/" + fileId);
                     TextFileModel textFileModel = new TextFileModel();
+                    textFileModel.FileId = fileEntry.FileId;
+                    textFileModel.FileName = fileEntry.FileName;
                     using (StreamReader stream = new StreamReader(path))
                     {
                         textFileModel.Content = stream.ReadToEnd();
