@@ -11,7 +11,7 @@
 }
 
 <h2>Edit People</h2>
-<img alt="" src="@Url.Action("DownloadPeopleAvatar", new { bandId = ViewBag.BandId})" height="100" width="100" class="photo" />
+<img alt="" src="@Url.Action("DownloadPeopleAvatar", new { contactId = ViewBag.ContactId })" height="100" width="100" class="photo" />
 @using (Html.BeginForm("EditPeople", "Rolodex", new { bandId = ViewBag.BandId }))
 {
     @Html.AntiForgeryToken()

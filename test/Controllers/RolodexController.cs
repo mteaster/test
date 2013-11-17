@@ -391,6 +391,7 @@ namespace band.Controllers
                 return View("Error");
             }
 
+
             if (type == ContactType.Band)
             {
                 return RedirectToAction("EditBand", new { bandId = bandId, contactId = contactId});
@@ -442,7 +443,6 @@ namespace band.Controllers
         [ActionName("EditBand")]
         public ActionResult EditBandPost(int bandId, BandContact bandContact)
         {
-
             ViewBag.BandId = bandId;
 
             if (ModelState.IsValid)
@@ -471,6 +471,9 @@ namespace band.Controllers
             {
                 return View("Error");
             }
+
+            ViewBag.ContactId = contactId;
+
 
             using (DatabaseContext db = new DatabaseContext())
             {
@@ -512,6 +515,8 @@ namespace band.Controllers
             {
                 return View("Error");
             }
+
+            ViewBag.ContactId = contactId;
 
             using (DatabaseContext db = new DatabaseContext())
             {
