@@ -201,19 +201,6 @@ namespace band.Content
             }
         }
 
-        public ActionResult ListFiles(int bandId, int groupId)
-        {
-            if (!BandUtil.Authenticate(bandId, this))
-            {
-                return View("Error");
-            }
-
-            using (DatabaseContext database = new DatabaseContext())
-            {
-                return View(database.FileEntries.Where(f => f.BandId == bandId && f.GroupId == groupId).ToList());
-            }
-        }
-
         public ActionResult UploadFile(int groupId)
         {
             using (DatabaseContext database = new DatabaseContext())
@@ -278,7 +265,7 @@ namespace band.Content
                 MessageBoardUtil.AddFilePost(bandId, fileEntry.FileId);
 
                 TempData["SuccessMessage"] = fileEntry.FileName + " uploaded.";
-                return RedirectToLocal(Request.UrlReferrer.AbsolutePath);
+                return RedirectToAction("Files", new { bandId = bandId, groupId = groupId });
             }
         }
 
