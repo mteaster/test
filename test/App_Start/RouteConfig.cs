@@ -14,6 +14,27 @@ namespace test
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Download Band Avatar",
+                url: "Rolodex/DownloadBandAvatar/{contactId}",
+                defaults: new { controller = "Rolodex", action = "DownloadBandAvatar" },
+                constraints: new { contactId = @"\d+" }
+            );
+
+            routes.MapRoute(
+                name: "Download Venue Avatar",
+                url: "Rolodex/DownloadVenueAvatar/{contactId}",
+                defaults: new { controller = "Rolodex", action = "DownloadVenueAvatar" },
+                constraints: new { contactId = @"\d+" }
+            );
+
+            routes.MapRoute(
+                name: "Download People Avatar",
+                url: "Rolodex/DownloadPeopleAvatar/{contactId}",
+                defaults: new { controller = "Rolodex", action = "DownloadPeopleAvatar" },
+                constraints: new { contactId = @"\d+" }
+            );
+
+            routes.MapRoute(
                 name: "Upload avatar",
                 url: "Rolodex/UploadAvatar/{contactId}/{contactType}",
                 defaults: new { controller = "Rolodex", action = "UploadAvatar" },
@@ -21,7 +42,7 @@ namespace test
             );
 
             routes.MapRoute(
-                name: "CreateGroup",
+                name: "Create Group",
                 url: "FileCabinet/{bandId}/CreateGroup/{groupName}",
                 defaults: new { controller = "FileCabinet", action = "CreateGroup" },
                 constraints: new { bandId = @"\d+" }
