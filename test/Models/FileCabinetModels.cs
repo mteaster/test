@@ -63,7 +63,6 @@ namespace test.Models.FileCabinet
         [Required]
         public int FileSize { get; set; }
 
-        [Required]
         public string FileDescription { get; set; }
 
         [Required]
