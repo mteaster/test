@@ -29,7 +29,7 @@
         <tr ng-repeat="group in data | orderBy : column : descending">
                 <td>{{ group.GroupId }}</td>
                 <td><a ng-href="/FileCabinet/{{ group.BandId}}/Files/{{ group.GroupId }}">{{ group.GroupName }}</a>
-                <td><a ng-href="/FileCabinet/DeleteGroup?groupId={{ group.GroupId }}">Delete</a></td>
+                <td><a ng-href="/FileCabinet/DeleteGroup/{{ group.GroupId }}">Delete</a></td>
         </tr>
     </table>
 </div>
