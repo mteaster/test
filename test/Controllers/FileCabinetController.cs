@@ -244,7 +244,7 @@ namespace band.Content
 
                 if (database.FileEntries.Where(f => f.GroupId == groupId && f.FileName == fileName).Any())
                 {
-                    ViewBag.ErrorMessage = "file already exists";
+                    ViewBag.ErrorMessage = "A file with that name already exists.";
                     return View("Error");
                 }
 
