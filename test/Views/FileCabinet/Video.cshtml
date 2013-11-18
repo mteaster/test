@@ -2,10 +2,14 @@
 
 <h2>@Model.FileName</h2>
 
-<span>Model.FileDescription</span>
+<span>@Model.FileDescription</span>
 
-@Html.ActionLink("Download", "DownloadFile", new { fileId = Model.FileId });
-@Html.ActionLink("Delete", "DeleteFile", new { fileId = Model.FileId });
+<br />
+
+@Html.ActionLink("Download", "DownloadFile", new { fileId = Model.FileId })
+@Html.ActionLink("Delete", "DeleteFile", new { fileId = Model.FileId })
+
+<br />
 
 <video width="356" height="200" controls>
     <source src="@Url.Action("DownloadVideo", "FileCabinet", new { fileId = Model.FileId })" type="video/@Model.ContentType" />

@@ -2,10 +2,14 @@
 
 <h2>@Model.FileName</h2>
 
-<span>Model.FileDescription</span>
+<span>@Model.FileDescription</span>
 
-@Html.ActionLink("Download", "DownloadFile", new { fileId = Model.FileId });
-@Html.ActionLink("Delete", "DeleteFile", new { fileId = Model.FileId });
+<br />
+
+@Html.ActionLink("Download", "DownloadFile", new { fileId = Model.FileId })
+@Html.ActionLink("Delete", "DeleteFile", new { fileId = Model.FileId })
+
+<br />
 
 <td><a ng-href="/FileCabinet/DeleteFile?fileId={{ file.FileId }}">Delete</a></td>
 
