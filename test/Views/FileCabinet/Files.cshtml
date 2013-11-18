@@ -35,7 +35,7 @@
                 <td>{{ file.FileType}}</td>
                 <td>{{ file.UploaderName }}</td>
                 <td>{{ file.ModifiedTime }}</td>
-                <td><a ng-href="/FileCabinet/DownloadFile?fileId={{ file.FileId }}">Download</a></td>
+                <td><a ng-href="/FileCabinet/DownloadFile/{{ file.FileId }}">Download</a></td>
                 <td><a ng-href="/FileCabinet/DeleteFile?fileId={{ file.FileId }}">Delete</a></td>
                 <td><a ng-href="/FileCabinet/ViewFile?fileId={{ file.FileId }}">View</a></td>
         </tr>

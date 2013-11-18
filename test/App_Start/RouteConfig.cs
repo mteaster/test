@@ -57,6 +57,13 @@ namespace test
 
             routes.MapRoute(
                 name: "Download File",
+                url: "FileCabinet/ViewFile/{fileId}",
+                defaults: new { controller = "FileCabinet", action = "ViewFile" },
+                constraints: new { fileId = @"\d+" }
+            );
+
+            routes.MapRoute(
+                name: "Download File",
                 url: "FileCabinet/DownloadFile/{fileId}",
                 defaults: new { controller = "FileCabinet", action = "DownloadFile" },
                 constraints: new { fileId = @"\d+" }
