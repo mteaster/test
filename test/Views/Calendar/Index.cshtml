@@ -103,6 +103,14 @@
     {
         background-color: #f8f8f8 !important;
     }
+    a
+{
+    background: url(../Images/image.gif) no-repeat top left;
+     display: block;
+     width: 150px;
+     height: 150px;
+     text-indent: -9999px; /* hides the link text */
+}
 </style>
 
 <div style="float:left">
@@ -209,6 +217,9 @@
         </tr>
     </tbody>
 </table>
+
+<%= Html.ActionLink("Button Name", "Index", null, new { @class="classname" }) %>
+
 
 @Html.ActionLink("Previous Month", "Month", "Calendar",
                         new { bandId = ViewBag.BandId, month = Model.PreviousMonth, year = Model.PreviousMonthYear }, null)
