@@ -49,6 +49,13 @@ namespace test
             );
 
             routes.MapRoute(
+                name: "Delete Group",
+                url: "FileCabinet/DeleteGroup/{groupId}",
+                defaults: new { controller = "FileCabinet", action = "DeleteGroup" },
+                constraints: new { groupId = @"\d+" }
+            );
+
+            routes.MapRoute(
                 name: "Download File",
                 url: "FileCabinet/DownloadFile/{fileId}",
                 defaults: new { controller = "FileCabinet", action = "DownloadFile" },
