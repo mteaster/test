@@ -58,7 +58,7 @@
                 @Html.LabelFor(m => m.VenueContactId)
                 @Html.DropDownListFor(m => m.VenueContactId, (List<SelectListItem>) band.Controllers.RolodexController.GetSelectList(ViewBag.BandId, "Person-venue"), "N/A")
             </li>
-            @if (Model.BandContactId > 0)
+            @if (Model.VenueContactId > 0)
             {
                 @Html.ActionLink("View Current Associated Venue", "EditVenue", new { bandId = ViewBag.BandId, contactId = Model.VenueContactId})
             }
