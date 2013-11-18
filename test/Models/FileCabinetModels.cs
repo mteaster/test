@@ -86,6 +86,7 @@ namespace test.Models.FileCabinet
         public virtual BandProfile BandProfile { get; set; }
     }
 
+    // can i get rid of this guy?
     public class FileEntryModel
     {
         public FileEntryModel() { }

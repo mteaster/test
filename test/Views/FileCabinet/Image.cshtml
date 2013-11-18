@@ -1,14 +1,5 @@
 ﻿@model test.Models.FileCabinet.FileModel
 
-<h2>@Model.FileName</h2>
-
-<span>@Model.FileDescription</span>
-
-<br />
-
-@Html.ActionLink("Download", "DownloadFile", new { fileId = Model.FileId })
-@Html.ActionLink("Delete", "DeleteFile", new { fileId = Model.FileId })
-
-<br />
+@Html.Partial("_InfoPartial", Model)
 
 <img alt="" src="@Url.Action("DownloadImage", "FileCabinet", new { fileId = Model.FileId })" />

@@ -1,15 +1,6 @@
 ﻿@model test.Models.FileCabinet.FileModel
 
-<h2>@Model.FileName</h2>
-
-<span>@Model.FileDescription</span>
-
-<br />
-
-@Html.ActionLink("Download", "DownloadFile", new { fileId = Model.FileId })
-@Html.ActionLink("Delete", "DeleteFile", new { fileId = Model.FileId })
-
-<br />
+@Html.Partial("_InfoPartial", Model)
 
 <video width="356" height="200" controls>
     <source src="@Url.Action("DownloadVideo", "FileCabinet", new { fileId = Model.FileId })" type="video/@Model.Content" />

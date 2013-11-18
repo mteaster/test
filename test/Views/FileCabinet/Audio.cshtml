@@ -1,18 +1,8 @@
 ﻿@model test.Models.FileCabinet.FileModel
 
-<h2>@Model.FileName</h2>
+@Html.Partial("_InfoPartial", Model)
 
-<span>@Model.FileDescription</span>
-
-<br />
-
-@Html.ActionLink("Download", "DownloadFile", new { fileId = Model.FileId })
-@Html.ActionLink("Delete", "DeleteFile", new { fileId = Model.FileId })
-
-<br />
 <audio controls>
     <source src="@Url.Action("DownloadAudio", "FileCabinet", new { fileId = Model.FileId })" type="audio/@Model.Content" />
     <p>Your browser does not support HTML 5 audio element</p>
 </audio>
-
-@Html.ActionLink("Back to group", "Files", new { groupId = Model.GroupId })
