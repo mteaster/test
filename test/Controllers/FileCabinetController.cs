@@ -222,10 +222,12 @@ namespace band.Content
         }
 
         [HttpPost]
-        public ActionResult UploadFile(int bandId, int groupId, UploadFileModel model)
+        public ActionResult UploadFile(int groupId, UploadFileModel model)
         {
             using (DatabaseContext database = new DatabaseContext())
             {
+                int bandId = database.FileGroups.Find(groupId).BandId;
+
                 if (!BandUtil.Authenticate(bandId, this))
                 {
                     return View("Error");
