@@ -21,7 +21,7 @@ namespace test
             );
 
             routes.MapRoute(
-                name: "Download Band Avatar",
+                name: "Download Venue Avatar",
                 url: "Rolodex/DownloadVenueAvatar/{contactId}",
                 defaults: new { controller = "Rolodex", action = "DownloadVenueAvatar" },
                 constraints: new { contactId = @"\d+" }
