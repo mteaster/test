@@ -52,7 +52,10 @@
         width: 100px;
         height: 100px;
         padding: 4px;
-        background: #ffffff;
+        background: -webkit-linear-gradient(red, blue); /* For Safari */
+        background: -o-linear-gradient(red, blue); /* For Opera 11.1 to 12.0 */
+        background: -moz-linear-gradient(red, blue); /* For Firefox 3.6 to 15 */
+        background: linear-gradient(lightgray, gray); /* Standard syntax (must be last)*/ 
         border: 1px solid #b1b1b1;
     }
     #calendar-table td:hover
@@ -182,46 +185,16 @@
                     }
                 
                     if(hasEvent)
-                    {
-                        if ((currentDayOfWeek +1 ) % 7 == 0)
-                        {
-                            <td class="event" >
-                                @Html.ActionLink(@currentDay.ToString(), "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
-                            </td>
-                        }
-                        else if ((currentDayOfWeek + 1) % 7 == 1)
-                        {
-                            <td class="event" >
-                                @Html.ActionLink(@currentDay.ToString(), "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
-                            </td>
-                        }
-                        else
-                        {
+                    { 
                             <td class="event">
                                 @Html.ActionLink(@currentDay.ToString(), "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
                             </td>
-                        }
                     }
                     else
                     {
-                        if ((currentDayOfWeek + 1) % 7 == 0)
-                        {
                             <td>
                                 @Html.ActionLink(@currentDay.ToString(), "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
                             </td>
-                        }
-                        else if ((currentDayOfWeek + 1) % 7 == 1)
-                        {
-                            <td>
-                                @Html.ActionLink(@currentDay.ToString(), "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
-                            </td>
-                        }
-                        else
-                        {
-                            <td>
-                                @Html.ActionLink(@currentDay.ToString(), "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
-                            </td>
-                        }
                     }
 
                     currentDayOfWeek++;
