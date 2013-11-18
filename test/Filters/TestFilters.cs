@@ -20,7 +20,6 @@ namespace test.Filters
 
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
-
             if (filterContext.HttpContext.Items["Stopwatch"] != null)
             {
                 Stopwatch stopwatch = (Stopwatch)filterContext.HttpContext.Items["Stopwatch"];

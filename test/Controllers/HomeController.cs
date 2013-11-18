@@ -83,14 +83,14 @@ namespace test.Controllers
             return View("Success");
         }
 
-        [PerformanceFilter]
-        public ActionResult Iterate()
-        {
-            for(int i = 0; i < 100000; i++);
+        //[PerformanceFilter]
+        //public ActionResult Iterate()
+        //{
+        //    for(int i = 0; i < 100000; i++);
 
-            ViewBag.SuccessMessage = "Iterated!";
-            return View("Success");
-        }
+        //    ViewBag.SuccessMessage = "Iterated!";
+        //    return View("Success");
+        //}
 
         public ActionResult Test()
         {
