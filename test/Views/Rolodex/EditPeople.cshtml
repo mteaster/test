@@ -48,10 +48,20 @@
                 @Html.LabelFor(m => m.BandContactId)
                 @Html.DropDownListFor(m => m.BandContactId, (List<SelectListItem>) band.Controllers.RolodexController.GetSelectList(ViewBag.BandId, "Person-band"), "N/A")
             </li>
+            @if (Model.BandContactId != null)
+            {
+            <li>
+                @Html.ActionLink("View Current Associated Band", "EditBand", new { bandId = ViewBag.BandId, contactId = Model.BandContactId})
+            </li>
+            }
             <li>
                 @Html.LabelFor(m => m.VenueContactId)
                 @Html.DropDownListFor(m => m.VenueContactId, (List<SelectListItem>) band.Controllers.RolodexController.GetSelectList(ViewBag.BandId, "Person-venue"), "N/A")
             </li>
+            @if (Model.BandContactId != null)
+            {
+                @Html.ActionLink("View Current Associated Venue", "EditVenue", new { bandId = ViewBag.BandId, contactId = Model.VenueContactId})
+            }
         </ol>
         <input type="submit" value="Save" />
     </fieldset>

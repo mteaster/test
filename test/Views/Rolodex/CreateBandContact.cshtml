@@ -39,7 +39,7 @@
             </li>
             <li>
                 @Html.LabelFor(m => m.PrimaryPeopleContactId)
-                @Html.DropDownListFor(m => m.PrimaryPeopleContactId, (List<SelectListItem>) band.Controllers.RolodexController.GetSelectList(ViewBag.BandId, "Band"))
+                @Html.DropDownListFor(m => m.PrimaryPeopleContactId, (List<SelectListItem>) band.Controllers.RolodexController.GetSelectList(ViewBag.BandId, "Band"), "N/A")
             </li>
         </ol>
         <input type="submit" value="Save" />
