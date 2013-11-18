@@ -134,7 +134,7 @@ namespace band.Content
                     return RedirectToAction("Join", "Band");
                 }
 
-                List<FileEntry> entries = database.FileEntries.Where(f => f.BandId == bandId && f.GroupId == groupId).ToList();
+                List<FileEntry> entries = database.FileEntries.Where(f => f.GroupId == groupId).ToList();
 
                 var results = from f in database.FileEntries
                               join u in database.UserProfiles
@@ -148,7 +148,7 @@ namespace band.Content
                                   f.FileDescription,
                                   f.FileType,
                                   f.FileSize,
-                                  u.UserName,
+                                  u.DisplayName,
                                   f.ModifiedTime
                               };
 
@@ -157,8 +157,8 @@ namespace band.Content
                 foreach (var result in results)
                 {
                     FileEntryModel model = new FileEntryModel(result.FileId, result.FileName, result.FileDescription,
-                                                                (FileType)result.FileType, result.FileSize, result.UserName, 
-                                                                result.ModifiedTime);
+                                                                (FileType)result.FileType, result.FileSize, 
+                                                                result.DisplayName, result.ModifiedTime);
                     models.Add(model);
                 }
                 
@@ -354,29 +354,24 @@ namespace band.Content
                         return View("Error");
                     }
                 }
+
+                FileModel model = new FileModel(fileEntry, database.UserProfiles.Find(fileEntry.UploaderId).DisplayName);
+
                 if (fileEntry.FileType == (int)FileType.Text)
                 {
                     string path = Server.MapPath("~/App_Data/" + fileEntry.BandId + "/" + fileId);
-                    TextFileModel textFileModel = new TextFileModel();
-                    textFileModel.FileDescription = fileEntry.FileDescription;
-                    textFileModel.FileId = fileEntry.FileId;
-                    textFileModel.FileName = fileEntry.FileName;
+
                     using (StreamReader stream = new StreamReader(path))
                     {
-                        textFileModel.Content = stream.ReadToEnd();
+                        model.Content = stream.ReadToEnd();
                     }
 
-                    return View("Text", textFileModel);
+                    return View("Text", model);
                 }
 
-                // roll into a constructor
-                FileModel fileModel = new FileModel();
-                fileModel.FileId = fileEntry.FileId;
-                fileModel.FileDescription = fileEntry.FileDescription;
-                fileModel.FileName = fileEntry.FileName;
-                fileModel.ContentType = Path.GetExtension(fileEntry.FileName).Replace(".", "");
+                model.Content = Path.GetExtension(fileEntry.FileName).Replace(".", "");
                 string viewName = ((FileType)fileEntry.FileType).ToString();
-                return View(viewName, fileModel);
+                return View(viewName, model);
             }
         }
 

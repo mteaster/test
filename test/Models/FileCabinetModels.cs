@@ -135,17 +135,28 @@ namespace test.Models.FileCabinet
 
     public class FileModel
     {
-        public int FileId { get; set; }
-        public string FileDescription { get; set; }
-        public string FileName { get; set; }
-        public string ContentType { get; set; } 
-    }
+        public FileModel() { }
+        public FileModel(FileEntry entry, string uploader)
+        {
+            this.FileId = entry.FileId;
+            this.FileName = entry.FileName;
+            this.FileDescription = entry.FileDescription;
+            this.FileType = entry.FileType.ToString();
+            this.FileSize = entry.FileSize;
+            this.GroupId = entry.GroupId;
+            this.ModifiedTime = entry.ModifiedTime.ToString();
+            this.UploaderName = uploader;
+        }
 
-    public class TextFileModel
-    {
         public int FileId { get; set; }
-        public string FileDescription { get; set; }
         public string FileName { get; set; }
+        public string FileDescription { get; set; }
+        public string FileType { get; set; }
+        public int GroupId { get; set; }
+        public int FileSize { get; set; }
+        public string UploaderName { get; set; }
+        public string ModifiedTime { get; set; }
+
         public string Content { get; set; }
     }
 }
