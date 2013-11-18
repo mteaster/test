@@ -145,7 +145,7 @@ namespace test.Models.FileCabinet
             this.FileType = entry.FileType.ToString();
             this.FileSize = entry.FileSize;
             this.GroupId = entry.GroupId;
-            this.ModifiedTime = entry.ModifiedTime.ToString();
+            this.ModifiedTime = entry.ModifiedTime;
             this.UploaderName = uploader;
         }
 
@@ -156,7 +156,7 @@ namespace test.Models.FileCabinet
         public int GroupId { get; set; }
         public int FileSize { get; set; }
         public string UploaderName { get; set; }
-        public string ModifiedTime { get; set; }
+        public DateTime ModifiedTime { get; set; }
 
         public string Content { get; set; }
     }
