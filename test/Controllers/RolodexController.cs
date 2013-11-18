@@ -55,7 +55,6 @@ namespace band.Controllers
         {  
             if (ModelState.IsValid)
             {
-               
                using (DatabaseContext database = new DatabaseContext())
                {
                     bandContact.BandId = bandId;
@@ -64,8 +63,6 @@ namespace band.Controllers
                }
             }
         
-
-            ViewBag.BandId = bandId;
             return RedirectToAction("CreateContact", "Rolodex", new { BandId = bandId});
         }
 
@@ -86,14 +83,16 @@ namespace band.Controllers
             if (ModelState.IsValid)
             {
                 using (DatabaseContext database = new DatabaseContext())
-                    {
-                        peopleContact.BandId = bandId;
-                        database.PeopleContacts.Add(peopleContact);
-                        database.SaveChanges();
-                    }
+                {
+                    peopleContact.BandId = bandId;
+                    database.PeopleContacts.Add(peopleContact);
+                    database.SaveChanges();
+
+                    return RedirectToAction("CreateContact", "Rolodex", new { BandId = bandId });
+                }
             }
-            ViewBag.BandId = bandId;
-            return RedirectToAction("CreateContact", "Rolodex", new { BandId = bandId });
+
+            return View(peopleContact);
         }
 
         public ActionResult CreateVenueContact(int bandId)
@@ -110,17 +109,20 @@ namespace band.Controllers
         [HttpPost]
         public ActionResult CreateVenueContact(VenueContact venueContact, int bandId)
         {
-            if (ModelState.IsValid)
+            if (!BandUtil.Authenticate(bandId, this))
             {
-                    using (DatabaseContext database = new DatabaseContext())
-                    {
-                        venueContact.BandId = bandId;
-                        database.VenueContacts.Add(venueContact);
-                        database.SaveChanges();
-                    }
-                
+                return View("Error");
             }
 
+            if (ModelState.IsValid)
+            {
+                using (DatabaseContext database = new DatabaseContext())
+                {
+                    venueContact.BandId = bandId;
+                    database.VenueContacts.Add(venueContact);
+                    database.SaveChanges();
+                }
+            }
            
             return RedirectToAction("CreateContact", "Rolodex", new { BandId = bandId });
         }
