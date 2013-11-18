@@ -51,7 +51,7 @@ namespace test.Stuff
             using (DatabaseContext database = new DatabaseContext())
             {
                 string content = database.UserProfiles.Find(WebSecurity.CurrentUserId).DisplayName + " uploaded" +
-                        "<a href=\"/FileCabinet/DownloadFile?fileId=" + fileId + "\">" +
+                        "<a href=\"/FileCabinet/ViewFile?fileId=" + fileId + "\">" +
                         database.FileEntries.Find(fileId).FileName + ".</a>";
                 AddPost(bandId, PostType.File, content, database);
             }
