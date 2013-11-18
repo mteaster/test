@@ -43,6 +43,13 @@ namespace test
 
             routes.MapRoute(
                 name: "Create Group",
+                url: "FileCabinet/{bandId}/CreateGroup",
+                defaults: new { controller = "FileCabinet", action = "CreateGroup" },
+                constraints: new { bandId = @"\d+" }
+            );
+
+            routes.MapRoute(
+                name: "Create Group",
                 url: "FileCabinet/{bandId}/CreateGroup/{groupName}",
                 defaults: new { controller = "FileCabinet", action = "CreateGroup" },
                 constraints: new { bandId = @"\d+" }
