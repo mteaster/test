@@ -643,6 +643,16 @@ namespace band.Controllers
                 return File(Server.MapPath("~/App_Data/UserAvatars/default.jpg"), "image/jpeg");
             }
         }
+        public static List<SelectListItem> GetBandSkillList()
+        {
+            List<SelectListItem> returnValue = new List<SelectListItem>();
+            returnValue.Add(new SelectListItem() { Text = test.Models.Rolodex.BandContact.Skill.Awesome.ToString(), Value = ((int)test.Models.Rolodex.BandContact.Skill.Awesome).ToString() });
+            returnValue.Add(new SelectListItem() { Text = test.Models.Rolodex.BandContact.Skill.Good.ToString(), Value = ((int)test.Models.Rolodex.BandContact.Skill.Good).ToString() });
+            returnValue.Add(new SelectListItem() { Text = test.Models.Rolodex.BandContact.Skill.OK.ToString(), Value = ((int)test.Models.Rolodex.BandContact.Skill.OK).ToString() });
+            returnValue.Add(new SelectListItem() { Text = test.Models.Rolodex.BandContact.Skill.Poor.ToString(), Value = ((int)test.Models.Rolodex.BandContact.Skill.Poor).ToString() });
+            returnValue.Add(new SelectListItem() { Text = test.Models.Rolodex.BandContact.Skill.Bad.ToString(), Value = ((int)test.Models.Rolodex.BandContact.Skill.Bad).ToString() });
+            return returnValue;
+        }
         public static List<SelectListItem> GetSelectList(int bandId, string callingType)
         {
             List<SelectListItem> returnValue = new List<SelectListItem>();

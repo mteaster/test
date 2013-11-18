@@ -59,6 +59,9 @@
                 @Html.ActionLink("View Current Primary Contact", "EditPeople", new { bandId = ViewBag.BandId, contactId = Model.PrimaryPeopleContactId})
             </li>
             }
+            <li>
+                @Html.DropDownListFor( m => m.SkillLevel, (List<SelectListItem>) band.Controllers.RolodexController.GetBandSkillList())
+            </li>
         </ol>
         <input type="submit" value="Save" />
     </fieldset>
