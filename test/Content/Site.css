@@ -549,7 +549,7 @@ textarea
     color: #e80c4d;
     font-size: 1.3em;
     font-weight: bold;
-    margin: 20px 0 10px 0;
+    margin: 10px 0 10px 0;
 }
 
 .message-success 
@@ -557,7 +557,7 @@ textarea
     color: #7ac0da;
     font-size: 1.3em;
     font-weight: bold;
-    margin: 20px 0 10px 0;
+    margin: 10px 0 10px 0;
 }
 
 .error
