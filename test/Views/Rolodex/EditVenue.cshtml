@@ -13,7 +13,9 @@
 }
 
 <h2>Edit Venue</h2>
+
 <img alt="" src="@Url.Action("DownloadVenueAvatar", new { contactId = ViewBag.ContactId } )" height="100" width="100" class="photo" />
+
 @using (Html.BeginForm("EditVenue", "Rolodex", new { bandId = ViewBag.BandId }))
 {
     @Html.AntiForgeryToken()
@@ -22,7 +24,7 @@
     <fieldset>
         <legend>Registration Form</legend>
         <ol>
-            <li style="visibility:hidden;">
+            <li style="display: none;">
                 @Html.TextBoxFor(m => m.ContactId)
                 @Html.TextBoxFor(m => m.BandId)
             </li>

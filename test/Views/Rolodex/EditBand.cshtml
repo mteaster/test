@@ -13,7 +13,11 @@
 {
     @Html.Partial("_BandHeaderPartial")
 }
+
+<h2>Edit People</h2>
+
 <img alt="" src="@Url.Action("DownloadBandAvatar", new { contactId = ViewBag.ContactId } )" height="100" width="100" class="photo" />
+
 @using (Html.BeginForm("EditBand", "Rolodex", new { bandId = ViewBag.BandId }))
 {
     @Html.AntiForgeryToken()
@@ -21,7 +25,7 @@
     <fieldset>
         <legend>Edit Form</legend>
         <ol>
-            <li style="visibility:hidden;">
+            <li style="display: none;">
                 @Html.TextBoxFor(m => m.ContactId)
                 @Html.TextBoxFor(m => m.BandId)
             </li>
