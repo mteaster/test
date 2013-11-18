@@ -70,6 +70,13 @@ namespace test.Models.FileCabinet
     [Table("FileGroup")]
     public class FileGroup
     {
+        public FileGroup() { }
+        public FileGroup(int bandId, string groupName)
+        {
+            this.BandId = bandId;
+            this.GroupName = groupName;
+        }
+
         [Key]
         [Required]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]

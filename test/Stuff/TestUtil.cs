@@ -1,8 +1,11 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Web;
 using System.Web.Helpers;
 using test.Models;
 using test.Models.Band;
+using test.Models.Dashboard;
+using test.Models.FileCabinet;
 
 namespace test.Stuff
 {
@@ -57,6 +60,37 @@ namespace test.Stuff
 
             File.Copy(sourcePath, destinationPath, true);
         }
+
+        public static int MakeMessage(int posterId, int bandId, string content)
+        {
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                MessageBoardPost post = new MessageBoardPost(bandId, posterId, PostType.Message, DateTime.UtcNow, content);
+                database.MessageBoardPosts.Add(post);
+                database.SaveChanges();
+                return post.PostId;
+            }
+        }
+
+        public static int MakeGroup(int bandId, string groupName)
+        {
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                FileGroup group = new FileGroup(bandId, groupName);
+                database.FileGroups.Add(group);
+                database.SaveChanges();
+                return group.GroupId;
+            }
+        }
+
+        //public static int MakeFile(int posterId, int bandId, int groupId, string content)
+        //{
+        //    using (DatabaseContext database = new DatabaseContext())
+        //    {
+        //        FileEntry entry = new FileEntry(fileName, 
+        //        database.SaveChanges();
+        //    }
+        //}
 
         // I doubt anything in here works
         /*public class BandCalendar
