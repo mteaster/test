@@ -189,12 +189,25 @@ namespace band.Content
 
             using (DatabaseContext database = new DatabaseContext())
             {
-                List<FileGroup> groups = database.FileGroups.Where(g => g.BandId == bandId).ToList();
+                //List<FileGroup> groups = database.FileGroups.Where(g => g.BandId == bandId).ToList();
+
+                var results = from g in database.FileGroups
+                              join e in database.FileEntries
+                              on g.GroupId equals e.GroupId
+                              into joined
+                              group joined by new { g.GroupId, g.GroupName, g.BandId } into grouped
+                              select new
+                              {
+                                  GroupId = grouped.Key.GroupId,
+                                  GroupName = grouped.Key.GroupName,
+                                  BandId = grouped.Key.BandId,
+                                  FilesCount = grouped.Count()
+                              };
 
                 List<FileGroupModel> models = new List<FileGroupModel>();
-                foreach (var group in groups)
+                foreach (var result in results)
                 {
-                    FileGroupModel model = new FileGroupModel(group.GroupId, group.BandId, group.GroupName);
+                    FileGroupModel model = new FileGroupModel(result.GroupId, result.BandId, result.GroupName, result.FilesCount);
                     models.Add(model);
                 }
 
