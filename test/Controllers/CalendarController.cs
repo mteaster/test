@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Web.Mvc;
-using System.Web.Security;
 using test.Models;
-using test.Models.Band;
 using test.Models.Calendar;
 using test.Stuff;
-using WebMatrix.WebData;
 
 namespace band.Controllers
 {

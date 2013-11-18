@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using test.Models.Band;
 using test.Models.Account;
+using test.Models.Band;
 
 namespace test.Models.Dashboard
 {

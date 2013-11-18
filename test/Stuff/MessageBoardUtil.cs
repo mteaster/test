@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Security;
 using test.Models;
 using test.Models.Dashboard;
 using WebMatrix.WebData;
-using test.Models.Account;
-using System.Web.Security;
-using System.Web.Mvc;
 
 namespace test.Stuff
 {

@@ -1,12 +1,11 @@
-﻿using Microsoft.Web.WebPages.OAuth;
-using System;
+﻿using System;
 using System.Data;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using test.Models;
-using WebMatrix.WebData;
 using test.Models.Account;
-using System.Web;
+using WebMatrix.WebData;
 
 namespace test.Controllers
 {

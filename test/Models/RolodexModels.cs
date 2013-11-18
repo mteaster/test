@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
 
 namespace test.Models.Rolodex
-{
-
+{s
     public enum ContactType { Band, People, Venue }
 
     // This class is used to generalize results from the database for band, people, and venue records
@@ -16,8 +11,6 @@ namespace test.Models.Rolodex
     {
         [Display(Name = "ContactId")]
         public int ContactId { get; set; }
-
-
 
         [Display(Name = "Type")]
         public ContactType Type { get; set; }

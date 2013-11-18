@@ -1,14 +1,12 @@
-﻿using System.Web.Mvc;
-using test.Models;
-using test.Stuff;
-using WebMatrix.WebData;
-using test.Models.Band;
-using System.Web.Security;
-using test.Models.Rolodex;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Data;
+using System.Web.Mvc;
+using System.Web.Security;
+using test.Models;
+using test.Models.Rolodex;
+using test.Stuff;
+using WebMatrix.WebData;
 
 namespace band.Controllers
 {

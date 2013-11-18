@@ -1,10 +1,9 @@
 ﻿using System.Web.Mvc;
 using System.Web.Security;
 using test.Models;
+using test.Models.Dashboard;
 using test.Stuff;
 using WebMatrix.WebData;
-using test.Models.Dashboard;
-using test.Models.Band;
 
 namespace band.Controllers
 {

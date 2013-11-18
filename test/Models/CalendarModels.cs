@@ -1,11 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using test.Models.Band;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Web.Mvc;
-
+using test.Models.Band;
 
 namespace test.Models.Calendar
 {

@@ -1,11 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Web.Mvc;
+using System.Web;
 using test.Models.Account;
 using test.Models.Band;
-using System;
-using System.Web;
 
 namespace test.Models.FileCabinet
 {

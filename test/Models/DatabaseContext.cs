@@ -5,8 +5,8 @@ using test.Models.Band;
 using test.Models.Calendar;
 using test.Models.Dashboard;
 using test.Models.FileCabinet;
-using test.Models.Test;
 using test.Models.Rolodex;
+using test.Models.Test;
 
 namespace test.Models
 {
@@ -21,7 +21,6 @@ namespace test.Models
         public DbSet<CalendarEvent> CalendarEvents { get; set; }
         public DbSet<FileEntry> FileEntries { get; set; }
         public DbSet<FileGroup> FileGroups { get; set; }
-        public DbSet<Log> Logs { get; set; }
         public DbSet<BandContact> BandContacts { get; set; }
         public DbSet<PeopleContact> PeopleContacts { get; set; }
         public DbSet<VenueContact> VenueContacts { get; set; }

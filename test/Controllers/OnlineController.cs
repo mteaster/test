@@ -1,9 +1,5 @@
 ﻿using System.Web.Mvc;
-using test.Models;
 using test.Stuff;
-using WebMatrix.WebData;
-using test.Models.Band;
-using System.Web.Security;
 
 namespace band.Controllers
 {
