@@ -56,9 +56,16 @@ namespace test
             );
 
             routes.MapRoute(
-                name: "Download File",
+                name: "View File",
                 url: "FileCabinet/ViewFile/{fileId}",
                 defaults: new { controller = "FileCabinet", action = "ViewFile" },
+                constraints: new { fileId = @"\d+" }
+            );
+
+            routes.MapRoute(
+                name: "Delete File",
+                url: "FileCabinet/DeleteFile/{fileId}",
+                defaults: new { controller = "FileCabinet", action = "DeleteFile" },
                 constraints: new { fileId = @"\d+" }
             );
 
