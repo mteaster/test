@@ -567,9 +567,9 @@ namespace band.Controllers
         [HttpPost]
         public ActionResult UploadAvatar(int contactId, ContactType contactType, HttpPostedFileBase file)
         {
-            if (file.ContentLength <= 0 || file.ContentLength > 1048576)
+            if (file.ContentLength <= 0 || file.ContentLength > 52428800)
             {
-                ViewBag.ErrorMessage = "file sucks";
+                ViewBag.ErrorMessage = "Something was wrong with the avatar you uploaded.";
                 return View("Error");
             }
 
