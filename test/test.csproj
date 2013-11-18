@@ -421,6 +421,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\FileCabinet\_InfoPartial.cshtml" />
     <Content Include="Views\FileCabinet\File.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
