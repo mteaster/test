@@ -1,0 +1,17 @@
+﻿@model test.Models.FileCabinet.FileModel
+
+@{
+    ViewBag.Title = "File Cabinet";
+}
+
+@section featured 
+{
+    @Html.Partial("_BandHeaderPartial")
+}
+
+@Html.Partial("_InfoPartial", Model)
+
+<div class="text-file">
+    <h3>Sorry, we don't support viewing for this type of file.</h3>
+</div>
+    
