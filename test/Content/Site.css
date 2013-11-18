@@ -715,6 +715,12 @@ div.file
     background: white;   
 }
 
+div.file span.info
+{
+    font-size: small;
+    font-weight: normal;
+}
+
 div.text-file
 {
     border: 1px solid #C3C3C3;
@@ -722,6 +728,8 @@ div.text-file
     background: white;   
     width: auto;
 }
+
+
 
 ol.groups
 {
