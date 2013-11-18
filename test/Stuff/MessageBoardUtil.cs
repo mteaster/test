@@ -6,6 +6,7 @@ using test.Models.Dashboard;
 using WebMatrix.WebData;
 using test.Models.Account;
 using System.Web.Security;
+using System.Web.Mvc;
 
 namespace test.Stuff
 {
@@ -49,7 +50,9 @@ namespace test.Stuff
         {
             using (DatabaseContext database = new DatabaseContext())
             {
-                string content = database.UserProfiles.Find(WebSecurity.CurrentUserId).DisplayName + " uploaded a file.";
+                string content = database.UserProfiles.Find(WebSecurity.CurrentUserId).DisplayName + " uploaded " +
+                        "<a href=\"/FileCabinet/DownloadFile?fileId=" + fileId + "\">" +
+                        database.FileEntries.Find(fileId).FileName + "</a>";
                 AddPost(bandId, PostType.File, content, database);
             }
         }
