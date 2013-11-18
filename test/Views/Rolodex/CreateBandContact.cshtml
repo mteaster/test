@@ -41,8 +41,13 @@
                 @Html.LabelFor(m => m.PrimaryPeopleContactId)
                 @Html.DropDownListFor(m => m.PrimaryPeopleContactId, (List<SelectListItem>) band.Controllers.RolodexController.GetSelectList(ViewBag.BandId, "Band"), "N/A")
             </li>
-            <li>
-                @Html.DropDownListFor( m => m.SkillLevel, (List<SelectListItem>) band.Controllers.RolodexController.GetBandSkillList())
+               <li>
+                @Html.LabelFor(m => m.SkillLevel)
+                @Html.DropDownListFor(m => m.SkillLevel, band.Controllers.RolodexController.GetSkillList(), "N/A")
+            </li>
+             <li>
+                @Html.LabelFor(m => m.PopularityLevel)
+                @Html.DropDownListFor(m => m.PopularityLevel, band.Controllers.RolodexController.GetPopularityList(), "N/A")
             </li>
         </ol>
         <input type="submit" value="Save" />

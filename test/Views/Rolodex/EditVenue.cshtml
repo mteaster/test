@@ -58,7 +58,7 @@
             </li>
             <li>
                 @Html.LabelFor(m => m.StageSizeValue)
-                @Html.EditorFor(m => m.StageSizeValue)
+                @Html.DropDownListFor(m => m.StageSizeValue, band.Controllers.RolodexController.GetStageSizeList(), "N/A")
             </li>
             <li>
                 @Html.LabelFor(m => m.PrimaryPeopleContactId)

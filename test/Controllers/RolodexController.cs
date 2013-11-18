@@ -643,16 +643,7 @@ namespace band.Controllers
                 return File(Server.MapPath("~/App_Data/UserAvatars/default.jpg"), "image/jpeg");
             }
         }
-        public static List<SelectListItem> GetBandSkillList()
-        {
-            List<SelectListItem> returnValue = new List<SelectListItem>();
-            returnValue.Add(new SelectListItem() { Text = test.Models.Rolodex.BandContact.Skill.Awesome.ToString(), Value = ((int)test.Models.Rolodex.BandContact.Skill.Awesome).ToString() });
-            returnValue.Add(new SelectListItem() { Text = test.Models.Rolodex.BandContact.Skill.Good.ToString(), Value = ((int)test.Models.Rolodex.BandContact.Skill.Good).ToString() });
-            returnValue.Add(new SelectListItem() { Text = test.Models.Rolodex.BandContact.Skill.OK.ToString(), Value = ((int)test.Models.Rolodex.BandContact.Skill.OK).ToString() });
-            returnValue.Add(new SelectListItem() { Text = test.Models.Rolodex.BandContact.Skill.Poor.ToString(), Value = ((int)test.Models.Rolodex.BandContact.Skill.Poor).ToString() });
-            returnValue.Add(new SelectListItem() { Text = test.Models.Rolodex.BandContact.Skill.Bad.ToString(), Value = ((int)test.Models.Rolodex.BandContact.Skill.Bad).ToString() });
-            return returnValue;
-        }
+       
         public static List<SelectListItem> GetSelectList(int bandId, string callingType)
         {
             List<SelectListItem> returnValue = new List<SelectListItem>();
@@ -704,6 +695,39 @@ namespace band.Controllers
                 }
             }
 
+            return returnValue;
+        }
+        public static List<SelectListItem> GetStageSizeList()
+        {
+            List<SelectListItem> returnValue = new List<SelectListItem>();
+
+            returnValue.Add(new SelectListItem() { Text = "Tiny", Value = "1" });
+            returnValue.Add(new SelectListItem() { Text = "Small", Value = "2" });
+            returnValue.Add(new SelectListItem() { Text = "Average", Value = "3" });
+            returnValue.Add(new SelectListItem() { Text = "Big", Value = "4" });
+            returnValue.Add(new SelectListItem() { Text = "Huge", Value = "5" });
+            return returnValue;
+        }
+        public static List<SelectListItem> GetSkillList()
+        {
+            List<SelectListItem> returnValue = new List<SelectListItem>();
+
+            returnValue.Add(new SelectListItem() { Text = "Awesome", Value = "1" });
+            returnValue.Add(new SelectListItem() { Text = "Good", Value = "2" });
+            returnValue.Add(new SelectListItem() { Text = "OK", Value = "3" });
+            returnValue.Add(new SelectListItem() { Text = "Poor", Value = "4" });
+            returnValue.Add(new SelectListItem() { Text = "Bad... Just Bad", Value = "5" });
+            return returnValue;
+        }
+        public static List<SelectListItem> GetPopularityList()
+        {
+            List<SelectListItem> returnValue = new List<SelectListItem>();
+
+            returnValue.Add(new SelectListItem() { Text = "Unknown", Value = "1" });
+            returnValue.Add(new SelectListItem() { Text = "Friends", Value = "2" });
+            returnValue.Add(new SelectListItem() { Text = "Moderate", Value = "3" });
+            returnValue.Add(new SelectListItem() { Text = "Popular", Value = "4" });
+            returnValue.Add(new SelectListItem() { Text = "Justin Bieber", Value = "5" });
             return returnValue;
         }
     }
