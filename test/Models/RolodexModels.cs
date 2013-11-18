@@ -56,7 +56,7 @@ namespace test.Models.Rolodex
         [Display(Name = "Musical Style")]
         public string MusicalStyle { get; set; }
 
-        public int PrimaryPeopleContactId { get; set; }
+        public int? PrimaryPeopleContactId { get; set; }
 
         public enum Skill { Bad, Poor, OK, Good, Awesome}
 
@@ -103,10 +103,10 @@ namespace test.Models.Rolodex
         public string Skill { get; set; }
 
         [Display(Name="Associated Band")]
-        public int BandContactId { get; set; }
+        public int? BandContactId { get; set; }
 
         [Display(Name = "Associated Venue")]
-        public int VenueContactId { get; set; }
+        public int? VenueContactId { get; set; }
 
         [Display(Name = "Notes")]
         public string Notes { get; set; }
@@ -144,7 +144,7 @@ namespace test.Models.Rolodex
         [Display(Name = "Stage Size")]
         public StageSize StageSizeValue { get; set; }
 
-        public int PrimaryPeopleContactId { get; set; }
+        public int? PrimaryPeopleContactId { get; set; }
 
         [Display(Name = "Free Beer")]
         public bool FreeBeer { get; set; }
