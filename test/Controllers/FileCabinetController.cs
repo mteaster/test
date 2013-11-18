@@ -336,6 +336,8 @@ namespace band.Content
                     return View("Error");
                 }
 
+                FileModel model = new FileModel(fileEntry, database.UserProfiles.Find(fileEntry.UploaderId).DisplayName);
+
                 if (fileEntry.FileType == (int)FileType.Document)
                 {
                     if (Path.GetExtension(fileEntry.FileName) == ".pdf")
@@ -344,12 +346,9 @@ namespace band.Content
                     }
                     else
                     {
-                        ViewBag.ErrorMessage = "Unsupported filetype";
-                        return View("Error");
+                        return View("File", model);
                     }
                 }
-
-                FileModel model = new FileModel(fileEntry, database.UserProfiles.Find(fileEntry.UploaderId).DisplayName);
 
                 if (fileEntry.FileType == (int)FileType.File)
                 {
