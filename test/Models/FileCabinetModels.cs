@@ -117,16 +117,18 @@ namespace test.Models.FileCabinet
     public class FileGroupModel
     {
         public FileGroupModel() { }
-        public FileGroupModel(int groupId, int bandId, string groupName)
+        public FileGroupModel(int groupId, int bandId, string groupName, int filesCount)
         {
             this.GroupId = groupId;
             this.BandId = bandId;
             this.GroupName = groupName;
+            this.FilesCount = filesCount;
         }
 
         public int GroupId { get; set; }
         public int BandId { get; set; }
         public string GroupName { get; set; }
+        public int FilesCount { get; set; }
     }
 
     public class UploadFileModel

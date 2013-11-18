@@ -191,10 +191,25 @@ namespace band.Content
             {
                 List<FileGroup> groups = database.FileGroups.Where(g => g.BandId == bandId).ToList();
 
+                //var results = from g in database.FileGroups
+                //              join e in database.FileEntries
+                //              on g.GroupId equals e.GroupId
+                //              into joined
+                //              where joined.
+                //              orderby joined.Count() descending, g.GroupName descending
+                //              select new
+                //              {
+                //                  g.GroupId,
+                //                  g.GroupName,
+                //                  g.BandId,
+                //                  FilesCount = joined.Count()
+                //              };
+
+
                 List<FileGroupModel> models = new List<FileGroupModel>();
-                foreach (var group in groups)
+                foreach (var result in groups)
                 {
-                    FileGroupModel model = new FileGroupModel(group.GroupId, group.BandId, group.GroupName);
+                    FileGroupModel model = new FileGroupModel(result.GroupId, result.BandId, result.GroupName, 0);
                     models.Add(model);
                 }
 

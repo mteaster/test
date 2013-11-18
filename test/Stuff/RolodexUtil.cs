@@ -6,9 +6,9 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
 
-namespace test.Stuff
+namespace MvcHtmlHelpers
 {
-    public static class RolodexUtil
+    public static class HtmlHelperExtensions
     {
 
 

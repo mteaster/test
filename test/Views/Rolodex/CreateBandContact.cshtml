@@ -41,6 +41,9 @@
                 @Html.LabelFor(m => m.PrimaryPeopleContactId)
                 @Html.DropDownListFor(m => m.PrimaryPeopleContactId, (List<SelectListItem>) band.Controllers.RolodexController.GetSelectList(ViewBag.BandId, "Band"), "N/A")
             </li>
+            <li>
+                @Html.DropDownListFor( m => m.SkillLevel, (List<SelectListItem>) band.Controllers.RolodexController.GetBandSkillList())
+            </li>
         </ol>
         <input type="submit" value="Save" />
     </fieldset>
