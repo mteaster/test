@@ -35,13 +35,6 @@ namespace test
             );
 
             routes.MapRoute(
-                name: "Download People Avatar",
-                url: "Rolodex/DownloadPeopleAvatar/{contactId}",
-                defaults: new { controller = "Rolodex", action = "DownloadPeopleAvatar" },
-                constraints: new { contactId = @"\d+" }
-            );
-
-            routes.MapRoute(
                 name: "Upload Contact Avatar",
                 url: "Rolodex/UploadAvatar/{contactId}/{contactType}",
                 defaults: new { controller = "Rolodex", action = "UploadAvatar" },
