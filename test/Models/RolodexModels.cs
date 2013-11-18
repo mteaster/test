@@ -139,10 +139,9 @@ namespace test.Models.Rolodex
         [Display(Name = "Picture")]
         public string Picture { get; set; }
 
-        public enum StageSize { Tiny, Small, Average, Big, Huge }
 
         [Display(Name = "Stage Size")]
-        public StageSize StageSizeValue { get; set; }
+        public int? StageSizeValue { get; set; }
 
         public int? PrimaryPeopleContactId { get; set; }
 
