@@ -710,11 +710,19 @@ section.half
 div.file
 {
     border: 1px solid #C3C3C3;
-    list-style-type: none;
     padding: 12px;
     margin-bottom: 20px;
     background: white;   
 }
+
+div.text-file
+{
+    border: 1px solid #C3C3C3;
+    padding: 12px;
+    background: white;   
+    width: auto;
+}
+
 ol.groups
 {
     padding: 0;
