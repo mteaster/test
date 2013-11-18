@@ -6,8 +6,8 @@
 <span>Uploaded at @Model.ModifiedTime.ToString()</span>
 <span>@Model.FileDescription</span>
 
-<br />
-
 @Html.ActionLink("Download", "DownloadFile", new { fileId = Model.FileId })
 @Html.ActionLink("Delete", "DeleteFile", new { fileId = Model.FileId })
 @Html.ActionLink("Back to group", "Files", new { groupId = Model.GroupId })
+
+<br />
