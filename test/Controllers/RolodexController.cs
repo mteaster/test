@@ -583,10 +583,10 @@ namespace band.Controllers
                         bandId = database.BandContacts.Find(contactId).BandId;
                         break;
                     case ContactType.People:
-                        bandId = database.BandContacts.Find(contactId).BandId;
+                        bandId = database.PeopleContacts.Find(contactId).BandId;
                         break;
                     case ContactType.Venue:
-                        bandId = database.BandContacts.Find(contactId).BandId;
+                        bandId = database.VenueContacts.Find(contactId).BandId;
                         break;
                     default:
                         return View("Error");
