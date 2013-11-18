@@ -201,7 +201,7 @@ namespace band.Content
                                   GroupId = grouped.Key.GroupId,
                                   GroupName = grouped.Key.GroupName,
                                   BandId = grouped.Key.BandId,
-                                  FilesCount = grouped.Count()
+                                  FilesCount = grouped.Count(x => x.FileId != null)
                               };
 
                 List<FileGroupModel> models = new List<FileGroupModel>();
