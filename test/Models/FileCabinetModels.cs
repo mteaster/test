@@ -137,6 +137,7 @@ namespace test.Models.FileCabinet
     public class FileModel
     {
         public int FileId { get; set; }
+        public string FileDescription { get; set; }
         public string FileName { get; set; }
         public string ContentType { get; set; } 
     }
@@ -144,6 +145,7 @@ namespace test.Models.FileCabinet
     public class TextFileModel
     {
         public int FileId { get; set; }
+        public string FileDescription { get; set; }
         public string FileName { get; set; }
         public string Content { get; set; }
     }

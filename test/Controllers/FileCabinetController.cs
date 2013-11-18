@@ -359,6 +359,7 @@ namespace band.Content
                 {
                     string path = Server.MapPath("~/App_Data/" + fileEntry.BandId + "/" + fileId);
                     TextFileModel textFileModel = new TextFileModel();
+                    textFileModel.FileDescription = fileEntry.FileDescription;
                     textFileModel.FileId = fileEntry.FileId;
                     textFileModel.FileName = fileEntry.FileName;
                     using (StreamReader stream = new StreamReader(path))
@@ -372,6 +373,7 @@ namespace band.Content
                 // roll into a constructor
                 FileModel fileModel = new FileModel();
                 fileModel.FileId = fileEntry.FileId;
+                fileModel.FileDescription = fileEntry.FileDescription;
                 fileModel.FileName = fileEntry.FileName;
                 fileModel.ContentType = Path.GetExtension(fileEntry.FileName).Replace(".", "");
                 string viewName = ((FileType)fileEntry.FileType).ToString();

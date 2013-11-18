@@ -1,8 +1,9 @@
 ﻿@model test.Models.FileCabinet.TextFileModel
 
-@{
-    ViewBag.Title = "View File";
-}
+<span>Model.FileDescription</span>
+
+@Html.ActionLink("Download", "DownloadFile", new { fileId = Model.FileId });
+@Html.ActionLink("Delete", "DeleteFile", new { fileId = Model.FileId });
 
 <h2>@Model.FileName</h2>
 
