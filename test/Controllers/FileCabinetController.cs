@@ -354,6 +354,12 @@ namespace band.Content
 
                 FileModel model = new FileModel(fileEntry, database.UserProfiles.Find(fileEntry.UploaderId).DisplayName);
 
+                if(!System.IO.File.Exists(Server.MapPath("~/App_Data/" + fileEntry.BandId + "/" + fileId)))
+                {
+                    ViewBag.ErrorMessage = "We couldn't find the file.";
+                    return View("Error");
+                }
+
                 if (fileEntry.FileType == (int)FileType.Document || fileEntry.FileType == (int)FileType.File)
                 {
                     if (Path.GetExtension(fileEntry.FileName) == ".pdf")
