@@ -52,7 +52,12 @@ namespace band.Controllers
 
         [HttpPost]
         public ActionResult CreateBandContact(BandContact bandContact, int bandId)
-        {  
+        {
+            if (!BandUtil.Authenticate(bandId, this))
+            {
+                return View("Error");
+            }
+
             if (ModelState.IsValid)
             {
                using (DatabaseContext database = new DatabaseContext())
@@ -61,9 +66,11 @@ namespace band.Controllers
                     database.BandContacts.Add(bandContact);
                     database.SaveChanges();
                }
+
+               return RedirectToAction("CreateContact", "Rolodex", new { BandId = bandId });
             }
-        
-            return RedirectToAction("CreateContact", "Rolodex", new { BandId = bandId});
+
+            return View(bandContact);
         }
 
         public ActionResult CreatePersonContact(int bandId)
@@ -127,9 +134,11 @@ namespace band.Controllers
                     database.VenueContacts.Add(venueContact);
                     database.SaveChanges();
                 }
+
+                return RedirectToAction("CreateContact", "Rolodex", new { BandId = bandId });
             }
-           
-            return RedirectToAction("CreateContact", "Rolodex", new { BandId = bandId });
+
+            return View(venueContact);
         }
 
         [ActionName("RolodexList")]
