@@ -32,6 +32,8 @@
 
 <section class="half">
     <h2>Make a new group</h2>
+    <p class="message-success">@ViewBag.OtherSuccessMessage</p>
+    <p class="message-error">@ViewBag.OtherErrorMessage</p>
 
     <form action="/FileCabinet/@ViewBag.BandId/CreateGroup" method="post">
       <label for="groupName">Group name:</label>

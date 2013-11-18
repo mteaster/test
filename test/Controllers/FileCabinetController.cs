@@ -29,6 +29,9 @@ namespace band.Content
             ViewBag.SuccessMessage = TempData["SuccessMessage"];
             ViewBag.ErrorMessage = TempData["ErrorMessage"];
 
+            ViewBag.SuccessMessage = TempData["OtherSuccessMessage"];
+            ViewBag.ErrorMessage = TempData["OtherErrorMessage"];
+
             return View();
         }
 
@@ -57,7 +60,7 @@ namespace band.Content
             {
                 if (database.FileGroups.Where(f => f.BandId == bandId && f.GroupName == groupName).Any())
                 {
-                    TempData["ErrorMessage"] = groupName + " already exists.";
+                    TempData["OtherErrorMessage"] = groupName + " already exists.";
                 }
                 else
                 {
@@ -67,7 +70,7 @@ namespace band.Content
                     database.FileGroups.Add(fileGroup);
                     database.SaveChanges();
 
-                    TempData["SuccessMessage"] = groupName + " created.";
+                    TempData["OtherSuccessMessage"] = groupName + " created.";
                 }
 
                 return RedirectToLocal(Request.UrlReferrer.AbsolutePath);
