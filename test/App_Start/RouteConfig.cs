@@ -21,6 +21,20 @@ namespace test
             );
 
             routes.MapRoute(
+                name: "Download Band Avatar",
+                url: "Rolodex/DownloadVenueAvatar/{contactId}",
+                defaults: new { controller = "Rolodex", action = "DownloadVenueAvatar" },
+                constraints: new { contactId = @"\d+" }
+            );
+
+            routes.MapRoute(
+                name: "Download People Avatar",
+                url: "Rolodex/DownloadPeopleAvatar/{contactId}",
+                defaults: new { controller = "Rolodex", action = "DownloadPeopleAvatar" },
+                constraints: new { contactId = @"\d+" }
+            );
+
+            routes.MapRoute(
                 name: "Download Venue Avatar",
                 url: "Rolodex/DownloadVenueAvatar/{contactId}",
                 defaults: new { controller = "Rolodex", action = "DownloadVenueAvatar" },
