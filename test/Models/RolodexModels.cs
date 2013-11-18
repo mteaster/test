@@ -58,15 +58,15 @@ namespace test.Models.Rolodex
 
         public int? PrimaryPeopleContactId { get; set; }
 
-        public enum Skill { Bad, Poor, OK, Good, Awesome}
+        //public enum Skill { Bad, Poor, OK, Good, Awesome}
 
         [Display(Name = "Skill Level")]
-        public Skill SkillLevel { get; set; }
+        public int? SkillLevel { get; set; }
 
-        public enum Popularity { Unknown, Friends, Moderate, Popular, Famous }
+        //public enum Popularity { Unknown, Friends, Moderate, Popular, Famous }
 
         [Display(Name = "Popularity Level")]
-        public Popularity PopularityLevel { get; set; }
+        public int? PopularityLevel { get; set; }
 
         [Display(Name = "Notes")]
         public string Notes { get; set; }
