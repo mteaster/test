@@ -12,7 +12,7 @@
 <p class="message-success">@ViewBag.SuccessMessage</p>
 <p class="message-error">@ViewBag.ErrorMessage</p>
 
-@Html.ActionLink("Upload", "UploadFile", new { bandId = ViewBag.BandId, groupId = ViewBag.GroupId })
+@Html.ActionLink("Upload", "UploadFile", new { groupId = ViewBag.GroupId })
 
 <div ng-app="sortable" ng-controller="SortableController" ng-init="init('/FileCabinet/GetFiles/@ViewBag.GroupId')">
     <table class="pretty" border="0" cellpadding="0" cellspacing="0">

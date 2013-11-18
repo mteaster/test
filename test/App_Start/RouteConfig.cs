@@ -35,7 +35,7 @@ namespace test
             );
 
             routes.MapRoute(
-                name: "Upload avatar",
+                name: "Upload Contact Avatar",
                 url: "Rolodex/UploadAvatar/{contactId}/{contactType}",
                 defaults: new { controller = "Rolodex", action = "UploadAvatar" },
                 constraints: new { contactId = @"\d+" }
@@ -46,6 +46,20 @@ namespace test
                 url: "FileCabinet/{bandId}/CreateGroup",
                 defaults: new { controller = "FileCabinet", action = "CreateGroup" },
                 constraints: new { bandId = @"\d+" }
+            );
+
+            routes.MapRoute(
+                name: "Download File",
+                url: "FileCabinet/DownloadFile/{fileId}",
+                defaults: new { controller = "FileCabinet", action = "DownloadFile" },
+                constraints: new { fileId = @"\d+" }
+            );
+
+            routes.MapRoute(
+                name: "Upload File",
+                url: "FileCabinet/UploadFile/{groupId}",
+                defaults: new { controller = "FileCabinet", action = "UploadFile" },
+                constraints: new { groupId = @"\d+" }
             );
 
             routes.MapRoute(
