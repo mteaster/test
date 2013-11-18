@@ -567,9 +567,9 @@ namespace band.Controllers
         [HttpPost]
         public ActionResult UploadAvatar(int contactId, ContactType contactType, HttpPostedFileBase file)
         {
-            if (file.ContentLength <= 0 || file.ContentLength > 1048576)
+            if (file.ContentLength <= 0 || file.ContentLength > 52428800)
             {
-                ViewBag.ErrorMessage = "file sucks";
+                ViewBag.ErrorMessage = "Something was wrong with the avatar you uploaded.";
                 return View("Error");
             }
 
@@ -583,10 +583,10 @@ namespace band.Controllers
                         bandId = database.BandContacts.Find(contactId).BandId;
                         break;
                     case ContactType.People:
-                        bandId = database.BandContacts.Find(contactId).BandId;
+                        bandId = database.PeopleContacts.Find(contactId).BandId;
                         break;
                     case ContactType.Venue:
-                        bandId = database.BandContacts.Find(contactId).BandId;
+                        bandId = database.VenueContacts.Find(contactId).BandId;
                         break;
                     default:
                         return View("Error");
