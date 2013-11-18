@@ -13,13 +13,15 @@
 <p class="message-error">@ViewBag.ErrorMessage</p>
 
 <h2>@Model.Date.ToString("D")</h2>
+
+@Html.ActionLink("Add event", "AddEvent", "Calendar", new { bandId = ViewBag.BandId, day = ViewBag.Day, month = ViewBag.Month, year = ViewBag.Year }, null)
 @Html.ActionLink("Back to Monthly View", "Month", new { bandId = ViewBag.BandId, month = Model.Date.Month, year = Model.Date.Year })
 
 <br />
 
 @if (!Model.Events.Any())
 {
-    <span>No events found</span>
+    <h2>No events</h2>
 }
 else
 {   
@@ -47,6 +49,4 @@ else
     </table>
 }
 
-<br />                   
-
-@Html.ActionLink("Add event", "AddEvent", "Calendar", new { bandId = ViewBag.BandId, day = ViewBag.Day, month = ViewBag.Month, year = ViewBag.Year }, null)
+<br />
