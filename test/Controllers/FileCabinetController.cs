@@ -195,14 +195,15 @@ namespace band.Content
                               join e in database.FileEntries
                               on g.GroupId equals e.GroupId
                               into joined
-                              group joined by new { g.GroupId, g.GroupName, g.BandId } into grouped
+                              orderby joined.Count() descending, g.GroupName descending
                               select new
                               {
-                                  GroupId = grouped.Key.GroupId,
-                                  GroupName = grouped.Key.GroupName,
-                                  BandId = grouped.Key.BandId,
-                                  FilesCount = grouped.Count(x => x.FileId != null)
+                                  g.GroupId,
+                                  g.GroupName,
+                                  g.BandId,
+                                  FilesCount = joined.Count()
                               };
+
 
                 List<FileGroupModel> models = new List<FileGroupModel>();
                 foreach (var result in results)
