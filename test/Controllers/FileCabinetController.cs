@@ -305,7 +305,7 @@ namespace band.Content
                 database.SaveChanges();
 
                 TempData["SuccessMessage"] = fileEntry.FileName + " deleted.";
-                return RedirectToLocal(Request.UrlReferrer.AbsolutePath);
+                return RedirectToAction("Files", new { groupId = fileEntry.GroupId });
             }
         }
 
