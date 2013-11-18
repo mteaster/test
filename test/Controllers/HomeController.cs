@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
+using test.Filters;
 using test.Models;
 using test.Models.Test;
 using test.Stuff;
@@ -82,7 +83,14 @@ namespace test.Controllers
             return View("Success");
         }
 
+        [PerformanceFilter]
+        public ActionResult Iterate()
+        {
+            for(int i = 0; i < 100000; i++);
 
+            ViewBag.SuccessMessage = "Iterated!";
+            return View("Success");
+        }
 
         public ActionResult Test()
         {
