@@ -242,9 +242,7 @@ namespace band.Content
 
                 string fileName = Path.GetFileName(model.File.FileName);
 
-                if (database.FileEntries.Where(f => f.BandId == bandId
-                                        && f.GroupId == groupId
-                                        && f.FileName == fileName).Any())
+                if (database.FileEntries.Where(f => f.GroupId == groupId && f.FileName == fileName).Any())
                 {
                     ViewBag.ErrorMessage = "file already exists";
                     return View("Error");
