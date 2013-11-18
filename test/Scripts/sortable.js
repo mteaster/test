@@ -2,12 +2,10 @@ var sortableApp = angular.module("sortable", []);
 
 sortableApp.controller('SortableController', function FilesController($scope, $http)
 {
-    $scope.loaded = false;
     $scope.data = [];
 
     $scope.init = function (url)
     {
-        $scope.loaded = true;
         $http({ method: 'GET', url: url }).success(function (data) { $scope.data = data; });
     };
 

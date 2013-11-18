@@ -674,6 +674,11 @@ tr.pager td
 
 /* MIKE'S CSS ADDITIONS */
 
+.ng-cloak 
+{ 
+    display:none;
+}
+
 a.right
 {
     float: right;    

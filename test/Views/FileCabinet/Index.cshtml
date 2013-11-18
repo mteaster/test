@@ -14,7 +14,7 @@
     <p class="message-error">@ViewBag.ErrorMessage</p>
 
     <div ng-app="sortable" ng-controller="SortableController" ng-init="init('/FileCabinet/GetGroups/@ViewBag.BandId')">
-        <table ng-show="loaded" class="pretty" border="0" cellpadding="0" cellspacing="0">
+        <table ng-cloak class="pretty" border="0" cellpadding="0" cellspacing="0">
             <tr>
                 <th ng-click="sort('GroupId')">Group ID</th>
                 <th ng-click="sort('GroupName')">Name</th>
