@@ -707,6 +707,14 @@ section.half
 
 /* file cabinet stuff */
 
+div.file
+{
+    border: 1px solid #C3C3C3;
+    list-style-type: none;
+    padding: 12px;
+    margin-bottom: 20px;
+    background: white;   
+}
 ol.groups
 {
     padding: 0;
