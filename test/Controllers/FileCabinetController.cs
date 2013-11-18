@@ -347,18 +347,18 @@ namespace band.Content
             {
                 FileEntry fileEntry = database.FileEntries.Find(fileId);
 
+                if (fileEntry == null)
+                {
+                    ViewBag.ErrorMessage = "We couldn't find the file.";
+                    return View("Error");
+                }
+
                 if (!BandUtil.Authenticate(fileEntry.BandId, this))
                 {
                     return View("Error");
                 }
 
                 FileModel model = new FileModel(fileEntry, database.UserProfiles.Find(fileEntry.UploaderId).DisplayName);
-
-                if(!System.IO.File.Exists(Server.MapPath("~/App_Data/" + fileEntry.BandId + "/" + fileId)))
-                {
-                    ViewBag.ErrorMessage = "We couldn't find the file.";
-                    return View("Error");
-                }
 
                 if (fileEntry.FileType == (int)FileType.Document || fileEntry.FileType == (int)FileType.File)
                 {
