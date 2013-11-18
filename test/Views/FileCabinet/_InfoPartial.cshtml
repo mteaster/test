@@ -8,8 +8,8 @@
 <div class="file">
     <h2>@Model.FileName</h2>
 
-    <span class="info">Uploaded by <strong>@Model.UploaderName</strong> on @Model.ModifiedTime.ToString("M") at @Model.ModifiedTime.ToString("T")</span><br />
-    <span>@Model.FileDescription</span>
+    <span class="info">Uploaded by <strong>@Model.UploaderName</strong> on <strong>@Model.ModifiedTime.ToString("M")</strong> at <strong>@Model.ModifiedTime.ToString("T")</strong></span><br />
+    <p>@Model.FileDescription</p>
     <br />
     @Html.ActionLink("Download", "DownloadFile", new { fileId = Model.FileId })
     @Html.ActionLink("Delete", "DeleteFile", new { fileId = Model.FileId })
