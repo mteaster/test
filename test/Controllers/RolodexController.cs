@@ -80,6 +80,11 @@ namespace band.Controllers
         [HttpPost]
         public ActionResult CreatePersonContact(PeopleContact peopleContact, int bandId)
         {
+            if (!BandUtil.Authenticate(bandId, this))
+            {
+                return View("Error");
+            }
+
             if (ModelState.IsValid)
             {
                 using (DatabaseContext database = new DatabaseContext())
