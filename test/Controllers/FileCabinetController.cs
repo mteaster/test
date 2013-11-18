@@ -29,8 +29,8 @@ namespace band.Content
             ViewBag.SuccessMessage = TempData["SuccessMessage"];
             ViewBag.ErrorMessage = TempData["ErrorMessage"];
 
-            ViewBag.SuccessMessage = TempData["OtherSuccessMessage"];
-            ViewBag.ErrorMessage = TempData["OtherErrorMessage"];
+            ViewBag.OtherSuccessMessage = TempData["OtherSuccessMessage"];
+            ViewBag.OtherErrorMessage = TempData["OtherErrorMessage"];
 
             return View();
         }

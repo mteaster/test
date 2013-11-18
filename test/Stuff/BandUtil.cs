@@ -48,13 +48,13 @@ namespace test.Stuff
 
                 if (profile == null)
                 {
-                    controller.ViewBag.ErrorMessage = "THE BAND DOESN'T EXIST, IDIOT";
+                    controller.ViewBag.ErrorMessage = "We couldn't find a band with that id.";
                     return false;
                 }
 
                 if (database.BandMemberships.Find(bandId, WebSecurity.CurrentUserId) == null && !Roles.IsUserInRole("Administrator"))
                 {
-                    controller.ViewBag.ErrorMessage = "YOU'RE NOT IN THIS BAND, IDIOT";
+                    controller.ViewBag.ErrorMessage = "You must be a member of this band to access its content.";
                     return false;
                 }
 
