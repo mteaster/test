@@ -338,7 +338,7 @@ namespace band.Content
 
                 FileModel model = new FileModel(fileEntry, database.UserProfiles.Find(fileEntry.UploaderId).DisplayName);
 
-                if (fileEntry.FileType == (int)FileType.Document)
+                if (fileEntry.FileType == (int)FileType.Document || fileEntry.FileType == (int)FileType.File)
                 {
                     if (Path.GetExtension(fileEntry.FileName) == ".pdf")
                     {
@@ -348,11 +348,6 @@ namespace band.Content
                     {
                         return View("File", model);
                     }
-                }
-
-                if (fileEntry.FileType == (int)FileType.File)
-                {
-                    return View("File", model);
                 }
 
                 if (fileEntry.FileType == (int)FileType.Text)
