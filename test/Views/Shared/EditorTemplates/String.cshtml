@@ -1,7 +1,7 @@
-﻿@using test.Stuff.RolodexUtil
+﻿@using test.Stuff
  
 @{
     var type = Nullable.GetUnderlyingType(ViewData.ModelMetadata.ModelType) ?? ViewData.ModelMetadata.ModelType;
  
-    @(typeof (Enum).IsAssignableFrom(type) ? Html.EnumDropDownListFor(x => x) : Html.TextBoxFor(x => x))
+    @(typeof (Enum).IsAssignableFrom(type) ? RolodexUtil.EnumDropDownListFor(x => x) : Html.TextBoxFor(x => x))
 }
