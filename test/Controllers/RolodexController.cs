@@ -630,9 +630,9 @@ namespace band.Controllers
                 return File(Server.MapPath("~/App_Data/UserAvatars/default.jpg"), "image/jpeg");
             }
         }
-        public ActionResult DownloadVenueAvatar(int bandId)
+        public ActionResult DownloadVenueAvatar(int contactId)
         {
-            string path = Server.MapPath("~/App_Data/VenueContactAvatars/" + bandId + ".jpg");
+            string path = Server.MapPath("~/App_Data/VenueContactAvatars/" + contactId + ".jpg");
 
             if (System.IO.File.Exists(path))
             {
