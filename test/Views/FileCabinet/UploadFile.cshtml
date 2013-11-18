@@ -7,7 +7,7 @@
 <p class="message-success">@ViewBag.SuccessMessage</p>
 <p class="message-error">@ViewBag.ErrorMessage</p>
 
-@using (Html.BeginForm("UploadFile", "FileCabinet", new { bandId = ViewBag.BandId, groupId = ViewBag.GroupId }, FormMethod.Post, new { enctype = "multipart/form-data" } ))
+@using (Html.BeginForm("UploadFile", "FileCabinet", new { groupId = ViewBag.GroupId }, FormMethod.Post, new { enctype = "multipart/form-data" } ))
 {
     @Html.LabelFor(model => model.File)
     <input type="file" name="File" id="File" />
