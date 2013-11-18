@@ -209,7 +209,7 @@ namespace band.Content
                 List<FileGroupModel> models = new List<FileGroupModel>();
                 foreach (var result in groups)
                 {
-                    FileGroupModel model = new FileGroupModel(result.GroupId, result.BandId, result.GroupName, result.FilesCount);
+                    FileGroupModel model = new FileGroupModel(result.GroupId, result.BandId, result.GroupName, 0);
                     models.Add(model);
                 }
 
