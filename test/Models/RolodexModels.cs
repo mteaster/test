@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace test.Models.Rolodex
-{s
+{
     public enum ContactType { Band, People, Venue }
 
     // This class is used to generalize results from the database for band, people, and venue records
