@@ -57,8 +57,8 @@
                 @Html.TextBoxFor(m => m.Notes)
             </li>
             <li>
-                @Html.LabelFor(m => m.PrimaryPeopleContactId)
-                @Html.DropDownListFor(m => m.PrimaryPeopleContactId, (List<SelectListItem>) band.Controllers.RolodexController.GetSelectList(ViewBag.BandId, "Venue"), "N/A")
+                @Html.LabelFor(m => m.StageSizeValue)
+                @Html.EditorFor(m => m.StageSizeValue)
             </li>
             <li>
                 @Html.LabelFor(m => m.PrimaryPeopleContactId)
