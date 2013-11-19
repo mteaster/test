@@ -706,5 +706,16 @@ namespace band.Controllers
 
             return returnValue;
         }
+        public static List<SelectListItem> GetStageSizeList()
+        {
+            List<SelectListItem> returnValue = new List<SelectListItem>();
+
+            returnValue.Add(new SelectListItem() { Text = "Tiny", Value = "1" });
+            returnValue.Add(new SelectListItem() { Text = "Small", Value = "2" });
+            returnValue.Add(new SelectListItem() { Text = "Average", Value = "3" });
+            returnValue.Add(new SelectListItem() { Text = "Big", Value = "4" });
+            returnValue.Add(new SelectListItem() { Text = "Huge", Value = "5" });
+            return returnValue;
+        }
     }
 }
