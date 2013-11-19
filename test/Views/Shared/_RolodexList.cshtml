@@ -33,17 +33,17 @@
                 @if (contact.Type == test.Models.Rolodex.ContactType.Venue)
                 {
                     <td style="padding:15px"><img alt="" src="@Url.Action("DownloadVenueAvatar", new { contactId = contact.ContactId })" height="100" width="100" class="photo" /></td>
-                    <td style="width:50%; text-align:left; font-weight:bold;">@Html.DisplayFor(ModelItem => contact.Name)</td>
+                    <td style=" text-align:left; font-weight:bold;">@Html.DisplayFor(ModelItem => contact.Name)</td>
                 }     
                 @if (contact.Type == test.Models.Rolodex.ContactType.Band)
                 {
                     <td style="padding:15px"><img alt="" src="@Url.Action("DownloadBandAvatar", new { contactId = contact.ContactId })" height="100" width="100" class="photo" /></td>
-                    <td style="width:50%; text-align:left; font-weight:bold;">@Html.DisplayFor(ModelItem => contact.Name)</td>
+                    <td style=" text-align:left; font-weight:bold;">@Html.DisplayFor(ModelItem => contact.Name)</td>
                 }
                 @if (contact.Type == test.Models.Rolodex.ContactType.People)
                 {
                     <td style="padding:15px"><img alt="" src="@Url.Action("DownloadPeopleAvatar", new { contactId = contact.ContactId })" height="100" width="100" class="photo" /></td>
-                    <td style="width:50%; text-align:left; font-weight:bold;">@Html.DisplayFor(ModelItem => contact.Name)</td>
+                    <td style=" text-align:left; font-weight:bold;">@Html.DisplayFor(ModelItem => contact.Name)</td>
                 }    
                 <td/>
                 <td/>     
