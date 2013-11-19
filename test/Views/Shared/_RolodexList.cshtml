@@ -47,16 +47,20 @@
                 }    
             </tr>
             <tr>
-                <td style="width:100%; padding-left:15px;">@Html.DisplayFor(ModelItem => contact.Type)</td>
+                <td style=" padding-left:15px;">@Html.DisplayFor(ModelItem => contact.Type)</td>
+                <td/>
             </tr>
             <tr>
-                <td style="width:100%; padding-left:15px;">Phone number: @Html.DisplayFor(ModelItem => contact.PhoneNumber)</td>
+                <td style="padding-left:15px;">Phone number: @Html.DisplayFor(ModelItem => contact.PhoneNumber)</td>
+                <td/>
             </tr>
             <tr>
-                <td style="width:100%; padding-left:15px;">Email: @Html.DisplayFor(ModelItem => contact.Email)</td>
+                <td style="padding-left:15px;">Email: @Html.DisplayFor(ModelItem => contact.Email)</td>
+                <td/>
             </tr>
             <tr>
-                <td style="width:100%; padding-left:15px;">@Html.ActionLink("View/Edit", "EditContact", new {bandId = ViewBag.BandId, contactId = contact.ContactId, type = contact.Type})</td>
+                <td style="padding-left:15px;">@Html.ActionLink("View/Edit", "EditContact", new {bandId = ViewBag.BandId, contactId = contact.ContactId, type = contact.Type})</td>
+                <td/>
             </tr>
         </table>
         <br>
