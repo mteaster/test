@@ -39,7 +39,7 @@ namespace test.Models.Budget
         [Display(Name = "Amount")]
         public decimal Amount { get; set; }
 
-        [Display(Name = "Date")]
+        [Display(Name = "Date (mm/dd/yyyy)")]
         public DateTime Date { get; set; }
 
         [Display(Name = "Category")]
@@ -69,7 +69,8 @@ namespace test.Models.Budget
         [Display(Name = "Amount")]
         public decimal Amount { get; set; }
 
-        [Display(Name = "Date")]
+        [Display(Name = "Date (mm/dd/yyyy)")]
+        [RegularExpression(@"(\d)+('/')+(\d)+('/)+(\d)+", ErrorMessage = "Date must be in the form of (mm/dd/yyyy)")]
         public DateTime Date { get; set; }
 
         [Display(Name = "Category")]

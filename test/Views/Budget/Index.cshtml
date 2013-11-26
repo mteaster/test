@@ -1,8 +1,27 @@
-﻿@{
+﻿@model test.Models.Budget.AccountReceivables
+
+@{
     ViewBag.Title = "Index";
 }
 
 @section featured 
 {
     @Html.Partial("_BandHeaderPartial")
+}
+
+@using (Html.BeginForm("Index", "Budget", new { bandId = ViewBag.BandId }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <fieldset>
+        <legend>Registration Form</legend>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.Date)
+                @Html.TextBoxFor(m => m.Date)
+            </li>
+        </ol>
+        <input type="submit" value="Save" />
+    </fieldset>
 }
