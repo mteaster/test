@@ -9,7 +9,7 @@
     @Html.Partial("_BandHeaderPartial")
 }
 
-@using (Html.BeginForm("Index", "Budget", new { bandId = ViewBag.BandId }))
+@using (Html.BeginForm("Index", "Budget"))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
