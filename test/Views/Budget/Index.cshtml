@@ -1,15 +1,12 @@
 ﻿@model test.Models.Budget.AccountReceivables
 
-@{
-    ViewBag.Title = "Index";
-}
 
 @section featured 
 {
     @Html.Partial("_BandHeaderPartial")
 }
 
-@using (Html.BeginForm("Index", "Budget"))
+@using (Html.BeginForm("Index", "Budget", new { bandId = ViewBag.BandId }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
