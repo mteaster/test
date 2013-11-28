@@ -800,6 +800,11 @@ div.post-info
     display: table-cell;
 }
 
+div.post-message
+{
+    width:100%;
+}
+
 span.post-time
 {
     font-weight: normal;
