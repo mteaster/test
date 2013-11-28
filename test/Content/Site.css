@@ -497,16 +497,9 @@ input, textarea
 textarea
 {
     font-family: inherit;
-    width: inherit;
+    width: auto;
 }
 
-text-box-edit
-{
-    width:50%;
-    padding:0px;
-    border:none;
-    resize:none;
-}
 
     input:focus, textarea:focus
     {
