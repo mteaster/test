@@ -497,7 +497,7 @@ input, textarea
 textarea
 {
     font-family: inherit;
-    width: 75%;
+    width: 100%;
     resize: none;
 }
 
