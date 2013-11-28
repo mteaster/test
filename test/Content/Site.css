@@ -499,6 +499,7 @@ textarea
     font-family: inherit;
     width: 100%;
     resize: none;
+    padding:3px;
 }
 
 
