@@ -8,7 +8,9 @@
 
     <fieldset>
         <legend>Post Message Form</legend>
-        @Html.EditorFor(model => model.Content)
+        <div class="post-info">  
+            <span>@Html.EditorFor(model => model.Content)</span>
+        </div>
         <br />
         <input type="submit" value="Post" />
     </fieldset>
