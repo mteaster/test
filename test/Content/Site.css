@@ -372,7 +372,7 @@ aside
     aside ul
     {
         list-style: none;
-        padding: 0;
+        padding-bottom: 200px;
     }
 
         aside ul li
@@ -955,7 +955,6 @@ li.right
     {
         float: none;
         width: 100%;
-        padding-bottom:200px;
     }
 
     /* ordered list */
