@@ -8,9 +8,9 @@
 
     <fieldset>
         <legend>Post Message Form</legend>
-        <div>  
-            @Html.EditorFor(model => model.Content, new { cols = "100%", style = "width:250px;resize:none" })
-        </div>
+         
+        @Html.EditorFor(model => model.Content, new { cols = "100%", style = "width:250px;resize:none" })
+    
         <br />
         <input type="submit" value="Post" />
     </fieldset>
