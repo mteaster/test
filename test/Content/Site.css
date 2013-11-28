@@ -802,7 +802,7 @@ div.post-info
 
 div.post-message
 {
-    width:100%;
+    column-span:inherit;
 }
 
 span.post-time
