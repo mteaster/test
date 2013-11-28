@@ -805,6 +805,7 @@ div.post-message
     width:50%;
     padding:0px;
     border:none;
+    resize:inherit;
 }
 
 span.post-time
