@@ -18,18 +18,17 @@
     <p class="message-success">@ViewBag.SuccessMessage</p>
     <p class="message-error">@ViewBag.ErrorMessage</p>
 
-    <div>
-        @Html.Partial("_PostMessagePartial", new ViewDataDictionary(ViewData) { Model = Model.PostMessageModel } )
-        @Html.Partial("_DisplayMessagesPartial", new ViewDataDictionary(ViewData) { Model = Model.DisplayMessagesModel } )
-    </div>
+    @Html.Partial("_PostMessagePartial", new ViewDataDictionary(ViewData) { Model = Model.PostMessageModel } )
 
-</article>
-
-<aside>
+    <aside>
     <h1>Members.</h1>
 
     @{ Html.RenderAction("Members", "Band", new { bandId = ViewBag.BandId }); }
-</aside>
+    </aside>
+
+    @Html.Partial("_DisplayMessagesPartial", new ViewDataDictionary(ViewData) { Model = Model.DisplayMessagesModel } )
+
+</article>
 
 
 @section scripts
