@@ -19,15 +19,14 @@
     <p class="message-error">@ViewBag.ErrorMessage</p>
 
     @Html.Partial("_PostMessagePartial", new ViewDataDictionary(ViewData) { Model = Model.PostMessageModel } )
+    @Html.Partial("_DisplayMessagesPartial", new ViewDataDictionary(ViewData) { Model = Model.DisplayMessagesModel } )
 </article>
 
-<aside style="bottom:auto">
+<aside>
     <h1>Members.</h1>
 
     @{ Html.RenderAction("Members", "Band", new { bandId = ViewBag.BandId }); }
 </aside>
-
-@Html.Partial("_DisplayMessagesPartial", new ViewDataDictionary(ViewData) { Model = Model.DisplayMessagesModel } )
 
 @section scripts
 {
