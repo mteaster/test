@@ -801,6 +801,9 @@ div.post-header
 div.post-info
 {
     display: table-cell;
+    margin-top:10px;
+    margin-right:10px;
+    margin-left:10px;
 }
 
 span.post-time
