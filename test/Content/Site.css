@@ -796,14 +796,14 @@ img.post-avatar
 div.post-header
 {
     margin-bottom: 10px;
+    margin-top:10px;
+    margin-right:10px;
+    margin-left:10px;
 }
 
 div.post-info
 {
     display: table-cell;
-    margin-top:10px;
-    margin-right:10px;
-    margin-left:10px;
 }
 
 span.post-time
