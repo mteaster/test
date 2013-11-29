@@ -776,7 +776,10 @@ ol.messages li
     border: 1px solid #C3C3C3;
     list-style-type: none;
     padding: 12px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    margin-top:10px;
+    margin-right:10px;
+    margin-left:10px;
     background: white;
 }
 
@@ -796,9 +799,6 @@ img.post-avatar
 div.post-header
 {
     margin-bottom: 10px;
-    margin-top:10px;
-    margin-right:10px;
-    margin-left:10px;
 }
 
 div.post-info
