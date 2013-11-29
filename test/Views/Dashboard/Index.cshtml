@@ -21,7 +21,7 @@
     @Html.Partial("_PostMessagePartial", new ViewDataDictionary(ViewData) { Model = Model.PostMessageModel } )
 </article>
 
-<aside>
+<aside style="bottom:auto">
     <h1>Members.</h1>
 
     @{ Html.RenderAction("Members", "Band", new { bandId = ViewBag.BandId }); }
