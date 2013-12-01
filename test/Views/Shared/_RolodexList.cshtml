@@ -32,6 +32,10 @@
                 <th style="width:100%; text-align:center">@Html.DisplayFor(ModelItem => contact.Name)</th>
             </tr>
             <tr>
+                @if (contact.Type == test.Models.Rolodex.ContactType.Venue)
+                {
+                    <td><img alt="" src="@Url.Action("DownloadVenueAvatar", new { contactId = ViewBag.ContactId } )" height="100" width="100" class="photo" /></td>
+                }                
                 <td>@Html.DisplayFor(ModelItem => contact.ContactId)</td>
 
                 <td>@Html.DisplayFor(ModelItem => contact.Type)</td>
