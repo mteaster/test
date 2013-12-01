@@ -34,7 +34,7 @@
             <tr>
                 @if (contact.Type == test.Models.Rolodex.ContactType.Venue)
                 {
-                    <td><img alt="" src="@Url.Action("DownloadVenueAvatar", new { contactId = ViewBag.ContactId } )" height="100" width="100" class="photo" /></td>
+                    <td><img alt="" src="@Url.Action("DownloadVenueAvatar", contact.ContactId )" height="100" width="100" class="photo" /></td>
                 }                
                 <td>@Html.DisplayFor(ModelItem => contact.ContactId)</td>
 
