@@ -1,8 +1,12 @@
 ﻿@model IEnumerable<test.Models.Rolodex.Contact>
 
 <form method="post">
+    
     <input type="text" name="searchString" />
     <ul>
+        <li style="list-style-type:none; display:inline-block;">
+            <label for="Search">Search by:</label>
+        </li>
         <li style="list-style-type:none; display:inline-block;">
             <input type="radio" name="type" value="band" style="width:auto;" checked /> Band
         </li>
@@ -16,6 +20,9 @@
     <input type="submit" value="Search" />
 </form>
 
+<label for="Contacts">Contacts:</label>
+
+<br>
 
 <table style="border:1px solid #C3C3C3;">
     @foreach (test.Models.Rolodex.Contact contact in Model)
