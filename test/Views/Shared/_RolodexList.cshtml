@@ -1,10 +1,8 @@
 ﻿@model IEnumerable<test.Models.Rolodex.Contact>
 
 <form method="post">
-    
-    <input type="text" name="searchString" />
     <ul>
-        <li style="list-style-type:none; display:inline-block;">
+        <li style="list-style-type:none; display:inline-block; float:left;">
             <label for="Search">Search by:</label>
         </li>
         <li style="list-style-type:none; display:inline-block;">
@@ -17,6 +15,7 @@
             <input type="radio" name="type" value="venue" style="width:auto;" /> Venue
         </li>
     </ul>
+    <input type="text" name="searchString" />
     <input type="submit" value="Search" />
 </form>
 
