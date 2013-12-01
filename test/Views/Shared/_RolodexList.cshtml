@@ -27,7 +27,7 @@
 
     @foreach (test.Models.Rolodex.Contact contact in Model)
     {
-        <table style="border:1px solid #C3C3C3;">
+        <table style="border:1px solid #C3C3C3; width:inherit">
             <tr>
                 <td style="width:10%;">@Html.DisplayFor(ModelItem => contact.ContactId)</td>
                 <td style="width:10%;">@Html.DisplayFor(ModelItem => contact.Name)</td>
