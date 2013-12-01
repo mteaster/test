@@ -11,12 +11,9 @@
 
 <div>@Html.ActionLink("Create Contact", "CreateContact", new { bandId = ViewBag.BandId })</div>
 
-@using (Html.BeginForm("CreateContact", "RolodexController", new { bandId = ViewBag.BandId }))    
-{
-     <div>
-         <input id="create" type="submit" value="Create Contact" />
-     </div>
-}
+<form action="/Rolodex/CreateContact/@ViewBag.BandId" method="post">
+      <input type="submit" value="Create Contact" />
+</form>
 
 <br>
 
