@@ -9,7 +9,7 @@
 
 <label for="Create">Create:</label>
 
-
+<div>@Html.ActionLink("Create Contact", "CreateContact", new { bandId = ViewBag.BandId })</div>
 
 @using (Html.BeginForm("CreateContact", "RolodexController", new { bandId = ViewBag.BandId }))    
 {
