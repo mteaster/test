@@ -29,16 +29,11 @@
     {
         <table style="border:1px solid #C3C3C3; width:inherit">
             <tr>
-                <td style="width:10%;"/>
-                <td style="width:10%;"/>
-                <td style="width:10%;"/>
-                <td style="width:10%;"/>
-                <td style="width:10%;"/>
-                <td style="width:10%;"/>
+                <th style="width:inherit;">@Html.DisplayFor(ModelItem => contact.Name)</th>
             </tr>
             <tr>
                 <td>@Html.DisplayFor(ModelItem => contact.ContactId)</td>
-                <td>@Html.DisplayFor(ModelItem => contact.Name)</td>
+                <td></td>
                 <td>@Html.DisplayFor(ModelItem => contact.Type)</td>
                 <td>@Html.DisplayFor(ModelItem => contact.PhoneNumber)</td>
                 <td>@Html.DisplayFor(ModelItem => contact.Email)</td>
