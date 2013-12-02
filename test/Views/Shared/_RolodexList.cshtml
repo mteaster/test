@@ -27,7 +27,7 @@
 
     @foreach (test.Models.Rolodex.Contact contact in Model)
     {
-        <table style="border:1px solid #C3C3C3; width:100%; background-image:url(../Images/contactBg.png);">
+        <table class="table.contact">
 
             <tr>
                 @if (contact.Type == test.Models.Rolodex.ContactType.Venue)
