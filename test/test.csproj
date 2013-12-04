@@ -171,6 +171,7 @@
     <Compile Include="Controllers\BudgetController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\FileCabinetController.cs" />
     <Compile Include="Controllers\OnlineController.cs" />
@@ -426,6 +427,10 @@
     <Content Include="Views\Budget\_AccountsPayableListPartial.cshtml" />
     <Content Include="Views\Budget\_AccountsReceivableListPartial.cshtml" />
     <Content Include="Views\Budget\MerchList.cshtml" />
+    <Content Include="Views\Test\_SearchBandPartial.cshtml" />
+    <Content Include="Views\Test\_SearchResultsPartial.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
+    <Content Include="Views\Test\Band.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
