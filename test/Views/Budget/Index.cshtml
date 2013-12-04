@@ -4,5 +4,5 @@
     @Html.Partial("_BandHeaderPartial")
 }
 
-@Html.ActionLink("Create Band Contact", "CreateBandContact", new{bandId = ViewBag.BandId})
-@Html.ActionLink("Create Person Contact", "CreatePersonContact", new{bandId = ViewBag.BandId})
+@Html.ActionLink("Account Payable", "_AccountPayable", new{bandId = ViewBag.BandId})
+@Html.ActionLink("Account Receivable", "_AccountReceivable", new{bandId = ViewBag.BandId})
