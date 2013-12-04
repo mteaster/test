@@ -54,6 +54,20 @@ namespace test.Controllers
             return View(model);
         }
 
+        // This is where I play around with stuff
+        public ActionResult Band()
+        {
+            ViewBag.SuccessMessage = TempData["SuccessMessage"];
+            ViewBag.ErrorMessage = TempData["ErrorMessage"];
+
+            CrazyModel model = new CrazyModel();
+
+            model.AllBands = BandUtil.BandModels();
+            model.UserBands = BandUtil.BandModelsFor(WebSecurity.CurrentUserId);
+
+            return View(model);
+        }
+
         public ActionResult Admin()
         {
 
@@ -129,5 +143,7 @@ namespace test.Controllers
             ViewBag.SuccessMessage = "Choo choo!";
             return View("Success");
         }
+
+
     }
 }
