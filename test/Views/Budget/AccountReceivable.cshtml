@@ -1,5 +1,58 @@
 ﻿
+@model test.Models.Budget.AccountReceivables
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
 @section featured 
 {
     @Html.Partial("_BandHeaderPartial")
 }
+
+@using (Html.BeginForm("AccountReceivable", "Budget", new { bandId = ViewBag.BandId }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    <fieldset>
+        <legend>Registration Form</legend>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.Amount)
+                @Html.TextBoxFor(m => m.Amount)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Date)
+                @Html.TextBoxFor(m => m.Date)
+            </li>
+            <li>
+                @{
+    List<SelectListItem> catagory = new List<SelectListItem>();
+    catagory.Add(new SelectListItem { Text = "Band", Value = "1", Selected = true });
+    catagory.Add(new SelectListItem { Text = "Person", Value = "2" });
+    catagory.Add(new SelectListItem { Text = "Venue", Value = "3" });
+ 
+                }               
+                @Html.DropDownListFor(m => m.Catagory, catagory)
+            </li>
+            <form method="post">
+    <ul style="margin:0; padding-left:0;">
+        <li style="list-style-type:none; display:inline-block; padding-right:10px;">
+            <label for="Search">Paid:</label>
+        </li>
+        <li style="list-style-type:none; display:inline-block; padding-right:10px;">
+            <input type="radio" name="Paid" value="true" style="width:auto;" checked /> Yes
+        </li>
+        <li style="list-style-type:none; display:inline-block; padding-right:10px;">
+            <input type="radio" name="Paid" value="false" style="width:auto;" /> No
+        </li>
+       
+    </ul>
+</form>
+            
+        </ol>
+        <input type="submit" value="Save" />
+    </fieldset>
+}
+
