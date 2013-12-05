@@ -92,9 +92,9 @@ namespace test
 
             routes.MapRoute(
                 name: "Get Tracks",
-                url: "Online/GetTracks/{trackId}",
+                url: "Online/GetTracks/{bandId}",
                 defaults: new { controller = "Online", action = "GetTracks" },
-                constraints: new { trackId = @"\d+" }
+                constraints: new { bandId = @"\d+" }
             );
 
             routes.MapRoute(
