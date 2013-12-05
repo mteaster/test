@@ -10,18 +10,27 @@ namespace band.Controllers
     {
         public ActionResult Index(int bandId)
         {
-            List<test.Models.Budget.AccountPayables> accountPayables = new List<test.Models.Budget.AccountPayables>();
-            List<test.Models.Budget.AccountReceivables> accountReceivables = new List<test.Models.Budget.AccountReceivables>();
             if (!BandUtil.Authenticate(bandId, this))
             {
                 return View("Error");
             }
 
+            return View();
+        }
+
+        public ActionResult AccountsPayableList(int bandId)
+        {
+            List<test.Models.Budget.AccountPayables> accountPayables = new List<test.Models.Budget.AccountPayables>();
+
+            if (!BandUtil.Authenticate(bandId, this))
+            {
+                return View("Error");
+            }
             using (DatabaseContext db = new DatabaseContext())
             {
                 var apList = from p in db.AccountPayables
-                                  where p.BandId == bandId
-                                  select new { p.AccountPayableId, p.Amount, p.AssociatedBandContactId, p.AssociatedPersonContactId, p.AssociatedVenueContactId, p.BandId, p.Category, p.Date, p.Paid };
+                             where p.BandId == bandId
+                             select new { p.AccountPayableId, p.Amount, p.AssociatedBandContactId, p.AssociatedPersonContactId, p.AssociatedVenueContactId, p.BandId, p.Category, p.Date, p.Paid };
 
                 foreach (var ap in apList)
                 {
@@ -39,10 +48,26 @@ namespace band.Controllers
 
                     accountPayables.Add(tempAP);
                 }
+            }
 
+            return PartialView("_AccountsPayableListPartial", accountPayables);
+
+        }
+
+        public ActionResult AccountsReceivableList(int bandId)
+        {
+            List<test.Models.Budget.AccountReceivables> accountReceivables = new List<test.Models.Budget.AccountReceivables>();
+            if (!BandUtil.Authenticate(bandId, this))
+            {
+                return View("Error");
+            }
+
+            using (DatabaseContext db = new DatabaseContext())
+            {
+                
                 var arList = from r in db.AccountReceivables
-                                                 where r.BandId == bandId
-                                                 select new { r.AccountReceivableId, r.Amount, r.AssociatedBandContactId, r.AssociatedPersonContactId, r.AssociatedVenueContactId, r.BandId, r.Category, r.Date, r.Paid };
+                             where r.BandId == bandId
+                             select new { r.AccountReceivableId, r.Amount, r.AssociatedBandContactId, r.AssociatedPersonContactId, r.AssociatedVenueContactId, r.BandId, r.Category, r.Date, r.Paid };
                 foreach (var ar in arList)
                 {
                     test.Models.Budget.AccountReceivables tempAR = new test.Models.Budget.AccountReceivables();
@@ -61,31 +86,7 @@ namespace band.Controllers
                 }
             }
 
-            ViewBag.accountsPayableList = accountPayables;
-            ViewBag.accountsReceivableList = accountReceivables;
-
-            return View();
-        }
-
-        public ActionResult AccountsPayableList(int bandId, List<test.Models.Budget.AccountPayables> apList)
-        {
-            if (!BandUtil.Authenticate(bandId, this))
-            {
-                return View("Error");
-            }
-
-            return PartialView("_AccountsPayableListPartial", apList);
-
-        }
-
-        public ActionResult AccountsReceivableList(int bandId, List<test.Models.Budget.AccountReceivables> arList)
-        {
-            if (!BandUtil.Authenticate(bandId, this))
-            {
-                return View("Error");
-            }
-
-            return PartialView("_AccountsReceivableListPartial", arList);
+            return PartialView("_AccountsReceivableListPartial", accountReceivables);
 
         }
 
