@@ -27,6 +27,8 @@ namespace test.Models
         public DbSet<Budget.AccountPayables> AccountPayables { get; set; }
         public DbSet<Budget.AccountReceivables> AccountReceivables { get; set; }
 
+        public DbSet<TrackEntry> TrackEntries { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();

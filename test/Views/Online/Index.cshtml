@@ -1,4 +1,6 @@
-﻿@{
+﻿@model test.Models.Test.UploadTrackModel
+
+@{
     ViewBag.Title = "Online";
 }
 
@@ -7,24 +9,20 @@
     @Html.Partial("_BandHeaderPartial")
 }
 
-<h2>soundcloud test</h2>
+@using (Html.BeginForm("UploadTrack", "", new { bandId = ViewBag.BandId }, FormMethod.Post, new { enctype = "multipart/form-data" } ))
+{
+    @Html.LabelFor(model => model.TrackName)
+    @Html.EditorFor(model => model.TrackName)
 
-<a href="#" id="connect">Connect with SoundCloud</a>
+    @Html.LabelFor(model => model.TrackAudio)
+    <input type="file" name="TrackAudio" id="TrackAudio" />
+    
+    @Html.LabelFor(model => model.TrackImage)
+    <input type="file" name="TrackImage" id="TrackImage" />
 
-<script src="http://connect.soundcloud.com/sdk.js"></script>
+    <br />
+    
+    <input type="submit" value="Upload" />
+}
 
-<script>
-    // initialize client with app credentials
-    SC.initialize({
-        client_id: '3931dd770ec54a40a44b58e80ea7c7cd',
-        redirect_uri: 'http://dnab.azurewebsites.net/Online/@ViewBag.BandId'
-    });
 
-    $("#connect").live("click", function () {
-        SC.connect(function () {
-            SC.get('/me', function (me) {
-                alert('Hello, ' + me.username);
-            });
-        });
-    });
-</script>

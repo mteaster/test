@@ -1,13 +1,9 @@
 ﻿using System.IO;
-using System.Linq;
 using System.Web.Mvc;
-using System.Web.Security;
-using test.Filters;
 using test.Models;
 using test.Models.Band;
 using test.Models.Test;
 using test.Stuff;
-using WebMatrix.WebData;
 
 namespace test.Controllers
 {
@@ -38,7 +34,5 @@ namespace test.Controllers
             ViewBag.BandId = bandId;
             return View();
         }
-
-
     }
 }
