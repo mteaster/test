@@ -7,7 +7,6 @@
             <th ng-click="sort('TrackName')">Name</th>
             <th>Download</th>
             <th>Delete</th>
-            <th>audio</th>
         </tr>
 
         <tr ng-repeat="track in data | orderBy : column : descending">
@@ -15,10 +14,7 @@
                 <td>{{ track.TrackName }}</td>
                 <td>download it?</td>
                 <td>delete it</td>
-                <audio controls>
-                    <source src="/Online/DownloadTrackAudio?fileId={{ track.TrackId }}" type="audio/mp3" />
-                    <p>Your browser does not support HTML 5 audio element</p>
-                </audio>
+
         </tr>
     </table>
 </div>
