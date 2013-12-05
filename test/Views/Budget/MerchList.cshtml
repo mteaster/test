@@ -7,4 +7,4 @@
 @Html.ActionLink("Manage Accounts", "Index", new {bandId = ViewBag.BandId})
 @Html.ActionLink("Enter New Merch", "NewMerch", new {bandId = ViewBag.BandId})
 
-@{ Html.RenderAction("AccountsPayableList", new {bandId = ViewBag.BandId}); }
+@{ Html.RenderAction("MerchList", new {bandId = ViewBag.BandId}); }
