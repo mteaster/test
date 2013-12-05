@@ -1,0 +1,15 @@
+﻿@model IEnumerable<test.Models.Budget.Merchandise>
+
+@if (Model != null)
+{
+<table>
+    @foreach (test.Models.Budget.Merchandise merchlist in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(ModelItem => merchlist.Name)</td>
+            <td>@Html.DisplayFor(ModelItem => merchlist.Category)</td>
+            <td>@Html.DisplayFor(ModelItem => merchlist.Size)</td>
+        </tr>
+    }   
+</table>
+}
