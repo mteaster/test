@@ -84,17 +84,17 @@ namespace test
             );
 
             routes.MapRoute(
-                name: "Get Files",
-                url: "FileCabinet/GetFiles/{groupId}",
-                defaults: new { controller = "FileCabinet", action = "GetFiles" },
-                constraints: new { groupId = @"\d+" }
-            );
-
-            routes.MapRoute(
                 name: "Get Tracks",
                 url: "Online/GetTracks/{bandId}",
                 defaults: new { controller = "Online", action = "GetTracks" },
                 constraints: new { bandId = @"\d+" }
+            );
+
+            routes.MapRoute(
+                name: "Get Files",
+                url: "FileCabinet/GetFiles/{groupId}",
+                defaults: new { controller = "FileCabinet", action = "GetFiles" },
+                constraints: new { groupId = @"\d+" }
             );
 
             routes.MapRoute(

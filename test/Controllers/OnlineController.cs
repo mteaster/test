@@ -110,8 +110,8 @@ namespace band.Controllers
                 {
                     return RedirectToAction("Join", "Band");
                 }
-
-                return Json(database.TrackEntries.Where(t => t.BandId == bandId).ToList(), JsonRequestBehavior.AllowGet);
+                List<TrackEntry> entries = database.TrackEntries.Where(t => t.BandId == bandId).ToList()
+                return Json(entries, JsonRequestBehavior.AllowGet);
             }
         }
     }
