@@ -119,7 +119,8 @@ namespace band.Controllers
                     TrackEntryModel model = new TrackEntryModel(entry);
                     models.Add(model);
                 }
-                return Json(entries, JsonRequestBehavior.AllowGet);
+
+                return Json(models, JsonRequestBehavior.AllowGet);
             }
         }
     }
