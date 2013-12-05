@@ -4,6 +4,7 @@ using System.Linq;
 using test.Models;
 using test.Models.Test;
 using test.Stuff;
+using System.Collections.Generic;
 
 namespace band.Controllers
 {
@@ -50,13 +51,6 @@ namespace band.Controllers
                     }
                 }
 
-                //if (model.TrackImage == null)
-                //{
-                //    ViewBag.ErrorMessage = "IMAGE IS NULL";
-                //    return View("Error");
-                //}
-
-                
                 if (database.TrackEntries.Where(e => e.BandId == bandId && e.TrackName == model.TrackName).Any())
                 {
                     ViewBag.ErrorMessage = "A track with that name already exists.";
@@ -74,15 +68,58 @@ namespace band.Controllers
                     Directory.CreateDirectory(directory);
                 }
 
-                model.TrackAudio.SaveAs(directory + model.TrackName + ".mp3");
+                model.TrackAudio.SaveAs(directory + trackEntry.TrackId + ".mp3");
 
                 if (model.TrackImage != null)
                 {
-                    model.TrackAudio.SaveAs(directory + model.TrackName + ".jpg");
+                    model.TrackAudio.SaveAs(directory + trackEntry.TrackId + ".jpg");
                 }
 
                 TempData["SuccessMessage"] = model.TrackName + " uploaded.";
                 return RedirectToAction("Index", new { bandId = bandId });
+            }
+        }
+
+        public ActionResult DownloadTrackAudio(int trackId)
+        {
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                TrackEntry trackEntry = database.TrackEntries.Find(trackId);
+
+                string path = Server.MapPath("~/App_Data/Tracks/" + trackEntry.BandId + "/" + trackId + ".mp3");;
+                return File(path, "audio/mp3");
+            }
+        }
+
+        public ActionResult DownloadTrackImage(int trackId)
+        {
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                TrackEntry trackEntry = database.TrackEntries.Find(trackId);
+
+                string path = Server.MapPath("~/App_Data/Tracks/" + trackEntry.BandId + "/" + trackId + ".jpg");
+                return File(path, "image/jpg");
+            }
+        }
+
+        public ActionResult GetTracks(int bandId)
+        {
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                if (!BandUtil.Authenticate(bandId, this))
+                {
+                    return RedirectToAction("Join", "Band");
+                }
+                List<TrackEntry> entries = database.TrackEntries.Where(t => t.BandId == bandId).ToList();
+
+                List<TrackEntryModel> models = new List<TrackEntryModel>();
+
+                foreach (var entry in entries)
+                {
+                    TrackEntryModel model = new TrackEntryModel(entry);
+                    models.Add(model);
+                }
+                return Json(entries, JsonRequestBehavior.AllowGet);
             }
         }
     }
