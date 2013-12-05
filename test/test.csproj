@@ -431,6 +431,7 @@
     <Content Include="Views\Test\_SearchResultsPartial.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Test\Band.cshtml" />
+    <Content Include="Views\Budget\AccountPayable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

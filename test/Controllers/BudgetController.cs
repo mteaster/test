@@ -99,5 +99,73 @@ namespace band.Controllers
             return View();
 
         }
+
+        public ActionResult AccountPayable(int bandId)
+        {
+            if (!BandUtil.Authenticate(bandId, this))
+            {
+                return View("Error");
+            }
+
+            return View();
+
+        }
+
+        public ActionResult AccountReceivable(int bandId)
+        {
+            if (!BandUtil.Authenticate(bandId, this))
+            {
+                return View("Error");
+            }
+
+            return View();
+
+        }
+
+        public ActionResult CreateAccountPayable(int bandId, test.Models.Budget.AccountPayables ap)
+        {
+
+            if (!BandUtil.Authenticate(bandId, this))
+            {
+                return View("Error");
+            }
+
+            if (ModelState.IsValid)
+            {
+                using (DatabaseContext database = new DatabaseContext())
+                {
+                    ap.BandId = bandId;
+                    database.AccountPayables.Add(ap);
+                    database.SaveChanges();
+                }
+
+                return RedirectToAction("Index", "Budget", new { BandId = bandId });
+            }
+
+            return RedirectToAction("AccountPayable", new { bandId = bandId });
+        }
+
+        public ActionResult CreateAccountReceivable(int bandId, test.Models.Budget.AccountReceivables ar)
+        {
+
+            if (!BandUtil.Authenticate(bandId, this))
+            {
+                return View("Error");
+            }
+
+            if (ModelState.IsValid)
+            {
+                using (DatabaseContext database = new DatabaseContext())
+                {
+                    ar.BandId = bandId;
+                    database.AccountReceivables.Add(ar);
+                    database.SaveChanges();
+                }
+
+                return RedirectToAction("Index", "Budget", new { BandId = bandId });
+            }
+
+            return RedirectToAction("AccountReceivable", new { bandId = bandId });
+        }
     }
 }
