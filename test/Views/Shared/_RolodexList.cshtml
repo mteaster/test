@@ -47,7 +47,17 @@
                 }    
             </tr>
             <tr style="width:100%;">
-                <td style=" padding-left:15px; width:50%;">@Html.DisplayFor(ModelItem => contact.Type)</td>
+                <td style="padding-left:35px; width:50%;">
+                    @Html.ActionLink("View/Edit", "EditContact", new {bandId = ViewBag.BandId, contactId = contact.ContactId, type = contact.Type})
+                </td>
+                <td  style="width:50%;"/>
+            </tr>
+            <tr>
+                <td/>
+                <td/>
+            </tr>
+            <tr style="width:100%;">
+                <td style=" padding-left:15px; width:50%;">Type: @Html.DisplayFor(ModelItem => contact.Type)</td>
                 <td style="width:50%;"/>
             </tr>
             <tr style="width:100%;">
@@ -57,11 +67,6 @@
             <tr style="width:100%;">
                 <td style="padding-left:15px; width:50%;">Email: @Html.DisplayFor(ModelItem => contact.Email)</td>
                 <td  style="width:50%;"/>
-            </tr>
-            <tr style="width:100%;">
-                <td style="padding-left:15px; width:50%;">@Html.ActionLink("View/Edit", "EditContact", new {bandId = ViewBag.BandId, contactId = contact.ContactId, type = contact.Type})</td>
-                <td  style="width:50%;"/>
-
             </tr>
         </table>
         <br>

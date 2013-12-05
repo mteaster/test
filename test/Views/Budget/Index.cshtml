@@ -5,8 +5,8 @@
 }
 
 @Html.ActionLink("Manage Merch", "MerchList", new {bandId = ViewBag.BandId})
-@Html.ActionLink("Enter Account Payable", "AccountPayable")
-@Html.ActionLink("Enter Account Receivable", "AccountReceivable")
+@Html.ActionLink("Enter Account Payable", "AccountPayable", new {bandId = ViewBag.BandId})
+@Html.ActionLink("Enter Account Receivable", "AccountReceivable", new {bandId = ViewBag.BandId})
 
 @{ Html.RenderAction("AccountsPayableList", new {bandId = ViewBag.BandId, accountsPayableList = ViewBag.accountsPayableList }); }
 @{ Html.RenderAction("AccountsReceivableList", new { bandId = ViewBag.BandId, accountsReceivableList = ViewBag.accountsReceivableList }); }
