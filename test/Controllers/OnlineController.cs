@@ -41,17 +41,20 @@ namespace band.Controllers
                     return View("Error");
                 }
 
-                if (model.TrackImage != null && model.TrackImage.ContentLength <= 0 || model.TrackImage.ContentLength > 1048576)
+                if (model.TrackImage != null)
                 {
-                    ViewBag.ErrorMessage = "The track image file size is too big.";
-                    return View("Error");
+                    if(model.TrackImage.ContentLength <= 0 || model.TrackImage.ContentLength > 1048576)
+                    {
+                        ViewBag.ErrorMessage = "The track image file size is too big.";
+                        return View("Error");
+                    }
                 }
 
-                if (model.TrackImage == null)
-                {
-                    ViewBag.ErrorMessage = "IMAGE IS NULL";
-                    return View("Error");
-                }
+                //if (model.TrackImage == null)
+                //{
+                //    ViewBag.ErrorMessage = "IMAGE IS NULL";
+                //    return View("Error");
+                //}
 
                 
                 if (database.TrackEntries.Where(e => e.BandId == bandId && e.TrackName == model.TrackName).Any())
