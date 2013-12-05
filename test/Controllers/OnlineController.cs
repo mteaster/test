@@ -29,6 +29,18 @@ namespace band.Controllers
                     return View("Error");
                 }
 
+                if (model.TrackAudio == null)
+                {
+                    ViewBag.ErrorMessage = "AUDIO IS NULL";
+                    return View("Error");
+                }
+
+                if (model.TrackImage == null)
+                {
+                    ViewBag.ErrorMessage = "IMAGE IS NULL";
+                    return View("Error");
+                }
+
                 if (model.TrackAudio.ContentLength <= 0 || model.TrackAudio.ContentLength > 1048576)
                 {
                     ViewBag.ErrorMessage = "The track audio file size is too big.";
