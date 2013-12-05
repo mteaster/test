@@ -18,6 +18,39 @@ namespace band.Controllers
             return View();
         }
 
+        public ActionResult MerchandiseList(int bandId)
+        {
+            List<test.Models.Budget.Merchandise> merchandise = new List<test.Models.Budget.Merchandise>();
+
+            if (!BandUtil.Authenticate(bandId, this))
+            {
+                return View("Error");
+            }
+            using (DatabaseContext db = new DatabaseContext())
+            {
+                var mList = from p in db.Merchandise
+                             where p.BandId == bandId
+                             select new { p.MerchandiseId, p.Name, p.Category, p.Size, p.BandId};
+
+                foreach (var m in mList)
+                {
+                    test.Models.Budget.Merchandise tempM = new test.Models.Budget.Merchandise();
+
+                    tempM.MerchandiseId = m.MerchandiseId;
+                    tempM.Name = m.Name;
+                    tempM.Category = m.Category;
+                    tempM.Size = m.Size;
+                    tempM.BandId = m.BandId;
+
+
+                    merchandise.Add(tempM);
+                }
+            }
+
+            return PartialView("_MerchandiseListPartial", merchandise);
+
+        }
+
         public ActionResult AccountsPayableList(int bandId)
         {
             List<test.Models.Budget.AccountPayables> accountPayables = new List<test.Models.Budget.AccountPayables>();
@@ -99,6 +132,29 @@ namespace band.Controllers
 
             return View();
 
+        }
+
+        public ActionResult CreateMerchList(int bandId, test.Models.Budget.Merchandise m)
+        {
+
+            if (!BandUtil.Authenticate(bandId, this))
+            {
+                return View("Error");
+            }
+
+            if (ModelState.IsValid)
+            {
+                using (DatabaseContext database = new DatabaseContext())
+                {
+                    m.BandId = bandId;
+                    database.Merchandise.Add(m);
+                    database.SaveChanges();
+                }
+
+                return RedirectToAction("MerchList", "Budget", new { BandId = bandId });
+            }
+
+            return RedirectToAction("NewMerch", new { bandId = bandId });
         }
 
         public ActionResult AccountPayable(int bandId)

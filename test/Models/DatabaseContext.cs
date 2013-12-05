@@ -26,6 +26,7 @@ namespace test.Models
         public DbSet<VenueContact> VenueContacts { get; set; }
         public DbSet<Budget.AccountPayables> AccountPayables { get; set; }
         public DbSet<Budget.AccountReceivables> AccountReceivables { get; set; }
+        public DbSet<Budget.Merchandise> Merchandise { get; set; }
 
         public DbSet<TrackEntry> TrackEntries { get; set; }
 
