@@ -26,30 +26,14 @@
                 @Html.LabelFor(m => m.Date)
                 @Html.TextBoxFor(m => m.Date)
             </li>
-            <li>
-                @{
-    List<SelectListItem> catagory = new List<SelectListItem>();
-    catagory.Add(new SelectListItem { Text = "Band", Value = "1", Selected = true });
-    catagory.Add(new SelectListItem { Text = "Person", Value = "2" });
-    catagory.Add(new SelectListItem { Text = "Venue", Value = "3" });
- 
-                }               
-                @Html.DropDownListFor(m => m.Catagory, catagory)
-            </li>
-            <form method="post">
-    <ul style="margin:0; padding-left:0;">
-        <li style="list-style-type:none; display:inline-block; padding-right:10px;">
-            <label for="Search">Paid:</label>
+        <li>
+            @Html.LabelFor(m => m.Date)
+            @Html.TextBoxFor(m => m.Date)
         </li>
-        <li style="list-style-type:none; display:inline-block; padding-right:10px;">
-            <input type="radio" name="Paid" value="true" style="width:auto;" checked /> Yes
+        <li>
+            @Html.LabelFor(m => m.Paid)
+            @Html.CheckBoxFor(m => m.Paid)
         </li>
-        <li style="list-style-type:none; display:inline-block; padding-right:10px;">
-            <input type="radio" name="Paid" value="false" style="width:auto;" /> No
-        </li>
-       
-    </ul>
-</form>
             
         </ol>
         <input type="submit" value="Save" />
