@@ -20,12 +20,14 @@ namespace test.Models.Budget
         public string Name { get; set; }
 
         [Display(Name = "Category")]
-        public string Name { get; set; }
+        public string Category { get; set; }
 
         public enum SizeEnum { XSmall, Small, Medium, Large, XLarge }
 
         [Display(Name = "Size")]
         public SizeEnum Size { get; set; }
+
+        public int BandId { get; set; }
     }
 
     [Table("AccountPayables")]
@@ -56,6 +58,8 @@ namespace test.Models.Budget
 
         [Display(Name = "Paid")]
         public Boolean Paid { get; set; }
+
+        public int BandId { get; set; }
     }
 
     [Table("AccountReceivables")]
@@ -87,5 +91,7 @@ namespace test.Models.Budget
 
         [Display(Name = "Paid")]
         public Boolean Paid { get; set; }
+
+        public int BandId { get; set; }
     }
 }

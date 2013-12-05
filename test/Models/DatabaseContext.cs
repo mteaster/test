@@ -24,6 +24,8 @@ namespace test.Models
         public DbSet<BandContact> BandContacts { get; set; }
         public DbSet<PeopleContact> PeopleContacts { get; set; }
         public DbSet<VenueContact> VenueContacts { get; set; }
+        public DbSet<Budget.AccountPayables> AccountPayables { get; set; }
+        public DbSet<Budget.AccountReceivables> AccountReceivables { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

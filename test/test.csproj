@@ -182,6 +182,7 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\BandModels.cs" />
+    <Compile Include="Models\BudgetModels.cs" />
     <Compile Include="Models\CalendarModels.cs" />
     <Compile Include="Models\RolodexModels.cs" />
     <Compile Include="Models\FileCabinetModels.cs" />
@@ -421,6 +422,9 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\FileCabinet\_InfoPartial.cshtml" />
     <Content Include="Views\FileCabinet\File.cshtml" />
+    <Content Include="Views\Budget\AccountReceivable.cshtml" />
+    <Content Include="Views\Budget\_AccountsPayableListPartial.cshtml" />
+    <Content Include="Views\Budget\_AccountsReceivableListPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
