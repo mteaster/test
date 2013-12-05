@@ -105,6 +105,13 @@ namespace test
             );
 
             routes.MapRoute(
+                name: "Download Track Audio",
+                url: "/DownloadTrackAudio/{trackId}",
+                defaults: new { controller = "Online", action = "DownloadTrackAudio" },
+                constraints: new { trackId = @"\d+" }
+            );
+
+            routes.MapRoute(
                 name: "Files",
                 url: "FileCabinet/{bandId}/Files/{groupId}",
                 defaults: new { controller = "FileCabinet", action = "Files" },
