@@ -88,5 +88,16 @@ namespace band.Controllers
             return PartialView("_AccountsReceivableListPartial", arList);
 
         }
+
+        public ActionResult MerchList(int bandId)
+        {
+            if (!BandUtil.Authenticate(bandId, this))
+            {
+                return View("Error");
+            }
+
+            return View();
+
+        }
     }
 }

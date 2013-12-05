@@ -425,6 +425,7 @@
     <Content Include="Views\Budget\AccountReceivable.cshtml" />
     <Content Include="Views\Budget\_AccountsPayableListPartial.cshtml" />
     <Content Include="Views\Budget\_AccountsReceivableListPartial.cshtml" />
+    <Content Include="Views\Budget\MerchList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
