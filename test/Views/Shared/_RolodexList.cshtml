@@ -32,22 +32,22 @@
             <tr>
                 @if (contact.Type == test.Models.Rolodex.ContactType.Venue)
                 {
-                    <td style="padding:15px"><img alt="" src="@Url.Action("DownloadVenueAvatar", new { contactId = contact.ContactId })" height="100" width="100" class="photo" /></td>
-                    <td style="white-space:nowrap; text-align:left; font-weight:bold;">@Html.DisplayFor(ModelItem => contact.Name)</td>
+                    <td style="padding:15px; width:25%;"><img alt="" src="@Url.Action("DownloadVenueAvatar", new { contactId = contact.ContactId })" height="100" width="100" class="photo" /></td>
+                    <td style="white-space:nowrap; text-align:center; font-weight:bold; width:75%;">@Html.DisplayFor(ModelItem => contact.Name)</td>
                 }     
                 @if (contact.Type == test.Models.Rolodex.ContactType.Band)
                 {
-                    <td style="padding:15px"><img alt="" src="@Url.Action("DownloadBandAvatar", new { contactId = contact.ContactId })" height="100" width="100" class="photo" /></td>
-                    <td style="white-space:nowrap; text-align:left; font-weight:bold;">@Html.DisplayFor(ModelItem => contact.Name)</td>
+                    <td style="padding:15px; width:25%;"><img alt="" src="@Url.Action("DownloadBandAvatar", new { contactId = contact.ContactId })" height="100" width="100" class="photo" /></td>
+                    <td style="white-space:nowrap; text-align:center; font-weight:bold; width:75%;">@Html.DisplayFor(ModelItem => contact.Name)</td>
                 }
                 @if (contact.Type == test.Models.Rolodex.ContactType.People)
                 {
-                    <td style="padding:15px"><img alt="" src="@Url.Action("DownloadPeopleAvatar", new { contactId = contact.ContactId })" height="100" width="100" class="photo" /></td>
-                    <td style="white-space:nowrap; text-align:left; font-weight:bold;">@Html.DisplayFor(ModelItem => contact.Name)</td>
+                    <td style="padding:15px; width:25%;"><img alt="" src="@Url.Action("DownloadPeopleAvatar", new { contactId = contact.ContactId })" height="100" width="100" class="photo" /></td>
+                    <td style="white-space:nowrap; text-align:center; font-weight:bold; width:75%;">@Html.DisplayFor(ModelItem => contact.Name)</td>
                 }    
             </tr>
             <tr>
-                <td style=" padding-left:15px;">@Html.DisplayFor(ModelItem => contact.Type)</td>
+                <td style=" padding-left:15px;%;">@Html.DisplayFor(ModelItem => contact.Type)</td>
                 <td/>
             </tr>
             <tr>
