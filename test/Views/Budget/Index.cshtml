@@ -4,5 +4,9 @@
     @Html.Partial("_BandHeaderPartial")
 }
 
+@Html.ActionLink("Manage Merch", "MerchList", new {bandId = ViewBag.BandId})
+@Html.ActionLink("Enter Account Payable", "")
+@Html.ActionLink("Enter Account Receivable", "")
+
 @{ Html.RenderAction("AccountsPayableList", new {bandId = ViewBag.BandId, accountsPayableList = ViewBag.accountsPayableList }); }
 @{ Html.RenderAction("AccountsReceivableList", new { bandId = ViewBag.BandId, accountsReceivableList = ViewBag.accountsReceivableList }); }
