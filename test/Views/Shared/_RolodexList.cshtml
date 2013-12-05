@@ -50,11 +50,16 @@
                 <td/>  
             </tr>
             <tr>
-                <td style="width:20%;">@Html.DisplayFor(ModelItem => contact.ContactId)</td>
-                <td style="width:20%;">@Html.DisplayFor(ModelItem => contact.Type)</td>
-                <td style="width:20%;">@Html.DisplayFor(ModelItem => contact.PhoneNumber)</td>
-                <td style="width:20%;">@Html.DisplayFor(ModelItem => contact.Email)</td>
-                <td style="width:20%;">@Html.ActionLink("View/Edit", "EditContact", new {bandId = ViewBag.BandId, contactId = contact.ContactId, type = contact.Type})</td>
+                <td style="width:20%; padding-right:15px;">@Html.DisplayFor(ModelItem => contact.Type)</td>
+            </tr>
+            <tr>
+                <td style="width:20%; padding-right:15px;">Phone number: @Html.DisplayFor(ModelItem => contact.PhoneNumber)</td>
+            </tr>
+            <tr>
+                <td style="width:20%; padding-right:15px;">Email: @Html.DisplayFor(ModelItem => contact.Email)</td>
+            </tr>
+            <tr>
+                <td style="width:20%; padding-right:15px;">@Html.ActionLink("View/Edit", "EditContact", new {bandId = ViewBag.BandId, contactId = contact.ContactId, type = contact.Type})</td>
             </tr>
         </table>
         <br>
