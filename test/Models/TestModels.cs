@@ -65,5 +65,18 @@ namespace test.Models.Test
         [ForeignKey("BandId")]
         public virtual BandProfile BandProfile { get; set; }
     }
+
+    public class TrackEntryModel
+    {
+        public TrackEntryModel() { }
+        public TrackEntryModel(TrackEntry trackEntry)
+        {
+            this.TrackName = trackEntry.TrackName;
+            this.TrackId = trackEntry.TrackId;
+        }
+
+        public int TrackId { get; set; }
+        public string TrackName { get; set; }
+    }
 }
 

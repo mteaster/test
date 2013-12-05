@@ -111,6 +111,14 @@ namespace band.Controllers
                     return RedirectToAction("Join", "Band");
                 }
                 List<TrackEntry> entries = database.TrackEntries.Where(t => t.BandId == bandId).ToList();
+
+                List<TrackEntryModel> models = new List<TrackEntryModel>();
+
+                foreach (var entry in entries)
+                {
+                    TrackEntryModel model = new TrackEntryModel(entry);
+                    models.Add(model);
+                }
                 return Json(entries, JsonRequestBehavior.AllowGet);
             }
         }
