@@ -35,12 +35,6 @@ namespace band.Controllers
                     return View("Error");
                 }
 
-                if (model.TrackImage == null)
-                {
-                    ViewBag.ErrorMessage = "IMAGE IS NULL";
-                    return View("Error");
-                }
-
                 if (model.TrackAudio.ContentLength <= 0 || model.TrackAudio.ContentLength > 1048576)
                 {
                     ViewBag.ErrorMessage = "The track audio file size is too big.";
@@ -50,6 +44,12 @@ namespace band.Controllers
                 if (model.TrackImage != null && model.TrackImage.ContentLength <= 0 || model.TrackImage.ContentLength > 1048576)
                 {
                     ViewBag.ErrorMessage = "The track image file size is too big.";
+                    return View("Error");
+                }
+
+                if (model.TrackImage == null)
+                {
+                    ViewBag.ErrorMessage = "IMAGE IS NULL";
                     return View("Error");
                 }
 
