@@ -9,20 +9,8 @@
     @Html.Partial("_BandHeaderPartial")
 }
 
-@using (Html.BeginForm("UploadTrack", "Online", new { bandId = ViewBag.BandId }, FormMethod.Post, new { enctype = "multipart/form-data" } ))
-{
-    @Html.LabelFor(model => model.TrackName)
-    @Html.EditorFor(model => model.TrackName)
+@Html.Partial("_UploadTrackPartial")
+@Html.Partial("_TracksPartial")
 
-    @Html.LabelFor(model => model.TrackAudio)
-    <input type="file" name="TrackAudio" id="TrackAudio" />
-    
-    @Html.LabelFor(model => model.TrackImage)
-    <input type="file" name="TrackImage" id="TrackImage" />
-
-    <br />
-    
-    <input type="submit" value="Upload" />
-}
 
 

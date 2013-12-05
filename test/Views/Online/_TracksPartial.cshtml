@@ -1,0 +1,31 @@
+﻿<h2>yo tracks</h2>
+
+<div ng-app="sortable" ng-controller="SortableController" ng-init="init('/Online/GetTracks/@ViewBag.BandId')">
+    <table ng-cloak class="pretty" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <th ng-click="sort('TrackId')">Track ID</th>
+            <th ng-click="sort('TrackName')">Name</th>
+            <th>Download</th>
+            <th>Delete</th>
+            <th>audio</th>
+        </tr>
+
+        <tr ng-repeat="file in data | orderBy : column : descending">
+                <td>{{ file.FileId }}</td>
+                <td>{{ file.FileName }}</td>
+                <td>download it?</td>
+                <td>delete it</td>
+                <audio controls>
+                    <source src="@Url.Action("DownloadTrackAudio", "Online", new { trackId = Model.TrackId })" type="audio/mp3" />
+                    <p>Your browser does not support HTML 5 audio element</p>
+                </audio>
+        </tr>
+    </table>
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript" src="@Url.Content("/Scripts/angular.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/Scripts/sortable.js")"></script>
+}
+

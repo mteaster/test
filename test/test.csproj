@@ -431,6 +431,8 @@
     <Content Include="Views\Test\_SearchResultsPartial.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Test\Band.cshtml" />
+    <Content Include="Views\Online\_UploadTrackPartial.cshtml" />
+    <Content Include="Views\Online\_TracksPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
