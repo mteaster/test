@@ -8,5 +8,9 @@
 @Html.ActionLink("Enter Account Payable", "AccountPayable", new {bandId = ViewBag.BandId})
 @Html.ActionLink("Enter Account Receivable", "AccountReceivable", new {bandId = ViewBag.BandId})
 
+<h4>Filters</h4>
+Start Date: <input type="date" /> to
+End Date: <input type="date" />
+
 @{ Html.RenderAction("AccountsPayableList", new {bandId = ViewBag.BandId}); }
 @{ Html.RenderAction("AccountsReceivableList", new { bandId = ViewBag.BandId}); }
