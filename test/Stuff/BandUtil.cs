@@ -302,37 +302,6 @@ namespace test.Stuff
             }
         }
 
-        public static List<SuperBandModel> SuperBandModelsFor(int userId)
-        {
-            using (DatabaseContext database = new DatabaseContext())
-            {
-                List<SuperBandModel> superBandModels = new List<SuperBandModel>();
-
-                var bandIds = from m in database.BandMemberships
-                              join p in database.BandProfiles
-                              on m.BandId equals p.BandId
-                              where m.MemberId == userId
-                              select p.BandId;
-
-                foreach (int bandId in bandIds)
-                {
-                    superBandModels.Add(SuperBandModelFor(bandId, database));
-                }
-
-                return superBandModels;
-            }
-        }
-
-        private static SuperBandModel SuperBandModelFor(int bandId, DatabaseContext database)
-        {
-            BandProfile profile = BandProfileFor(bandId, database);
-
-            return new SuperBandModel(profile.BandId,
-                                    profile.BandName,
-                                    database.UserProfiles.Find(profile.CreatorId).UserName);
-        }
-
-
         public static List<BandModel> BandModelsFor(int userId, bool membersFlag = false)
         {
             using (DatabaseContext database = new DatabaseContext())

@@ -1,9 +1,12 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using System.Linq;
 using test.Models.Band;
 using test.Stuff;
 using WebMatrix.WebData;
+using System.Collections.Generic;
+using test.Models;
 
 namespace test.Controllers
 {
@@ -26,7 +29,26 @@ namespace test.Controllers
 
         public ActionResult GetBands()
         {
-            return Json(BandUtil.SuperBandModelsFor(WebSecurity.CurrentUserId), JsonRequestBehavior.AllowGet);
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                List<SuperBandModel> models = new List<SuperBandModel>();
+
+                var profiles = from m in database.BandMemberships
+                              join p in database.BandProfiles
+                              on m.BandId equals p.BandId
+                              where m.MemberId == WebSecurity.CurrentUserId
+                              select p;
+
+                foreach (var profile in profiles)
+                {
+                    
+                    models.Add(new SuperBandModel(profile.BandId,
+                                        profile.BandName,
+                                        database.UserProfiles.Find(profile.CreatorId).UserName));
+                }
+
+                return Json(models, JsonRequestBehavior.AllowGet);
+            }
         }
 
         public ActionResult Register()
