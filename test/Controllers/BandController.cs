@@ -205,7 +205,7 @@ namespace test.Controllers
             }
             else
             {
-                string path = Server.MapPath("~/App_Data/BandAvatars/" + WebSecurity.CurrentUserId + ".jpg");
+                string path = Server.MapPath("~/App_Data/BandAvatars/" + bandId + ".jpg");
                 file.SaveAs(path);
                 TempData["SuccessMessage"] = "Avatar changed.";
             }
