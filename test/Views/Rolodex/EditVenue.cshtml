@@ -23,8 +23,7 @@
 
     <fieldset>
         <legend>Registration Form</legend>
-        <li>
-        <span style="display: block;">
+        <div style="width:50%;">
         <ul>
             <li style="display: none;">
                 @Html.TextBoxFor(m => m.ContactId)
@@ -54,10 +53,10 @@
                 @Html.CheckBoxFor(m => m.MerchSpace)
             </li>
         </ul>
-        </span>
-        </li>
-        <li>
-        <span style="display: inline-block; vertical-align: top;">
+        </div>
+
+
+        <div style="width:50%";>
         <ul>
             <li>
                 @Html.LabelFor(m => m.Notes)
@@ -78,8 +77,8 @@
             </li>
             }
         </ul>
-        </span>
-        </li>
+        </div>
+
         <input type="submit" value="Save" />
     </fieldset>
 }
