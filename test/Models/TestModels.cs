@@ -73,10 +73,12 @@ namespace test.Models.Test
         {
             this.TrackName = trackEntry.TrackName;
             this.TrackId = trackEntry.TrackId;
+            this.TrackUrl = "/Online/DownloadTrackAudio/" + trackEntry.TrackId;
         }
 
         public int TrackId { get; set; }
         public string TrackName { get; set; }
+        public string TrackUrl { get; set; }
     }
 }
 
