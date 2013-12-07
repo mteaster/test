@@ -78,7 +78,7 @@ namespace band.Controllers
 
                 if (model.TrackImage != null)
                 {
-                    model.TrackAudio.SaveAs(directory + trackEntry.TrackId + ".jpg");
+                    model.TrackImage.SaveAs(directory + trackEntry.TrackId + ".jpg");
                 }
 
                 TempData["SuccessMessage"] = model.TrackName + " uploaded.";
