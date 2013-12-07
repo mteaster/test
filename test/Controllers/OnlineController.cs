@@ -123,5 +123,27 @@ namespace band.Controllers
                 return Json(models, JsonRequestBehavior.AllowGet);
             }
         }
+
+        public ActionResult GetTracks(int bandId)
+        {
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                if (!BandUtil.Authenticate(bandId, this))
+                {
+                    return RedirectToAction("Join", "Band");
+                }
+                List<TrackEntry> entries = database.TrackEntries.Where(t => t.BandId == bandId).ToList();
+
+                List<TrackEntryModel> models = new List<TrackEntryModel>();
+
+                foreach (var entry in entries)
+                {
+                    TrackEntryModel model = new TrackEntryModel(entry);
+                    models.Add(model);
+                }
+
+                return Json(models, JsonRequestBehavior.AllowGet);
+            }
+        }
     }
 }
