@@ -47,7 +47,6 @@
             <li>
                 @Html.LabelFor(m => m.CoverCharge)
                 @Html.CheckBoxFor(m => m.CoverCharge)
-            </li>
             <li>
                 @Html.LabelFor(m => m.MerchSpace)
                 @Html.CheckBoxFor(m => m.MerchSpace)
@@ -61,7 +60,7 @@
                 @Html.DropDownListFor(m => m.StageSizeValue, band.Controllers.RolodexController.GetStageSizeList(), "N/A")
             </li>
             <li>
-                @Html.LabelFor(m => m.PrimaryPeopleContactId)
+                <label for="PrimaryContactId">Primary Contact:</label>
                 @Html.DropDownListFor(m => m.PrimaryPeopleContactId, (List<SelectListItem>) band.Controllers.RolodexController.GetSelectList(ViewBag.BandId, "Venue"), "N/A")
             </li>
             @if (Model.PrimaryPeopleContactId > 0)
