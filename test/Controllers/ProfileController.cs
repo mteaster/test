@@ -5,6 +5,7 @@ using test.Models;
 using test.Models.Test;
 using test.Stuff;
 using System.Collections.Generic;
+using test.Models.Band;
 
 namespace band.Controllers
 {
@@ -12,7 +13,21 @@ namespace band.Controllers
     {
         public ActionResult Index(int bandId)
         {
-            return View();
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                BandProfile profile = database.BandProfiles.Find(bandId);
+
+                if (profile == null)
+                {
+                    ViewBag.ErrorMessage = "dat band dont exist dawg";
+                    return View("Error");
+                }
+
+                ViewBag.BandId = profile.BandId;
+                ViewBag.BandName = profile.BandName;
+
+                return View();
+            }
         }
 
         [HttpPost]
