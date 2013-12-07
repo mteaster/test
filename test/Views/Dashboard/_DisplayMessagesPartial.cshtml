@@ -25,7 +25,7 @@
                         if (item.PosterId == WebSecurity.CurrentUserId || Roles.IsUserInRole("Administrator"))
                         {
                             <a class="post-link" href="javascript:initiateEdit(@item.PostId);">Edit</a>
-                            @Html.ActionLink("Delete", "DeletePost", "Dashboard", new { PostId = item.PostId }, new { @class = "messageBoardLink" })
+                            @Html.ActionLink("Delete", "DeletePost", "Dashboard", new { PostId = item.PostId }, new { @class = "post-link" })
                         }
                     }
                     else
