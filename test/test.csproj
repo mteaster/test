@@ -255,6 +255,7 @@
     <Content Include="Content\pdf.js\viewer.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Images\contactBg.png" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\bootstrap-timepicker.min.js" />
     <Content Include="Scripts\bootstrap.min.js" />
