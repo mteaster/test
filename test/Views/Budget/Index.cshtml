@@ -9,8 +9,12 @@
 @Html.ActionLink("Enter Account Receivable", "AccountReceivable", new {bandId = ViewBag.BandId})
 
 <h4>Filters</h4>
-Start Date: <input type="date" /> to
-End Date: <input type="date" />
+Start Date: <input type="date" name="dtStart"/> to
+End Date: <input type="date" name="dtEnd"/>
+<br />
+Category: <input type="text" name="tbCategory" />
+Paid: <input type="checkbox" name="cbPaid" />
+Unpaid: <input type="checkbox" name="cbUnpaid" />
 
 @{ Html.RenderAction("AccountsPayableList", new {bandId = ViewBag.BandId}); }
 @{ Html.RenderAction("AccountsReceivableList", new { bandId = ViewBag.BandId}); }
