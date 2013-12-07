@@ -74,7 +74,6 @@ namespace test.Models.Budget
         public decimal Amount { get; set; }
 
         [Display(Name = "Date (mm/dd/yyyy)")]
-        [RegularExpression(@"^\d{2}\/\d{2}\/\d{4}$", ErrorMessage = "Date must be in the form of (mm/dd/yyyy)")]
         public DateTime Date { get; set; }
 
         [Display(Name = "Category")]
