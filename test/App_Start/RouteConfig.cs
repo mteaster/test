@@ -119,6 +119,13 @@ namespace test
             );
 
             routes.MapRoute(
+                name: "Download Track Image",
+                url: "Online/DownloadTrackImage/{trackId}",
+                defaults: new { controller = "Online", action = "DownloadTrackImage" },
+                constraints: new { trackId = @"\d+" }
+            );
+
+            routes.MapRoute(
                 name: "Files",
                 url: "FileCabinet/{bandId}/Files/{groupId}",
                 defaults: new { controller = "FileCabinet", action = "Files" },
