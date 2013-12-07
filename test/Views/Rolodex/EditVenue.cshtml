@@ -23,7 +23,8 @@
 
     <fieldset>
         <legend>Registration Form</legend>
-        <div style="width:50%;">
+        <div>
+        <div style="width:50%;  float: left;">
         <ol>
             <li style="display: none;">
                 @Html.TextBoxFor(m => m.ContactId)
@@ -56,7 +57,7 @@
         </div>
 
 
-        <div style="width:50%; float: left;">
+        <div style="width:50%;">
         <ol>
             <li>
                 @Html.LabelFor(m => m.Notes)
@@ -77,6 +78,7 @@
             </li>
             }
         </ol>
+        </div>
         </div>
 
         <input type="submit" value="Save" />
