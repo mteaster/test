@@ -86,6 +86,29 @@ namespace band.Controllers
             }
         }
 
+
+        public ActionResult DeleteTrack(int trackId)
+        {
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                TrackEntry trackEntry = database.TrackEntries.Find(trackId);
+
+                if (!BandUtil.Authenticate(trackEntry.BandId, this))
+                {
+                    return View("Error");
+                }
+
+                System.IO.File.Delete(Server.MapPath("~/App_Data/Tracks/" + trackEntry.BandId + "/" + trackId + ".mp3"));
+                System.IO.File.Delete(Server.MapPath("~/App_Data/Tracks/" + trackEntry.BandId + "/" + trackId + ".jpg"));
+
+                database.TrackEntries.Remove(trackEntry);
+                database.SaveChanges();
+
+                TempData["SuccessMessage"] = trackEntry.TrackName + " deleted.";
+                return RedirectToAction("Index", new { bandId = trackEntry.BandId });
+            }
+        }
+
         public ActionResult DownloadTrackAudio(int trackId)
         {
             using (DatabaseContext database = new DatabaseContext())

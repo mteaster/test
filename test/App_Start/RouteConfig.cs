@@ -91,6 +91,13 @@ namespace test
             );
 
             routes.MapRoute(
+                name: "Delete Track",
+                url: "Online/DeleteTrack/{trackId}",
+                defaults: new { controller = "Online", action = "DeleteTrack" },
+                constraints: new { trackId = @"\d+" }
+            );
+
+            routes.MapRoute(
                 name: "Get Files",
                 url: "FileCabinet/GetFiles/{groupId}",
                 defaults: new { controller = "FileCabinet", action = "GetFiles" },
