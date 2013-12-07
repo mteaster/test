@@ -11,7 +11,7 @@
 
 
 <div ng-app="sortable" ng-controller="SortableController" ng-init="init('/Band/SearchBands')">
-    <input type="text" value="" name="BandName" id="BandName" />
+    <input type="text" value="" name="BandName" id="BandName" ng-model="criteria"/>
     <input type="submit" value="Search" ng-click="search()">
     <span ng-click="sort('BandName')">Sort bands</span>
 
