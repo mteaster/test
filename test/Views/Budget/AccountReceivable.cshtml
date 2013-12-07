@@ -11,7 +11,7 @@
     @Html.Partial("_BandHeaderPartial")
 }
 
-@using (Html.BeginForm("AccountReceivable", "Budget", new { bandId = ViewBag.BandId }))
+@using (Html.BeginForm("CreateAccountReceivable", "Budget", new { bandId = ViewBag.BandId }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
