@@ -1,5 +1,8 @@
 ﻿<section class="blarg">
-    <h2>Bands</h2>
+    <hgroup class="title">
+        <h1>Your Bands.</h1>
+        <h2>Pick one of them.</h2>
+    </hgroup>
 
     <div ng-app="sortable" ng-controller="SortableController" ng-init="init('/Band/GetBands')">
         <span ng-click="sort('BandName')">Sort</span>
