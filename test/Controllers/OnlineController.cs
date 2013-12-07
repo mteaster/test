@@ -127,7 +127,15 @@ namespace band.Controllers
                 TrackEntry trackEntry = database.TrackEntries.Find(trackId);
 
                 string path = Server.MapPath("~/App_Data/Tracks/" + trackEntry.BandId + "/" + trackId + ".jpg");
-                return File(path, "image/jpg");
+
+                if (System.IO.File.Exists(path))
+                {
+                    return File(path, "image/jpeg");
+                }
+                else
+                {
+                    return File(Server.MapPath("~/App_Data/UserAvatars/default.jpg"), "image/jpeg");
+                }
             }
         }
 
