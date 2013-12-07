@@ -154,7 +154,7 @@ namespace band.Controllers
                 return RedirectToAction("MerchList", "Budget", new { BandId = bandId });
             }
 
-            return RedirectToAction("NewMerch", new { bandId = bandId });
+            return RedirectToAction("AddMerch", new { bandId = bandId });
         }
 
         public ActionResult AccountPayable(int bandId)
