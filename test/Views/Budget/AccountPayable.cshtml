@@ -1,0 +1,30 @@
+﻿@model test.Models.Budget.AccountPayables
+
+@{
+    ViewBag.Title = "Add Account Payable";
+}
+
+@using (Html.BeginForm("CreateAccountPayable", "Budget", new { bandId = ViewBag.BandId }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    <ol>
+        <li>
+            @Html.LabelFor(m => m.Amount)
+            @Html.TextBoxFor(m => m.Amount)
+        </li>
+        <li>
+            @Html.LabelFor(m => m.Category)
+            @Html.TextBoxFor(m => m.Category)
+        </li>
+        <li>
+            @Html.LabelFor(m => m.Date)
+            @Html.TextBoxFor(m => m.Date)
+        </li>
+        <li>
+            @Html.LabelFor(m => m.Paid)
+            @Html.CheckBoxFor(m => m.Paid)
+        </li>
+    </ol>
+        <input type="submit" value="Save" />
+}

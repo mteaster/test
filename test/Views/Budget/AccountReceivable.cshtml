@@ -1,0 +1,42 @@
+﻿
+@model test.Models.Budget.AccountReceivables
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+@section featured 
+{
+    @Html.Partial("_BandHeaderPartial")
+}
+
+@using (Html.BeginForm("AccountReceivable", "Budget", new { bandId = ViewBag.BandId }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    <fieldset>
+        <legend>Registration Form</legend>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.Amount)
+                @Html.TextBoxFor(m => m.Amount)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Date)
+                @Html.TextBoxFor(m => m.Date)
+            </li>
+        <li>
+            @Html.LabelFor(m => m.Category)
+            @Html.TextBoxFor(m => m.Category)
+        </li>
+        <li>
+            @Html.LabelFor(m => m.Paid)
+            @Html.CheckBoxFor(m => m.Paid)
+        </li>
+            
+        </ol>
+        <input type="submit" value="Save" />
+    </fieldset>
+}
+

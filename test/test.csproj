@@ -171,6 +171,7 @@
     <Compile Include="Controllers\BudgetController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\FileCabinetController.cs" />
     <Compile Include="Controllers\OnlineController.cs" />
@@ -182,6 +183,7 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\BandModels.cs" />
+    <Compile Include="Models\BudgetModels.cs" />
     <Compile Include="Models\CalendarModels.cs" />
     <Compile Include="Models\RolodexModels.cs" />
     <Compile Include="Models\FileCabinetModels.cs" />
@@ -422,6 +424,17 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\FileCabinet\_InfoPartial.cshtml" />
     <Content Include="Views\FileCabinet\File.cshtml" />
+    <Content Include="Views\Budget\AccountReceivable.cshtml" />
+    <Content Include="Views\Budget\_AccountsPayableListPartial.cshtml" />
+    <Content Include="Views\Budget\_AccountsReceivableListPartial.cshtml" />
+    <Content Include="Views\Budget\MerchList.cshtml" />
+    <Content Include="Views\Test\_SearchBandPartial.cshtml" />
+    <Content Include="Views\Test\_SearchResultsPartial.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
+    <Content Include="Views\Test\Band.cshtml" />
+    <Content Include="Views\Budget\AccountPayable.cshtml" />
+    <Content Include="Views\Online\_UploadTrackPartial.cshtml" />
+    <Content Include="Views\Online\_TracksPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

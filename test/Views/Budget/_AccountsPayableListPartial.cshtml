@@ -1,0 +1,19 @@
+﻿@model IEnumerable<test.Models.Budget.AccountPayables>
+
+@if (Model != null)
+{
+<table>
+    @foreach (test.Models.Budget.AccountPayables accountPayable in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(ModelItem => accountPayable.Amount)</td>
+            <td>@Html.DisplayFor(ModelItem => accountPayable.Date)</td>
+            <td>@Html.DisplayFor(ModelItem => accountPayable.Category)</td>
+            <td>@Html.DisplayFor(ModelItem => accountPayable.AssociatedBandContactId)</td>
+            <td>@Html.DisplayFor(ModelItem => accountPayable.AssociatedPersonContactId)</td>
+            <td>@Html.DisplayFor(ModelItem => accountPayable.AssociatedVenueContactId)</td>
+            <td>@Html.DisplayFor(ModelItem => accountPayable.Paid)</td>
+        </tr>
+    }   
+</table>
+}

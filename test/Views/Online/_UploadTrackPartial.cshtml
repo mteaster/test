@@ -1,0 +1,20 @@
+﻿@model test.Models.Test.UploadTrackModel
+
+<h2>upload dat track homeboi</h2>
+
+@using (Html.BeginForm("UploadTrack", "Online", new { bandId = ViewBag.BandId }, FormMethod.Post, new { enctype = "multipart/form-data" } ))
+{
+    @Html.LabelFor(model => model.TrackName)
+    @Html.EditorFor(model => model.TrackName)
+
+    @Html.LabelFor(model => model.TrackAudio)
+    <input type="file" name="TrackAudio" id="TrackAudio" />
+    
+    @Html.LabelFor(model => model.TrackImage)
+    <input type="file" name="TrackImage" id="TrackImage" />
+
+    <br />
+    
+    <input type="submit" value="Upload" />
+}
+

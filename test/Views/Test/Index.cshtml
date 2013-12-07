@@ -1,0 +1,19 @@
+﻿@model test.Models.Band.SearchViewModel
+
+@{
+    ViewBag.Title = "I don't know what this is i'm going crazy";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>what?</h2>
+</hgroup>
+
+@Html.Partial("_SearchBandPartial", new ViewDataDictionary(ViewData) { Model = Model.searchModel })
+@Html.Partial("_SearchResultsPartial", new ViewDataDictionary(ViewData) { Model = Model.resultsModel })
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

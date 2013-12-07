@@ -84,6 +84,13 @@ namespace test
             );
 
             routes.MapRoute(
+                name: "Get Tracks",
+                url: "Online/GetTracks/{bandId}",
+                defaults: new { controller = "Online", action = "GetTracks" },
+                constraints: new { bandId = @"\d+" }
+            );
+
+            routes.MapRoute(
                 name: "Get Files",
                 url: "FileCabinet/GetFiles/{groupId}",
                 defaults: new { controller = "FileCabinet", action = "GetFiles" },
@@ -95,6 +102,13 @@ namespace test
                 url: "FileCabinet/GetGroups/{bandId}",
                 defaults: new { controller = "FileCabinet", action = "GetGroups" },
                 constraints: new { bandId = @"\d+" }
+            );
+
+            routes.MapRoute(
+                name: "Download Track Audio",
+                url: "DownloadTrackAudio/{trackId}",
+                defaults: new { controller = "Online", action = "DownloadTrackAudio" },
+                constraints: new { trackId = @"\d+" }
             );
 
             routes.MapRoute(
