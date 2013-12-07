@@ -14,12 +14,6 @@ namespace test
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Get Bands",
-                url: "Band/GetBands",
-                defaults: new { controller = "Band", action = "GetBands" },
-            );
-
-            routes.MapRoute(
                 name: "Upload Band Avatar",
                 url: "Band/UploadAvatar/{bandId}",
                 defaults: new { controller = "Band", action = "UploadAvatar" },
