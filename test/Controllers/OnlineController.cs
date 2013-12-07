@@ -36,6 +36,12 @@ namespace band.Controllers
                     return View("Error");
                 }
 
+                if (Path.GetExtension(model.TrackAudio.FileName) != ".mp3")
+                {
+                    ViewBag.ErrorMessage = "That's not an mp3 file.";
+                    return View("Error");
+                }
+
                 if (model.TrackAudio.ContentLength <= 0 || model.TrackAudio.ContentLength > 1048576)
                 {
                     ViewBag.ErrorMessage = "The track audio file size is too big.";
