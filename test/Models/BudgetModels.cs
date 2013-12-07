@@ -93,4 +93,23 @@ namespace test.Models.Budget
 
         public int BandId { get; set; }
     }
+
+    public class IndexFilters
+    {
+        [Display(Name = "Start Date")]
+        public DateTime StartDT { get; set; }
+
+        [Display(Name = "End Date")]
+        public DateTime EndDT { get; set; }
+
+        [Display(Name = "Category")]
+        public string Category { get; set; }
+
+        [Display(Name = "Paid")]
+        public bool Paid { get; set; }
+
+        [Display(Name = "Unpaid")]
+        public bool Unpaid { get; set; }
+
+    }
 }

@@ -1,4 +1,5 @@
-﻿
+﻿@model test.Models.Budget.IndexFilters
+
 @section featured 
 {
     @Html.Partial("_BandHeaderPartial")
@@ -9,12 +10,23 @@
 @Html.ActionLink("Enter Account Receivable", "AccountReceivable", new {bandId = ViewBag.BandId})
 
 <h4>Filters</h4>
-Start Date: <input type="date" name="dtStart"/> to
-End Date: <input type="date" name="dtEnd"/>
+@Html.BeginForm("Index", "Budget", new {bandId = ViewBag.BandId})
+{
+@Html.DisplayFor(m => m.StartDT)
+@Html.TextBoxFor(m => m.StartDT, new { type = "date" }) to
+@Html.DisplayFor(m => m.EndDT)
+@Html.TextBoxFor(m => m.EndDT, new { type = "date" })
 <br />
-Category: <input type="text" name="tbCategory" />
-Paid: <input type="checkbox" name="cbPaid" />
-Unpaid: <input type="checkbox" name="cbUnpaid" />
+@Html.DisplayFor(m => m.Category)
+@Html.TextBoxFor(m => m.Category)
+@Html.DisplayFor(m => m.Paid)
+@Html.CheckBoxFor(m => m.Paid)
+@Html.DisplayFor(m => m.Unpaid)
+@Html.CheckBoxFor(m => m.Unpaid)
+}
 
+<h4>Accounts Payable</h4>
 @{ Html.RenderAction("AccountsPayableList", new {bandId = ViewBag.BandId}); }
+
+<h4>Accounts Receivable</h4>
 @{ Html.RenderAction("AccountsReceivableList", new { bandId = ViewBag.BandId}); }
