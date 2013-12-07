@@ -23,8 +23,9 @@
 
     <fieldset>
         <legend>Registration Form</legend>
+        <li>
         <span style="display: block;">
-        <ol>
+        <ul>
             <li style="display: none;">
                 @Html.TextBoxFor(m => m.ContactId)
                 @Html.TextBoxFor(m => m.BandId)
@@ -52,10 +53,12 @@
                 @Html.LabelFor(m => m.MerchSpace)
                 @Html.CheckBoxFor(m => m.MerchSpace)
             </li>
-        </ol>
+        </ul>
         </span>
+        </li>
+        <li>
         <span style="display: inline-block; vertical-align: top;">
-        <ol>
+        <ul>
             <li>
                 @Html.LabelFor(m => m.Notes)
                 @Html.TextBoxFor(m => m.Notes)
@@ -74,8 +77,9 @@
                 @Html.ActionLink("View Current Primary Contact", "EditPeople", new { bandId = ViewBag.BandId, contactId = Model.PrimaryPeopleContactId})
             </li>
             }
-        </ol>
+        </ul>
         </span>
+        </li>
         <input type="submit" value="Save" />
     </fieldset>
 }
