@@ -10,10 +10,11 @@
 <p class="message-success">@ViewBag.SuccessMessage</p>
 <p class="message-error">@ViewBag.ErrorMessage</p>
 
-@Html.Partial("_UploadTrackPartial")
-
-
 <section class="blarg">
+    @Html.Partial("_UploadTrackPartial")
+</section>
+
+<section class="half">
     <h2>Tracks</h2>
 
     <div ng-app="sortable" ng-controller="SortableController" ng-init="init('/Online/GetTracks/@ViewBag.BandId')">
@@ -31,10 +32,12 @@
                     </div>
                 </div>
 
-                <audio controls>
-                    <source ng-src="{{ track.TrackUrl }}" type="audio/mp3" />
-                    <p>Your browser does not support HTML 5 audio element</p>
-                </audio>
+                <div class="post-content">
+                    <audio controls>
+                        <source ng-src="{{ track.TrackUrl }}" type="audio/mp3" />
+                        <p>Your browser does not support HTML 5 audio element</p>
+                    </audio>
+                </div>
             </li>
         </ol>
     </div>
