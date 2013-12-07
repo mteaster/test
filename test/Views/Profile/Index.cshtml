@@ -2,12 +2,20 @@
     ViewBag.Title = "Profile";
 }
 
-@section featured 
+@if (ViewBag.InBand)
 {
-    @Html.Partial("_BandHeaderPartial")
+    @section featured 
+    {
+        @Html.Partial("_BandHeaderPartial")
+    }
 }
-
-<span>IN BAND? @ViewBag.InBand</span>
+else
+{
+    @section featured
+    {
+        @Html.Partial("_TestHeaderPartial");
+    }
+}
 
 <h2>Tracks</h2>
 
@@ -31,7 +39,10 @@
                 </audio>
             </div>
 
-            <a class="post-link" ng-href="/Online/DeleteTrack/{{ track.TrackId }}">Delete</a>
+            @if (ViewBag.InBand)
+            {
+                <a class="post-link" ng-href="/Online/DeleteTrack/{{ track.TrackId }}">Delete</a>
+            }
         </li>
     </ol>
 </div>
