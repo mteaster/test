@@ -12,6 +12,13 @@ namespace test
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            
+            routes.MapRoute(
+                name: "Manage Profile",
+                url: "Profile/Manage/{bandId}",
+                defaults: new { controller = "Profile", action = "Manage" },
+                constraints: new { bandId = @"\d+" }
+            );
 
             routes.MapRoute(
                 name: "Get Bands",

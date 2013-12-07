@@ -10,6 +10,7 @@ using WebMatrix.WebData;
 
 namespace band.Controllers
 {
+    [Authorize]
     public class RolodexController : Controller
     {
         //

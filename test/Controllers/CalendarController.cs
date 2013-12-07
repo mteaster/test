@@ -6,6 +6,7 @@ using test.Stuff;
 
 namespace band.Controllers
 {
+    [Authorize]
     public class CalendarController : Controller
     {
         public ActionResult Index(int bandId)

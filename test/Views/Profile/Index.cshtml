@@ -1,18 +1,26 @@
 ﻿@{
-    ViewBag.Title = ViewBag.BandName;
+    ViewBag.Title = "Profile";
 }
 
-<hgroup class="title">
-    <h1>@ViewBag.BandName</h1>
-    <h2>@ViewBag.BandId</h2>
-</hgroup>
-
-<img alt="" src="@Url.Action("DownloadAvatar", "Band", new { bandId = ViewBag.BandId })" height="50" width="50" class="photo" />
+@if (ViewBag.InBand)
+{
+    @section featured 
+    {
+        @Html.Partial("_BandHeaderPartial")
+    }
+}
+else
+{
+    @section featured
+    {
+        @Html.Partial("_TestHeaderPartial")
+    }
+}
 
 <h2>Tracks</h2>
 
-<div ng-app="sortable" ng-cloak ng-controller="SortableController" ng-init="init('/Online/GetTracks/@ViewBag.BandId')">
-    <span ng-click="sort('TrackName')">Sort tracks</th>
+<div ng-app="sortable" ng-cloak ng-controller="SortableController" ng-init="init('/Profile/GetTracks/@ViewBag.BandId')">
+    <span ng-click="sort('TrackName')">Sort tracks</span>
 
     <ol class="messages">
         <li ng-repeat="track in data | orderBy : column : descending">
@@ -30,8 +38,6 @@
                     <p>Your browser does not support HTML 5 audio element</p>
                 </audio>
             </div>
-
-            <a class="post-link" ng-href="/Online/DeleteTrack/{{ track.TrackId }}">Delete</a>
         </li>
     </ol>
 </div>

@@ -6,6 +6,7 @@ using System.Linq;
 
 namespace band.Controllers
 {
+    [Authorize]
     public class BudgetController : Controller
     {
         public ActionResult Index(int bandId)

@@ -6,9 +6,11 @@ using test.Models.Test;
 using test.Stuff;
 using System.Collections.Generic;
 using test.Models.Band;
+using WebMatrix.WebData;
 
 namespace band.Controllers
 {
+    [Authorize]
     public class ProfileController : Controller
     {
         public ActionResult Index(int bandId)
@@ -25,6 +27,23 @@ namespace band.Controllers
 
                 ViewBag.BandId = profile.BandId;
                 ViewBag.BandName = profile.BandName;
+
+                BandMembership membership = database.BandMemberships.Find(bandId, WebSecurity.CurrentUserId);
+
+                ViewBag.InBand = (membership == null) ? false : true;
+
+                return View();
+            }
+        }
+
+        public ActionResult Manage(int bandId)
+        {
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                if (!BandUtil.Authenticate(bandId, this))
+                {
+                    return View("Error");
+                }
 
                 return View();
             }
