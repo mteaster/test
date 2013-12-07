@@ -1,6 +1,6 @@
-var sortableApp = angular.module("sortable", []);
+var searchableApp = angular.module("searchable", []);
 
-sortableApp.controller('SortableController', function FilesController($scope, $http)
+searchableApp.controller('SearchableController', function SearchableController($scope, $http)
 {
     $scope.data = [];
     $scope.url = "";
