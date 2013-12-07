@@ -198,8 +198,6 @@
     <Compile Include="Stuff\MessageBoardUtil.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-timepicker.min.css" />
-    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -435,6 +433,7 @@
     <Content Include="Views\Budget\AccountPayable.cshtml" />
     <Content Include="Views\Online\_UploadTrackPartial.cshtml" />
     <Content Include="Views\Online\_TracksPartial.cshtml" />
+    <Content Include="Views\Band\Profile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -533,9 +532,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_MembersPartial.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Home\DateTest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\FileCabinet\UploadFile.cshtml" />
