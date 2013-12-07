@@ -60,6 +60,38 @@ namespace test.Models.Band
         public virtual UserProfile MemberProfile { get; set; }
     }
 
+    public class SuperBandModel
+    {
+        public SuperBandModel() { }
+
+        public SuperBandModel(int BandId, string BandName, string CreatorName)
+        {
+            this.BandId = BandId;
+            this.BandName = BandName;
+            this.CreatorName = CreatorName;
+            this.Members = Members;
+            this.AvatarUrl = "/Band/DownloadAvatar/" + BandId;
+        }
+
+        [Required]
+        [Display(Name = "ID")]
+        public int BandId { get; set; }
+
+        [Required]
+        [Display(Name = "Band")]
+        public string BandName { get; set; }
+
+        [Required]
+        [Display(Name = "Creator")]
+        public string CreatorName { get; set; }
+
+        [Required]
+        [Display(Name = "Members")]
+        public string Members { get; set; }
+
+        public string AvatarUrl { get; set; }
+    }
+
     public class BandModel
     {
         public BandModel() {}

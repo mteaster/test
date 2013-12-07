@@ -24,6 +24,11 @@ namespace test.Controllers
             return PartialView("_MembersPartial", BandUtil.MemberModelsFor(bandId));
         }
 
+        public ActionResult GetBands()
+        {
+            return Json(BandUtil.SuperBandModelsFor(WebSecurity.CurrentUserId), JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult Register()
         {
             return View();
