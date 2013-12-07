@@ -435,6 +435,7 @@
     <Content Include="Views\Profile\_TracksPartial.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Band\_ChangeAvatarPartial.cshtml" />
+    <Content Include="Views\Shared\_TestHeaderPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
