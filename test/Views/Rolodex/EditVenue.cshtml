@@ -25,7 +25,7 @@
         <legend>Registration Form</legend>
         <div style="display:inline-block;">
         <div style="width:50%;  float: left;">
-        <ol>
+        <ol style="display:block";>
             <li style="display: none;">
                 @Html.TextBoxFor(m => m.ContactId)
                 @Html.TextBoxFor(m => m.BandId)
@@ -58,7 +58,7 @@
 
 
         <div style="width:50%;">
-        <ol>
+        <ol style="display:block";>
             <li>
                 @Html.LabelFor(m => m.Notes)
                 @Html.TextBoxFor(m => m.Notes)
