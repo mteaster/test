@@ -213,9 +213,9 @@ namespace test.Controllers
             return RedirectToAction("Manage");
         }
 
-        public ActionResult DownloadAvatar(int userId)
+        public ActionResult DownloadAvatar(int bandId)
         {
-            string path = Server.MapPath("~/App_Data/UserAvatars/" + userId + ".jpg");
+            string path = Server.MapPath("~/App_Data/BandAvatars/" + bandId + ".jpg");
 
             if (System.IO.File.Exists(path))
             {
