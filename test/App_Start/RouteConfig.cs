@@ -105,15 +105,15 @@ namespace test
 
             routes.MapRoute(
                 name: "Get Tracks",
-                url: "Online/GetTracks/{bandId}",
-                defaults: new { controller = "Online", action = "GetTracks" },
+                url: "Profile/GetTracks/{bandId}",
+                defaults: new { controller = "Profile", action = "GetTracks" },
                 constraints: new { bandId = @"\d+" }
             );
 
             routes.MapRoute(
                 name: "Delete Track",
-                url: "Online/DeleteTrack/{trackId}",
-                defaults: new { controller = "Online", action = "DeleteTrack" },
+                url: "Profile/DeleteTrack/{trackId}",
+                defaults: new { controller = "Profile", action = "DeleteTrack" },
                 constraints: new { trackId = @"\d+" }
             );
 
@@ -133,15 +133,15 @@ namespace test
 
             routes.MapRoute(
                 name: "Download Track Audio",
-                url: "Online/DownloadTrackAudio/{trackId}",
-                defaults: new { controller = "Online", action = "DownloadTrackAudio" },
+                url: "Profile/DownloadTrackAudio/{trackId}",
+                defaults: new { controller = "Profile", action = "DownloadTrackAudio" },
                 constraints: new { trackId = @"\d+" }
             );
 
             routes.MapRoute(
                 name: "Download Track Image",
-                url: "Online/DownloadTrackImage/{trackId}",
-                defaults: new { controller = "Online", action = "DownloadTrackImage" },
+                url: "Profile/DownloadTrackImage/{trackId}",
+                defaults: new { controller = "Profile", action = "DownloadTrackImage" },
                 constraints: new { trackId = @"\d+" }
             );
 
@@ -316,9 +316,9 @@ namespace test
             );
 
             routes.MapRoute(
-                name: "Online",
-                url: "Online/{bandId}",
-                defaults: new { controller = "Online", action = "Index" },
+                name: "Profile",
+                url: "Profile/{bandId}",
+                defaults: new { controller = "Profile", action = "Index" },
                 constraints: new { bandId = @"\d+" }
             );
 

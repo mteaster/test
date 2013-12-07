@@ -7,7 +7,7 @@
     <h2>@ViewBag.BandId</h2>
 </hgroup>
 
-<img alt="" src="@Url.Action("DownloadAvatar", new { bandId = ViewBag.BandId })" height="50" width="50" class="photo" />
+<img alt="" src="@Url.Action("DownloadAvatar", "Band", new { bandId = ViewBag.BandId })" height="50" width="50" class="photo" />
 
 <h2>Tracks</h2>
 

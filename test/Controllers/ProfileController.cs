@@ -8,15 +8,10 @@ using System.Collections.Generic;
 
 namespace band.Controllers
 {
-    public class OnlineController : Controller
+    public class ProfileController : Controller
     {
         public ActionResult Index(int bandId)
         {
-            if (!BandUtil.Authenticate(bandId, this))
-            {
-                return View("Error");
-            }
-
             return View();
         }
 
