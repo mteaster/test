@@ -143,7 +143,5 @@ namespace test.Controllers
             ViewBag.SuccessMessage = "Choo choo!";
             return View("Success");
         }
-
-
     }
 }

@@ -11,10 +11,6 @@
 <p class="message-error">@ViewBag.ErrorMessage</p>
 
 <section class="blarg">
-    @Html.Partial("_UploadTrackPartial")
-</section>
-
-<section class="half">
     <h2>Tracks</h2>
 
     <div ng-app="sortable" ng-controller="SortableController" ng-init="init('/Online/GetTracks/@ViewBag.BandId')">
@@ -38,9 +34,15 @@
                         <p>Your browser does not support HTML 5 audio element</p>
                     </audio>
                 </div>
+
+                <a class="post-link" ng-href="/Online/DeleteTrack/{{ track.TrackId }}">Delete</a>
             </li>
         </ol>
     </div>
+</section>
+
+<section class="half">
+    @Html.Partial("_UploadTrackPartial")
 </section>
 
 @section Scripts
