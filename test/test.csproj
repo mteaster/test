@@ -259,6 +259,7 @@
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\bootstrap-timepicker.min.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\searchsort.js" />
     <Content Include="Scripts\pdf.js\compatibility.js" />
     <Content Include="Scripts\pdf.js\debugger.js" />
     <Content Include="Scripts\pdf.js\download_manager.js" />
@@ -436,6 +437,7 @@
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Band\_ChangeAvatarPartial.cshtml" />
     <Content Include="Views\Shared\_TestHeaderPartial.cshtml" />
+    <Content Include="Views\Band\SuperSearch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
