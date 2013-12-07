@@ -13,7 +13,7 @@ sortableApp.controller('SortableController', function FilesController($scope, $h
 
     $scope.search = function ()
     {
-        $http({ method: 'GET', url: url + '/' + criteria }).success(function (data) { $scope.data = data; });
+        $http({ method: 'GET', url: $scope.url + '/' + $scope.criteria }).success(function (data) { $scope.data = data; });
     };
 
     $scope.column = '';
