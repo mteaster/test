@@ -50,7 +50,7 @@
                 @Html.TextBoxFor(m => m.Notes)
             </li>
             <li>
-                <label for="PrimaryContactId">Primary Contact:</label>
+                <label for="PrimaryContactId">Primary Contact</label>
                 @Html.DropDownListFor(m => m.PrimaryPeopleContactId, (List<SelectListItem>) band.Controllers.RolodexController.GetSelectList(ViewBag.BandId, "Band"), "N/A")
             </li>
             @if (Model.PrimaryPeopleContactId > 0)
