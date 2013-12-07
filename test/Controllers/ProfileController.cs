@@ -30,6 +30,19 @@ namespace band.Controllers
             }
         }
 
+        public ActionResult Manage(int bandId)
+        {
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                if (!BandUtil.Authenticate(bandId, this))
+                {
+                    return View("Error");
+                }
+
+                return View();
+            }
+        }
+
         [HttpPost]
         public ActionResult UploadTrack(int bandId, UploadTrackModel model)
         {
