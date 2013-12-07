@@ -7,6 +7,8 @@
     @Html.Partial("_BandHeaderPartial")
 }
 
+<span>IN BAND? @ViewBag.InBand</span>
+
 <h2>Tracks</h2>
 
 <div ng-app="sortable" ng-cloak ng-controller="SortableController" ng-init="init('/Online/GetTracks/@ViewBag.BandId')">

@@ -6,6 +6,7 @@ using test.Models.Test;
 using test.Stuff;
 using System.Collections.Generic;
 using test.Models.Band;
+using WebMatrix.WebData;
 
 namespace band.Controllers
 {
@@ -25,6 +26,10 @@ namespace band.Controllers
 
                 ViewBag.BandId = profile.BandId;
                 ViewBag.BandName = profile.BandName;
+
+                BandMembership membership = database.BandMemberships.Find(bandId, WebSecurity.CurrentUserId);
+
+                ViewBag.InBand = (membership == null) ? false : true;
 
                 return View();
             }
