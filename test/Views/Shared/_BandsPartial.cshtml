@@ -8,7 +8,7 @@
     @Html.ActionLink("Join an existing band", "Search", "Band")
 
     <div ng-app="sortable" ng-controller="SortableController" ng-init="init('/Band/GetBands')">
-        <span ng-click="sort('BandName')">Sort</span>
+        <span ng-click="sort('BandName')">Sort bands</span>
 
         <ol class="messages">
             <li ng-repeat="band in data | orderBy : column : descending">
