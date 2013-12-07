@@ -172,10 +172,6 @@ namespace band.Controllers
         {
             using (DatabaseContext database = new DatabaseContext())
             {
-                if (!BandUtil.Authenticate(bandId, this))
-                {
-                    return RedirectToAction("Join", "Band");
-                }
                 List<TrackEntry> entries = database.TrackEntries.Where(t => t.BandId == bandId).ToList();
 
                 List<TrackEntryModel> models = new List<TrackEntryModel>();
