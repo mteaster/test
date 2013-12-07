@@ -12,7 +12,7 @@
 <h2>Tracks</h2>
 
 <div ng-app="sortable" ng-cloak ng-controller="SortableController" ng-init="init('/Profile/GetTracks/@ViewBag.BandId')">
-    <span ng-click="sort('TrackName')">Sort tracks</th>
+    <span ng-click="sort('TrackName')">Sort tracks</span>
 
     <ol class="messages">
         <li ng-repeat="track in data | orderBy : column : descending">
