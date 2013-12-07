@@ -15,7 +15,7 @@ namespace test
 
             routes.MapRoute(
                 name: "Upload Band Avatar",
-                url: "Band/UploadAvatar/{bandId",
+                url: "Band/UploadAvatar/{bandId}",
                 defaults: new { controller = "Band", action = "UploadAvatar" },
                 constraints: new { bandId = @"\d+" }
             );
