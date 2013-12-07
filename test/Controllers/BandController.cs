@@ -46,7 +46,7 @@ namespace test.Controllers
                         string username = database2.UserProfiles.Find(profile.CreatorId).UserName;
                         models.Add(new SuperBandModel(profile.BandId,
                                             profile.BandName,
-                                            username);
+                                            username));
                     }
                 }
 
