@@ -14,21 +14,41 @@ namespace test
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Get Bands",
+                url: "Band/GetBands",
+                defaults: new { controller = "Band", action = "GetBands" }
+            );
+
+            routes.MapRoute(
+                name: "Upload Band Avatar",
+                url: "Band/UploadAvatar/{bandId}",
+                defaults: new { controller = "Band", action = "UploadAvatar" },
+                constraints: new { bandId = @"\d+" }
+            );
+
+            routes.MapRoute(
                 name: "Download Band Avatar",
+                url: "Band/DownloadAvatar/{bandId}",
+                defaults: new { controller = "Band", action = "DownloadAvatar" },
+                constraints: new { bandId = @"\d+" }
+            );
+
+            routes.MapRoute(
+                name: "Download Band Contact Avatar",
                 url: "Rolodex/DownloadBandAvatar/{contactId}",
                 defaults: new { controller = "Rolodex", action = "DownloadBandAvatar" },
                 constraints: new { contactId = @"\d+" }
             );
 
             routes.MapRoute(
-                name: "Download Venue Avatar",
+                name: "Download Venue Contact Avatar",
                 url: "Rolodex/DownloadVenueAvatar/{contactId}",
                 defaults: new { controller = "Rolodex", action = "DownloadVenueAvatar" },
                 constraints: new { contactId = @"\d+" }
             );
 
             routes.MapRoute(
-                name: "Download People Avatar",
+                name: "Download People Contact Avatar",
                 url: "Rolodex/DownloadPeopleAvatar/{contactId}",
                 defaults: new { controller = "Rolodex", action = "DownloadPeopleAvatar" },
                 constraints: new { contactId = @"\d+" }
@@ -85,15 +105,15 @@ namespace test
 
             routes.MapRoute(
                 name: "Get Tracks",
-                url: "Online/GetTracks/{bandId}",
-                defaults: new { controller = "Online", action = "GetTracks" },
+                url: "Profile/GetTracks/{bandId}",
+                defaults: new { controller = "Profile", action = "GetTracks" },
                 constraints: new { bandId = @"\d+" }
             );
 
             routes.MapRoute(
                 name: "Delete Track",
-                url: "Online/DeleteTrack/{trackId}",
-                defaults: new { controller = "Online", action = "DeleteTrack" },
+                url: "Profile/DeleteTrack/{trackId}",
+                defaults: new { controller = "Profile", action = "DeleteTrack" },
                 constraints: new { trackId = @"\d+" }
             );
 
@@ -113,15 +133,15 @@ namespace test
 
             routes.MapRoute(
                 name: "Download Track Audio",
-                url: "Online/DownloadTrackAudio/{trackId}",
-                defaults: new { controller = "Online", action = "DownloadTrackAudio" },
+                url: "Profile/DownloadTrackAudio/{trackId}",
+                defaults: new { controller = "Profile", action = "DownloadTrackAudio" },
                 constraints: new { trackId = @"\d+" }
             );
 
             routes.MapRoute(
                 name: "Download Track Image",
-                url: "Online/DownloadTrackImage/{trackId}",
-                defaults: new { controller = "Online", action = "DownloadTrackImage" },
+                url: "Profile/DownloadTrackImage/{trackId}",
+                defaults: new { controller = "Profile", action = "DownloadTrackImage" },
                 constraints: new { trackId = @"\d+" }
             );
 
@@ -296,9 +316,9 @@ namespace test
             );
 
             routes.MapRoute(
-                name: "Online",
-                url: "Online/{bandId}",
-                defaults: new { controller = "Online", action = "Index" },
+                name: "Profile",
+                url: "Profile/{bandId}",
+                defaults: new { controller = "Profile", action = "Index" },
                 constraints: new { bandId = @"\d+" }
             );
 

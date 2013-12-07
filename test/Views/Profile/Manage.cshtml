@@ -13,10 +13,8 @@
 <section class="blarg">
     <h2>Tracks</h2>
 
-    <div ng-app="sortable" ng-controller="SortableController" ng-init="init('/Online/GetTracks/@ViewBag.BandId')">
-
-        <span ng-click="sort('TrackId')">Sort by track id</th>
-        <span ng-click="sort('TrackName')">Sort by name</th>
+    <div ng-app="sortable" ng-controller="SortableController" ng-init="init('/Profile/GetTracks/@ViewBag.BandId')">
+        <span ng-click="sort('TrackName')">Sort tracks</th>
 
         <ol class="messages">
             <li ng-repeat="track in data | orderBy : column : descending">

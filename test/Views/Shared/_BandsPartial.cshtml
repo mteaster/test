@@ -1,57 +1,32 @@
-﻿@model IEnumerable<test.Models.Band.BandModel>
-
-@if(Model.Any())
-{
+﻿<section class="blarg">
     <hgroup class="title">
         <h1>Your Bands.</h1>
         <h2>Pick one of them.</h2>
     </hgroup>
-    
+
     @Html.ActionLink("Create a new band", "Register", "Band")
     @Html.ActionLink("Join an existing band", "Search", "Band")
 
-    <table class="pretty" border="0" cellpadding="0" cellspacing="0">
-        <tr>
-            <th>@Html.DisplayNameFor(model => model.BandName)</th>
-            <th>@Html.DisplayNameFor(model => model.CreatorName)</th>
-            <th>Leave</th>
-        </tr>
+    <div ng-app="sortable" ng-controller="SortableController" ng-init="init('/Band/GetBands')">
+        <span ng-click="sort('BandName')">Sort bands</span>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@Html.ActionLink(item.BandName, "Index", "Dashboard", new { bandId = item.BandId }, null)</td>
-            <td>@Html.DisplayFor(modelItem => item.CreatorName)</td>
-            <td>@Html.ActionLink("Leave", "Leave", "Band", new { bandId = item.BandId }, null)</td>
-        </tr>
-    }
+        <ol class="messages">
+            <li ng-repeat="band in data | orderBy : column : descending">
+                <div class="post-header">  
+                    <img class="post-avatar" height="50" width="50" class="photo" alt="" ng-src="{{ band.AvatarUrl }}" />    
+                    <div class="post-info">  
+                        <span class="post-username">{{ band.BandName }}</span><br />
+                        <span class="post-time">{{ band.CreatorName }}</span><br />
+                    </div>
+                </div>
 
-    </table>
-}
-else
-{
-    <hgroup class="title">
-        <h1>You're not in any bands!</h1>
-    </hgroup>
-    
-    <h3>Do something about it:</h3>
-    <ol class="round">
-        <li class="one">
-            <h2>@Html.ActionLink("Join a band", "Search", "Band")</h2>
-            Search for bands and join one.
-        </li>
-
-        <li class="two">
-            <h2>@Html.ActionLink("Create a band", "Register", "Band")</h2>
-            Start a new band and get your friends to join.
-        </li>
-
-        <li class="three">
-            <h2>Leave</h2>
-            And never come back.
-        </li>
-    </ol>
-}
+                <a class="post-link" ng-href="/Dashboard/{{ band.BandId }}">Dashboard</a>
+                <a class="post-link" ng-href="/Profile/{{ band.BandId }}">Profile</a>
+                <a class="post-link" ng-href="/Band/Leave/{{ band.BandId }}">Leave</a>
+            </li>
+        </ol>
+    </div>
+</section>
 
 @if(Roles.IsUserInRole("Administrator"))
 {

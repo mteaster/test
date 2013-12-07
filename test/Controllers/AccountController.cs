@@ -150,7 +150,7 @@ namespace test.Controllers
             {
                 string path = Server.MapPath("~/App_Data/UserAvatars/" + WebSecurity.CurrentUserId + ".jpg");
                 file.SaveAs(path);
-                TempData["ErrorMessage"] = "Avatar changed.";
+                TempData["SuccessMessage"] = "Avatar changed.";
             }
 
             return RedirectToAction("Manage");

@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = ViewBag.BandName;
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.BandName</h1>
+    <h2>@ViewBag.BandId</h2>
+</hgroup>
+
+<img alt="" src="@Url.Action("DownloadAvatar", "Band", new { bandId = ViewBag.BandId })" height="50" width="50" class="photo" />
+
+<h2>Tracks</h2>
+
+<div ng-app="sortable" ng-cloak ng-controller="SortableController" ng-init="init('/Online/GetTracks/@ViewBag.BandId')">
+    <span ng-click="sort('TrackName')">Sort tracks</th>
+
+    <ol class="messages">
+        <li ng-repeat="track in data | orderBy : column : descending">
+            <div class="post-header">  
+                <img class="post-avatar" height="50" width="50" class="photo" alt="" ng-src="{{ track.ImageUrl }}" />    
+                <div class="post-info">  
+                    <span class="post-username">{{ track.TrackId }}</span><br />
+                    <span class="post-time">{{ track.TrackName }}</span><br />
+                </div>
+            </div>
+
+            <div class="post-content">
+                <audio controls>
+                    <source ng-src="{{ track.TrackUrl }}" type="audio/mp3" />
+                    <p>Your browser does not support HTML 5 audio element</p>
+                </audio>
+            </div>
+
+            <a class="post-link" ng-href="/Online/DeleteTrack/{{ track.TrackId }}">Delete</a>
+        </li>
+    </ol>
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript" src="@Url.Content("/Scripts/angular.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/Scripts/sortable.js")"></script>
+}

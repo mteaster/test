@@ -82,8 +82,6 @@ namespace test.Stuff
             }
         }
 
-
-
         public static bool Join(int bandId, string password)
         {
             using (DatabaseContext database = new DatabaseContext())

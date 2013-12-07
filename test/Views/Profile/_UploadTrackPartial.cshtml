@@ -2,7 +2,7 @@
 
 <h2>Upload a Track</h2>
 
-@using (Html.BeginForm("UploadTrack", "Online", new { bandId = ViewBag.BandId }, FormMethod.Post, new { enctype = "multipart/form-data" } ))
+@using (Html.BeginForm("UploadTrack", "Profile", new { bandId = ViewBag.BandId }, FormMethod.Post, new { enctype = "multipart/form-data" } ))
 {
     @Html.LabelFor(model => model.TrackName)
     @Html.EditorFor(model => model.TrackName)

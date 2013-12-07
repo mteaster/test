@@ -1,9 +1,12 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using System.Linq;
 using test.Models.Band;
 using test.Stuff;
 using WebMatrix.WebData;
+using System.Collections.Generic;
+using test.Models;
 
 namespace test.Controllers
 {
@@ -22,6 +25,33 @@ namespace test.Controllers
         public ActionResult Members(int bandId)
         {
             return PartialView("_MembersPartial", BandUtil.MemberModelsFor(bandId));
+        }
+
+        public ActionResult GetBands()
+        {
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                List<SuperBandModel> models = new List<SuperBandModel>();
+
+                var profiles = from m in database.BandMemberships
+                              join p in database.BandProfiles
+                              on m.BandId equals p.BandId
+                              where m.MemberId == WebSecurity.CurrentUserId
+                              select p;
+
+                foreach (var profile in profiles)
+                {
+                    using (DatabaseContext database2 = new DatabaseContext())
+                    {
+                        string username = database2.UserProfiles.Find(profile.CreatorId).UserName;
+                        models.Add(new SuperBandModel(profile.BandId,
+                                            profile.BandName,
+                                            username));
+                    }
+                }
+
+                return Json(models, JsonRequestBehavior.AllowGet);
+            }
         }
 
         public ActionResult Register()
@@ -205,17 +235,17 @@ namespace test.Controllers
             }
             else
             {
-                string path = Server.MapPath("~/App_Data/BandAvatars/" + WebSecurity.CurrentUserId + ".jpg");
+                string path = Server.MapPath("~/App_Data/BandAvatars/" + bandId + ".jpg");
                 file.SaveAs(path);
-                TempData["ErrorMessage"] = "Avatar changed.";
+                TempData["SuccessMessage"] = "Avatar changed.";
             }
 
             return RedirectToAction("Manage");
         }
 
-        public ActionResult DownloadAvatar(int userId)
+        public ActionResult DownloadAvatar(int bandId)
         {
-            string path = Server.MapPath("~/App_Data/UserAvatars/" + userId + ".jpg");
+            string path = Server.MapPath("~/App_Data/BandAvatars/" + bandId + ".jpg");
 
             if (System.IO.File.Exists(path))
             {

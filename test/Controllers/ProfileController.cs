@@ -5,19 +5,29 @@ using test.Models;
 using test.Models.Test;
 using test.Stuff;
 using System.Collections.Generic;
+using test.Models.Band;
 
 namespace band.Controllers
 {
-    public class OnlineController : Controller
+    public class ProfileController : Controller
     {
         public ActionResult Index(int bandId)
         {
-            if (!BandUtil.Authenticate(bandId, this))
+            using (DatabaseContext database = new DatabaseContext())
             {
-                return View("Error");
-            }
+                BandProfile profile = database.BandProfiles.Find(bandId);
 
-            return View();
+                if (profile == null)
+                {
+                    ViewBag.ErrorMessage = "dat band dont exist dawg";
+                    return View("Error");
+                }
+
+                ViewBag.BandId = profile.BandId;
+                ViewBag.BandName = profile.BandName;
+
+                return View();
+            }
         }
 
         [HttpPost]
