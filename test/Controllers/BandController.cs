@@ -69,6 +69,14 @@ namespace test.Controllers
             return View(svm);
         }
 
+        public ActionResult Profile(int bandId)
+        {
+            ViewBag.BandId = bandId;
+            ViewBag.BandName = BandUtil.BandNameFor(bandId);
+
+            return View();
+        }
+
         public ActionResult Join(int bandId)
         {
             ViewBag.BandId = bandId;

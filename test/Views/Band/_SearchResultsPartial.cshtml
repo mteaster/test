@@ -14,6 +14,7 @@
             {
                 <tr>
                     <td>@Html.ActionLink(item.BandName, "Join", "Band", new { bandId = item.BandId }, null)</td>
+                    <td>@Html.ActionLink(item.BandName, "Profile", "Band", new { bandId = item.BandId }, null)</td>
                     <td>@Html.DisplayFor(modelItem => item.CreatorName)</td>
                 </tr>
             }

@@ -212,6 +212,13 @@ namespace test
             );
 
             routes.MapRoute(
+                name: "Band Profile",
+                url: "Band/Profile/{bandId}",
+                defaults: new { controller = "Band", action = "Profile" },
+                constraints: new { bandId = @"\d+" }
+            );
+
+            routes.MapRoute(
                 name: "Join Band",
                 url: "Band/Join/{bandId}",
                 defaults: new { controller = "Band", action = "Join" },
