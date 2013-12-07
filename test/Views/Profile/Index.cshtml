@@ -2,12 +2,10 @@
     ViewBag.Title = ViewBag.BandName;
 }
 
-<hgroup class="title">
-    <h1>@ViewBag.BandName</h1>
-    <h2>@ViewBag.BandId</h2>
-</hgroup>
-
-<img alt="" src="@Url.Action("DownloadAvatar", "Band", new { bandId = ViewBag.BandId })" height="50" width="50" class="photo" />
+@section featured 
+{
+    @Html.Partial("_TestHeaderPartial")
+}
 
 <h2>Tracks</h2>
 
