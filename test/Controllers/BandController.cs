@@ -29,28 +29,29 @@ namespace test.Controllers
 
         public ActionResult GetBands()
         {
-            //using (DatabaseContext database = new DatabaseContext())
-            //{
-            //    List<SuperBandModel> models = new List<SuperBandModel>();
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                List<SuperBandModel> models = new List<SuperBandModel>();
 
-            //    var profiles = from m in database.BandMemberships
-            //                  join p in database.BandProfiles
-            //                  on m.BandId equals p.BandId
-            //                  where m.MemberId == WebSecurity.CurrentUserId
-            //                  select p;
+                var profiles = from m in database.BandMemberships
+                              join p in database.BandProfiles
+                              on m.BandId equals p.BandId
+                              where m.MemberId == WebSecurity.CurrentUserId
+                              select p;
 
-            //    foreach (var profile in profiles)
-            //    {
-                    
-            //        models.Add(new SuperBandModel(profile.BandId,
-            //                            profile.BandName,
-            //                            database.UserProfiles.Find(profile.CreatorId).UserName));
-            //    }
+                foreach (var profile in profiles)
+                {
+                    using (DatabaseContext database2 = new DatabaseContext())
+                    {
+                        string username = database2.UserProfiles.Find(profile.CreatorId).UserName;
+                        models.Add(new SuperBandModel(profile.BandId,
+                                            profile.BandName,
+                                            username);
+                    }
+                }
 
-            //    return Json(models, JsonRequestBehavior.AllowGet);
-            //}
-
-            return null;
+                return Json(models, JsonRequestBehavior.AllowGet);
+            }
         }
 
         public ActionResult Register()
