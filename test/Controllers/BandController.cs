@@ -99,6 +99,16 @@ namespace test.Controllers
             return View(svm);
         }
 
+        public ActionResult SuperSearch()
+        {
+            return View();
+        }
+
+        public ActionResult SearchBands(string criteria)
+        {
+            return Json(BandUtil.SearchByName(criteria), JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult Profile(int bandId)
         {
             ViewBag.BandId = bandId;

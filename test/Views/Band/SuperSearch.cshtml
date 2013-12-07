@@ -1,0 +1,41 @@
+﻿@model test.Models.Band.SearchViewModel
+
+@{
+    ViewBag.Title = "Search Bands";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>Do it.</h2>
+</hgroup>
+
+<input type="text" value="" name="BandName" id="BandName" />
+<input type="submit" value="Search" ng-click="search()">
+
+<div ng-app="sortable" ng-controller="SortableController" ng-init="init('/Band/SearchBands')">
+    <span ng-click="sort('BandName')">Sort bands</span>
+
+    <ol class="messages">
+        <li ng-repeat="band in data | orderBy : column : descending">
+            <div class="post-header">  
+                <img class="post-avatar" height="50" width="50" class="photo" alt="" ng-src="{{ band.AvatarUrl }}" />    
+                <div class="post-info">  
+                    <span class="post-username">{{ band.BandName }}</span><br />
+                    <span class="post-time">{{ band.CreatorName }}</span><br />
+                </div>
+            </div>
+
+            <div class="post-content">
+                <a class="post-link" ng-href="/Dashboard/{{ band.BandId }}">Dashboard</a>
+                <a class="post-link" ng-href="/Profile/{{ band.BandId }}">Profile</a>
+                <a class="post-link" ng-href="/Band/Leave/{{ band.BandId }}">Leave</a>
+            </div>
+        </li>
+    </ol>
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript" src="@Url.Content("/Scripts/angular.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/Scripts/searchsort.js")"></script>
+}
