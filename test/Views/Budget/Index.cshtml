@@ -10,19 +10,25 @@
 @Html.ActionLink("Enter Account Receivable", "AccountReceivable", new {bandId = ViewBag.BandId})
 
 <h4>Filters</h4>
-@Html.BeginForm("Index", "Budget", new {bandId = ViewBag.BandId})
+@using (Html.BeginForm("Index", "Budget", new {bandId = ViewBag.BandId}))
 {
-@Html.DisplayFor(m => m.StartDT)
-@Html.TextBoxFor(m => m.StartDT, new { type = "date" }) to
-@Html.DisplayFor(m => m.EndDT)
-@Html.TextBoxFor(m => m.EndDT, new { type = "date" })
-<br />
-@Html.DisplayFor(m => m.Category)
-@Html.TextBoxFor(m => m.Category)
-@Html.DisplayFor(m => m.Paid)
-@Html.CheckBoxFor(m => m.Paid)
-@Html.DisplayFor(m => m.Unpaid)
-@Html.CheckBoxFor(m => m.Unpaid)
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    <fieldset>
+        <legend>Filters</legend>
+        @Html.LabelFor(m => m.StartDT)
+        @Html.TextBoxFor(m => m.StartDT, new { type = "date" }) 
+        to
+        @Html.LabelFor(m => m.EndDT)
+        @Html.TextBoxFor(m => m.EndDT, new { type = "date" })
+        <br />
+        @Html.LabelFor(m => m.Category)
+        @Html.TextBoxFor(m => m.Category)
+        @Html.LabelFor(m => m.Paid)
+        @Html.CheckBoxFor(m => m.Paid)
+        @Html.LabelFor(m => m.Unpaid)
+        @Html.CheckBoxFor(m => m.Unpaid)
+    </fieldset>
 }
 
 <h4>Accounts Payable</h4>
