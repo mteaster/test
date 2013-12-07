@@ -12,32 +12,33 @@
 
 @Html.Partial("_UploadTrackPartial")
 
-<h2>yo tracks</h2>
 
-<div ng-app="sortable" ng-controller="SortableController" ng-init="init('/Online/GetTracks/@ViewBag.BandId')">
-    <table ng-cloak class="pretty" border="0" cellpadding="0" cellspacing="0">
-        <tr>
-            <th ng-click="sort('TrackId')">Track ID</th>
-            <th ng-click="sort('TrackName')">Name</th>
-            <th>Delete</th>
-            <th>Image</th>
-            <th>Play</th>
-        </tr>
+<section class="blarg">
+    <h2>Tracks</h2>
 
-        <tr ng-repeat="track in data | orderBy : column : descending">
-                <td>{{ track.TrackId }}</td>
-                <td>{{ track.TrackName }}</td>
-                <td><a ng-href="/Online/DeleteTrack/{{ track.TrackId }}">Delete</a></td>
-                <td><img class="post-avatar" height="50" width="50" class="photo" alt="" ng-src="{{ track.ImageUrl }}" /></td>
-                <td>
-                    <audio controls>
-                        <source ng-src="{{ track.TrackUrl }}" type="audio/mp3" />
-                        <p>Your browser does not support HTML 5 audio element</p>
-                    </audio>
-                </td>
-        </tr>
-    </table>
-</div>
+    <div ng-app="sortable" ng-controller="SortableController" ng-init="init('/Online/GetTracks/@ViewBag.BandId')">
+
+        <span ng-click="sort('TrackId')">Sort by track id</th>
+        <span ng-click="sort('TrackName')">Sort by name</th>
+
+        <ol class="messages">
+            <li ng-repeat="track in data | orderBy : column : descending">
+                <div class="post-header">  
+                    <img class="post-avatar" height="50" width="50" class="photo" alt="" ng-src="{{ track.ImageUrl }}" />    
+                    <div class="post-info">  
+                        <span class="post-username">{{ track.TrackId }}</span><br />
+                        <span class="post-time">{{ track.TrackName }}</span><br />
+                    </div>
+                </div>
+
+                <audio controls>
+                    <source ng-src="{{ track.TrackUrl }}" type="audio/mp3" />
+                    <p>Your browser does not support HTML 5 audio element</p>
+                </audio>
+            </li>
+        </ol>
+    </div>
+</section>
 
 @section Scripts
 {

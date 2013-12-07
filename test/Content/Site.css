@@ -784,9 +784,6 @@ ol.messages li
     list-style-type: none;
     padding: 12px;
     margin-bottom: 10px;
-    margin-top:10px;
-    margin-right:10px;
-    margin-left:10px;
     background: white;
 }
 
@@ -834,6 +831,35 @@ a.post-link
 {
     padding: 0 3px 0 0;
 }
+
+
+/* online stuff */
+
+ol.tracks
+{
+    padding: 0;
+    margin: 0;  
+}
+
+ol.tracks li
+{
+    border: 1px solid #C3C3C3;
+    list-style-type: none;
+    padding: 12px;
+    margin-bottom: 10px;
+    margin-top:10px;
+    margin-right:10px;
+    margin-left:10px;
+    background: white;
+}
+
+div.track-header
+{
+    margin-bottom: 10px;
+}
+
+
+/* misc stuff */
 
 table.pretty
 {
