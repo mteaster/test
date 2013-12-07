@@ -28,7 +28,7 @@
                 <td>{{ track.TrackId }}</td>
                 <td>{{ track.TrackName }}</td>
                 <td><a ng-href="/Online/DeleteTrack/{{ track.TrackId }}">Delete</a></td>
-                <td><img alt="" ng-src="{{ track.ImageUrl }}" /></td>
+                <td><img class="post-avatar" alt="" ng-src="{{ track.ImageUrl }}" /></td>
                 <td>
                     <audio controls>
                         <source ng-src="{{ track.TrackUrl }}" type="audio/mp3" />
