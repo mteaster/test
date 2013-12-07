@@ -11,6 +11,8 @@
 <p class="message-success">@ViewBag.SuccessMessage</p>
 <p class="message-error">@ViewBag.ErrorMessage</p>
 
+<img alt="" src="@Url.Action("DownloadAvatar", new { bandId = ViewBag.BandId })" height="50" width="50" class="photo" />
+
 <section class="half">
     @Html.Partial("_ChangeBandPasswordPartial")
 </section>
