@@ -1,63 +1,69 @@
-﻿<section class="blarg">
-    <hgroup class="title">
-        <h1>Your Bands.</h1>
-        <h2>Pick one of them.</h2>
-    </hgroup>
+﻿
 
-    @Html.ActionLink("Create a new band", "Register", "Band")
-    @Html.ActionLink("Join an existing band", "Search", "Band")
+<div ng-app="super">
+    <section class="blarg">
+        <hgroup class="title">
+            <h1>Your Bands.</h1>
+            <h2>Pick one of them.</h2>
+        </hgroup>
 
-    @Html.ActionLink("SUPER SEARCH", "SuperSearch", "Band")
+        @Html.ActionLink("Create a new band", "Register", "Band")
+        @Html.ActionLink("Join an existing band", "Search", "Band")
 
-    <div ng-app="sortable" ng-controller="SortableController" ng-init="init('/Band/GetBands')">
-        <span ng-click="sort('BandName')">Sort bands</span>
+        <div ng-app="sortable" ng-controller="SortableController" ng-init="init('/Band/GetBands')">
+            <span ng-click="sort('BandName')">Sort bands</span>
 
-        <ol class="messages">
-            <li ng-repeat="band in data | orderBy : column : descending">
-                <div class="post-header">  
-                    <img class="post-avatar" height="50" width="50" class="photo" alt="" ng-src="{{ band.AvatarUrl }}" />    
-                    <div class="post-info">  
-                        <span class="post-username">{{ band.BandName }}</span><br />
-                        <span class="post-time">{{ band.CreatorName }}</span><br />
+            <ol class="messages">
+                <li ng-repeat="band in data | orderBy : column : descending">
+                    <div class="post-header">  
+                        <img class="post-avatar" height="50" width="50" class="photo" alt="" ng-src="{{ band.AvatarUrl }}" />    
+                        <div class="post-info">  
+                            <span class="post-username">{{ band.BandName }}</span><br />
+                            <span class="post-time">{{ band.CreatorName }}</span><br />
+                        </div>
                     </div>
-                </div>
 
-                <div class="post-content">
-                    <a class="post-link" ng-href="/Dashboard/{{ band.BandId }}">Dashboard</a>
-                    <a class="post-link" ng-href="/Profile/{{ band.BandId }}">Profile</a>
-                    <a class="post-link" ng-href="/Band/Leave/{{ band.BandId }}">Leave</a>
-                </div>
-            </li>
-        </ol>
-    </div>
-</section>
+                    <div class="post-content">
+                        <a class="post-link" ng-href="/Dashboard/{{ band.BandId }}">Dashboard</a>
+                        <a class="post-link" ng-href="/Profile/{{ band.BandId }}">Profile</a>
+                        <a class="post-link" ng-href="/Band/Leave/{{ band.BandId }}">Leave</a>
+                    </div>
+                </li>
+            </ol>
+        </div>
+    </section>
 
-<section class="half">
+    <section class="half">
+        <hgroup class="title">
+            <h1>Search for bands.</h1>
+            <h2>Do it.</h2>
+        </hgroup>
 
-<div ng-app="searchable" ng-controller="SearchableController" ng-init="init('/Band/SearchBands')">
-    <input type="text" value="" name="BandName" id="BandName" ng-model="criteria"/>
-    <input type="submit" value="Search" ng-click="search()">
-    <span ng-click="sort('BandName')">Sort bands</span>
+        <div ng-app="searchable" ng-controller="SearchableController" ng-init="init('/Band/SearchBands')">
+            <input type="text" value="" name="BandName" id="BandName" ng-model="criteria"/>
+            <input type="submit" value="Search" ng-click="search()">
+            <span ng-click="sort('BandName')">Sort bands</span>
 
-    <ol class="messages">
-        <li ng-repeat="band in data | orderBy : column : descending">
-            <div class="post-header">  
-                <img class="post-avatar" height="50" width="50" class="photo" alt="" ng-src="{{ band.AvatarUrl }}" />    
-                <div class="post-info">  
-                    <span class="post-username">{{ band.BandName }}</span><br />
-                    <span class="post-time">{{ band.CreatorName }}</span><br />
-                </div>
-            </div>
+            <ol class="messages">
+                <li ng-repeat="band in data | orderBy : column : descending">
+                    <div class="post-header">  
+                        <img class="post-avatar" height="50" width="50" class="photo" alt="" ng-src="{{ band.AvatarUrl }}" />    
+                        <div class="post-info">  
+                            <span class="post-username">{{ band.BandName }}</span><br />
+                            <span class="post-time">{{ band.CreatorName }}</span><br />
+                        </div>
+                    </div>
 
-            <div class="post-content">
-                <a class="post-link" ng-href="/Dashboard/{{ band.BandId }}">Dashboard</a>
-                <a class="post-link" ng-href="/Profile/{{ band.BandId }}">Profile</a>
-                <a class="post-link" ng-href="/Band/Leave/{{ band.BandId }}">Leave</a>
-            </div>
-        </li>
-    </ol>
+                    <div class="post-content">
+                        <a class="post-link" ng-href="/Dashboard/{{ band.BandId }}">Dashboard</a>
+                        <a class="post-link" ng-href="/Profile/{{ band.BandId }}">Profile</a>
+                        <a class="post-link" ng-href="/Band/Leave/{{ band.BandId }}">Leave</a>
+                    </div>
+                </li>
+            </ol>
+        </div>
+    </section>
 </div>
-</section>
 
 @if(Roles.IsUserInRole("Administrator"))
 {
