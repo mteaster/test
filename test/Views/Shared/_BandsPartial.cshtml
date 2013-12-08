@@ -33,8 +33,24 @@
             <hgroup class="title">
                 <h1>You're not in any bands!</h1>
             </hgroup>
+    
+            <h3>Here are your options:</h3>
+            <ol class="round">
+                <li class="one">
+                    <h2>Join!</h2>
+                    Search for your band and join it.
+                </li>
 
-            Either @Html.ActionLink("create a new band", "Register", "Band") or search for a band to join.
+                <li class="two">
+                    <h2>@Html.ActionLink("Create!", "Register", "Band")</h2>
+                    Start a new band and get your friends to join.
+                </li>
+
+                <li class="three">
+                    <h2>Leave</h2>
+                    And never come back.
+                </li>
+            </ol>
         </section>
     </div>
 
