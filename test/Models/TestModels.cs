@@ -89,6 +89,13 @@ namespace test.Models.Test
     [Table("BandBio")]
     public class BandBio
     {
+        public BandBio() {}
+        public BandBio(int bandId, string bio)
+        {
+            this.BandId = bandId;
+            this.Bio = bio;
+        }
+
         [Required]
         [Key]
         [Column(Order = 0)]

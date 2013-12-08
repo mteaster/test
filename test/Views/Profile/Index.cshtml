@@ -24,13 +24,13 @@ else
 
     @if (ViewBag.InBand)
     {
-        @Html.ActionLink("Edit bio", "EditBio", "Profile", new { bandId = ViewBag.BandId }, null)
+        @Html.ActionLink("Edit bio", "Bio", "Profile", new { bandId = ViewBag.BandId }, null)
         <br />
     }
 
-    @if (Model == null)
+    @if (Model == null || Model.Bio == "")
     {
-        <span>No tracks for this band</span>
+        <span>No bio for this band</span>
     }
     else
     {
