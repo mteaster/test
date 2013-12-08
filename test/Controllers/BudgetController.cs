@@ -24,7 +24,6 @@ namespace band.Controllers
         }
 
         [ActionName("Index")]
-        [HttpPost]
         public ActionResult Index(int bandId, test.Models.Budget.IndexFilters filters, string sort)
         {
             if (!BandUtil.Authenticate(bandId, this))
