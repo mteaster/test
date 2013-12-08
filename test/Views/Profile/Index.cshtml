@@ -18,13 +18,17 @@ else
 }
 
 <section class="blarg">
-    <h2>Band information goes here</h2>
+    <h2>Bio</h2>
 </section>
 
 <section class="half">
     <h2>Tracks</h2>
 
     <div ng-app="sortable" ng-cloak ng-controller="SortableController" ng-init="init('/Profile/GetTracks/@ViewBag.BandId')">
+        @if (ViewBag.InBand)
+        {
+            @Html.ActionLink("Upload a new track", "UploadTrack", "Profile", new { bandId = ViewBag.BandId }, null)
+        }
         <input type="button" value="Sort" ng-click="sort('TrackName')" />
 
         <ol class="messages">

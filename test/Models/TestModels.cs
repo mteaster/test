@@ -32,8 +32,11 @@ namespace test.Models.Test
 
     public class UploadTrackModel
     {
-        [Display(Name = "Track name")]
+        [Display(Name = "Name")]
         public string TrackName { get; set; }
+
+        [Display(Name = "Album")]
+        public string AlbumName { get; set; }
 
         [Required]
         [Display(Name = "Audio file")]

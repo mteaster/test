@@ -36,7 +36,7 @@ namespace band.Controllers
             }
         }
 
-        public ActionResult Manage(int bandId)
+        public ActionResult UploadTrack(int bandId)
         {
             using (DatabaseContext database = new DatabaseContext())
             {

@@ -20,9 +20,9 @@ namespace test
             );
             
             routes.MapRoute(
-                name: "Manage Profile",
-                url: "Profile/Manage/{bandId}",
-                defaults: new { controller = "Profile", action = "Manage" },
+                name: "Upload Track",
+                url: "Profile/UploadTrack/{bandId}",
+                defaults: new { controller = "Profile", action = "UploadTrack" },
                 constraints: new { bandId = @"\d+" }
             );
 
