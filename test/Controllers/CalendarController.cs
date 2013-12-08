@@ -40,7 +40,7 @@ namespace band.Controllers
 
             DayModel model = new DayModel(day, month, year);
             model.Events = CalendarUtil.EventsForDay(bandId, day, month, year);
-
+            
             return View(model);
         }
 

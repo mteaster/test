@@ -7,6 +7,7 @@ using test.Stuff;
 using System.Collections.Generic;
 using test.Models.Band;
 using WebMatrix.WebData;
+using System;
 
 namespace band.Controllers
 {
@@ -80,17 +81,27 @@ namespace band.Controllers
 
                 BandBio bio = database.BandBios.Find(bandId);
 
-                if (bio == null)
+                if (String.IsNullOrEmpty(model.Bio))
                 {
-                    bio = new BandBio(bandId, model.Bio);
-                    database.BandBios.Add(bio);
+                    if (bio != null)
+                    {
+                        database.BandBios.Remove(database.BandBios.Find(bandId));
+                        database.SaveChanges();
+                    }
                 }
                 else
                 {
-                    bio.Bio = model.Bio;
+                    if (bio == null)
+                    {
+                        bio = new BandBio(bandId, model.Bio);
+                        database.BandBios.Add(bio);
+                    }
+                    else
+                    {
+                        bio.Bio = model.Bio;
+                    }
+                    database.SaveChanges();
                 }
-
-                database.SaveChanges();
 
                 TempData["SuccessMessage"] = "Bio edited.";
                 return RedirectToAction("Index", new { bandId = bandId });
