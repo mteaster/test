@@ -26,7 +26,7 @@
     {
         <tr>
             <td>@Html.DisplayFor(ModelItem => accountReceivable.Amount)</td>
-            <td>@String.Format("MM/dd/yyyy", accountReceivable.Date)</td>
+            <td>@accountReceivable.Date.ToShortDateString()</td>
             <td>@Html.DisplayFor(ModelItem => accountReceivable.Category)</td>
             <td>@Html.DisplayFor(ModelItem => accountReceivable.AssociatedBandContactId)</td>
             <td>@Html.DisplayFor(ModelItem => accountReceivable.AssociatedPersonContactId)</td>
