@@ -24,7 +24,7 @@ else
 <section class="half">
     <h2>Tracks</h2>
 
-    <div ng-app="sortable" ng-controller="SortableController" ng-init="init('/Profile/GetTracks/@ViewBag.BandId')" ng-cloak>
+    <div ng-app="super" ng-controller="SortableController" ng-init="init('/Profile/GetTracks/@ViewBag.BandId')" ng-cloak>
         @if (ViewBag.InBand)
         {
             @Html.ActionLink("Upload a new track", "UploadTrack", "Profile", new { bandId = ViewBag.BandId }, null)
