@@ -4,6 +4,7 @@ using test.Models;
 using test.Stuff;
 using System.Linq;
 using System;
+using test.Models.Budget;
 
 namespace band.Controllers
 {
@@ -13,12 +14,37 @@ namespace band.Controllers
         [ActionName("Index")]
         public ActionResult Index(int bandId)
         {
+            List<test.Models.Budget.AccountPayables> accountPayables = new List<test.Models.Budget.AccountPayables>();
+            List<test.Models.Budget.AccountReceivables> accountReceivables = new List<test.Models.Budget.AccountReceivables>();
+            decimal totalAP = 0;
+            decimal totalAR = 0;
+            decimal totalDifference = 0;
+
             if (!BandUtil.Authenticate(bandId, this))
             {
                 return View("Error");
             }
 
             ViewBag.Filters = new test.Models.Budget.IndexFilters { StartDT = DateTime.Now.Date, EndDT = DateTime.Now.Date.AddDays(1) };
+
+            accountPayables = GetAccountsPayableList(bandId, ViewBag.Filters);
+            accountReceivables = GetAccountsReceivableList(bandId, ViewBag.Filters);
+
+            foreach (AccountPayables ap in accountPayables)
+            {
+                totalAP += ap.Amount;
+            }
+
+            foreach (AccountReceivables ar in accountReceivables)
+            {
+                totalAR += ar.Amount;
+            }
+
+            totalDifference = totalAR - totalAP;
+
+            ViewBag.TotalAP = totalAP;
+            ViewBag.TotalAR = totalAR;
+            ViewBag.TotalDifference = totalDifference;
 
             return View(ViewBag.Filters);
         }
@@ -85,6 +111,16 @@ namespace band.Controllers
                 ViewBag.Filters = filters;
             }
 
+            accountPayables = GetAccountsPayableList(bandId, filters);
+
+            return PartialView("_AccountsPayableListPartial", accountPayables);
+
+        }
+
+        public List<test.Models.Budget.AccountPayables> GetAccountsPayableList(int bandId, test.Models.Budget.IndexFilters filters)
+        {
+            List<test.Models.Budget.AccountPayables> accountPayables = new List<test.Models.Budget.AccountPayables>();
+
             using (DatabaseContext db = new DatabaseContext())
             {
                 var apList = from p in db.AccountPayables
@@ -118,39 +154,10 @@ namespace band.Controllers
                 }
             }
 
-            //if (accountPayables != null)
-            //{
-            //    switch (sort)
-            //    {
-            //        case "AMOUNT":
-            //            accountPayables = accountPayables.OrderBy(a => a.Amount).ToList();
-            //            break;
-            //        case "DATE":
-            //            accountPayables = accountPayables.OrderBy(a => a.Date).ToList();
-            //            break;
-            //        case "CATEGORY":
-            //            accountPayables = accountPayables.OrderBy(a => a.Category).ToList();
-            //            break;
-            //        case "BAND":
-            //            accountPayables = accountPayables.OrderBy(a => a.AssociatedBandContactId).ToList();
-            //            break;
-            //        case "PERSON":
-            //            accountPayables = accountPayables.OrderBy(a => a.AssociatedPersonContactId).ToList();
-            //            break;
-            //        case "VENUE":
-            //            accountPayables = accountPayables.OrderBy(a => a.AssociatedVenueContactId).ToList();
-            //            break;
-            //        case "PAID":
-            //            accountPayables = accountPayables.OrderBy(a => a.Paid).ToList();
-            //            break;
-            //    }
-            //}
-
-            return PartialView("_AccountsPayableListPartial", accountPayables);
-
+            return accountPayables;
         }
 
-        public ActionResult AccountsReceivableList(int bandId, test.Models.Budget.IndexFilters filters, string sort)
+        public ActionResult AccountsReceivableList(int bandId, test.Models.Budget.IndexFilters filters)
         {
             List<test.Models.Budget.AccountReceivables> accountReceivables = new List<test.Models.Budget.AccountReceivables>();
             if (!BandUtil.Authenticate(bandId, this))
@@ -158,9 +165,20 @@ namespace band.Controllers
                 return View("Error");
             }
 
+            accountReceivables = GetAccountsReceivableList(bandId, filters);
+
+            return PartialView("_AccountsReceivableListPartial", accountReceivables);
+
+        }
+
+        public List<test.Models.Budget.AccountReceivables> GetAccountsReceivableList(int bandId, test.Models.Budget.IndexFilters filters)
+        {
+            List<test.Models.Budget.AccountReceivables> accountReceivables = new List<test.Models.Budget.AccountReceivables>();
+            
+
             using (DatabaseContext db = new DatabaseContext())
             {
-                
+
                 var arList = from r in db.AccountReceivables
                              where r.BandId == bandId
                              select new { r.AccountReceivableId, r.Amount, r.AssociatedBandContactId, r.AssociatedPersonContactId, r.AssociatedVenueContactId, r.BandId, r.Category, r.Date, r.Paid };
@@ -190,9 +208,7 @@ namespace band.Controllers
                     }
                 }
             }
-
-            return PartialView("_AccountsReceivableListPartial", accountReceivables);
-
+            return accountReceivables;
         }
 
         public ActionResult MerchList(int bandId)
