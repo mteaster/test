@@ -40,6 +40,7 @@ superApp.controller('SearchableController', function SearchableController($scope
     $scope.url = "";
     $scope.criteria = "";
     $scope.searched = false;
+    $scope.empty = false;
 
     $scope.init = function (url)
     {
@@ -49,7 +50,12 @@ superApp.controller('SearchableController', function SearchableController($scope
     $scope.search = function ()
     {
         $scope.searched = true;
-        $http({ method: 'GET', url: $scope.url + '/' + $scope.criteria }).success(function (data) { $scope.data = data; });
+        $http({ method: 'GET', url: $scope.url + '/' + $scope.criteria }).success(function (data)
+        {
+            $scope.data = data;
+            $scope.empty = (data.length === 0) ? true : false;
+        });
+
     };
 
     $scope.column = '';
