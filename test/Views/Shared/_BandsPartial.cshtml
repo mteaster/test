@@ -5,9 +5,6 @@
             <h2>Pick one of them.</h2>
         </hgroup>
 
-        @Html.ActionLink("Create a new band", "Register", "Band")
-        @Html.ActionLink("Join an existing band", "Search", "Band")
-
         <div ng-controller="SortableController" ng-init="init('/Band/GetBands')">
             <input type="button" value="Sort" ng-click="sort('BandName')" />
 
@@ -29,6 +26,8 @@
                 </li>
             </ol>
         </div>
+
+        @Html.ActionLink("Create a new band", "Register", "Band")
     </section>
 
     <section class="half">
