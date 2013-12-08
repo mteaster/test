@@ -143,7 +143,16 @@ namespace band.Controllers
                     tempAR.Date = ar.Date;
                     tempAR.Paid = ar.Paid;
 
-                    accountReceivables.Add(tempAR);
+                    if ((!string.IsNullOrEmpty(filters.Category) && tempAR.Category.Contains(filters.Category)) || string.IsNullOrEmpty(filters.Category))
+                    {
+                        if ((filters.Paid && tempAR.Paid) || (filters.Unpaid && !tempAR.Paid) || (!filters.Paid && !filters.Unpaid) || (filters.Paid && filters.Unpaid))
+                        {
+                            if ((filters.StartDT <= tempAR.Date && filters.EndDT >= tempAR.Date))
+                            {
+                                accountReceivables.Add(tempAR);
+                            }
+                        }
+                    }
                 }
             }
 
