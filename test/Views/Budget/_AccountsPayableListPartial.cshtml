@@ -9,7 +9,7 @@
 </script>
 @if (Model != null)
 {
-<table id="AccountPayableTable" class="tablesorter">
+<table id="AccountPayableTable" class="tablesorter" cellpading="5">
     <thead>
         <tr>
             <th>Amount</th>
@@ -26,7 +26,7 @@
         {
             <tr>
                 <td>@Html.DisplayFor(ModelItem => accountPayable.Amount)</td>
-                <td>@Html.DisplayFor(ModelItem => accountPayable.Date)</td>
+                <td>@Html.DisplayFor(ModelItem => accountPayable.Date.ToShortDateString())</td>
                 <td>@Html.DisplayFor(ModelItem => accountPayable.Category)</td>
                 <td>@Html.DisplayFor(ModelItem => accountPayable.AssociatedBandContactId)</td>
                 <td>@Html.DisplayFor(ModelItem => accountPayable.AssociatedPersonContactId)</td>
