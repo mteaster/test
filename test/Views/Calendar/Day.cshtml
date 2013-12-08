@@ -30,7 +30,7 @@ else
     <table class="pretty" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <th style="width:10%"></th>
-            <th>@ViewBag.Day</th>
+            <th>@Model.Date.ToString</th>
         </tr>
         @for(int i=1;i< 13; i++)
         {
@@ -39,6 +39,8 @@ else
             <tr>
                 <td style="width:10%"></td>
                 <td>@rowTime</td>
+            </tr>
+            <tr>
             </tr>
         }    
  
