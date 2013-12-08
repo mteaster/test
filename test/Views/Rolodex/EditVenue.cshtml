@@ -23,11 +23,17 @@
 
     <fieldset>
         <legend>Registration Form</legend>
-        <ol style="display:block";>
-            <li style="display: none;">
+        <ol style="display:inline-block";>
+            <li>
                 @Html.TextBoxFor(m => m.ContactId)
                 @Html.TextBoxFor(m => m.BandId)
             </li>
+            <li>
+                @Html.LabelFor(m => m.StageSizeValue)
+                @Html.DropDownListFor(m => m.StageSizeValue, band.Controllers.RolodexController.GetStageSizeList(), "N/A")
+            </li>
+        </ol>
+        <ol>
             <li>
                 @Html.LabelFor(m => m.Name)
                 @Html.TextBoxFor(m => m.Name)
@@ -56,10 +62,7 @@
                 @Html.LabelFor(m => m.Notes)
                 @Html.TextBoxFor(m => m.Notes)
             </li>
-            <li>
-                @Html.LabelFor(m => m.StageSizeValue)
-                @Html.DropDownListFor(m => m.StageSizeValue, band.Controllers.RolodexController.GetStageSizeList(), "N/A")
-            </li>
+            
             <li>
                 <label for="PrimaryContactId">Primary Contact</label>
                 @Html.DropDownListFor(m => m.PrimaryPeopleContactId, (List<SelectListItem>) band.Controllers.RolodexController.GetSelectList(ViewBag.BandId, "Venue"), "N/A")
