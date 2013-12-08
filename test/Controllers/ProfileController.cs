@@ -120,35 +120,35 @@ namespace band.Controllers
 
                 if (model.TrackAudio == null)
                 {
-                    ViewBag.ErrorMessage = "AUDIO IS NULL";
-                    return View("Error");
+                    ViewBag.ErrorMessage = "Something was wrong with your audio file.";
+                    return View();
                 }
 
                 if (Path.GetExtension(model.TrackAudio.FileName) != ".mp3")
                 {
                     ViewBag.ErrorMessage = "That's not an mp3 file.";
-                    return View("Error");
+                    return View();
                 }
 
                 if (model.TrackAudio.ContentLength <= 0 || model.TrackAudio.ContentLength > 1048576)
                 {
-                    ViewBag.ErrorMessage = "The track audio file size is too big.";
-                    return View("Error");
+                    ViewBag.ErrorMessage = "The audio is too big.";
+                    return View();
                 }
 
                 if (model.TrackImage != null)
                 {
                     if(model.TrackImage.ContentLength <= 0 || model.TrackImage.ContentLength > 1048576)
                     {
-                        ViewBag.ErrorMessage = "The track image file size is too big.";
-                        return View("Error");
+                        ViewBag.ErrorMessage = "The image file is too big.";
+                        return View();
                     }
                 }
 
                 if (database.TrackEntries.Where(e => e.BandId == bandId && e.TrackName == model.TrackName).Any())
                 {
                     ViewBag.ErrorMessage = "A track with that name already exists.";
-                    return View("Error");
+                    return View();
                 }
 
                 TrackEntry trackEntry = new TrackEntry(model.TrackName, bandId);
@@ -186,21 +186,13 @@ namespace band.Controllers
                     return View("Error");
                 }
 
-                try
-                {
-                    System.IO.File.Delete(Server.MapPath("~/App_Data/Tracks/" + trackEntry.BandId + "/" + trackId + ".mp3"));
-                    System.IO.File.Delete(Server.MapPath("~/App_Data/Tracks/" + trackEntry.BandId + "/" + trackId + ".jpg"));
-                }
-                catch(Exception e)
-                {
-                    TempData["TracksErrorMessage"] = "Failed to delete " + trackEntry.TrackName + ".";
-                    return RedirectToAction("Index", new { bandId = trackEntry.BandId });
-                }
+                System.IO.File.Delete(Server.MapPath("~/App_Data/Tracks/" + trackEntry.BandId + "/" + trackId + ".mp3"));
+                System.IO.File.Delete(Server.MapPath("~/App_Data/Tracks/" + trackEntry.BandId + "/" + trackId + ".jpg"));
 
                 database.TrackEntries.Remove(trackEntry);
                 database.SaveChanges();
 
-                TempData["TracksSuccessMessage"] = trackEntry.TrackName + " deleted.";
+                TempData["SuccessMessage"] = trackEntry.TrackName + " deleted.";
                 return RedirectToAction("Index", new { bandId = trackEntry.BandId });
             }
         }
