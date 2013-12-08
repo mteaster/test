@@ -99,5 +99,16 @@ namespace test.Models.Test
         [Required]
         public string Bio { get; set; }
     }
+
+    public class BandBioModel
+    {
+        public BandBioModel() {}
+        public BandBioModel(string bio)
+        {
+            this.Bio = bio;
+        }
+
+        public string Bio { get; set; }
+    }
 }
 

@@ -32,6 +32,13 @@ namespace band.Controllers
 
                 ViewBag.InBand = (membership == null) ? false : true;
 
+                BandBio bio = database.BandBios.Find(bandId);
+
+                if (bio != null)
+                {
+                    return View(new BandBioModel(bio.Bio);
+                }
+
                 return View();
             }
         }
