@@ -45,11 +45,17 @@
                 @Html.TextBoxFor(m => m.Email)
             </li>
         </ol>
-        <ol style="display:inline-block; border-style: solid; border-color:#C3C3C3; border-width: thin;">
+        <ol style="display:inline-block;">
             <li style="padding-right:15px">
                 <label for="PrimaryContactId">Primary Contact</label>
                 @Html.DropDownListFor(m => m.PrimaryPeopleContactId, (List<SelectListItem>) band.Controllers.RolodexController.GetSelectList(ViewBag.BandId, "Venue"), "N/A")
             </li>
+            @if (Model.PrimaryPeopleContactId > 0)
+            {
+            <li>
+                @Html.ActionLink("View Current Primary Contact", "EditPeople", new { bandId = ViewBag.BandId, contactId = Model.PrimaryPeopleContactId})
+            </li>
+            }
             <li>
                 @Html.LabelFor(m => m.StageSizeValue)
                 @Html.DropDownListFor(m => m.StageSizeValue, band.Controllers.RolodexController.GetStageSizeList(), "N/A")
@@ -70,16 +76,6 @@
                 @Html.TextBoxFor(m => m.Notes)
             </li>
         </ol>    
-        
-        <ol>
-            @if (Model.PrimaryPeopleContactId > 0)
-            {
-            <li>
-                @Html.ActionLink("View Current Primary Contact", "EditPeople", new { bandId = ViewBag.BandId, contactId = Model.PrimaryPeopleContactId})
-            </li>
-            }
-        </ol>
-
 
         <input type="submit" value="Save" />
     </fieldset>
