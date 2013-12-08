@@ -1,8 +1,27 @@
 ﻿@model IEnumerable<test.Models.Budget.AccountReceivables>
 
+<script type="text/javascript" src="../../Scripts/jquery.tablesorter.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#AccountReceivableTable").tablesorter();
+    }
+);
+</script>
 @if (Model != null)
 {
-<table>
+<table id="AccountReceivableTable" class="tablesorter">
+    <thead>
+        <tr>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>Category</th>
+            <th>Band Contact</th>
+            <th>Person Contact</th>
+            <th>Venue Contact</th>
+            <th>Paid</th>
+        </tr>
+    </thead>
+    <tbody>
     @foreach (test.Models.Budget.AccountReceivables accountPayable in Model)
     {
         <tr>
@@ -15,5 +34,6 @@
             <td>@Html.DisplayFor(ModelItem => accountPayable.Paid)</td>
         </tr>
     }   
+    </tbody>
 </table>
 }

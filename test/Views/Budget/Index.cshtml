@@ -41,9 +41,9 @@
     </fieldset>
      
 }
-
+<br />
 <h4>Accounts Payable</h4>
 @{ Html.RenderAction("AccountsPayableList", new { bandId = ViewBag.BandId, filters = ViewBag.Filters, sort = ViewBag.Sort }); }
-
+<br />
 <h4>Accounts Receivable</h4>
 @{ Html.RenderAction("AccountsReceivableList", new { bandId = ViewBag.BandId, filters = ViewBag.Filters, sort = ViewBag.Sort }); }
