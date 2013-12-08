@@ -341,7 +341,7 @@ namespace test.Stuff
             }
         }
 
-        public static List<BandModel> SearchByName(String term)
+        public static List<SuperBandModel> SearchByName(String term)
         {
             using (DatabaseContext database = new DatabaseContext())
             {
@@ -351,11 +351,11 @@ namespace test.Stuff
                               where b.BandName.Contains(term)
                               select new { b.BandId, b.BandName, u.UserName };
 
-                List<BandModel> bands = new List<BandModel>();
+                List<SuperBandModel> bands = new List<SuperBandModel>();
 
                 foreach (var result in results)
                 {
-                    bands.Add(new BandModel(result.BandId, result.BandName, result.UserName, null));
+                    bands.Add(new SuperBandModel(result.BandId, result.BandName, result.UserName));
                 }
 
                 return bands;
