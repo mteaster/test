@@ -7,9 +7,9 @@
 
 body 
 {
-    background-color: #fff;
+    background-color: #3b3b3b;
     border-top: solid 10px #000;
-    color: #333;
+    color: #ececec;
     font-size: .85em;
     font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
     margin: 0;
@@ -18,7 +18,7 @@ body
 
 a 
 {
-    color: #333;
+    color: #ececec;
     outline: none;
     padding-left: 3px;
     padding-right: 3px;
@@ -28,12 +28,12 @@ a
     a:link, a:visited,
     a:active, a:hover 
     {
-        color: #333;
+       color: #ececec;
     }
 
     a:hover 
     {
-        background-color: #c7d1d6;
+        background-color: #171517;
     }
 
 header, footer, hgroup,
@@ -71,7 +71,7 @@ mark
 h1, h2, h3,
 h4, h5, h6
 {
-    color: #000;
+    color: #ececec;
     margin-bottom: 0;
     margin-top: 0;
     padding-bottom: 0;
@@ -119,21 +119,21 @@ h5, h6
 
 #body
 {
-    background-color: #efeeef;
+    background-color: #3f3c3f;
     clear: both;
     padding-bottom: 35px;
 }
 
     .main-content 
     {
-        background: url("../Images/accent.png") no-repeat;
+       
         padding-left: 10px;
         padding-top: 30px;
     }
 
     .featured + .main-content 
     {
-        background: url("../Images/heroAccent.png") no-repeat;
+        
     }
 
 header .content-wrapper 
@@ -143,9 +143,10 @@ header .content-wrapper
 
 footer 
 {
-    clear: both;
-    background-color: #e2e2e2;
+      clear: both;
+    background-color: #1e1e1e;
     font-size: .8em;
+    color: #FFFFFF;
     height: 100px;
 }
 
@@ -244,17 +245,17 @@ ul#menu
 /* featured */
 .featured
 {
-    background-color: #fff;
+    background-image: url("../Images/stripeNav.png");
 }
 
     .featured .content-wrapper
     {
-        background-color: #7ac0da;
-        background-image: -ms-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
-        background-image: -o-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
-        background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #7ac0da), color-stop(1, #a4d4e6));
-        background-image: -webkit-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
-        background-image: linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
+         background-color: #750000;
+        background-image: -ms-linear-gradient(left, #750000 0%, #290000 100%);
+        background-image: -o-linear-gradient(left, #750000 0%, #290000 100%);
+        background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #750000), color-stop(1, #290000));
+        background-image: -webkit-linear-gradient(left, #750000 0%, #290000 100%);
+        background-image: linear-gradient(left, #750000 0%, #290000 100%);
         color: #3e5667;
         padding: 20px 40px 30px 40px;
     }
@@ -484,8 +485,8 @@ label.checkbox
 
 input, textarea
 {
-    border: 1px solid #e2e2e2;
-    background: #fff;
+    border: 1px solid #1e1e1e;
+    background: #808080;
     color: #333;
     font-size: 1.2em;
     margin: 5px 0 6px 0;
@@ -496,17 +497,22 @@ input, textarea
 textarea
 {
     font-family: inherit;
+    color:#ececec;
+    background: #808080;
     width: 100%;
     resize: none;
     padding:3px;
 }
 
 
-    input:focus, textarea:focus
+     input:focus, textarea:focus
     {
-        border: 1px solid #7ac0da;
+        border: 1px solid #750000;
     }
-
+    input[type="radio"]
+    {
+        background: transparent;
+    }
     input[type="checkbox"]
     {
         background: transparent;
@@ -532,9 +538,14 @@ textarea
     td input[type="button"],
     td button
     {
-        font-size: 1em;
-        padding: 4px;
-        margin-right: 4px;
+        background-color: #d3dce0;
+        border: 1px solid #787878;
+        cursor: pointer;
+        font-size: 1.2em;
+        font-weight: 600;
+        padding: 7px;
+        margin-right: 8px;
+        width: auto;
     }
 
 /* info and errors */
@@ -805,11 +816,17 @@ ol.messages
 
 ol.messages li
 {
-    border: 1px solid #C3C3C3;
+    border: 4px solid #750000;
     list-style-type: none;
-    padding: 12px;
+    padding: 4px;
     margin-bottom: 10px;
+
     background: white;
+
+    margin-top:10px;
+    margin-right:10px;
+    margin-left:10px;
+    background: #808080;
 }
 
 h2.messageboard-header
@@ -824,7 +841,11 @@ img.post-avatar
     margin-right: 10px;
     border: 1px solid black;
 }
-
+div.post
+{
+    color:#1e1e1e;
+    background-color:#808080;
+}
 div.post-header
 {
     margin-bottom: 10px;
@@ -870,7 +891,7 @@ div.track-content
 
 table.pretty
 {
-    background-color: #FFFFFF;
+    background-color: #808080;
     border: 1px solid #C3C3C3;
     border-collapse: collapse;
     margin-top: 0.75em;
