@@ -30,18 +30,16 @@ else
     <table class="pretty" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <th style="width:10%"></th>
-            <th>@Model.Date.Date</th>
+            <th>@Model.Date.Day</th>
         </tr>
         @for(int i=1;i< 13; i++)
         {
             string rowTime = i.ToString();
             rowTime = rowTime + ":00";
             <tr>
-                <td style="width:10%"></td>
-                <td>@rowTime</td>
-            </tr>
-            <tr>
-            </tr>
+                <td style="width:10%">@rowTime</td>
+                <td></td>               
+            </tr>           
         }    
  
     </table>
