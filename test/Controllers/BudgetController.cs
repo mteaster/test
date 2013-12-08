@@ -70,7 +70,7 @@ namespace band.Controllers
 
         }
 
-        public ActionResult AccountsPayableList(int bandId, test.Models.Budget.IndexFilters filters)
+        public ActionResult AccountsPayableList(int bandId, test.Models.Budget.IndexFilters filters, string sort)
         {
             List<test.Models.Budget.AccountPayables> accountPayables = new List<test.Models.Budget.AccountPayables>();
 
@@ -109,6 +109,31 @@ namespace band.Controllers
                         }
                     }
                 }
+            }
+
+            switch (sort)
+            {
+                case "AMOUNT":
+                    accountPayables = accountPayables.OrderBy(a => a.Amount).ToList();
+                    break;
+                case "DATE":
+                    accountPayables = accountPayables.OrderBy(a => a.Date).ToList();
+                    break;
+                case "CATEGORY":
+                    accountPayables = accountPayables.OrderBy(a => a.Category).ToList();
+                    break;
+                case "BAND":
+                    accountPayables = accountPayables.OrderBy(a => a.AssociatedBandContactId).ToList();
+                    break;
+                case "PERSON":
+                    accountPayables = accountPayables.OrderBy(a => a.AssociatedPersonContactId).ToList();
+                    break;
+                case "VENUE":
+                    accountPayables = accountPayables.OrderBy(a => a.AssociatedVenueContactId).ToList();
+                    break;
+                case "PAID":
+                    accountPayables = accountPayables.OrderBy(a => a.Paid).ToList();
+                    break;
             }
 
             return PartialView("_AccountsPayableListPartial", accountPayables);
