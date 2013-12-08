@@ -110,6 +110,5 @@ namespace test.Models.Budget
 
         [Display(Name = "Unpaid")]
         public bool Unpaid { get; set; }
-
     }
 }

@@ -11,34 +11,45 @@
     @Html.Partial("_BandHeaderPartial")
 }
 
-@Html.ActionLink("Manage Merch", "MerchList", new {bandId = ViewBag.BandId})
-@Html.ActionLink("Enter Account Payable", "AccountPayable", new {bandId = ViewBag.BandId})
-@Html.ActionLink("Enter Account Receivable", "AccountReceivable", new {bandId = ViewBag.BandId})
+@Html.ActionLink("Manage Merch", "MerchList", new { bandId = ViewBag.BandId })
+@Html.ActionLink("Enter Account Payable", "AccountPayable", new { bandId = ViewBag.BandId })
+@Html.ActionLink("Enter Account Receivable", "AccountReceivable", new { bandId = ViewBag.BandId })
 
 <h4>Filters</h4>
-@using (Html.BeginForm("Index", "Budget", new {bandId = ViewBag.BandId}))
+@using (Html.BeginForm("Index", "Budget", new { bandId = ViewBag.BandId, sort = "DATE" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
     <fieldset>
         <legend>Filters</legend>
         Start Date: 
-        @Html.TextBoxFor(m => m.StartDT, new { maxlength= 10, value=DateTime.Now.ToString("MM/dd/yyyy"), @onchange = "submitform();" }) 
+        @Html.TextBoxFor(m => m.StartDT, new { maxlength = 10, value = DateTime.Now.ToString("MM/dd/yyyy"), @onchange = "submitform();" }) 
         to
         End Date: 
-        @Html.TextBoxFor(m => m.EndDT, new { maxlength= 10, value=DateTime.Now.ToString("MM/dd/yyyy"), @onchange = "submitform();" })
+        @Html.TextBoxFor(m => m.EndDT, new { maxlength = 10, value = DateTime.Now.ToString("MM/dd/yyyy"), @onchange = "submitform();" })
         <br />
         Category: 
         @Html.TextBoxFor(m => m.Category, new { @onchange = "submitform();" })
         Paid: 
-        @Html.CheckBoxFor(m => m.Paid, new {@onchange = "submitform();" })
+        @Html.CheckBoxFor(m => m.Paid, new { @onchange = "submitform();" })
         Unpaid: 
         @Html.CheckBoxFor(m => m.Unpaid, new { @onchange = "submitform();" })
     </fieldset>
 }
+    <table>
+        <tr>
+            <td>@Html.ActionLink("Amount", "Index", new { bandId = ViewBag.BandId, filters = ViewBag.Filters, sort="AMOUNT" })</td>
+            <td>@Html.ActionLink("Date", "Index", new { bandId = ViewBag.BandId, filters = ViewBag.Filters, sort = "DATE" })</td>
+            <td>@Html.ActionLink("Category", "Index", new { bandId = ViewBag.BandId, filters = ViewBag.Filters, sort = "CATEGORY" })</td>
+            <td>@Html.ActionLink("Band Contact", "Index", new { bandId = ViewBag.BandId, filters = ViewBag.Filters, sort = "BAND" })</td>
+            <td>@Html.ActionLink("Person Contact", "Index", new { bandId = ViewBag.BandId, filters = ViewBag.Filters, sort = "PERSON" })</td>
+            <td>@Html.ActionLink("Venue Contact", "Index", new { bandId = ViewBag.BandId, filters = ViewBag.Filters, sort = "VENUE" })</td>
+            <td>@Html.ActionLink("Paid", "Index", new { bandId = ViewBag.BandId, filters = ViewBag.Filters, sort = "PAID" })</td>
+        </tr>
+    </table>
 
 <h4>Accounts Payable</h4>
-@{ Html.RenderAction("AccountsPayableList", new {bandId = ViewBag.BandId, filters = ViewBag.Filters}); }
+@{ Html.RenderAction("AccountsPayableList", new { bandId = ViewBag.BandId, filters = ViewBag.Filters, sort = ViewBag.Sort }); }
 
 <h4>Accounts Receivable</h4>
-@{ Html.RenderAction("AccountsReceivableList", new { bandId = ViewBag.BandId, filters = ViewBag.Filters}); }
+@{ Html.RenderAction("AccountsReceivableList", new { bandId = ViewBag.BandId, filters = ViewBag.Filters, sort = ViewBag.Sort }); }

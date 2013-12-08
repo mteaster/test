@@ -124,7 +124,7 @@ namespace test.Models.Band
     public class SearchViewModel
     {
         public SearchBandModel searchModel { get; set; }
-        public IEnumerable<BandModel> resultsModel { get; set; }
+        public IEnumerable<SuperBandModel> resultsModel { get; set; }
     }
 
     public class ChangeBandNameModel

@@ -25,7 +25,7 @@ namespace band.Controllers
 
         [ActionName("Index")]
         [HttpPost]
-        public ActionResult Index(int bandId, test.Models.Budget.IndexFilters filters)
+        public ActionResult Index(int bandId, test.Models.Budget.IndexFilters filters, string sort)
         {
             if (!BandUtil.Authenticate(bandId, this))
             {
@@ -33,6 +33,7 @@ namespace band.Controllers
             }
 
             ViewBag.Filters = filters;
+            ViewBag.Sort = sort;
 
             return View(filters);
         }
@@ -70,7 +71,7 @@ namespace band.Controllers
 
         }
 
-        public ActionResult AccountsPayableList(int bandId, test.Models.Budget.IndexFilters filters, string sort)
+        public ActionResult AccountsPayableList(int bandId, test.Models.Budget.IndexFilters filters)
         {
             List<test.Models.Budget.AccountPayables> accountPayables = new List<test.Models.Budget.AccountPayables>();
 
@@ -79,7 +80,10 @@ namespace band.Controllers
                 return View("Error");
             }
 
-            ViewBag.Filters = filters;
+            if (filters != null)
+            {
+                ViewBag.Filters = filters;
+            }
 
             using (DatabaseContext db = new DatabaseContext())
             {
@@ -114,39 +118,39 @@ namespace band.Controllers
                 }
             }
 
-            if (accountPayables != null)
-            {
-                switch (sort)
-                {
-                    case "AMOUNT":
-                        accountPayables = accountPayables.OrderBy(a => a.Amount).ToList();
-                        break;
-                    case "DATE":
-                        accountPayables = accountPayables.OrderBy(a => a.Date).ToList();
-                        break;
-                    case "CATEGORY":
-                        accountPayables = accountPayables.OrderBy(a => a.Category).ToList();
-                        break;
-                    case "BAND":
-                        accountPayables = accountPayables.OrderBy(a => a.AssociatedBandContactId).ToList();
-                        break;
-                    case "PERSON":
-                        accountPayables = accountPayables.OrderBy(a => a.AssociatedPersonContactId).ToList();
-                        break;
-                    case "VENUE":
-                        accountPayables = accountPayables.OrderBy(a => a.AssociatedVenueContactId).ToList();
-                        break;
-                    case "PAID":
-                        accountPayables = accountPayables.OrderBy(a => a.Paid).ToList();
-                        break;
-                }
-            }
+            //if (accountPayables != null)
+            //{
+            //    switch (sort)
+            //    {
+            //        case "AMOUNT":
+            //            accountPayables = accountPayables.OrderBy(a => a.Amount).ToList();
+            //            break;
+            //        case "DATE":
+            //            accountPayables = accountPayables.OrderBy(a => a.Date).ToList();
+            //            break;
+            //        case "CATEGORY":
+            //            accountPayables = accountPayables.OrderBy(a => a.Category).ToList();
+            //            break;
+            //        case "BAND":
+            //            accountPayables = accountPayables.OrderBy(a => a.AssociatedBandContactId).ToList();
+            //            break;
+            //        case "PERSON":
+            //            accountPayables = accountPayables.OrderBy(a => a.AssociatedPersonContactId).ToList();
+            //            break;
+            //        case "VENUE":
+            //            accountPayables = accountPayables.OrderBy(a => a.AssociatedVenueContactId).ToList();
+            //            break;
+            //        case "PAID":
+            //            accountPayables = accountPayables.OrderBy(a => a.Paid).ToList();
+            //            break;
+            //    }
+            //}
 
             return PartialView("_AccountsPayableListPartial", accountPayables);
 
         }
 
-        public ActionResult AccountsReceivableList(int bandId, test.Models.Budget.IndexFilters filters)
+        public ActionResult AccountsReceivableList(int bandId, test.Models.Budget.IndexFilters filters, string sort)
         {
             List<test.Models.Budget.AccountReceivables> accountReceivables = new List<test.Models.Budget.AccountReceivables>();
             if (!BandUtil.Authenticate(bandId, this))

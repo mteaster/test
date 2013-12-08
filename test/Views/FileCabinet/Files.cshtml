@@ -18,7 +18,6 @@
 <div ng-app="sortable" ng-controller="SortableController" ng-init="init('/FileCabinet/GetFiles/@ViewBag.GroupId')">
     <table ng-cloak class="pretty" border="0" cellpadding="0" cellspacing="0">
         <tr>
-            <th ng-click="sort('FileId')">File ID</th>
             <th ng-click="sort('FileName')">Name</th>
             <th ng-click="sort('FileDescription')">Description</th>
             <th ng-click="sort('FileType')">Type</th>
@@ -30,7 +29,6 @@
         </tr>
 
         <tr ng-repeat="file in data | orderBy : column : descending">
-                <td>{{ file.FileId }}</td>
                 <td>{{ file.FileName }}</td>
                 <td>{{ file.FileDescription }}</td>
                 <td>{{ file.FileType}}</td>
