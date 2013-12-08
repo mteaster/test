@@ -59,9 +59,7 @@ namespace band.Controllers
         {
             using (DatabaseContext database = new DatabaseContext())
             {
-                BandProfile profile = database.BandProfiles.Find(bandId);
-
-                if (profile == null)
+                if (!BandUtil.Authenticate(bandId, this))
                 {
                     return View("Error");
                 }

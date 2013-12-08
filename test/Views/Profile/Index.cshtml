@@ -34,7 +34,9 @@ else
     }
     else
     {
-        @Html.Raw(Model.Bio);
+        <div class="whitebox">
+            <div class="post-content">@Html.Raw(Model.Bio)</div>
+        </div>
     }
 </section>
 
