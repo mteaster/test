@@ -44,10 +44,6 @@
                 @Html.LabelFor(m => m.Email)
                 @Html.TextBoxFor(m => m.Email)
             </li>
-            <li>
-                @Html.LabelFor(m => m.Skill)
-                @Html.TextBoxFor(m => m.Skill)
-            </li>
         </ol>
         <ol style="display:inline-block">
             <li style="padding-right:50px">
@@ -68,6 +64,10 @@
             {
                 @Html.ActionLink("View Current Associated Venue", "EditVenue", new { bandId = ViewBag.BandId, contactId = Model.VenueContactId})
             }
+            <li>
+                @Html.LabelFor(m => m.Skill)
+                @Html.TextBoxFor(m => m.Skill)
+            </li>
             <li>
                 @Html.LabelFor(m => m.Notes)
                 @Html.TextBoxFor(m => m.Notes)
