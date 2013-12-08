@@ -24,13 +24,16 @@ else
 <section class="half">
     <h2>Tracks</h2>
 
-    <div ng-app="sortable" ng-cloak ng-controller="SortableController" ng-init="init('/Profile/GetTracks/@ViewBag.BandId')">
+    <div ng-app="sortable" ng-controller="SortableController" ng-init="init('/Profile/GetTracks/@ViewBag.BandId')" ng-cloak>
         @if (ViewBag.InBand)
         {
             @Html.ActionLink("Upload a new track", "UploadTrack", "Profile", new { bandId = ViewBag.BandId }, null)
+            <br />
         }
+        
+        <span ng-show="ready && empty">No tracks for this band</span>
+        
         <input type="button" value="Sort" ng-click="sort('TrackName')" />
-
         <ol class="messages">
             <li ng-repeat="track in data | orderBy : column : descending">
                 <div class="post-header">  
@@ -60,5 +63,5 @@ else
 @section Scripts
 {
     <script type="text/javascript" src="@Url.Content("/Scripts/angular.min.js")"></script>
-    <script type="text/javascript" src="@Url.Content("/Scripts/sortable.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/Scripts/super.js")"></script>
 }
