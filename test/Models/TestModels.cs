@@ -62,6 +62,9 @@ namespace test.Models.Test
         
         [Required]
         public string TrackName { get; set; }
+
+        [Required]
+        public string AlbumName { get; set; }
         
         [Required]
         public int BandId { get; set; }
@@ -76,12 +79,14 @@ namespace test.Models.Test
         {
             this.TrackName = trackEntry.TrackName;
             this.TrackId = trackEntry.TrackId;
+            this.AlbumName = trackEntry.AlbumName;
             this.TrackUrl = "/Profile/DownloadTrackAudio/" + trackEntry.TrackId;
             this.ImageUrl = "/Profile/DownloadTrackImage/" + trackEntry.TrackId;
         }
 
         public int TrackId { get; set; }
         public string TrackName { get; set; }
+        public string AlbumName { get; set; }
         public string TrackUrl { get; set; }
         public string ImageUrl { get; set; }
     }

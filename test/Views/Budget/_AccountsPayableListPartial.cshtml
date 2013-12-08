@@ -6,6 +6,20 @@
         $("#AccountPayableTable").tablesorter();
     }
 );
+
+    $(function(){
+
+        $(document).on("click","input.chks", function (e) {
+            var _this=$(this);
+            var isChecked = _this.is(':checked');
+            $.post("@Url.Action("UpdateAccountPayable","Budget")?id="+_this.attr("id")+
+                                          "&newValue="+isChecked,function(data){
+                                              // do something with the response
+                                          });
+
+       });
+    });
+    }
 </script>
 
 <style>
@@ -41,7 +55,7 @@
                 <td>@Html.DisplayFor(ModelItem => accountPayable.AssociatedBandContactId)</td>
                 <td>@Html.DisplayFor(ModelItem => accountPayable.AssociatedPersonContactId)</td>
                 <td>@Html.DisplayFor(ModelItem => accountPayable.AssociatedVenueContactId)</td>
-                <td>@Html.DisplayFor(ModelItem => accountPayable.Paid)</td>
+                <td>@Html.CheckBoxFor(ModelItem => accountPayable.Paid, new { @id=accountPayable.AccountPayableId, @class="chks"})</td>
             </tr>
         }   
     </tbody>

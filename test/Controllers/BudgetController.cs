@@ -5,6 +5,7 @@ using test.Stuff;
 using System.Linq;
 using System;
 using test.Models.Budget;
+using System.Data;
 
 namespace band.Controllers
 {
@@ -53,13 +54,38 @@ namespace band.Controllers
         [HttpPost]
         public ActionResult Index(int bandId, test.Models.Budget.IndexFilters filters, string sort)
         {
+            List<test.Models.Budget.AccountPayables> accountPayables = new List<test.Models.Budget.AccountPayables>();
+            List<test.Models.Budget.AccountReceivables> accountReceivables = new List<test.Models.Budget.AccountReceivables>();
+            decimal totalAP = 0;
+            decimal totalAR = 0;
+            decimal totalDifference = 0;
+
             if (!BandUtil.Authenticate(bandId, this))
             {
                 return View("Error");
             }
 
             ViewBag.Filters = filters;
-            ViewBag.Sort = sort;
+
+            accountPayables = GetAccountsPayableList(bandId, ViewBag.Filters);
+            accountReceivables = GetAccountsReceivableList(bandId, ViewBag.Filters);
+
+            foreach (AccountPayables ap in accountPayables)
+            {
+                totalAP += ap.Amount;
+            }
+
+            foreach (AccountReceivables ar in accountReceivables)
+            {
+                totalAR += ar.Amount;
+            }
+
+            totalDifference = totalAR - totalAP;
+
+            ViewBag.TotalAP = totalAP;
+            ViewBag.TotalAR = totalAR;
+            ViewBag.TotalDifference = totalDifference;
+
 
             return View(filters);
         }
@@ -311,6 +337,20 @@ namespace band.Controllers
             }
 
             return RedirectToAction("AccountReceivable", new { bandId = bandId });
+        }
+
+        public ActionResult UpdateAccountPayable(int id, bool newValue)
+        {
+
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                AccountPayables original = database.AccountPayables.Find(id);
+                original.Paid = newValue;
+                database.Entry(original).State = EntityState.Modified;
+                database.SaveChanges();
+            }
+
+            return Json(true);
         }
     }
 }
