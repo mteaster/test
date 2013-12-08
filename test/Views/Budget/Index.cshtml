@@ -23,10 +23,10 @@
     <fieldset>
         <legend>Filters</legend>
         Start Date: 
-        @Html.TextBoxFor(m => m.StartDT, new { type = "date", @onchange = "submitform();" }) 
+        @Html.TextBoxFor(m => m.StartDT, new { @onchange = "submitform();" }) 
         to
         End Date: 
-        @Html.TextBoxFor(m => m.EndDT, new { type = "date", @onchange = "submitform();" })
+        @Html.TextBoxFor(m => m.EndDT, new { @onchange = "submitform();" })
         <br />
         Category: 
         @Html.TextBoxFor(m => m.Category, new { @onchange = "submitform();" })
