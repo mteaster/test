@@ -16,17 +16,17 @@
     @Html.ValidationSummary()
     <fieldset>
         <legend>Filters</legend>
-        @Html.DisplayFor(m => m.StartDT)
+        @Html.LabelFor(m => m.StartDT)
         @Html.TextBoxFor(m => m.StartDT, new { type = "date" }) 
         to
-        @Html.DisplayFor(m => m.EndDT)
+        @Html.LabelFor(m => m.EndDT)
         @Html.TextBoxFor(m => m.EndDT, new { type = "date" })
         <br />
-        @Html.DisplayFor(m => m.Category)
+        @Html.LabelFor(m => m.Category)
         @Html.TextBoxFor(m => m.Category)
-        @Html.DisplayFor(m => m.Paid)
+        @Html.LabelFor(m => m.Paid)
         @Html.CheckBoxFor(m => m.Paid)
-        @Html.DisplayFor(m => m.Unpaid)
+        @Html.LabelFor(m => m.Unpaid)
         @Html.CheckBoxFor(m => m.Unpaid)
     </fieldset>
 }
