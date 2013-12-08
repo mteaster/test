@@ -21,7 +21,6 @@ namespace band.Controllers
 
                 if (profile == null)
                 {
-                    ViewBag.ErrorMessage = "dat band dont exist dawg";
                     return View("Error");
                 }
 
@@ -36,7 +35,7 @@ namespace band.Controllers
 
                 if (bio != null)
                 {
-                    return View(new BandBioModel(bio.Bio);
+                    return View(new BandBioModel(bio.Bio));
                 }
 
                 return View();
@@ -53,6 +52,48 @@ namespace band.Controllers
                 }
 
                 return View();
+            }
+        }
+
+        public ActionResult Bio(int bandId)
+        {
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                if (!BandUtil.Authenticate(bandId, this))
+                {
+                    return View("Error");
+                }
+
+                return View();
+            }
+        }
+
+        [HttpPost]
+        public ActionResult EditBio(int bandId, BandBioModel model)
+        {
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                if (!BandUtil.Authenticate(bandId, this))
+                {
+                    return View("Error");
+                }
+
+                BandBio bio = database.BandBios.Find(bandId);
+
+                if (bio == null)
+                {
+                    bio = new BandBio(bandId, model.Bio);
+                    database.BandBios.Add(bio);
+                }
+                else
+                {
+                    bio.Bio = model.Bio;
+                }
+
+                database.SaveChanges();
+
+                TempData["SuccessMessage"] = "Bio edited.";
+                return RedirectToAction("Index", new { bandId = bandId });
             }
         }
 
