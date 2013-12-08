@@ -4,6 +4,16 @@
     function submitform() {
         $('form').submit();
     }
+
+  $(function(){
+      $("a.postLink").click(function(e){
+          e.preventDefault();
+          $.post($(this).attr("href"),function(data){
+              // got the result in data variable. do whatever you want now
+              //may be reload the page
+          });
+      });    
+  });    
 </script>
 
 @section featured 
@@ -38,7 +48,7 @@
 }
     <table>
         <tr>
-            <td>@Html.ActionLink("Amount", "Index", new { bandId = ViewBag.BandId, filters = ViewBag.Filters, sort="AMOUNT" })</td>
+            <td>@Html.ActionLink("Amount", "Index", new { bandId = ViewBag.BandId, filters = ViewBag.Filters, sort="AMOUNT" }, new { @class = "postlink"})</td>
             <td>@Html.ActionLink("Date", "Index", new { bandId = ViewBag.BandId, filters = ViewBag.Filters, sort = "DATE" })</td>
             <td>@Html.ActionLink("Category", "Index", new { bandId = ViewBag.BandId, filters = ViewBag.Filters, sort = "CATEGORY" })</td>
             <td>@Html.ActionLink("Band Contact", "Index", new { bandId = ViewBag.BandId, filters = ViewBag.Filters, sort = "BAND" })</td>
