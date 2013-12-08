@@ -103,7 +103,6 @@ namespace test.Models.Test
         [ForeignKey("BandId")]
         public virtual BandProfile BandProfile { get; set; }
 
-        [Required]
         [DataType(DataType.MultilineText)]
         public string Bio { get; set; }
     }
@@ -116,7 +115,6 @@ namespace test.Models.Test
             this.Bio = bio;
         }
 
-        [Required]
         [DataType(DataType.MultilineText)]
         public string Bio { get; set; }
     }

@@ -97,9 +97,11 @@ namespace test.Models.Budget
     public class IndexFilters
     {
         [Display(Name = "Start Date")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime? StartDT { get; set; }
 
         [Display(Name = "End Date")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime? EndDT { get; set; }
 
         [Display(Name = "Category")]

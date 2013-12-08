@@ -21,10 +21,12 @@ namespace test.Stuff
         {
             using (DatabaseContext database = new DatabaseContext())
             {
-                return database.CalendarEvents.Where(c => c.EventTime.Day == day
+                var dayEvents = database.CalendarEvents.Where(c => c.EventTime.Day == day
                                         && c.EventTime.Month == month
                                         && c.EventTime.Year == year
-                                        && c.BandId == bandId).ToList();
+                                        && c.BandId == bandId);
+
+                return dayEvents.OrderBy(a => a.EventTime).ToList();
             }
         }
     }

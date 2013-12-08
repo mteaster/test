@@ -4,17 +4,9 @@
     function submitform() {
         $('form').submit();
     }
-
-  $(function(){
-      $("a.postLink").click(function(e){
-          e.preventDefault();
-          $.post($(this).attr("href"),function(data){
-              // got the result in data variable. do whatever you want now
-              //may be reload the page
-          });
-      });    
-  });    
+   
 </script>
+
 
 @section featured 
 {
@@ -33,10 +25,10 @@
     <fieldset>
         <legend>Filters</legend>
         Start Date: 
-        @Html.TextBoxFor(m => m.StartDT, new { maxlength = 10, value = DateTime.Now.ToString("MM/dd/yyyy"), @onchange = "submitform();" }) 
+        @Html.EditorFor(m => m.StartDT, new { maxlength = 10, @onchange = "submitform();" }) 
         to
         End Date: 
-        @Html.TextBoxFor(m => m.EndDT, new { maxlength = 10, value = DateTime.Now.ToString("MM/dd/yyyy"), @onchange = "submitform();" })
+        @Html.EditorFor(m => m.EndDT, new { maxlength = 10, @onchange = "submitform();" })
         <br />
         Category: 
         @Html.TextBoxFor(m => m.Category, new { @onchange = "submitform();" })
@@ -44,22 +36,17 @@
         @Html.CheckBoxFor(m => m.Paid, new { @onchange = "submitform();" })
         Unpaid: 
         @Html.CheckBoxFor(m => m.Unpaid, new { @onchange = "submitform();" })
-    </fieldset>
-}
-    <table>
-        <tr>
-            <td>@Html.ActionLink("Amount", "Index", new { bandId = ViewBag.BandId, filters = ViewBag.Filters, sort="AMOUNT" }, new { @class = "postlink"})</td>
-            <td>@Html.ActionLink("Date", "Index", new { bandId = ViewBag.BandId, filters = ViewBag.Filters, sort = "DATE" })</td>
-            <td>@Html.ActionLink("Category", "Index", new { bandId = ViewBag.BandId, filters = ViewBag.Filters, sort = "CATEGORY" })</td>
-            <td>@Html.ActionLink("Band Contact", "Index", new { bandId = ViewBag.BandId, filters = ViewBag.Filters, sort = "BAND" })</td>
-            <td>@Html.ActionLink("Person Contact", "Index", new { bandId = ViewBag.BandId, filters = ViewBag.Filters, sort = "PERSON" })</td>
-            <td>@Html.ActionLink("Venue Contact", "Index", new { bandId = ViewBag.BandId, filters = ViewBag.Filters, sort = "VENUE" })</td>
-            <td>@Html.ActionLink("Paid", "Index", new { bandId = ViewBag.BandId, filters = ViewBag.Filters, sort = "PAID" })</td>
-        </tr>
-    </table>
+        <br />
 
+    </fieldset>
+     
+}
+
+Total AR = @ViewBag.TotalAR | Total AP = @ViewBag.TotalAP | Difference = @ViewBag.TotalDifference
+
+<br />
 <h4>Accounts Payable</h4>
 @{ Html.RenderAction("AccountsPayableList", new { bandId = ViewBag.BandId, filters = ViewBag.Filters, sort = ViewBag.Sort }); }
-
+<br />
 <h4>Accounts Receivable</h4>
 @{ Html.RenderAction("AccountsReceivableList", new { bandId = ViewBag.BandId, filters = ViewBag.Filters, sort = ViewBag.Sort }); }

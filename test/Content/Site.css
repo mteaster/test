@@ -693,6 +693,11 @@ tr.pager td
   display: none !important;
 }
 
+h2.ten
+{
+    margin-bottom: 10px;
+}
+
 a.right
 {
     float: right;    
@@ -880,6 +885,30 @@ table.pretty th
     padding: 5px;
     vertical-align: top;
 	text-align: left;
+	font-weight: bold;
+}
+
+table.event
+{
+    background-color: #FFFFFF;
+    border: 1px solid #C3C3C3;
+    border-collapse: collapse;
+    margin-top: 0.75em;
+    margin-bottom: 0.75em;
+}
+
+table.event td
+{
+    padding: 5px;
+    text-align: left;
+    vertical-align: top;
+}
+
+table.event th
+{
+    padding: 5px;
+    vertical-align: top;
+	text-align: center;
 	font-weight: bold;
 }
 

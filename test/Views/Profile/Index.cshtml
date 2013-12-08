@@ -20,7 +20,7 @@ else
 }
 
 <section class="blarg">
-    <h2>Bio</h2>
+    <h2 class="ten">Bio</h2>
 
     @if (ViewBag.InBand)
     {
@@ -28,20 +28,20 @@ else
         <br />
     }
 
-    @if (Model == null || Model.Bio == "")
+    @if (Model == null || Model.Bio.IsEmpty())
     {
         <span>No bio for this band</span>
     }
     else
     {
         <div class="whitebox">
-            <div class="post-content">@Html.Raw(Model.Bio)</div>
+            @Html.Raw(Model.Bio)
         </div>
     }
 </section>
 
 <section class="half">
-    <h2>Tracks</h2>
+    <h2 class="ten">Tracks</h2>
 
     <div ng-app="super" ng-controller="SortableController" ng-init="init('/Profile/GetTracks/@ViewBag.BandId')" ng-cloak>
         @if (ViewBag.InBand)
