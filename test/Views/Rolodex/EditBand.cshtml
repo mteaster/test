@@ -22,11 +22,18 @@
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
+
+    <br />
+    
     <fieldset>
         <legend>Edit Form</legend>
-        <ol>
-            <li style="display: none;">
+        <ol style="display:inline-block">
+            <li style="padding-right:50px">
+                <label for="ContactId">Contact ID</label>
                 @Html.TextBoxFor(m => m.ContactId)
+            </li>
+            <li>
+                <label for="BandId">Band ID</label>
                 @Html.TextBoxFor(m => m.BandId)
             </li>
             <li>
@@ -41,14 +48,9 @@
                 @Html.LabelFor(m => m.Email)
                 @Html.EditorFor(m => m.Email)
             </li>
-            <li> 
-                @Html.LabelFor(m => m.MusicalStyle)
-                @Html.TextBoxFor(m => m.MusicalStyle)
-            </li>
-            <li>
-                @Html.LabelFor(m => m.Notes)
-                @Html.TextBoxFor(m => m.Notes)
-            </li>
+
+        </ol>
+        <ol style="display:inline-block;">   
             <li>
                 <label for="PrimaryContactId">Primary Contact</label>
                 @Html.DropDownListFor(m => m.PrimaryPeopleContactId, (List<SelectListItem>) band.Controllers.RolodexController.GetSelectList(ViewBag.BandId, "Band"), "N/A")
@@ -67,13 +69,31 @@
                 @Html.LabelFor(m => m.PopularityLevel)
                 @Html.DropDownListFor(m => m.PopularityLevel, band.Controllers.RolodexController.GetPopularityList(), "N/A")
             </li>
+            <li>
+                <br />
+            </li>
+            <li>
+                <br />
+            </li>
+            <li> 
+                @Html.LabelFor(m => m.MusicalStyle)
+                @Html.TextBoxFor(m => m.MusicalStyle)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Notes)
+                @Html.TextBoxFor(m => m.Notes)
+            </li>
         </ol>
+        <br />
         <input type="submit" value="Save" />
     </fieldset>
 }
 
+<br />
+
 <h3>Change avatar</h3>
 
+<br />
 <form action="/Rolodex/UploadAvatar/@Model.ContactId.ToString()/@test.Models.Rolodex.ContactType.Band.ToString()" method="post" enctype="multipart/form-data">
     <label for="file">Filename:</label>
     <input type="file" name="file" id="file" />
