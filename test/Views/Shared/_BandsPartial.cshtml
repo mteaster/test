@@ -1,6 +1,6 @@
 ﻿<div ng-app="super">
-    <div ng-controller="SortableController" ng-init="init('/Band/GetBands')">
-        <section class="blarg" ng-cloak ng-show="data.length !== 0" >
+    <div ng-controller="SortableController" ng-init="init('/Band/GetBands')" ng-cloak>
+        <section class="blarg" ng-show="data.length !== 0" >
             <hgroup class="title">
                 <h1>Your Bands.</h1>
                 <h2>Pick one of them.</h2>
@@ -27,6 +27,14 @@
             </ol>
 
             @Html.ActionLink("Create a new band", "Register", "Band")
+        </section>
+
+        <section class="blarg" ng-show="data.length == 0" >
+            <hgroup class="title">
+                <h1>You're not in any bands!</h1>
+            </hgroup>
+
+            Either @Html.ActionLink("create a new band", "Register", "Band") or search for a band to join.
         </section>
     </div>
 
