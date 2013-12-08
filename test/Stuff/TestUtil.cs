@@ -15,12 +15,38 @@ namespace test.Stuff
     {
         public const string alphanumeric = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-        public static int RandomBand()
+        public static void RandomBand(HttpServerUtilityBase server)
         {
             string creatorUserName = RandomWord();
             string creatorDisplayName = RandomWord();
-            WebSecurity.CreateUserAndAccount(creatorUserName, "password", new { DisplayName = creatorDisplayName });
-            return 1;
+            TestUtil.MakeAccount(creatorUserName, creatorDisplayName);
+            TestUtil.GiveUserRandomColorAvatar(creatorUserName, server);
+            int bandId = TestUtil.MakeBand(RandomWord(), WebSecurity.GetUserId(creatorUserName), "password");
+
+
+            Random random = new Random();
+            int users = random.Next(10);
+
+            for (int i = 0; i < users; i++)
+            {
+                string userName = RandomWord();
+                string displayName = RandomWord();
+                TestUtil.MakeAccount(userName, displayName);
+                TestUtil.GiveUserRandomColorAvatar(userName, server);
+                TestUtil.PutInBand(bandId, WebSecurity.GetUserId(userName));
+            }
+        }
+
+        public static void GiveBandRandomColorAvatar(int bandId, HttpServerUtilityBase server)
+        {
+            Random random = new Random();
+            TestUtil.GiveBandAvatar(bandId, "rand/" + random.Next(10) + ".jpg", server);
+        }
+
+        public static void GiveUserRandomColorAvatar(string userName, HttpServerUtilityBase server)
+        {
+            Random random = new Random();
+            TestUtil.GiveUserAvatar(WebSecurity.GetUserId(userName), "rand/" + random.Next(10) + ".jpg" , server); 
         }
 
         public static void MakeAccount(string userName, string displayName)
