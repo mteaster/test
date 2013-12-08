@@ -329,11 +329,11 @@ namespace test
             );
 
             routes.MapRoute(
-               name: "Add Merchandise",
-               url: "Budget/AddMerch/{bandId}",
-               defaults: new { controller = "Budget", action = "AddMerch" },
-               constraints: new { bandId = @"\d+" }
-           );
+                   name: "Add Merchandise",
+                   url: "Budget/{bandId}",
+                   defaults: new { controller = "Budget", action = "AddMerch" },
+                   constraints: new { bandId = @"\d+" }
+               );
 
             routes.MapRoute(
                 name: "Profile",
