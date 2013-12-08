@@ -4,11 +4,17 @@ superApp.controller('SortableController', function SortableController($scope, $h
 {
     $scope.data = [];
     $scope.ready = false;
+    $scope.empty = false;
 
     $scope.init = function (url)
     {
-        $http({ method: 'GET', url: url }).success(function (data) { $scope.data = data; });
-        $scope.ready = true;
+        $http({ method: 'GET', url: url }).success(function (data)
+        {
+            $scope.data = data;
+            $scope.ready = true;
+            $scope.empty = (data.length === 0) ? true : false;
+        });
+
     };
 
     $scope.column = '';
