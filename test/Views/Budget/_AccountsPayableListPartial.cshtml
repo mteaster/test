@@ -1,19 +1,39 @@
 ﻿@model IEnumerable<test.Models.Budget.AccountPayables>
 
+<script type="text/javascript" src="../../Scripts/jquery.tablesorter.min.js">
+    $(document).ready(function() 
+    { 
+        $("#myTable").tablesorter(); 
+    } 
+); 
+</script>
 @if (Model != null)
 {
-<table>
-    @foreach (test.Models.Budget.AccountPayables accountPayable in Model)
-    {
+<table id="AccountPayableTable" class="tablesorter">
+    <thead>
         <tr>
-            <td>@Html.DisplayFor(ModelItem => accountPayable.Amount)</td>
-            <td>@Html.DisplayFor(ModelItem => accountPayable.Date)</td>
-            <td>@Html.DisplayFor(ModelItem => accountPayable.Category)</td>
-            <td>@Html.DisplayFor(ModelItem => accountPayable.AssociatedBandContactId)</td>
-            <td>@Html.DisplayFor(ModelItem => accountPayable.AssociatedPersonContactId)</td>
-            <td>@Html.DisplayFor(ModelItem => accountPayable.AssociatedVenueContactId)</td>
-            <td>@Html.DisplayFor(ModelItem => accountPayable.Paid)</td>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>Category</th>
+            <th>Band Contact</th>
+            <th>Person Contact</th>
+            <th>Venue Contact</th>
+            <th>Paid</th>
         </tr>
-    }   
+    </thead>
+    <tbody>
+        @foreach (test.Models.Budget.AccountPayables accountPayable in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(ModelItem => accountPayable.Amount)</td>
+                <td>@Html.DisplayFor(ModelItem => accountPayable.Date)</td>
+                <td>@Html.DisplayFor(ModelItem => accountPayable.Category)</td>
+                <td>@Html.DisplayFor(ModelItem => accountPayable.AssociatedBandContactId)</td>
+                <td>@Html.DisplayFor(ModelItem => accountPayable.AssociatedPersonContactId)</td>
+                <td>@Html.DisplayFor(ModelItem => accountPayable.AssociatedVenueContactId)</td>
+                <td>@Html.DisplayFor(ModelItem => accountPayable.Paid)</td>
+            </tr>
+        }   
+    </tbody>
 </table>
 }
