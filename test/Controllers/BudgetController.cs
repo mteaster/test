@@ -25,7 +25,7 @@ namespace band.Controllers
 
         [ActionName("Index")]
         [HttpPost]
-        public ActionResult Index(int bandId, test.Models.Budget.IndexFilters filters)
+        public ActionResult Index(int bandId, test.Models.Budget.IndexFilters filters, string sort)
         {
             if (!BandUtil.Authenticate(bandId, this))
             {
@@ -33,6 +33,7 @@ namespace band.Controllers
             }
 
             ViewBag.Filters = filters;
+            ViewBag.Sort = sort;
 
             return View(filters);
         }
@@ -149,7 +150,7 @@ namespace band.Controllers
 
         }
 
-        public ActionResult AccountsReceivableList(int bandId, test.Models.Budget.IndexFilters filters)
+        public ActionResult AccountsReceivableList(int bandId, test.Models.Budget.IndexFilters filters, string sort)
         {
             List<test.Models.Budget.AccountReceivables> accountReceivables = new List<test.Models.Budget.AccountReceivables>();
             if (!BandUtil.Authenticate(bandId, this))

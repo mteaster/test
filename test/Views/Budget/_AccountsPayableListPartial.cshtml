@@ -3,15 +3,6 @@
 @if (Model != null)
 {
 <table>
-        <tr>
-            <td>@Html.ActionLink("Amount", "AccountsPayableList", new { bandId = ViewBag.BandId, filters = ViewBag.Filters})</td>
-            <td>@Html.ActionLink("Date", "AccountsPayableList", new { bandId = ViewBag.BandId, filters = ViewBag.Filters, sort = "DATE" })</td>
-            <td>@Html.ActionLink("Category", "AccountsPayableList", new { bandId = ViewBag.BandId, filters = ViewBag.Filters, sort = "CATEGORY" })</td>
-            <td>@Html.ActionLink("Band Contact", "AccountsPayableList", new { bandId = ViewBag.BandId, filters = ViewBag.Filters, sort = "BAND" })</td>
-            <td>@Html.ActionLink("Person Contact", "AccountsPayableList", new { bandId = ViewBag.BandId, filters = ViewBag.Filters, sort = "PERSON" })</td>
-            <td>@Html.ActionLink("Venue Contact", "AccountsPayableList", new { bandId = ViewBag.BandId, filters = ViewBag.Filters, sort = "VENUE" })</td>
-            <td>@Html.ActionLink("Paid", "AccountsPayableList", new { bandId = ViewBag.BandId, filters = ViewBag.Filters, sort = "PAID" })</td>
-        </tr>
     @foreach (test.Models.Budget.AccountPayables accountPayable in Model)
     {
         <tr>
