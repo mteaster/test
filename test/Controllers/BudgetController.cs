@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using test.Models;
 using test.Stuff;
 using System.Linq;
+using System;
 
 namespace band.Controllers
 {
@@ -17,7 +18,9 @@ namespace band.Controllers
                 return View("Error");
             }
 
-            return View();
+            ViewBag.Filters = new test.Models.Budget.IndexFilters { StartDT = DateTime.Now, EndDT = DateTime.Now };
+
+            return View(ViewBag.Filters);
         }
 
         [ActionName("Index")]
@@ -95,7 +98,16 @@ namespace band.Controllers
                     tempAP.Date = ap.Date;
                     tempAP.Paid = ap.Paid;
 
-                    accountPayables.Add(tempAP);
+                    if ((!string.IsNullOrEmpty(filters.Category) && tempAP.Category.Contains(filters.Category)) || string.IsNullOrEmpty(filters.Category))
+                    {
+                        if ((filters.Paid && tempAP.Paid) || (filters.Unpaid && !tempAP.Paid) || (!filters.Paid && !filters.Unpaid) || (filters.Paid && filters.Unpaid))
+                        {
+                            if ((filters.StartDT <= tempAP.Date && filters.EndDT >= tempAP.Date))
+                            {
+                                accountPayables.Add(tempAP);
+                            }
+                        }
+                    }
                 }
             }
 
