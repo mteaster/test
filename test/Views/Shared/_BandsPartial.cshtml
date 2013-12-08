@@ -6,7 +6,7 @@
                 <h2>Pick one of them.</h2>
             </hgroup>
 
-            <input type="button" value="Sort" ng-click="sort('BandName')"  />
+            <input type="button" value="Sort" ng-click="sort('BandName')"/>
 
             <ol ng-cloak class="messages">
                 <li ng-repeat="band in data | orderBy : column : descending">
@@ -29,7 +29,7 @@
             @Html.ActionLink("Create a new band", "Register", "Band")
         </section>
 
-        <section class="blarg" ng-show="ready && empty >
+        <section class="blarg" ng-show="ready && empty">
             <hgroup class="title">
                 <h1>You're not in any bands!</h1>
             </hgroup>
