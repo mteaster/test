@@ -9,6 +9,7 @@ namespace band.Controllers
     [Authorize]
     public class BudgetController : Controller
     {
+        [ActionName("Index")]
         public ActionResult Index(int bandId)
         {
             if (!BandUtil.Authenticate(bandId, this))
@@ -17,6 +18,20 @@ namespace band.Controllers
             }
 
             return View();
+        }
+
+        [ActionName("Index")]
+        [HttpPost]
+        public ActionResult Index(int bandId, test.Models.Budget.IndexFilters filters)
+        {
+            if (!BandUtil.Authenticate(bandId, this))
+            {
+                return View("Error");
+            }
+
+            ViewBag.Filters = filters;
+
+            return View(filters);
         }
 
         public ActionResult MerchandiseList(int bandId)
@@ -52,7 +67,7 @@ namespace band.Controllers
 
         }
 
-        public ActionResult AccountsPayableList(int bandId)
+        public ActionResult AccountsPayableList(int bandId, test.Models.Budget.IndexFilters filters)
         {
             List<test.Models.Budget.AccountPayables> accountPayables = new List<test.Models.Budget.AccountPayables>();
 
@@ -88,7 +103,7 @@ namespace band.Controllers
 
         }
 
-        public ActionResult AccountsReceivableList(int bandId)
+        public ActionResult AccountsReceivableList(int bandId, test.Models.Budget.IndexFilters filters)
         {
             List<test.Models.Budget.AccountReceivables> accountReceivables = new List<test.Models.Budget.AccountReceivables>();
             if (!BandUtil.Authenticate(bandId, this))

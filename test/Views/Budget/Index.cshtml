@@ -6,34 +6,6 @@
     }
 </script>
 
-<script src="../../Scripts/jquery-1.7.1.min.js">
-    
-    
-    $('#EndDT').on('change', function(event){
-    var form = $(this).parents('form');
-
-    form.submit();
-    });
-    
-    $('#Category').on('change', function(event){
-    var form = $(this).parents('form');
-
-    form.submit();
-    });
-    
-    $('#Paid').on('change', function(event){
-    var form = $(this).parents('form');
-
-    form.submit();
-    });
-
-    $('#Unpaid').on('change', function(event){
-    var form = $(this).parents('form');
-
-    form.submit();
-    });
-</script>
-
 @section featured 
 {
     @Html.Partial("_BandHeaderPartial")
@@ -51,22 +23,22 @@
     <fieldset>
         <legend>Filters</legend>
         Start Date: 
-        @Html.TextBoxFor(m => m.StartDT, new { type = "date", id = "StartDT", @onchange = "submitform();" }) 
+        @Html.TextBoxFor(m => m.StartDT, new { type = "date", @onchange = "submitform();" }) 
         to
         End Date: 
-        @Html.TextBoxFor(m => m.EndDT, new { type = "date", id = "EndDT" })
+        @Html.TextBoxFor(m => m.EndDT, new { type = "date", @onchange = "submitform();" })
         <br />
         Category: 
-        @Html.TextBoxFor(m => m.Category, new { id = "Category" })
+        @Html.TextBoxFor(m => m.Category, new { @onchange = "submitform();" })
         Paid: 
-        @Html.CheckBoxFor(m => m.Paid, new { id = "Paid" })
+        @Html.CheckBoxFor(m => m.Paid, new {@onchange = "submitform();" })
         Unpaid: 
-        @Html.CheckBoxFor(m => m.Unpaid, new { id = "Unpaid" })
+        @Html.CheckBoxFor(m => m.Unpaid, new { @onchange = "submitform();" })
     </fieldset>
 }
 
 <h4>Accounts Payable</h4>
-@{ Html.RenderAction("AccountsPayableList", new {bandId = ViewBag.BandId}); }
+@{ Html.RenderAction("AccountsPayableList", new {bandId = ViewBag.BandId, filters = ViewBag.Filters}); }
 
 <h4>Accounts Receivable</h4>
-@{ Html.RenderAction("AccountsReceivableList", new { bandId = ViewBag.BandId}); }
+@{ Html.RenderAction("AccountsReceivableList", new { bandId = ViewBag.BandId, filters = ViewBag.Filters}); }
