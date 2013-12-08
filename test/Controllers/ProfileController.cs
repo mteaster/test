@@ -45,8 +45,7 @@ namespace band.Controllers
                         ViewBag.StatusMessage = "no newlines...";
                     }
 
-                    text.Replace("\n", "<br />");
-                    return View(new BandBioModel(text));
+                    return View(new BandBioModel(text.Replace("\n", "<br />");));
                 }
 
                 return View();
