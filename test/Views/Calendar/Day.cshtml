@@ -36,33 +36,24 @@ else
         {
 
             string rowTime = i.ToString();
-            if (i >= 10)
-            {
-                rowTime = rowTime + ":00 AM";
-            }
-            else
-            {
-                rowTime = rowTime + ":00  AM";
-            }          
+            
+            rowTime = rowTime + ":00 AM";
+                 
             
             <tr>
-                <td style="width:10%">@rowTime</td>
+                <td style="width:10%; text-align:justify;">@rowTime</td>
                 <td></td>               
             </tr>           
         }   
         @for(int i=1;i< 13; i++)
         {
             string rowTime = i.ToString();
-            if (i >= 10)
-            {
-                rowTime = rowTime + ":00 PM";
-            }
-            else
-            {
-                rowTime = rowTime + ":00  PM";
-            }   
+
+            rowTime = rowTime + ":00 PM";
+
+            
             <tr>
-                <td style="width:10%">@rowTime</td>
+                <td style="width:10%; text-align:justify;">@rowTime</td>
                 <td></td>               
             </tr>           
         }  
