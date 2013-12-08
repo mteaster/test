@@ -17,35 +17,41 @@ else
     }
 }
 
-<h2>Tracks</h2>
+<section class="blarg">
+    <h2>Band information goes here</h2>
+</section>
 
-<div ng-app="sortable" ng-cloak ng-controller="SortableController" ng-init="init('/Profile/GetTracks/@ViewBag.BandId')">
-    <span ng-click="sort('TrackName')">Sort tracks</span>
+<section class="half">
+    <h2>Tracks</h2>
 
-    <ol class="messages">
-        <li ng-repeat="track in data | orderBy : column : descending">
-            <div class="post-header">  
-                <img class="post-avatar" height="50" width="50" class="photo" alt="" ng-src="{{ track.ImageUrl }}" />    
-                <div class="post-info">  
-                    <span class="post-username">{{ track.TrackId }}</span><br />
-                    <span class="post-time">{{ track.TrackName }}</span><br />
+    <div ng-app="sortable" ng-cloak ng-controller="SortableController" ng-init="init('/Profile/GetTracks/@ViewBag.BandId')">
+        <span ng-click="sort('TrackName')">Sort tracks</span>
+
+        <ol class="messages">
+            <li ng-repeat="track in data | orderBy : column : descending">
+                <div class="post-header">  
+                    <img class="post-avatar" height="50" width="50" class="photo" alt="" ng-src="{{ track.ImageUrl }}" />    
+                    <div class="post-info">  
+                        <span class="post-username">{{ track.TrackId }}</span><br />
+                        <span class="post-time">{{ track.TrackName }}</span><br />
+                    </div>
                 </div>
-            </div>
 
-            <div class="post-content">
-                <audio controls>
-                    <source ng-src="{{ track.TrackUrl }}" type="audio/mp3" />
-                    <p>Your browser does not support HTML 5 audio element</p>
-                </audio>
-            </div>
+                <div class="post-content">
+                    <audio controls>
+                        <source ng-src="{{ track.TrackUrl }}" type="audio/mp3" />
+                        <p>Your browser does not support HTML 5 audio element</p>
+                    </audio>
+                </div>
 
-            @if (ViewBag.InBand)
-            {
-                <a class="post-link" ng-href="/Online/DeleteTrack/{{ track.TrackId }}">Delete</a>
-            }
-        </li>
-    </ol>
-</div>
+                @if (ViewBag.InBand)
+                {
+                    <a class="post-link" ng-href="/Online/DeleteTrack/{{ track.TrackId }}">Delete</a>
+                }
+            </li>
+        </ol>
+    </div>
+</section>
 
 @section Scripts
 {
