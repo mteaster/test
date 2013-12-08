@@ -51,9 +51,9 @@
                 <td>@Html.DisplayFor(ModelItem => accountPayable.Amount)</td>
                 <td>@accountPayable.Date.ToShortDateString()</td>
                 <td>@Html.DisplayFor(ModelItem => accountPayable.Category)</td>
-                <td>@Html.DisplayFor(ModelItem => accountPayable.AssociatedBandContactId)</td>
-                <td>@Html.DisplayFor(ModelItem => accountPayable.AssociatedPersonContactId)</td>
-                <td>@Html.DisplayFor(ModelItem => accountPayable.AssociatedVenueContactId)</td>
+                <td>@Html.ActionLink(accountPayable.AssociatedBandName, "EditContact", "Rolodex", new {bandId = ViewBag.BandId, contactId = accountPayable.AssociatedBandContactId, type = test.Models.Rolodex.ContactType.Band})</td>
+                <td>@Html.ActionLink(accountPayable.AssociatedPersonName, "EditContact", "Rolodex", new {bandId = ViewBag.BandId, contactId = accountPayable.AssociatedPersonContactId, type = test.Models.Rolodex.ContactType.People})</td>
+                <td>@Html.ActionLink(accountPayable.AssociatedVenueName, "EditContact", "Rolodex", new {bandId = ViewBag.BandId, contactId = accountPayable.AssociatedVenueContactId, type = test.Models.Rolodex.ContactType.Venue})</td>
                 <td>@Html.CheckBoxFor(ModelItem => accountPayable.Paid, new { @id=accountPayable.AccountPayableId, @class="chks"})</td>
             </tr>
         }   

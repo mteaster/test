@@ -5,7 +5,20 @@
     $(document).ready(function () {
         $("#AccountReceivableTable").tablesorter();
     }
-);
+    );
+
+    $(function () {
+
+        $(document).on("click", "input.chks", function (e) {
+            var _this = $(this);
+            var isChecked = _this.is(':checked');
+            $.post("@Url.Action("UpdateAccountReceivable","Budget")?id=" + _this.attr("id") +
+                                          "&newValue=" + isChecked, function (data) {
+                                              // do something with the response
+                                          });
+
+        });
+    });
 </script>
 
 <style>
@@ -41,7 +54,7 @@
             <td>@Html.DisplayFor(ModelItem => accountReceivable.AssociatedBandContactId)</td>
             <td>@Html.DisplayFor(ModelItem => accountReceivable.AssociatedPersonContactId)</td>
             <td>@Html.DisplayFor(ModelItem => accountReceivable.AssociatedVenueContactId)</td>
-            <td>@Html.DisplayFor(ModelItem => accountReceivable.Paid)</td>
+            <td>@Html.CheckBoxFor(ModelItem => accountReceivable.Paid, new { @id=accountPayable.AccountPayableId, @class="chks"})</td>
         </tr>
     }   
     </tbody>
