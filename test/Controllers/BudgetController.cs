@@ -18,7 +18,7 @@ namespace band.Controllers
                 return View("Error");
             }
 
-            ViewBag.Filters = new test.Models.Budget.IndexFilters { StartDT = DateTime.Now, EndDT = DateTime.Now };
+            ViewBag.Filters = new test.Models.Budget.IndexFilters { StartDT = DateTime.Now.Date, EndDT = DateTime.Now.Date };
 
             return View(ViewBag.Filters);
         }
