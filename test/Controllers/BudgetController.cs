@@ -117,33 +117,33 @@ namespace band.Controllers
                 }
             }
 
-            if (accountPayables != null)
-            {
-                switch (sort)
-                {
-                    case "AMOUNT":
-                        accountPayables = accountPayables.OrderBy(a => a.Amount).ToList();
-                        break;
-                    case "DATE":
-                        accountPayables = accountPayables.OrderBy(a => a.Date).ToList();
-                        break;
-                    case "CATEGORY":
-                        accountPayables = accountPayables.OrderBy(a => a.Category).ToList();
-                        break;
-                    case "BAND":
-                        accountPayables = accountPayables.OrderBy(a => a.AssociatedBandContactId).ToList();
-                        break;
-                    case "PERSON":
-                        accountPayables = accountPayables.OrderBy(a => a.AssociatedPersonContactId).ToList();
-                        break;
-                    case "VENUE":
-                        accountPayables = accountPayables.OrderBy(a => a.AssociatedVenueContactId).ToList();
-                        break;
-                    case "PAID":
-                        accountPayables = accountPayables.OrderBy(a => a.Paid).ToList();
-                        break;
-                }
-            }
+            //if (accountPayables != null)
+            //{
+            //    switch (sort)
+            //    {
+            //        case "AMOUNT":
+            //            accountPayables = accountPayables.OrderBy(a => a.Amount).ToList();
+            //            break;
+            //        case "DATE":
+            //            accountPayables = accountPayables.OrderBy(a => a.Date).ToList();
+            //            break;
+            //        case "CATEGORY":
+            //            accountPayables = accountPayables.OrderBy(a => a.Category).ToList();
+            //            break;
+            //        case "BAND":
+            //            accountPayables = accountPayables.OrderBy(a => a.AssociatedBandContactId).ToList();
+            //            break;
+            //        case "PERSON":
+            //            accountPayables = accountPayables.OrderBy(a => a.AssociatedPersonContactId).ToList();
+            //            break;
+            //        case "VENUE":
+            //            accountPayables = accountPayables.OrderBy(a => a.AssociatedVenueContactId).ToList();
+            //            break;
+            //        case "PAID":
+            //            accountPayables = accountPayables.OrderBy(a => a.Paid).ToList();
+            //            break;
+            //    }
+            //}
 
             return PartialView("_AccountsPayableListPartial", accountPayables);
 
