@@ -34,8 +34,13 @@ else
         </tr>
         @for(int i=1;i< 13; i++)
         {
+
             string rowTime = i.ToString();
-            rowTime = rowTime + ":00 AM";
+            if(i >= 10)
+            {
+               rowTime = " " + rowTime;
+            }            
+            rowTime = rowTime + ":00";
             <tr>
                 <td style="width:10%">@rowTime</td>
                 <td></td>               
@@ -44,7 +49,11 @@ else
         @for(int i=1;i< 13; i++)
         {
             string rowTime = i.ToString();
-            rowTime = rowTime + ":00 PM";
+            if (i >= 10)
+            {
+                rowTime = " " + rowTime;
+            }    
+            rowTime = rowTime + ":00";
             <tr>
                 <td style="width:10%">@rowTime</td>
                 <td></td>               
