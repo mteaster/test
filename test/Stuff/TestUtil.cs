@@ -19,7 +19,8 @@ namespace test.Stuff
         {
             string creatorUserName = RandomWord();
             string creatorDisplayName = RandomWord();
-            WebSecurity.CreateUserAndAccount(creatorUserName, "password", new { DisplayName = creatorDisplayName })
+            WebSecurity.CreateUserAndAccount(creatorUserName, "password", new { DisplayName = creatorDisplayName });
+            return 1;
         }
 
         public static void MakeAccount(string userName, string displayName)
