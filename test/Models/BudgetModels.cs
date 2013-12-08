@@ -97,10 +97,10 @@ namespace test.Models.Budget
     public class IndexFilters
     {
         [Display(Name = "Start Date")]
-        public DateTime StartDT { get; set; }
+        public DateTime? StartDT { get; set; }
 
         [Display(Name = "End Date")]
-        public DateTime EndDT { get; set; }
+        public DateTime? EndDT { get; set; }
 
         [Display(Name = "Category")]
         public string Category { get; set; }
