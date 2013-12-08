@@ -63,7 +63,7 @@ namespace test.Models.Dashboard
             this.PosterName = posterName;
             this.PostType = postType;
             this.PostTime = postTime;
-            this.Content = content;
+            this.Content = content.Replace("\n", "<br />");
         }
 
         [Required]

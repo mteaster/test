@@ -35,17 +35,7 @@ namespace band.Controllers
 
                 if (bio != null)
                 {
-                    string text = bio.Bio;
-                    if (text.Contains((char)13))
-                    {
-                        ViewBag.StatusMessage = "yeah it has newlines";
-                    }
-                    else
-                    {
-                        ViewBag.StatusMessage = "no newlines...";
-                    }
-
-                    return View(new BandBioModel(text.Replace("\n", "<br />");));
+                    return View(new BandBioModel(bio.Bio.Replace("\n", "<br />")));
                 }
 
                 return View();
