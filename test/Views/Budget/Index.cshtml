@@ -23,10 +23,10 @@
     <fieldset>
         <legend>Filters</legend>
         Start Date: 
-        @Html.TextBoxFor(m => m.StartDT, DateTime.Now.ToString("MM/dd/yyyy"), new { maxlength= 10, @onchange = "submitform();" }) 
+        @Html.TextBoxFor(m => m.StartDT, new { maxlength= 10, value=DateTime.Now.ToString("MM/dd/yyyy"), @onchange = "submitform();" }) 
         to
         End Date: 
-        @Html.TextBoxFor(m => m.EndDT, DateTime.Now.ToString("MM/dd/yyyy"), new { maxlength= 10, @onchange = "submitform();" })
+        @Html.TextBoxFor(m => m.EndDT, new { maxlength= 10, value=DateTime.Now.ToString("MM/dd/yyyy"), @onchange = "submitform();" })
         <br />
         Category: 
         @Html.TextBoxFor(m => m.Category, new { @onchange = "submitform();" })
