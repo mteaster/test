@@ -1,31 +1,35 @@
 ﻿@model test.Models.Budget.IndexFilters
 
-<script src="../../Scripts/jquery-1.7.1.js">
+<script src="../../Scripts/jquery-1.7.1.min.js">
     $('#StartDT').on('change', function(event){
-    var form = $(event.target).parents('form');
+    var form = $(this).parents('form');
 
     form.submit();
-});
+    });
+    
     $('#EndDT').on('change', function(event){
-    var form = $(event.target).parents('form');
+    var form = $(this).parents('form');
 
     form.submit();
-});
+    });
+    
     $('#Category').on('change', function(event){
-    var form = $(event.target).parents('form');
+    var form = $(this).parents('form');
 
     form.submit();
-});
+    });
+    
     $('#Paid').on('change', function(event){
-    var form = $(event.target).parents('form');
+    var form = $(this).parents('form');
 
     form.submit();
-});
+    });
+
     $('#Unpaid').on('change', function(event){
-    var form = $(event.target).parents('form');
+    var form = $(this).parents('form');
 
     form.submit();
-});
+    });
 </script>
 
 @section featured 
