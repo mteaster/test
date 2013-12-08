@@ -1,5 +1,33 @@
 ﻿@model test.Models.Budget.IndexFilters
 
+<script src="../test/jquery-1.7.1.js">
+    $('#StartDT').on('change', function(event){
+    var form = $(event.target).parents('form');
+
+    form.submit();
+});
+    $('#EndDT').on('change', function(event){
+    var form = $(event.target).parents('form');
+
+    form.submit();
+});
+    $('#Category').on('change', function(event){
+    var form = $(event.target).parents('form');
+
+    form.submit();
+});
+    $('#Paid').on('change', function(event){
+    var form = $(event.target).parents('form');
+
+    form.submit();
+});
+    $('#Unpaid').on('change', function(event){
+    var form = $(event.target).parents('form');
+
+    form.submit();
+});
+</script>
+
 @section featured 
 {
     @Html.Partial("_BandHeaderPartial")
@@ -16,18 +44,18 @@
     @Html.ValidationSummary()
     <fieldset>
         <legend>Filters</legend>
-        @Html.LabelFor(m => m.StartDT)
-        @Html.TextBoxFor(m => m.StartDT, new { type = "date" }) 
+        Start Date: 
+        @Html.TextBoxFor(m => m.StartDT, new { type = "date", id = "StartDT" }) 
         to
-        @Html.LabelFor(m => m.EndDT)
-        @Html.TextBoxFor(m => m.EndDT, new { type = "date" })
+        End Date: 
+        @Html.TextBoxFor(m => m.EndDT, new { type = "date", id = "EndDT" })
         <br />
-        @Html.LabelFor(m => m.Category)
-        @Html.TextBoxFor(m => m.Category)
-        @Html.LabelFor(m => m.Paid)
-        @Html.CheckBoxFor(m => m.Paid)
-        @Html.LabelFor(m => m.Unpaid)
-        @Html.CheckBoxFor(m => m.Unpaid)
+        Category: 
+        @Html.TextBoxFor(m => m.Category, new { id = "Category" })
+        Paid: 
+        @Html.CheckBoxFor(m => m.Paid, new { id = "Paid" })
+        Unpaid: 
+        @Html.CheckBoxFor(m => m.Unpaid, new { id = "Unpaid" })
     </fieldset>
 }
 
