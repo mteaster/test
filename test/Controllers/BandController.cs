@@ -239,7 +239,7 @@ namespace test.Controllers
             ViewBag.BandId = bandId;
             ViewBag.BandName = BandUtil.BandNameFor(bandId);
 
-            if (file.ContentLength <= 0 || file.ContentLength > 1048576)
+            if (file == null || file.ContentLength <= 0 || file.ContentLength > 1048576)
             {
                 TempData["ErrorMessage"] = "Something was wrong with the avatar you uploaded.";
             }
