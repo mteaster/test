@@ -693,6 +693,11 @@ tr.pager td
   display: none !important;
 }
 
+h2.ten
+{
+    margin-bottom: 10px;
+}
+
 a.right
 {
     float: right;    

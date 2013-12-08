@@ -20,7 +20,7 @@ else
 }
 
 <section class="blarg">
-    <h2>Bio</h2>
+    <h2 class="ten">Bio</h2>
 
     @if (ViewBag.InBand)
     {
@@ -41,7 +41,7 @@ else
 </section>
 
 <section class="half">
-    <h2>Tracks</h2>
+    <h2 class="ten">Tracks</h2>
 
     <div ng-app="super" ng-controller="SortableController" ng-init="init('/Profile/GetTracks/@ViewBag.BandId')" ng-cloak>
         @if (ViewBag.InBand)
