@@ -13,7 +13,6 @@ searchableApp.controller('SearchableController', function SearchableController($
 
     $scope.search = function ()
     {
-        console.log($scope.criteria);
         $http({ method: 'GET', url: $scope.url + '/' + $scope.criteria }).success(function (data) { $scope.data = data; });
     };
 
