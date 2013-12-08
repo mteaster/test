@@ -18,6 +18,20 @@ namespace test
                 url: "Band/SearchBands/{criteria}",
                 defaults: new { controller = "Band", action = "SearchBands" }
             );
+
+            routes.MapRoute(
+                name: "Bio",
+                url: "Profile/Bio/{bandId}",
+                defaults: new { controller = "Profile", action = "Bio" },
+                constraints: new { bandId = @"\d+" }
+            );
+
+            routes.MapRoute(
+                name: "Bio",
+                url: "Profile/EditBio/{bandId}",
+                defaults: new { controller = "Profile", action = "EditBio" },
+                constraints: new { bandId = @"\d+" }
+            );
             
             routes.MapRoute(
                 name: "Upload Track",
