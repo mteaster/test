@@ -328,12 +328,6 @@ namespace test
                 constraints: new { bandId = @"\d+" }
             );
 
-            routes.MapRoute(
-                   name: "Add Merchandise",
-                   url: "Budget/{bandId}",
-                   defaults: new { controller = "Budget", action = "AddMerch" },
-                   constraints: new { bandId = @"\d+" }
-               );
 
             routes.MapRoute(
                 name: "Profile",
