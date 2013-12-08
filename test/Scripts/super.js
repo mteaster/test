@@ -31,6 +31,7 @@ superApp.controller('SearchableController', function SearchableController($scope
     $scope.data = [];
     $scope.url = "";
     $scope.criteria = "";
+    $scope.searched = false;
 
     $scope.init = function (url)
     {
@@ -39,6 +40,7 @@ superApp.controller('SearchableController', function SearchableController($scope
 
     $scope.search = function ()
     {
+        $scope.searched = true;
         $http({ method: 'GET', url: $scope.url + '/' + $scope.criteria }).success(function (data) { $scope.data = data; });
     };
 
