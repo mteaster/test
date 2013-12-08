@@ -1,4 +1,4 @@
-﻿<div ng-app="super" ng-cloak>
+﻿<div ng-app="super">
     <section class="blarg">
         <hgroup class="title">
             <h1>Your Bands.</h1>
@@ -11,7 +11,7 @@
         <div ng-app="sortable" ng-controller="SortableController" ng-init="init('/Band/GetBands')">
             <span ng-click="sort('BandName')">Sort bands</span>
 
-            <ol class="messages">
+            <ol ng-cloak class="messages">
                 <li ng-repeat="band in data | orderBy : column : descending">
                     <div class="post-header">  
                         <img class="post-avatar" height="50" width="50" class="photo" alt="" ng-src="{{ band.AvatarUrl }}" />    
@@ -42,7 +42,7 @@
             <input type="submit" value="Search" ng-click="search()">
             <span ng-click="sort('BandName')">Sort bands</span>
 
-            <ol class="messages">
+            <ol ng-cloak class="messages">
                 <li ng-repeat="band in data | orderBy : column : descending">
                     <div class="post-header">  
                         <img class="post-avatar" height="50" width="50" class="photo" alt="" ng-src="{{ band.AvatarUrl }}" />    
