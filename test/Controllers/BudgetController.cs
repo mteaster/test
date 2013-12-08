@@ -79,10 +79,10 @@ namespace band.Controllers
                 return View("Error");
             }
 
-            if (filters != null)
-            {
-                ViewBag.Filters = filters;
-            }
+            //if (filters != null)
+            //{
+            //    ViewBag.Filters = filters;
+            //}
 
             using (DatabaseContext db = new DatabaseContext())
             {
