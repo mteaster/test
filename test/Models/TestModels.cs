@@ -85,5 +85,19 @@ namespace test.Models.Test
         public string TrackUrl { get; set; }
         public string ImageUrl { get; set; }
     }
+
+    [Table("BandBio")]
+    public class BandBio
+    {
+        [Required]
+        [Key]
+        [Column(Order = 0)]
+        public int BandId { get; set; }
+        [ForeignKey("BandId")]
+        public virtual BandProfile BandProfile { get; set; }
+
+        [Required]
+        public string Bio { get; set; }
+    }
 }
 

@@ -60,20 +60,6 @@ namespace test.Models.Band
         public virtual UserProfile MemberProfile { get; set; }
     }
 
-    [Table("BandBio")]
-    public class BandBio
-    {
-        [Required]
-        [Key]
-        [Column(Order = 0)]
-        public int BandId { get; set; }
-        [ForeignKey("BandId")]
-        public virtual BandProfile BandProfile { get; set; }
-
-        [Required]
-        public string Bio { get; set; }
-    }
-
     public class SuperBandModel
     {
         public SuperBandModel() { }
