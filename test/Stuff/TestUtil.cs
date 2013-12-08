@@ -6,11 +6,36 @@ using test.Models;
 using test.Models.Band;
 using test.Models.Dashboard;
 using test.Models.FileCabinet;
+using System.Linq;
+using WebMatrix.WebData;
 
 namespace test.Stuff
 {
     public class TestUtil
     {
+        public static const string alphanumeric = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+        public static int RandomBand()
+        {
+            string creatorUserName = RandomWord();
+            string creatorDisplayName = RandomWord();
+            WebSecurity.CreateUserAndAccount(creatorUserName, "password", new { DisplayName = creatorDisplayName })
+        }
+
+        public static void MakeAccount(string userName, string displayName)
+        {
+            WebSecurity.CreateUserAndAccount(userName, "password", new { DisplayName = displayName })
+        }
+
+        public static string RandomWord()
+        {
+            Random random = new Random();
+            return new string(
+                Enumerable.Repeat(alphanumeric, 8)
+                          .Select(s => s[random.Next(s.Length)])
+                          .ToArray());
+        }
+
         public static int MakeBand(string bandName, int creatorId, string password)
         {
             using (DatabaseContext database = new DatabaseContext())
@@ -57,6 +82,14 @@ namespace test.Stuff
         {
             string sourcePath = server.MapPath("~/App_Data/TestData/" + avatarFileName);
             string destinationPath = server.MapPath("~/App_Data/UserAvatars/" + userId + ".jpg");
+
+            File.Copy(sourcePath, destinationPath, true);
+        }
+
+        public static void GiveBandAvatar(int bandId, string avatarFileName, HttpServerUtilityBase server)
+        {
+            string sourcePath = server.MapPath("~/App_Data/TestData/" + avatarFileName);
+            string destinationPath = server.MapPath("~/App_Data/BandAvatars/" + bandId + ".jpg");
 
             File.Copy(sourcePath, destinationPath, true);
         }
