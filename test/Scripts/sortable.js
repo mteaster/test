@@ -1,6 +1,6 @@
 var sortableApp = angular.module("sortable", []);
 
-sortableApp.controller('SortableController', function FilesController($scope, $http)
+sortableApp.controller('SortableController', function SortableController($scope, $http)
 {
     $scope.data = [];
 

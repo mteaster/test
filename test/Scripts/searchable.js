@@ -1,6 +1,6 @@
-var sortableApp = angular.module("sortable", []);
+var searchableApp = angular.module("searchable", []);
 
-sortableApp.controller('SortableController', function FilesController($scope, $http)
+searchableApp.controller('SearchableController', function SearchableController($scope, $http)
 {
     $scope.data = [];
     $scope.url = "";
@@ -13,7 +13,6 @@ sortableApp.controller('SortableController', function FilesController($scope, $h
 
     $scope.search = function ()
     {
-        console.log($scope.criteria);
         $http({ method: 'GET', url: $scope.url + '/' + $scope.criteria }).success(function (data) { $scope.data = data; });
     };
 
