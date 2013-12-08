@@ -60,11 +60,10 @@
     }
     #calendar-table td:hover
     {
-        background: -o-linear-gradient(bottom, #FCFCFC 0%, #1D9AB3 100%);
-        background: -moz-linear-gradient(bottom, #FCFCFC 0%, #1D9AB3 100%);
-        background: -webkit-linear-gradient(bottom, #FCFCFC 0%, #1D9AB3 100%);
-        background: -ms-linear-gradient(bottom, #FCFCFC 0%, #1D9AB3 100%);
-        background: linear-gradient(to bottom, #FCFCFC 0%, #1D9AB3 100%);
+        background: -webkit-linear-gradient(bottom, #D9FFFF 27%, #63FFF7 98%); /* For Safari */
+        background: -o-linear-gradient(bottom, #D9FFFF 27%, #63FFF7 98%); /* For Opera 11.1 to 12.0 */
+        background: -moz-linear-gradient(bottom, #D9FFFF 27%, #63FFF7 98%); /* For Firefox 3.6 to 15 */
+        background: linear-gradient(to bottom, #D9FFFF 27%, #63FFF7 98%); /* Standard syntax (must be last)*/ 
     }
     #calendar-table td:active
     {
@@ -101,10 +100,10 @@
     }
     td.event
     {
-        background: -webkit-linear-gradient(bottom, #D9FFFF 27%, #63FFF7 98%); /* For Safari */
-        background: -o-linear-gradient(bottom, #D9FFFF 27%, #63FFF7 98%); /* For Opera 11.1 to 12.0 */
-        background: -moz-linear-gradient(bottom, #D9FFFF 27%, #63FFF7 98%); /* For Firefox 3.6 to 15 */
-        background: linear-gradient(to bottom, #D9FFFF 27%, #63FFF7 98%); /* Standard syntax (must be last)*/ 
+        background: -webkit-linear-gradient(bottom, #FCFCFC 0%, #1D9AB3 100%); /* For Safari */
+        background: -o-linear-gradient(bottom, #FCFCFC 0%, #1D9AB3 100%); /* For Opera 11.1 to 12.0 */
+        background: -moz-linear-gradient(bottom, #FCFCFC 0%, #1D9AB3 100%); /* For Firefox 3.6 to 15 */
+        background: linear-gradient(to bottom, #FCFCFC 0%, #1D9AB3 100%); /* Standard syntax (must be last)*/ 
 
     }
     td.noday
@@ -195,10 +194,10 @@
                 
                     if(hasEvent)
                     { 
-                            <td style="background: -webkit-linear-gradient(bottom, #D9FFFF 27%, #63FFF7 98%); /* For Safari */
-                                background: -o-linear-gradient(bottom, #D9FFFF 27%, #63FFF7 98%); /* For Opera 11.1 to 12.0 */
-                                background: -moz-linear-gradient(bottom, #D9FFFF 27%, #63FFF7 98%); /* For Firefox 3.6 to 15 */
-                                background: linear-gradient(to bottom, #D9FFFF 27%, #63FFF7 98%); /* Standard syntax (must be last)*/ ">
+                            <td style="background: -webkit-linear-gradient(bottom, #FCFCFC 0%, #1D9AB3 100%); /* For Safari */
+                                background: -o-linear-gradient(bottom, #FCFCFC 0%, #1D9AB3 100%); /* For Opera 11.1 to 12.0 */
+                                background: -moz-linear-gradient(bottom, #FCFCFC 0%, #1D9AB3 100%); /* For Firefox 3.6 to 15 */
+                                background: linear-gradient(bottom, #FCFCFC 0%, #1D9AB3 100%); /* Standard syntax (must be last)*/ ">
                                 @Html.ActionLink(@currentDay.ToString(), "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
                             </td>
                     }
