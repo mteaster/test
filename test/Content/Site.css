@@ -790,6 +790,11 @@ div.whitebox
     background: white;
 }
 
+img.avatar
+{
+    border: 1px solid black;
+}
+
 /* message board stuff */
 
 ol.messages

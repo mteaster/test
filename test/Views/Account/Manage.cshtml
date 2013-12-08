@@ -9,7 +9,7 @@
 <p class="message-success">@ViewBag.SuccessMessage</p>
 <p class="message-error">@ViewBag.ErrorMessage</p>
 
-<img alt="" src="@Url.Action("DownloadAvatar", new { userId = WebSecurity.CurrentUserId })" height="50" width="50" class="photo" />
+<img class="avatar" alt="" src="@Url.Action("DownloadAvatar", new { userId = WebSecurity.CurrentUserId })" height="50" width="50" class="photo" />
 <p>You're logged in as <strong>@User.Identity.Name</strong>.</p>
 
 <section class="half">
