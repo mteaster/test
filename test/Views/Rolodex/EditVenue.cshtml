@@ -21,13 +21,17 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
 
+    <br />
+    
     <fieldset>
         <legend>Registration Form</legend>
-        <div style="display:inline-block;">
-        <div style="width:50%;  float: left;">
-        <ol style="display:block";>
-            <li style="display: none; width:50%;">
+        <ol style="display:inline-block">
+            <li style="padding-right:50px">
+                <label for="ContactId">Contact ID</label>
                 @Html.TextBoxFor(m => m.ContactId)
+            </li>
+            <li>
+                <label for="BandId">Band ID</label>
                 @Html.TextBoxFor(m => m.BandId)
             </li>
             <li>
@@ -42,6 +46,22 @@
                 @Html.LabelFor(m => m.Email)
                 @Html.TextBoxFor(m => m.Email)
             </li>
+        </ol>
+        <ol style="display:inline-block;">
+            <li style="padding-right:15px">
+                <label for="PrimaryContactId">Primary Contact</label>
+                @Html.DropDownListFor(m => m.PrimaryPeopleContactId, (List<SelectListItem>) band.Controllers.RolodexController.GetSelectList(ViewBag.BandId, "Venue"), "N/A")
+            </li>
+            @if (Model.PrimaryPeopleContactId > 0)
+            {
+            <li>
+                @Html.ActionLink("View Current Primary Contact", "EditPeople", new { bandId = ViewBag.BandId, contactId = Model.PrimaryPeopleContactId})
+            </li>
+            }
+            <li>
+                @Html.LabelFor(m => m.StageSizeValue)
+                @Html.DropDownListFor(m => m.StageSizeValue, band.Controllers.RolodexController.GetStageSizeList(), "N/A")
+            </li>
             <li>
                 @Html.LabelFor(m => m.FreeBeer)
                 @Html.CheckBoxFor(m => m.FreeBeer)
@@ -53,39 +73,21 @@
                 @Html.LabelFor(m => m.MerchSpace)
                 @Html.CheckBoxFor(m => m.MerchSpace)
             </li>
-        </ol>
-        </div>
-
-
-        <div>
-        <ol style="display:block;">
             <li>
                 @Html.LabelFor(m => m.Notes)
                 @Html.TextBoxFor(m => m.Notes)
             </li>
-            <li>
-                @Html.LabelFor(m => m.StageSizeValue)
-                @Html.DropDownListFor(m => m.StageSizeValue, band.Controllers.RolodexController.GetStageSizeList(), "N/A")
-            </li>
-            <li>
-                <label for="PrimaryContactId">Primary Contact</label>
-                @Html.DropDownListFor(m => m.PrimaryPeopleContactId, (List<SelectListItem>) band.Controllers.RolodexController.GetSelectList(ViewBag.BandId, "Venue"), "N/A")
-            </li>
-            @if (Model.PrimaryPeopleContactId > 0)
-            {
-            <li>
-                @Html.ActionLink("View Current Primary Contact", "EditPeople", new { bandId = ViewBag.BandId, contactId = Model.PrimaryPeopleContactId})
-            </li>
-            }
-        </ol>
-        </div>
-        </div>
-
+        </ol>    
+        <br />
         <input type="submit" value="Save" />
     </fieldset>
 }
+
+<br />
+
 <h3>Change avatar</h3>
 
+<br />
 <form action="/Rolodex/UploadAvatar/@Model.ContactId/@test.Models.Rolodex.ContactType.Venue" method="post" enctype="multipart/form-data">
     <label for="file">Filename:</label>
     <input type="file" name="file" id="file" />

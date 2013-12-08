@@ -19,10 +19,12 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
 
+    <br />
+    
     <fieldset>
         <legend>Registration Form</legend>
-        <ol>
-            <li style="display: none;">
+        <ol style="display:inline-block">
+            <li style="padding-right:50px">
                 @Html.TextBoxFor(m => m.ContactId)
                 @Html.TextBoxFor(m => m.BandId)
             </li>
@@ -42,11 +44,9 @@
                 @Html.LabelFor(m => m.Skill)
                 @Html.TextBoxFor(m => m.Skill)
             </li>
-            <li>
-                @Html.LabelFor(m => m.Notes)
-                @Html.TextBoxFor(m => m.Notes)
-            </li>
-            <li>
+        </ol>
+        <ol style="display:inline-block">
+            <li style="padding-right:50px">
                 @Html.LabelFor(m => m.BandContactId)
                 @Html.DropDownListFor(m => m.BandContactId, (List<SelectListItem>) band.Controllers.RolodexController.GetSelectList(ViewBag.BandId, "Person-band"), "N/A")
             </li>
@@ -64,12 +64,20 @@
             {
                 @Html.ActionLink("View Current Associated Venue", "EditVenue", new { bandId = ViewBag.BandId, contactId = Model.VenueContactId})
             }
+            <li>
+                @Html.LabelFor(m => m.Notes)
+                @Html.TextBoxFor(m => m.Notes)
+            </li>
         </ol>
+        <br />
         <input type="submit" value="Save" />
     </fieldset>
 }
-<h3>Change avatar</h3>
 
+<br />
+
+<h3>Change avatar</h3>
+<br />
 <form action="/Rolodex/UploadAvatar/@Model.ContactId/@test.Models.Rolodex.ContactType.People" method="post" enctype="multipart/form-data">
     <label for="file">Filename:</label>
     <input type="file" name="file" id="file" />
