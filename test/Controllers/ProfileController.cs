@@ -36,7 +36,7 @@ namespace band.Controllers
                 if (bio != null)
                 {
                     string text = bio.Bio;
-                    if (text.Contains('\n'))
+                    if (text.Contains((char)13))
                     {
                         ViewBag.StatusMessage = "yeah it has newlines";
                     }
