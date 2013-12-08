@@ -29,18 +29,27 @@ else
 {   
     <table class="pretty" border="0" cellpadding="0" cellspacing="0">
         <tr>
-            <th style="width:10%"></th>
-            <th>@Model.Date.Day</th>
+            <th style="width:10%">Time</th>
+            <th style="text-align:center; font-weight:bold;">Events</th>
         </tr>
         @for(int i=1;i< 13; i++)
         {
             string rowTime = i.ToString();
-            rowTime = rowTime + ":00";
+            rowTime = rowTime + ":00 AM";
             <tr>
                 <td style="width:10%">@rowTime</td>
                 <td></td>               
             </tr>           
-        }    
+        }   
+        @for(int i=1;i< 13; i++)
+        {
+            string rowTime = i.ToString();
+            rowTime = rowTime + ":00 PM";
+            <tr>
+                <td style="width:10%">@rowTime</td>
+                <td></td>               
+            </tr>           
+        }  
  
     </table>
     
