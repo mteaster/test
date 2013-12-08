@@ -79,10 +79,18 @@ namespace band.Controllers
                     return View("Error");
                 }
 
-                if (!String.IsNullOrEmpty(model.Bio))
-                {
-                    BandBio bio = database.BandBios.Find(bandId);
+                BandBio bio = database.BandBios.Find(bandId);
 
+                if (String.IsNullOrEmpty(model.Bio))
+                {
+                    if (bio != null)
+                    {
+                        database.BandBios.Remove(database.BandBios.Find(bandId));
+                        database.SaveChanges();
+                    }
+                }
+                else
+                {
                     if (bio == null)
                     {
                         bio = new BandBio(bandId, model.Bio);
@@ -92,7 +100,6 @@ namespace band.Controllers
                     {
                         bio.Bio = model.Bio;
                     }
-
                     database.SaveChanges();
                 }
 
