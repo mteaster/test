@@ -9,7 +9,7 @@
         @Html.ActionLink("Join an existing band", "Search", "Band")
 
         <div ng-controller="SortableController" ng-init="init('/Band/GetBands')">
-            <input type="button" ng-click="sort('BandName')">Sort</span>
+            <input type="button" value="Sort" ng-click="sort('BandName')" />
 
             <ol ng-cloak class="messages">
                 <li ng-repeat="band in data | orderBy : column : descending">
@@ -39,9 +39,9 @@
 
         <div ng-controller="SearchableController" ng-init="init('/Band/SearchBands')">
             <input type="text" value="" name="BandName" id="BandName" ng-model="criteria"/>
-            <input type="submit" value="Search" ng-click="search()">
+            <input type="submit" value="Search" ng-click="search()"/>
             <br />
-            <input type="button" ng-click="sort('BandName')">Sort</span>
+            <input type="button" value="Sort" ng-click="sort('BandName')" /></span>
 
             <ol ng-cloak class="messages">
                 <li ng-repeat="band in data | orderBy : column : descending">
