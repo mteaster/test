@@ -56,6 +56,12 @@
                 @Html.ActionLink("View Current Associated Band", "EditBand", new { bandId = ViewBag.BandId, contactId = Model.BandContactId})
             </li>
             }
+            else
+            {
+                <li>
+                    <br />
+                </li>
+            }
             <li>
                 <br />
             </li>
@@ -66,6 +72,12 @@
             @if (Model.VenueContactId > 0)
             {
                 @Html.ActionLink("View Current Associated Venue", "EditVenue", new { bandId = ViewBag.BandId, contactId = Model.VenueContactId})
+            }
+            else
+            {
+                <li>
+                    <br />
+                </li>
             }
             <li>
                 <br />
