@@ -9,10 +9,10 @@
     <h2>Do it.</h2>
 </hgroup>
 
-<input type="text" value="" name="BandName" id="BandName" />
-<input type="submit" value="Search" ng-click="search()">
 
 <div ng-app="sortable" ng-controller="SortableController" ng-init="init('/Band/SearchBands')">
+    <input type="text" value="" name="BandName" id="BandName" ng-model="criteria"/>
+    <input type="submit" value="Search" ng-click="search()">
     <span ng-click="sort('BandName')">Sort bands</span>
 
     <ol class="messages">
