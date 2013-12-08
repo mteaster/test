@@ -22,6 +22,12 @@ else
 <section class="blarg">
     <h2>Bio</h2>
 
+    @if (ViewBag.InBand)
+    {
+        @Html.ActionLink("Edit bio", "EditBio", "Profile", new { bandId = ViewBag.BandId }, null)
+        <br />
+    }
+
     @if (Model == null)
     {
         <span>No tracks for this band</span>
