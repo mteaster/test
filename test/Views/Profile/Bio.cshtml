@@ -1,0 +1,20 @@
+﻿@model test.Models.Test.BandBioModel
+
+@{
+    ViewBag.Title = "Profile";
+}
+
+@section featured 
+{
+    @Html.Partial("_BandHeaderPartial")
+}
+
+<h2>Edit bio</h2>
+
+@using (Html.BeginForm("EditBio", "Profile", new { bandId = ViewBag.BandId }, FormMethod.Post))
+{
+    @Html.LabelFor(model => model.Bio)
+    @Html.EditorFor(model => model.Bio)
+
+    <input type="submit" value="Save" />
+}

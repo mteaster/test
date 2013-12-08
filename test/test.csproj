@@ -434,11 +434,11 @@
     <Content Include="Views\Test\Band.cshtml" />
     <Content Include="Views\Budget\AccountPayable.cshtml" />
     <Content Include="Views\Profile\_UploadTrackPartial.cshtml" />
-    <Content Include="Views\Profile\_TracksPartial.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Band\_ChangeAvatarPartial.cshtml" />
     <Content Include="Views\Shared\_TestHeaderPartial.cshtml" />
     <Content Include="Views\Band\SuperSearch.cshtml" />
+    <Content Include="Views\Profile\Bio.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

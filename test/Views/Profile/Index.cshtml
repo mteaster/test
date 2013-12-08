@@ -1,4 +1,6 @@
-﻿@{
+﻿@model test.Models.Test.BandBioModel
+
+@{
     ViewBag.Title = "Profile";
 }
 
@@ -19,6 +21,21 @@ else
 
 <section class="blarg">
     <h2>Bio</h2>
+
+    @if (ViewBag.InBand)
+    {
+        @Html.ActionLink("Edit bio", "Bio", "Profile", new { bandId = ViewBag.BandId }, null)
+        <br />
+    }
+
+    @if (Model == null || Model.Bio == "")
+    {
+        <span>No bio for this band</span>
+    }
+    else
+    {
+        @Html.Raw(Model.Bio);
+    }
 </section>
 
 <section class="half">

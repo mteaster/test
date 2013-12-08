@@ -20,7 +20,7 @@ namespace band.Controllers
 
             ViewBag.Filters = new test.Models.Budget.IndexFilters { StartDT = DateTime.Now.Date, EndDT = DateTime.Now.Date.AddDays(1) };
 
-            return View();
+            return View(ViewBag.Filters);
         }
 
         [ActionName("Index")]

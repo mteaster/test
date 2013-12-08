@@ -89,6 +89,13 @@ namespace test.Models.Test
     [Table("BandBio")]
     public class BandBio
     {
+        public BandBio() {}
+        public BandBio(int bandId, string bio)
+        {
+            this.BandId = bandId;
+            this.Bio = bio;
+        }
+
         [Required]
         [Key]
         [Column(Order = 0)]
@@ -97,6 +104,17 @@ namespace test.Models.Test
         public virtual BandProfile BandProfile { get; set; }
 
         [Required]
+        public string Bio { get; set; }
+    }
+
+    public class BandBioModel
+    {
+        public BandBioModel() {}
+        public BandBioModel(string bio)
+        {
+            this.Bio = bio;
+        }
+
         public string Bio { get; set; }
     }
 }
