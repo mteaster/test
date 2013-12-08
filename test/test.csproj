@@ -475,7 +475,7 @@
     <Content Include="Views\FileCabinet\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Profile\Manage.cshtml" />
+    <Content Include="Views\Profile\UploadTrack.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Rolodex\Index.cshtml" />

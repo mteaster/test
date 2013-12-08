@@ -1,4 +1,6 @@
-﻿@{
+﻿@model test.Models.Test.BandBioModel
+
+@{
     ViewBag.Title = "Profile";
 }
 
@@ -18,43 +20,61 @@ else
 }
 
 <section class="blarg">
-    <h2>Band information goes here</h2>
+    <h2>Bio</h2>
+
+    @if (Model == null)
+    {
+        <span>No tracks for this band</span>
+    }
+    else
+    {
+        @Html.Raw(Model.Bio);
+    }
 </section>
 
 <section class="half">
     <h2>Tracks</h2>
 
-    <div ng-app="sortable" ng-cloak ng-controller="SortableController" ng-init="init('/Profile/GetTracks/@ViewBag.BandId')">
-        <input type="button" value="Sort" ng-click="sort('TrackName')" />
-
-        <ol class="messages">
-            <li ng-repeat="track in data | orderBy : column : descending">
-                <div class="post-header">  
-                    <img class="post-avatar" height="50" width="50" class="photo" alt="" ng-src="{{ track.ImageUrl }}" />    
-                    <div class="post-info">  
-                        <span class="post-username">{{ track.TrackId }}</span><br />
-                        <span class="post-time">{{ track.TrackName }}</span><br />
+    <div ng-app="super" ng-controller="SortableController" ng-init="init('/Profile/GetTracks/@ViewBag.BandId')" ng-cloak>
+        @if (ViewBag.InBand)
+        {
+            @Html.ActionLink("Upload a new track", "UploadTrack", "Profile", new { bandId = ViewBag.BandId }, null)
+            <br />
+        }
+        
+        <span ng-show="ready && empty">No tracks for this band</span>
+        
+        <div ng-show="ready && !empty">
+            <input type="button" value="Sort" ng-click="sort('TrackName')"/>
+            <ol class="messages">
+                <li ng-repeat="track in data | orderBy : column : descending">
+                    <div class="post-header">  
+                        <img class="post-avatar" height="50" width="50" class="photo" alt="" ng-src="{{ track.ImageUrl }}" />    
+                        <div class="post-info">  
+                            <span class="post-username">{{ track.TrackId }}</span><br />
+                            <span class="post-time">{{ track.TrackName }}</span><br />
+                        </div>
                     </div>
-                </div>
 
-                <div class="post-content">
-                    <audio controls>
-                        <source ng-src="{{ track.TrackUrl }}" type="audio/mp3" />
-                        <p>Your browser does not support HTML 5 audio element</p>
-                    </audio>
-                </div>
+                    <div class="post-content">
+                        <audio controls>
+                            <source ng-src="{{ track.TrackUrl }}" type="audio/mp3" />
+                            <p>Your browser does not support HTML 5 audio element</p>
+                        </audio>
+                    </div>
 
-                @if (ViewBag.InBand)
-                {
-                    <a class="post-link" ng-href="/Online/DeleteTrack/{{ track.TrackId }}">Delete</a>
-                }
-            </li>
-        </ol>
+                    @if (ViewBag.InBand)
+                    {
+                        <a class="post-link" ng-href="/Profile/DeleteTrack/{{ track.TrackId }}">Delete</a>
+                    }
+                </li>
+            </ol>
+        </div>
     </div>
 </section>
 
 @section Scripts
 {
     <script type="text/javascript" src="@Url.Content("/Scripts/angular.min.js")"></script>
-    <script type="text/javascript" src="@Url.Content("/Scripts/sortable.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/Scripts/super.js")"></script>
 }

@@ -1,11 +1,12 @@
 ﻿@model test.Models.Test.UploadTrackModel
 
-<h2>Upload a Track</h2>
-
 @using (Html.BeginForm("UploadTrack", "Profile", new { bandId = ViewBag.BandId }, FormMethod.Post, new { enctype = "multipart/form-data" } ))
 {
     @Html.LabelFor(model => model.TrackName)
     @Html.EditorFor(model => model.TrackName)
+
+    @Html.LabelFor(model => model.AlbumName)
+    @Html.EditorFor(model => model.AlbumName)
 
     @Html.LabelFor(model => model.TrackAudio)
     <input type="file" name="TrackAudio" id="TrackAudio" />

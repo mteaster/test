@@ -32,8 +32,11 @@ namespace test.Models.Test
 
     public class UploadTrackModel
     {
-        [Display(Name = "Track name")]
+        [Display(Name = "Name")]
         public string TrackName { get; set; }
+
+        [Display(Name = "Album")]
+        public string AlbumName { get; set; }
 
         [Required]
         [Display(Name = "Audio file")]
@@ -81,6 +84,31 @@ namespace test.Models.Test
         public string TrackName { get; set; }
         public string TrackUrl { get; set; }
         public string ImageUrl { get; set; }
+    }
+
+    [Table("BandBio")]
+    public class BandBio
+    {
+        [Required]
+        [Key]
+        [Column(Order = 0)]
+        public int BandId { get; set; }
+        [ForeignKey("BandId")]
+        public virtual BandProfile BandProfile { get; set; }
+
+        [Required]
+        public string Bio { get; set; }
+    }
+
+    public class BandBioModel
+    {
+        public BandBioModel() {}
+        public BandBioModel(string bio)
+        {
+            this.Bio = bio;
+        }
+
+        public string Bio { get; set; }
     }
 }
 

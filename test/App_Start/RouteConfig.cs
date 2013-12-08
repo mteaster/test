@@ -20,9 +20,9 @@ namespace test
             );
             
             routes.MapRoute(
-                name: "Manage Profile",
-                url: "Profile/Manage/{bandId}",
-                defaults: new { controller = "Profile", action = "Manage" },
+                name: "Upload Track",
+                url: "Profile/UploadTrack/{bandId}",
+                defaults: new { controller = "Profile", action = "UploadTrack" },
                 constraints: new { bandId = @"\d+" }
             );
 
@@ -327,6 +327,13 @@ namespace test
                 defaults: new { controller = "Budget", action = "Index" },
                 constraints: new { bandId = @"\d+" }
             );
+
+            routes.MapRoute(
+               name: "Add Merchandise",
+               url: "Budget/AddMerch/{bandId}",
+               defaults: new { controller = "Budget", action = "AddMerch" },
+               constraints: new { bandId = @"\d+" }
+           );
 
             routes.MapRoute(
                 name: "Profile",
