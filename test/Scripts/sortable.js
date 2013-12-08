@@ -14,7 +14,6 @@ sortableApp.controller('SortableController', function SortableController($scope,
             $scope.ready = true;
             $scope.empty = (data.length === 0) ? true : false;
         });
-
     };
 
     $scope.column = '';
