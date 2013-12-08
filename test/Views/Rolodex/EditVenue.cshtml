@@ -21,6 +21,8 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
 
+    <h3>Venue options</h3>
+    <br />
     <fieldset>
         <legend>Registration Form</legend>
         <ol style="display:inline-block";>
@@ -76,12 +78,13 @@
                 @Html.TextBoxFor(m => m.Notes)
             </li>
         </ol>    
-        <br>
+        <br />
         <input type="submit" value="Save" />
     </fieldset>
 }
 <h3>Change avatar</h3>
 
+<br />
 <form action="/Rolodex/UploadAvatar/@Model.ContactId/@test.Models.Rolodex.ContactType.Venue" method="post" enctype="multipart/form-data">
     <label for="file">Filename:</label>
     <input type="file" name="file" id="file" />
