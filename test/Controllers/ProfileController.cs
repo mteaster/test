@@ -40,6 +40,10 @@ namespace band.Controllers
                     {
                         ViewBag.StatusMessage = "yeah it has newlines";
                     }
+                    else
+                    {
+                        ViewBag.StatusMessage = "no newlines...";
+                    }
                     return View(new BandBioModel(bio.Bio));
                 }
 
