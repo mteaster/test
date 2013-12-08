@@ -27,7 +27,7 @@ namespace test
             );
 
             routes.MapRoute(
-                name: "Bio",
+                name: "Edit Bio",
                 url: "Profile/EditBio/{bandId}",
                 defaults: new { controller = "Profile", action = "EditBio" },
                 constraints: new { bandId = @"\d+" }
