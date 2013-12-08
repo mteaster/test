@@ -3,10 +3,12 @@ var superApp = angular.module("super", []);
 superApp.controller('SortableController', function SortableController($scope, $http)
 {
     $scope.data = [];
+    $scope.ready = false;
 
     $scope.init = function (url)
     {
         $http({ method: 'GET', url: url }).success(function (data) { $scope.data = data; });
+        $scope.ready = true;
     };
 
     $scope.column = '';
