@@ -70,7 +70,7 @@ namespace band.Controllers
 
         }
 
-        public ActionResult AccountsPayableList(int bandId, test.Models.Budget.IndexFilters filters, string sort)
+        public ActionResult AccountsPayableList(int bandId, test.Models.Budget.IndexFilters filters)
         {
             List<test.Models.Budget.AccountPayables> accountPayables = new List<test.Models.Budget.AccountPayables>();
 
