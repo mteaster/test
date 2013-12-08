@@ -36,7 +36,7 @@ namespace band.Controllers
 
                 if (bio != null)
                 {
-                    return View(new BandBioModel(bio.Bio);
+                    return View(new BandBioModel(bio.Bio));
                 }
 
                 return View();
