@@ -41,6 +41,9 @@
     </fieldset>
      
 }
+
+Total AR = @ViewBag.TotalAR | Total AP = @ViewBag.TotalAP | Difference = @ViewBag.TotalDifference
+
 <br />
 <h4>Accounts Payable</h4>
 @{ Html.RenderAction("AccountsPayableList", new { bandId = ViewBag.BandId, filters = ViewBag.Filters, sort = ViewBag.Sort }); }

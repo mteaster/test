@@ -7,9 +7,19 @@
     }
 );
 </script>
+
+<style>
+    td {
+        padding: 5px;
+    }
+    th {
+        padding: 5px;
+    }
+</style>
+
 @if (Model != null)
 {
-<table id="AccountPayableTable" class="tablesorter" cellpading="5">
+<table id="AccountPayableTable" class="tablesorter">
     <thead>
         <tr>
             <th>Amount</th>
@@ -26,7 +36,7 @@
         {
             <tr>
                 <td>@Html.DisplayFor(ModelItem => accountPayable.Amount)</td>
-                <td>@accountPayable.Date.ToShortDateString())</td>
+                <td>@accountPayable.Date.ToShortDateString()</td>
                 <td>@Html.DisplayFor(ModelItem => accountPayable.Category)</td>
                 <td>@Html.DisplayFor(ModelItem => accountPayable.AssociatedBandContactId)</td>
                 <td>@Html.DisplayFor(ModelItem => accountPayable.AssociatedPersonContactId)</td>
