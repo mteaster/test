@@ -1,11 +1,13 @@
 ﻿@model test.Models.Budget.IndexFilters
 
-<script src="../../Scripts/jquery-1.7.1.min.js">
-    $('#StartDT').on('change', function(event){
-    var form = $(this).parents('form');
+<script>
+    function submitform() {
+        $('form').submit();
+    }
+</script>
 
-    form.submit();
-    });
+<script src="../../Scripts/jquery-1.7.1.min.js">
+    
     
     $('#EndDT').on('change', function(event){
     var form = $(this).parents('form');
@@ -49,7 +51,7 @@
     <fieldset>
         <legend>Filters</legend>
         Start Date: 
-        @Html.TextBoxFor(m => m.StartDT, new { type = "date", id = "StartDT" }) 
+        @Html.TextBoxFor(m => m.StartDT, new { type = "date", id = "StartDT", @onchange = "submitform();" }) 
         to
         End Date: 
         @Html.TextBoxFor(m => m.EndDT, new { type = "date", id = "EndDT" })
