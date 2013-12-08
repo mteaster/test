@@ -29,6 +29,23 @@ else
 {   
     <table class="pretty" border="0" cellpadding="0" cellspacing="0">
         <tr>
+            <th style="width:10%"></th>
+            <th>@ViewBag.Day</th>
+        </tr>
+        @for(int i=1;i< 13; i++)
+        {
+            string rowTime = i.ToString();
+            rowTime = rowTime + ":00";
+            <tr>
+                <td style="width:10%"></td>
+                <td>@rowTime</td>
+            </tr>
+        }    
+ 
+    </table>
+    
+    <table class="pretty" border="0" cellpadding="0" cellspacing="0">
+        <tr>
             <th>ID</th>
             <th>Title</th>
             <th>Time</th>
