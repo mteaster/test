@@ -116,7 +116,6 @@ namespace test.Models.Test
             this.Bio = bio;
         }
 
-        [Required]
         [DataType(DataType.MultilineText)]
         public string Bio { get; set; }
     }
