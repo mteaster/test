@@ -78,6 +78,9 @@ namespace band.Controllers
             {
                 return View("Error");
             }
+
+            ViewBag.Filters = filters;
+
             using (DatabaseContext db = new DatabaseContext())
             {
                 var apList = from p in db.AccountPayables
