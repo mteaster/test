@@ -329,6 +329,13 @@ namespace test
             );
 
             routes.MapRoute(
+               name: "Add Merchandise",
+               url: "Budget/AddMerch/{bandId}",
+               defaults: new { controller = "Budget", action = "AddMerch" },
+               constraints: new { bandId = @"\d+" }
+           );
+
+            routes.MapRoute(
                 name: "Profile",
                 url: "Profile/{bandId}",
                 defaults: new { controller = "Profile", action = "Index" },
