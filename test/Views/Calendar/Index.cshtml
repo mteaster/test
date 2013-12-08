@@ -100,10 +100,10 @@
     }
     td.event
     {
-        background: -webkit-linear-gradient(bottom, #FCFCFC 0%, #1D9AB3 100%); /* For Safari */
-        background: -o-linear-gradient(bottom, #FCFCFC 0%, #1D9AB3 100%); /* For Opera 11.1 to 12.0 */
-        background: -moz-linear-gradient(bottom, #FCFCFC 0%, #1D9AB3 100%); /* For Firefox 3.6 to 15 */
-        background: linear-gradient(to bottom, #FCFCFC 0%, #1D9AB3 100%); /* Standard syntax (must be last)*/ 
+        background: -webkit-linear-gradient(bottom, #BACFFF 27%, #63A1FF 98%); /* For Safari */
+        background: -o-linear-gradient(bottom, #BACFFF 27%, #63A1FF 98%); /* For Opera 11.1 to 12.0 */
+        background: -moz-linear-gradient(bottom, #BACFFF 27%, #63A1FF 98%); /* For Firefox 3.6 to 15 */
+        background: linear-gradient(to bottom, #BACFFF 27%, #63A1FF 98%); /* Standard syntax (must be last)*/ 
 
     }
     td.noday
@@ -194,10 +194,10 @@
                 
                     if(hasEvent)
                     { 
-                            <td style="background: -webkit-linear-gradient(bottom, #FCFCFC 0%, #1D9AB3 100%); /* For Safari */
-                                background: -o-linear-gradient(bottom, #FCFCFC 0%, #1D9AB3 100%); /* For Opera 11.1 to 12.0 */
-                                background: -moz-linear-gradient(bottom, #FCFCFC 0%, #1D9AB3 100%); /* For Firefox 3.6 to 15 */
-                                background: linear-gradient(bottom, #FCFCFC 0%, #1D9AB3 100%); /* Standard syntax (must be last)*/ ">
+                            <td style="background: -webkit-linear-gradient(bottom, #BACFFF 27%, #63A1FF 98%); /* For Safari */
+                                background: -o-linear-gradient(bottom, #BACFFF 27%, #63A1FF 98%%); /* For Opera 11.1 to 12.0 */
+                                background: -moz-linear-gradient(bottom, #BACFFF 27%, #63A1FF 98%); /* For Firefox 3.6 to 15 */
+                                background: linear-gradient(to bottom, #BACFFF 27%, #63A1FF 98%); /* Standard syntax (must be last)*/ ">
                                 @Html.ActionLink(@currentDay.ToString(), "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
                             </td>
                     }
