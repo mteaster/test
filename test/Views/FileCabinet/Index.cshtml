@@ -15,17 +15,16 @@
     <p class="message-error">@ViewBag.ErrorMessage</p>
 
     <div ng-app="sortable" ng-controller="SortableController" ng-init="init('/FileCabinet/GetGroups/@ViewBag.BandId')">
-        <table ng-cloak class="pretty" border="0" cellpadding="0" cellspacing="0">
-            <tr>
-                <th ng-click="sort('GroupName')">Name</th>
-                <th>Delete</th>
-            </tr>
-
-            <tr ng-repeat="group in data | orderBy : column : descending">
-                    <td><a ng-href="/FileCabinet/{{ group.BandId}}/Files/{{ group.GroupId }}">{{ group.GroupName }}</a>
-                    <td><a ng-href="/FileCabinet/DeleteGroup/{{ group.GroupId }}">Delete</a></td>
-            </tr>
-        </table>
+        <input type="button" value="Sort" ng-click="sort('GroupName')"/>
+        
+        <ol class="messages">
+            <li ng-repeat="group in data | orderBy : column : descending">
+                <div class="post-content">
+                    <a ng-href="/FileCabinet/{{ group.BandId}}/Files/{{ group.GroupId }}">{{ group.GroupName }}</a>
+                </div>
+                <a ng-href="/FileCabinet/DeleteGroup/{{ group.GroupId }}">Delete</a>
+            </li>
+        </ol>
     </div>
 </section>
 
