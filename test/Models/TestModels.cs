@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Web;
 using test.Models.Band;
+using System.Text.RegularExpressions;
 
 namespace test.Models.Test
 {
@@ -118,7 +119,8 @@ namespace test.Models.Test
         public BandBioModel() {}
         public BandBioModel(string bio)
         {
-            this.Bio = bio;
+            this.Bio = Regex.Replace(bio.Replace("\n", "<br />"), @"@link:(?<url>.*)\s",
+                                                "<a href=\"${url}\">${url}</a>", RegexOptions.IgnoreCase);
         }
 
         [DataType(DataType.MultilineText)]

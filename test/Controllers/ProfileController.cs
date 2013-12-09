@@ -42,7 +42,7 @@ namespace band.Controllers
 
                 if (bio != null)
                 {
-                    return View(new BandBioModel(bio.Bio.Replace("\n", "<br />")));
+                    return View(new BandBioModel(bio.Bio));
                 }
 
                 return View();
