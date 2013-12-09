@@ -11,6 +11,14 @@ namespace test.Controllers
 {
     public class TestController : Controller
     {
+        public ActionResult RandomBand()
+        {
+            TestUtil.RandomBand(Server);
+
+            ViewBag.SuccessMessage = "random band!!!!";
+            return View("Success");
+
+        }
         public ActionResult Data()
         {
             // Clear out all the user avatars
@@ -57,8 +65,6 @@ namespace test.Controllers
 
             int cookieBandId = TestUtil.MakeBand("C IS FOR COOKIE", WebSecurity.GetUserId("cookiemonster"), "password");
             TestUtil.GiveBandAvatar(cookieBandId, "black", Server);
-
-
 
             ViewBag.SuccessMessage = "Choo choo!";
             return View("Success");
