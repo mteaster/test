@@ -12,20 +12,20 @@
 
 @using (Html.BeginForm("EditMerch", "Budget", new { bandId = ViewBag.BandId }))
 {
-    <ul>
+    <ul style="list-style-type: none;">
         <li>
-            @Html.TextBoxFor(m => m.MerchandiseId, new {visibility = "none"})
+            @Html.TextBoxFor(m => m.MerchandiseId, new {visibility = "hidden"})
         </li>
         <li>
-            @Html.DisplayFor(m => m.Name)
+            @Html.LabelFor(m => m.Name)
             @Html.TextBoxFor(m => m.Name)
         </li>
         <li>
-            @Html.DisplayFor(m => m.Category)
+            @Html.LabelFor(m => m.Category)
             @Html.TextBoxFor(m => m.Category)
         </li>
         <li>
-            @Html.DisplayFor(m => m.Size)
+            @Html.LabelFor(m => m.Size)
             @Html.TextBoxFor(m => m.Size)
         </li>
     </ul>
