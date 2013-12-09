@@ -53,7 +53,7 @@ else
     <div ng-app="super" ng-controller="SortableController" ng-init="init('/Profile/GetTracks/@ViewBag.BandId')" ng-cloak>
         @if (ViewBag.InBand)
         {
-            @Html.ActionLink("Upload a track", "UploadTrack", "Profile", new { bandId = ViewBag.BandId }, new { @class = "fiveblock" })
+            @Html.ActionLink("Upload a track", "UploadTrack", "Profile", new { bandId = ViewBag.BandId } )
             <br /><br />
         }
         
