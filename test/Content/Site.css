@@ -698,6 +698,13 @@ tr.pager td
     margin-bottom: 5px;
 }
 
+.fiveblock
+{
+    display: block;
+    margin-bottom: 5px;
+}
+
+
 a.right
 {
     float: right;    
