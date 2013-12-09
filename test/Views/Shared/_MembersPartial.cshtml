@@ -3,6 +3,9 @@
 <ul>
     @foreach (var item in Model)
     {
-        <li>@Html.DisplayFor(modelItem => item.MemberDisplayName)</li>
+        <li>
+            <img class="post-avatar" alt="" src="@Url.Action("DownloadAvatar", "Account", new { userId = item.MemberId})" height="50" width="50" />
+            @Html.DisplayFor(modelItem => item.MemberDisplayName)
+        </li>
     }
 </ul>
