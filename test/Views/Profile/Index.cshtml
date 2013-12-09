@@ -22,6 +22,9 @@ else
 <section class="blarg">
     <h2 class="ten">Bio</h2>
 
+    <p class="message-success">@ViewBag.BioSuccessMessage</p>
+    <p class="message-error">@ViewBag.BioErrorMessage</p>
+
     @if (ViewBag.InBand)
     {
         @Html.ActionLink("Edit bio", "Bio", "Profile", new { bandId = ViewBag.BandId }, null)
@@ -42,6 +45,9 @@ else
 
 <section class="half">
     <h2 class="ten">Tracks</h2>
+
+    <p class="message-success">@ViewBag.TracksSuccessMessage</p>
+    <p class="message-error">@ViewBag.TracksErrorMessage</p>
 
     <div ng-app="super" ng-controller="SortableController" ng-init="init('/Profile/GetTracks/@ViewBag.BandId')" ng-cloak>
         @if (ViewBag.InBand)

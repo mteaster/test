@@ -103,7 +103,7 @@ namespace band.Controllers
                     database.SaveChanges();
                 }
 
-                TempData["SuccessMessage"] = "Bio edited.";
+                TempData["BioSuccessMessage"] = "Bio edited.";
                 return RedirectToAction("Index", new { bandId = bandId });
             }
         }
@@ -186,13 +186,21 @@ namespace band.Controllers
                     return View("Error");
                 }
 
-                System.IO.File.Delete(Server.MapPath("~/App_Data/Tracks/" + trackEntry.BandId + "/" + trackId + ".mp3"));
-                System.IO.File.Delete(Server.MapPath("~/App_Data/Tracks/" + trackEntry.BandId + "/" + trackId + ".jpg"));
+                try
+                {
+                    System.IO.File.Delete(Server.MapPath("~/App_Data/Tracks/" + trackEntry.BandId + "/" + trackId + ".mp3"));
+                    System.IO.File.Delete(Server.MapPath("~/App_Data/Tracks/" + trackEntry.BandId + "/" + trackId + ".jpg"));
+                }
+                catch(Exception e)
+                {
+                    TempData["TracksErrorMessage"] = "Failed to delete " + trackEntry.TrackName + ".";
+                    return RedirectToAction("Index", new { bandId = trackEntry.BandId });
+                }
 
                 database.TrackEntries.Remove(trackEntry);
                 database.SaveChanges();
 
-                TempData["SuccessMessage"] = trackEntry.TrackName + " deleted.";
+                TempData["TracksSuccessMessage"] = trackEntry.TrackName + " deleted.";
                 return RedirectToAction("Index", new { bandId = trackEntry.BandId });
             }
         }

@@ -256,6 +256,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Images\contactBg.png" />
+    <Content Include="Images\stripeNav.png" />
     <Content Include="pager\first.png" />
     <Content Include="pager\last.png" />
     <Content Include="pager\next.png" />
