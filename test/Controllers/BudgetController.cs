@@ -47,6 +47,14 @@ namespace band.Controllers
             ViewBag.TotalAP = totalAP;
             ViewBag.TotalAR = totalAR;
             ViewBag.TotalDifference = totalDifference;
+            if (totalDifference >= 0)
+            {
+                ViewBag.DifferenceColor = "green";
+            }
+            else
+            {
+                ViewBag.DifferenceColor = "red";
+            }
 
             return View(ViewBag.Filters);
         }

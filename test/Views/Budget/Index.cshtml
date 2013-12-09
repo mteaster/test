@@ -4,19 +4,6 @@
     function submitform() {
         $('form').submit();
     }
-   
-    function differenceColor() {
-        var str = document.getElementById("difference").innerText;
-        if (str >= 0)
-        {
-            var result = str.fontcolor("green");
-        }
-        else{
-            var result = str.fontcolor("red");
-        }
-
-        document.getElementById("difference").innerHTML = result;
-    }
 </script>
 
 
@@ -55,7 +42,7 @@
 }
 <br />
 <br />
-Total AR = @ViewBag.TotalAR | Total AP = @ViewBag.TotalAP | Difference = <span id = "difference" onload="differenceColor()">@ViewBag.TotalDifference</span>
+Total AR = @ViewBag.TotalAR | Total AP = @ViewBag.TotalAP | Difference = <span style ="color:@ViewBag.DifferenceColor">@ViewBag.TotalDifference</span>
 <br />
 <br />
 <h4>Accounts Payable</h4>
