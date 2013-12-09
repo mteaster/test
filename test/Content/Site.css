@@ -857,25 +857,26 @@ a.post-link
     padding: 0 3px 0 0;
 }
 
+/* member list */
+
 span.member-display-name
 {
     color: #000000;
-    font-size: 1.0em;
+    font-size: 1.2em;
 }
 
 span.member-user-name
 {
     font-weight: normal;
-    font-size: 0.8em;
+    font-size: small;
 }
 
-/* online stuff */
+/* profile stuff */
 
 div.track-content
 {
     padding: 10px 0;
 }
-
 
 /* misc stuff */
 
