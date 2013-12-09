@@ -183,12 +183,16 @@ namespace test.Models.Band
 
     public class MemberModel
     {
-        [Required]
-        [Display(Name = "Display name")]
-        public string MemberDisplayName { get; set; }
+        public MemberModel() {}
+        public MemberModel(int memberId, string memberUserName, string memberDisplayName)
+        {
+            this.MemberId = memberId;
+            this.MemberUserName = MemberUserName;
+            this.MemberDisplayName = memberDisplayName;
+        }
 
-        [Required]
-        [Display(Name = "User name")]
+        public int MemberId { get; set; }
         public string MemberUserName { get; set; }
+        public string MemberDisplayName { get; set; }
     }
 }
