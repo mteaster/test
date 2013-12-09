@@ -272,7 +272,7 @@ ul#menu
 /* page titles */
 hgroup.title
 {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 hgroup.title h1, hgroup.title h2
@@ -693,9 +693,9 @@ tr.pager td
   display: none !important;
 }
 
-.ten
+.five
 {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 a.right
