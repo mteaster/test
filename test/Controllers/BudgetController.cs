@@ -331,8 +331,6 @@ namespace band.Controllers
                 return View("Error");
             }
 
-            if (ModelState.IsValid)
-            {
                 using (DatabaseContext database = new DatabaseContext())
                 {
                     ar.BandId = bandId;
@@ -341,9 +339,6 @@ namespace band.Controllers
                 }
 
                 return RedirectToAction("Index", "Budget", new { BandId = bandId });
-            }
-
-            return RedirectToAction("AccountReceivable", new { bandId = bandId });
         }
 
         public ActionResult UpdateAccountPayable(int id, bool newValue)
