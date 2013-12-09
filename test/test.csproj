@@ -256,7 +256,6 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Images\contactBg.png" />
-    <Content Include="Images\stripeNav.png" />
     <Content Include="pager\first.png" />
     <Content Include="pager\last.png" />
     <Content Include="pager\next.png" />
@@ -438,10 +437,6 @@
     <Content Include="Views\Budget\_AccountsPayableListPartial.cshtml" />
     <Content Include="Views\Budget\_AccountsReceivableListPartial.cshtml" />
     <Content Include="Views\Budget\MerchList.cshtml" />
-    <Content Include="Views\Test\_SearchBandPartial.cshtml" />
-    <Content Include="Views\Test\_SearchResultsPartial.cshtml" />
-    <Content Include="Views\Test\Index.cshtml" />
-    <Content Include="Views\Test\Band.cshtml" />
     <Content Include="Views\Budget\AccountPayable.cshtml" />
     <Content Include="Views\Profile\_UploadTrackPartial.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
@@ -450,6 +445,7 @@
     <Content Include="Views\Band\SuperSearch.cshtml" />
     <Content Include="Views\Profile\Bio.cshtml" />
     <Content Include="Views\Budget\AddMerch.cshtml" />
+    <Content Include="Views\Budget\_MerchandiseListPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

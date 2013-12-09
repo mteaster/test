@@ -151,7 +151,7 @@ namespace band.Controllers
                     return View();
                 }
 
-                TrackEntry trackEntry = new TrackEntry(model.TrackName, bandId);
+                TrackEntry trackEntry = new TrackEntry(bandId, model.TrackName, model.AlbumName);
                 database.TrackEntries.Add(trackEntry);
                 database.SaveChanges();
 

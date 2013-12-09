@@ -239,15 +239,13 @@ namespace test.Stuff
                               join u in database.UserProfiles
                               on b.MemberId equals u.UserId
                               where b.BandId == bandId
-                              select new { u.UserName, u.DisplayName };
+                              select new { u.UserId, u.UserName, u.DisplayName };
 
                 List<MemberModel> memberModels = new List<MemberModel>();
 
                 foreach (var result in results)
                 {
-                    MemberModel memberModel = new MemberModel();
-                    memberModel.MemberDisplayName = result.DisplayName;
-                    memberModel.MemberUserName = result.UserName;
+                    MemberModel memberModel = new MemberModel(result.UserId, result.UserName, result.DisplayName);
                     memberModels.Add(memberModel);
                 }
 
