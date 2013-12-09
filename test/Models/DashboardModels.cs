@@ -66,7 +66,7 @@ namespace test.Models.Dashboard
             this.PostType = postType;
             this.PostTime = postTime;
 
-            this.Content = Regex.Replace(content.Replace("\n", "<br />"), "@link:(?<url>.*) ",
+            this.Content = Regex.Replace(content.Replace("\n", "<br />"), @"@link:(?<url>.*)\s",
                                                 "<a href=\"${url}\">${url}</a>", RegexOptions.IgnoreCase);
         }
 
