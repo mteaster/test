@@ -56,6 +56,10 @@ namespace test.Models.Budget
         [Display(Name = "Associated Venue")]
         public int AssociatedVenueContactId { get; set; }
 
+        public string AssociatedBandName { get; set; }
+        public string AssociatedPersonName { get; set; }
+        public string AssociatedVenueName { get; set; }
+
         [Display(Name = "Paid")]
         public Boolean Paid { get; set; }
 
@@ -87,6 +91,10 @@ namespace test.Models.Budget
 
         [Display(Name = "Associated Venue")]
         public int AssociatedVenueContactId { get; set; }
+
+        public string AssociatedBandName { get; set; }
+        public string AssociatedPersonName { get; set; }
+        public string AssociatedVenueName { get; set; }
 
         [Display(Name = "Paid")]
         public Boolean Paid { get; set; }

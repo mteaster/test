@@ -6,6 +6,7 @@ using System.Linq;
 using System;
 using test.Models.Budget;
 using System.Data;
+using test.Models.Rolodex;
 
 namespace band.Controllers
 {
@@ -160,8 +161,11 @@ namespace band.Controllers
                     tempAP.AccountPayableId = ap.AccountPayableId;
                     tempAP.Amount = ap.Amount;
                     tempAP.AssociatedBandContactId = ap.AssociatedBandContactId;
+                    tempAP.AssociatedBandName = FindContactName(tempAP.AssociatedBandContactId, "BAND");
                     tempAP.AssociatedPersonContactId = ap.AssociatedPersonContactId;
+                    tempAP.AssociatedPersonName = FindContactName(tempAP.AssociatedPersonContactId, "PEOPLE");
                     tempAP.AssociatedVenueContactId = ap.AssociatedVenueContactId;
+                    tempAP.AssociatedVenueName = FindContactName(tempAP.AssociatedVenueContactId, "VENUE");
                     tempAP.BandId = ap.BandId;
                     tempAP.Category = ap.Category;
                     tempAP.Date = ap.Date;
@@ -215,8 +219,11 @@ namespace band.Controllers
                     tempAR.AccountReceivableId = ar.AccountReceivableId;
                     tempAR.Amount = ar.Amount;
                     tempAR.AssociatedBandContactId = ar.AssociatedBandContactId;
+                    tempAR.AssociatedBandName = FindContactName(tempAR.AssociatedBandContactId, "BAND");
                     tempAR.AssociatedPersonContactId = ar.AssociatedPersonContactId;
+                    tempAR.AssociatedPersonName = FindContactName(tempAR.AssociatedPersonContactId, "PEOPLE");
                     tempAR.AssociatedVenueContactId = ar.AssociatedVenueContactId;
+                    tempAR.AssociatedVenueName = FindContactName(tempAR.AssociatedVenueContactId, "VENUE");
                     tempAR.BandId = ar.BandId;
                     tempAR.Category = ar.Category;
                     tempAR.Date = ar.Date;
@@ -351,6 +358,46 @@ namespace band.Controllers
             }
 
             return Json(true);
+        }
+
+        public ActionResult UpdateAccountReceivable(int id, bool newValue)
+        {
+
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                AccountReceivables original = database.AccountReceivables.Find(id);
+                original.Paid = newValue;
+                database.Entry(original).State = EntityState.Modified;
+                database.SaveChanges();
+            }
+
+            return Json(true);
+        }
+
+        public string FindContactName(int contactId, string type)
+        {
+            string returnValue = "";
+
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                switch (type.ToUpper())
+                {
+                    case "BAND":
+                        BandContact b = database.BandContacts.Find(contactId);
+                        returnValue = b.Name;
+                        break;
+                    case "PEOPLE":
+                        PeopleContact p = database.PeopleContacts.Find(contactId);
+                        returnValue = p.Name;
+                        break;
+                    case "VENUE":
+                        VenueContact v = database.VenueContacts.Find(contactId);
+                        returnValue = v.Name;
+                        break;
+                }
+            }
+
+            return returnValue;
         }
     }
 }
