@@ -32,7 +32,7 @@ namespace band.Controllers
             return View("Index", dvm);
         }
 
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult Index(int bandId, PostMessageModel model)
         {
             if (!BandUtil.Authenticate(bandId, this))
