@@ -275,6 +275,8 @@ namespace band.Controllers
                 return View("Error");
             }
 
+            ViewBag.Filters = new MerchFilters { };
+
             return View();
 
         }
