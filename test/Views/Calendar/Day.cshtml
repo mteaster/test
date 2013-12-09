@@ -12,9 +12,7 @@
 <p class="message-success">@ViewBag.SuccessMessage</p>
 <p class="message-error">@ViewBag.ErrorMessage</p>
 
-
-
-<h2>@Model.Date.ToString("D")</h2>
+<h1 class="five">@Model.Date.ToString("D")</h1>
 
 @Html.ActionLink("Add event", "AddEvent", "Calendar", new { bandId = ViewBag.BandId, day = ViewBag.Day, month = ViewBag.Month, year = ViewBag.Year }, null)
 @Html.ActionLink("Back to Monthly View", "Month", new { bandId = ViewBag.BandId, month = Model.Date.Month, year = Model.Date.Year })

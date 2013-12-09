@@ -63,7 +63,11 @@ namespace test.Models.Dashboard
             this.PosterName = posterName;
             this.PostType = postType;
             this.PostTime = postTime;
-            this.Content = content.Replace("\n", "<br />");
+            
+            this.Content = content.Replace("\n", "<br />")
+                                    .Replace("|@linkurl|", "<a href=\"")
+                                    .Replace("|@linktext|", "\">")
+                                    .Replace("|@linkend|", "</a>");
         }
 
         [Required]
