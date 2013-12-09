@@ -27,8 +27,7 @@ else
 
     @if (ViewBag.InBand)
     {
-        @Html.ActionLink("Edit bio", "EditBio", "Profile", new { bandId = ViewBag.BandId }, null)
-        <br />
+        @Html.ActionLink("Edit bio", "EditBio", "Profile", new { bandId = ViewBag.BandId }, new { @class = "five" } )
     }
 
     @if (Model == null || Model.Bio.IsEmpty())
@@ -52,8 +51,7 @@ else
     <div ng-app="super" ng-controller="SortableController" ng-init="init('/Profile/GetTracks/@ViewBag.BandId')" ng-cloak>
         @if (ViewBag.InBand)
         {
-            @Html.ActionLink("Upload a new track", "UploadTrack", "Profile", new { bandId = ViewBag.BandId }, null)
-            <br />
+            @Html.ActionLink("Upload a track", "UploadTrack", "Profile", new { bandId = ViewBag.BandId }, new { @class = "five" })
         }
         
         <span ng-show="ready && empty">No tracks for this band</span>
