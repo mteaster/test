@@ -860,13 +860,13 @@ a.post-link
 span.member-display-name
 {
     color: #000000;
-    font-size: 0.5em;
+    font-size: 1.0em;
 }
 
 span.member-user-name
 {
     font-weight: normal;
-    font-size: small;
+    font-size: 0.8em;
 }
 
 /* online stuff */
