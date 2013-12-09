@@ -1,6 +1,8 @@
 ﻿@model test.Models.FileCabinet.FileModel
 
-@Html.ActionLink("Back to group", "Files", new { groupId = Model.GroupId }, new { @class = "fiveblock" } )
+@Html.ActionLink("Back to group", "Files", new { groupId = Model.GroupId } )
+<br />
+<br />
 
 <div class="file">
     <h2>@Model.FileName</h2>
