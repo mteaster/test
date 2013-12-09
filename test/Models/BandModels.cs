@@ -188,7 +188,7 @@ namespace test.Models.Band
         {
             this.MemberId = memberId;
             this.MemberUserName = MemberUserName;
-            this.MemberDisplayName = memberDisplayName;
+            this.MemberDisplayName = "GANDHI";
         }
 
         public int MemberId { get; set; }
