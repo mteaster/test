@@ -1,10 +1,8 @@
 ﻿<div ng-app="super">
     <div ng-controller="SortableController" ng-init="init('/Band/GetBands')" ng-cloak>
         <section class="blarg" ng-show="ready && !empty" >
-            <hgroup class="title">
-                <h1>Your Bands.</h1>
-                <h2>Pick one of them.</h2>
-            </hgroup>
+            <h1 class="five">Your bands</h1>
+            <h3>These are the bands you're in.</h3>
 
             <input type="button" value="Sort" ng-click="sort('BandName')"/>
 
@@ -30,11 +28,9 @@
         </section>
 
         <section class="blarg" ng-show="ready && empty">
-            <hgroup class="title">
-                <h1>You're not in any bands!</h1>
-            </hgroup>
-    
+            <h1 class="five">You're not in any bands!</h1>
             <h3>Here are your options:</h3>
+
             <ol class="round">
                 <li class="one">
                     <h2>Join!</h2>
@@ -56,11 +52,8 @@
 
     <div ng-controller="SearchableController" ng-init="init('/Band/SearchBands')" ng-cloak>
         <section class="half">
-            <hgroup class="title">
-                <h1>Search for bands.</h1>
-                <h2>Do it.</h2>
-            </hgroup>
-
+            <h1 class="five">Search</h1>
+            <h3>Type in a band name to discover or join a band.</h3>
 
             <input type="text" value="" name="BandName" id="BandName" ng-model="criteria"/>
             <input type="submit" value="Search" ng-click="search()"/>
