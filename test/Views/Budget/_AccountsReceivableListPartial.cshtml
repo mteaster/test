@@ -50,6 +50,7 @@
         <tr>
             <td>@Html.DisplayFor(ModelItem => accountReceivable.Amount)</td>
             <td>@accountReceivable.Date.ToShortDateString()</td>
+            <td>@Html.DisplayFor(ModelItem => accountReceivable.Category)</td>
                 <td>
                     @if (!string.IsNullOrEmpty(accountReceivable.AssociatedBandName))
                     {
