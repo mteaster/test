@@ -54,7 +54,7 @@
                 <td>
                     @if (!string.IsNullOrEmpty(accountReceivable.AssociatedBandName))
                     {
-                    @Html.ActionLink(accountReceivable.AssociatedBandName, "EditContact", "Rolodex", new {bandId = ViewBag.BandId, contactId = accountReceivable.AssociatedBandContactId, type = test.Models.Rolodex.ContactType.Band})
+                    @Html.ActionLink(accountReceivable.AssociatedBandName, "EditContact", "Rolodex", new {bandId = ViewBag.BandId, contactId = accountReceivable.AssociatedBandContactId, type = test.Models.Rolodex.ContactType.Band}, new { })
                     }
                 </td>
                 <td>
@@ -66,7 +66,7 @@
                 <td>
                     @if (!string.IsNullOrEmpty(accountReceivable.AssociatedVenueName))
                     {
-                    @Html.ActionLink(accountReceivable.AssociatedVenueName, "EditContact", "Rolodex", new {bandId = ViewBag.BandId, contactId = accountReceivable.AssociatedVenueContactId, type = test.Models.Rolodex.ContactType.Venue})
+                    @Html.ActionLink(accountReceivable.AssociatedVenueName, "EditContact", "Rolodex", new {bandId = ViewBag.BandId, contactId = accountReceivable.AssociatedVenueContactId, type = test.Models.Rolodex.ContactType.Venue}, new { })
                     }
                     </td>
                  <td>@Html.CheckBoxFor(ModelItem => accountReceivable.Paid, new { @id=accountReceivable.AccountReceivableId, @class="chks"})</td>
