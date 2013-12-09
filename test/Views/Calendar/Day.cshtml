@@ -37,15 +37,21 @@ else
                 <th>@item.EventTitle </th>
             </tr>
             <tr />
-            <tr style="width:100%">
-                <td>@item.EventDescription</td>
+            <tr>
+                <td style="width:100%">
+                    @item.EventDescription
+                </td>
+
                 <td />
+
             </tr>
-            <tr style="width:100%">
-                <td>
+            <tr>
+                <td  style="width:100%">
                     @Html.ActionLink("Edit", "EditEvent", new { bandId = ViewBag.BandId, eventId = item.EventId }) / @Html.ActionLink("Delete", "DeleteEvent", new { eventId = item.EventId })
                 </td>
+
                 <td />
+
             </tr>
         </table>
     }
