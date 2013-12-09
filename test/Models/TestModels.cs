@@ -49,10 +49,11 @@ namespace test.Models.Test
     public class TrackEntry
     {
         public TrackEntry() {}
-        public TrackEntry(string trackName, int bandId)
+        public TrackEntry(int bandId, string trackName, string albumName)
         {
             this.TrackName = trackName;
             this.BandId = bandId;
+            this.AlbumName = albumName;
         }
 
         [Key]
@@ -77,8 +78,8 @@ namespace test.Models.Test
         public TrackEntryModel() { }
         public TrackEntryModel(TrackEntry trackEntry)
         {
-            this.TrackName = trackEntry.TrackName;
             this.TrackId = trackEntry.TrackId;
+            this.TrackName = trackEntry.TrackName;
             this.AlbumName = trackEntry.AlbumName;
             this.TrackUrl = "/Profile/DownloadTrackAudio/" + trackEntry.TrackId;
             this.ImageUrl = "/Profile/DownloadTrackImage/" + trackEntry.TrackId;
