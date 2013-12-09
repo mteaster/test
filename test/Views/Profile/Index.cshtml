@@ -1,7 +1,8 @@
 ﻿@model test.Models.Test.BandBioModel
 
 @{
-    ViewBag.Title = "Profile - " + ViewBag.BandName;
+    ViewBag.Page = "Profile";
+    ViewBag.Title = ViewBag.Page + " - " + ViewBag.BandName;
 }
 
 @if (ViewBag.InBand)
