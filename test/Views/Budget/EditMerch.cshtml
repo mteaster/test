@@ -1,0 +1,35 @@
+﻿@model test.Models.Budget.Merchandise
+
+@{
+    ViewBag.Title = "EditMerch";
+}
+
+
+@section featured 
+{
+    @Html.Partial("_BandHeaderPartial")
+}
+
+@using (Html.BeginForm("EditMerch", "Budget", new { bandId = ViewBag.BandId }))
+{
+    <ul>
+        <li>
+            @Html.TextBoxFor(m => m.MerchandiseId, new {visibility = "none"})
+        </li>
+        <li>
+            @Html.DisplayFor(m => m.Name)
+            @Html.TextBoxFor(m => m.Name)
+        </li>
+        <li>
+            @Html.DisplayFor(m => m.Category)
+            @Html.TextBoxFor(m => m.Category)
+        </li>
+        <li>
+            @Html.DisplayFor(m => m.Size)
+            @Html.TextBoxFor(m => m.Size)
+        </li>
+    </ul>
+    
+    <input type="submit" value="Save" />
+
+}
