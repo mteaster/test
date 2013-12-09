@@ -44,7 +44,9 @@ namespace band.Controllers
 
                 ViewBag.TracksSuccessMessage = TempData["TracksSuccessMessage"];
                 ViewBag.TracksErrorMessage = TempData["TracksErrorMessage"];
-                ViewBag.TracksSuccessMessage = "DOES THIS WORK?";
+
+                ViewBag.BioErrorMessage = TempData["OES THISE WKLWORK?"];
+                ViewBag.TracksErrorMessage = "DOES THIS WORK?";
 
                 return View();
             }
