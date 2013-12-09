@@ -126,9 +126,9 @@ namespace band.Controllers
                     test.Models.Budget.Merchandise tempM = new test.Models.Budget.Merchandise();
 
                     tempM.MerchandiseId = m.MerchandiseId;
-                    tempM.Name = m.Name;
-                    tempM.Size = m.Size;
-                    tempM.Category = m.Category;
+                    tempM.Name = string.IsNullOrEmpty(m.Name) ? "" : m.Name;
+                    tempM.Size = string.IsNullOrEmpty(m.Size) ? "" : m.Name;
+                    tempM.Category = string.IsNullOrEmpty(m.Category) ? "" : m.Name;
                     tempM.BandId = m.BandId;
 
                     if (string.IsNullOrEmpty(filters.Name) || tempM.Name.ToUpper().Contains(filters.Name.ToUpper()))
