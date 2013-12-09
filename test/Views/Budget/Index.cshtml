@@ -4,7 +4,6 @@
     function submitform() {
         $('form').submit();
     }
-   
 </script>
 
 
@@ -43,7 +42,7 @@
 }
 <br />
 <br />
-Total AR = @ViewBag.TotalAR | Total AP = @ViewBag.TotalAP | Difference = @ViewBag.TotalDifference
+Total AR = @ViewBag.TotalAR | Total AP = @ViewBag.TotalAP | Difference = <span style ="color:@ViewBag.DifferenceColor">@ViewBag.TotalDifference</span>
 <br />
 <br />
 <h4>Accounts Payable</h4>

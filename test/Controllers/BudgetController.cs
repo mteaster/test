@@ -47,6 +47,14 @@ namespace band.Controllers
             ViewBag.TotalAP = totalAP;
             ViewBag.TotalAR = totalAR;
             ViewBag.TotalDifference = totalDifference;
+            if (totalDifference >= 0)
+            {
+                ViewBag.DifferenceColor = "green";
+            }
+            else
+            {
+                ViewBag.DifferenceColor = "red";
+            }
 
             return View(ViewBag.Filters);
         }
@@ -86,6 +94,14 @@ namespace band.Controllers
             ViewBag.TotalAP = totalAP;
             ViewBag.TotalAR = totalAR;
             ViewBag.TotalDifference = totalDifference;
+            if (totalDifference >= 0)
+            {
+                ViewBag.DifferenceColor = "green";
+            }
+            else
+            {
+                ViewBag.DifferenceColor = "red";
+            }
 
 
             return View(filters);
@@ -255,7 +271,18 @@ namespace band.Controllers
 
         }
 
-        public ActionResult CreateMerchList(int bandId, test.Models.Budget.Merchandise m)
+        public ActionResult AddMerch(int bandId)
+        {
+            if (!BandUtil.Authenticate(bandId, this))
+            {
+                return View("Error");
+            }
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddMerch(int bandId, test.Models.Budget.Merchandise m)
         {
 
             if (!BandUtil.Authenticate(bandId, this))
@@ -308,8 +335,6 @@ namespace band.Controllers
                 return View("Error");
             }
 
-            if (ModelState.IsValid)
-            {
                 using (DatabaseContext database = new DatabaseContext())
                 {
                     ap.BandId = bandId;
@@ -318,9 +343,6 @@ namespace band.Controllers
                 }
 
                 return RedirectToAction("Index", "Budget", new { BandId = bandId });
-            }
-
-            return RedirectToAction("AccountPayable", new { bandId = bandId });
         }
 
         public ActionResult CreateAccountReceivable(int bandId, test.Models.Budget.AccountReceivables ar)

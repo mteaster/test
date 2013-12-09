@@ -449,6 +449,7 @@
     <Content Include="Views\Shared\_TestHeaderPartial.cshtml" />
     <Content Include="Views\Band\SuperSearch.cshtml" />
     <Content Include="Views\Profile\Bio.cshtml" />
+    <Content Include="Views\Budget\AddMerch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
