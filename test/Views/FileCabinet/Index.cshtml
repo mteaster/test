@@ -19,9 +19,7 @@
         
         <ol class="messages">
             <li ng-repeat="group in data | orderBy : column : descending">
-                <div class="post-content">
-                    <a ng-href="/FileCabinet/{{ group.BandId}}/Files/{{ group.GroupId }}">{{ group.GroupName }}</a>
-                </div>
+                <a ng-href="/FileCabinet/{{ group.BandId}}/Files/{{ group.GroupId }}">{{ group.GroupName }}</a>
                 <a ng-href="/FileCabinet/DeleteGroup/{{ group.GroupId }}">Delete</a>
             </li>
         </ol>
