@@ -25,6 +25,18 @@
             @Html.LabelFor(m => m.Paid)
             @Html.CheckBoxFor(m => m.Paid)
         </li>
+            <li>
+                @Html.LabelFor(m => m.AssociatedBandContactId)
+                @Html.DropDownListFor(m => m.AssociatedBandContactId, (List<SelectListItem>) band.Controllers.BudgetController.GetSelectList(ViewBag.BandId, "BAND"), "N/A")
+            </li>
+            <li>
+                @Html.LabelFor(m => m.AssociatedPersonContactId)
+                @Html.DropDownListFor(m => m.AssociatedPersonContactId, (List<SelectListItem>) band.Controllers.BudgetController.GetSelectList(ViewBag.BandId, "PEOPLE"), "N/A")
+            </li>
+            <li>
+                @Html.LabelFor(m => m.AssociatedVenueContactId)
+                @Html.DropDownListFor(m => m.AssociatedVenueContactId, (List<SelectListItem>) band.Controllers.BudgetController.GetSelectList(ViewBag.BandId, "VENUE"), "N/A")
+            </li>
     </ol>
         <input type="submit" value="Save" />
 }

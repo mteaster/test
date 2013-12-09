@@ -408,5 +408,59 @@ namespace band.Controllers
 
             return returnValue;
         }
+
+        public static List<SelectListItem> GetSelectList(int bandId, string type)
+        {
+            List<SelectListItem> returnValue = new List<SelectListItem>();
+
+            if (type.ToUpper().Equals("PEOPLE"))
+            {
+                // the calling page is create/edit band. Show people contacts
+                using (DatabaseContext database = new DatabaseContext())
+                {
+                    var people = from p in database.PeopleContacts
+                                 where p.BandId == bandId
+                                 select new { p.ContactId, p.Name };
+
+                    foreach (var person in people)
+                    {
+                        returnValue.Add(new SelectListItem() { Text = person.Name, Value = person.ContactId.ToString() });
+                    }
+
+                }
+            }
+            else if (type.ToUpper().Equals("BAND"))
+            {
+                // the calling page is create/edit band. Show people contacts
+                using (DatabaseContext database = new DatabaseContext())
+                {
+                    var bands = from b in database.BandContacts
+                                where b.BandId == bandId
+                                select new { b.ContactId, b.Name };
+
+                    foreach (var band in bands)
+                    {
+                        returnValue.Add(new SelectListItem() { Text = band.Name, Value = band.ContactId.ToString() });
+                    }
+                }
+            }
+            else if (type.ToUpper().Equals("VENUE"))
+            {
+                // the calling page is create/edit band. Show people contacts
+                using (DatabaseContext database = new DatabaseContext())
+                {
+                    var venues = from v in database.VenueContacts
+                                 where v.BandId == bandId
+                                 select new { v.ContactId, v.Name };
+
+                    foreach (var venue in venues)
+                    {
+                        returnValue.Add(new SelectListItem() { Text = venue.Name, Value = venue.ContactId.ToString() });
+                    }
+                }
+            }
+
+            return returnValue;
+        }
     }
 }
