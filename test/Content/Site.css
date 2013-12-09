@@ -497,7 +497,7 @@ textarea
 {
     font-family: inherit;
     width: 100%;
-    resize: both;
+    resize: vertical;
     padding:3px;
 }
 
