@@ -28,10 +28,10 @@
     <fieldset>
         <legend>Filters</legend>
         Start Date: 
-        @Html.EditorFor(m => m.StartDT, new { maxlength = 10, @onchange = "submitform();" }) 
+        @Html.TextBoxFor(m => m.StartDT, new { maxlength = 10, @onchange = "submitform();" }) 
         to
         End Date: 
-        @Html.EditorFor(m => m.EndDT, new { maxlength = 10, @onchange = "submitform();" })
+        @Html.TextBoxFor(m => m.EndDT, new { maxlength = 10, @onchange = "submitform();" })
         <br />
         Category: 
         @Html.TextBoxFor(m => m.Category, new { @onchange = "submitform();" })
