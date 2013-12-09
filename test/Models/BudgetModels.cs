@@ -23,27 +23,9 @@ namespace test.Models.Budget
         [Display(Name = "Category")]
         public string Category { get; set; }
 
-        public enum SizeEnum { XSmall, Small, Medium, Large, XLarge }
-
-        [Display(Name = "Size")]
-        public SizeEnum MerchSize { get; set; }
-
-        public SelectList MerchSizeList { get; set; }
 
         public int BandId { get; set; }
 
-        public Merchandise()
-        {
-            MerchSizeList = GetSizeSelectList();
-        }
-
-        public static SelectList GetSizeSelectList()
-        {
-
-            var enumValues = Enum.GetValues(typeof(Merchandise.SizeEnum)).Cast<Merchandise.SizeEnum>().Select(e => new { Value = e.ToString(), Text = e.ToString() }).ToList();
-
-            return new SelectList(enumValues, "Value", "Text", "");
-        }
     }
 
     [Table("AccountPayables")]
