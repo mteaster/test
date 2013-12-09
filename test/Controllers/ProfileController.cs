@@ -34,19 +34,16 @@ namespace band.Controllers
 
                 BandBio bio = database.BandBios.Find(bandId);
 
-                if (bio != null)
-                {
-                    return View(new BandBioModel(bio.Bio.Replace("\n", "<br />")));
-                }
-
                 ViewBag.BioSuccessMessage = TempData["BioSuccessMessage"];
                 ViewBag.BioErrorMessage = TempData["BioErrorMessage"];
 
                 ViewBag.TracksSuccessMessage = TempData["TracksSuccessMessage"];
                 ViewBag.TracksErrorMessage = TempData["TracksErrorMessage"];
 
-                ViewBag.BioErrorMessage = TempData["OES THISE WKLWORK?"];
-                ViewBag.TracksErrorMessage = "DOES THIS WORK?";
+                if (bio != null)
+                {
+                    return View(new BandBioModel(bio.Bio.Replace("\n", "<br />")));
+                }
 
                 return View();
             }
