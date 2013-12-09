@@ -930,6 +930,11 @@ table.event td
     vertical-align: top;
 }
 
+textarea.resize
+{
+    resize: both;
+}
+
 table.event th
 {
     padding: 5px;
