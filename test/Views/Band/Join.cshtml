@@ -1,9 +1,11 @@
 ﻿@model test.Models.Band.JoinBandModel
 
-<hgroup class="title">
-    <h1>Join '@ViewBag.BandName'.</h1>
-    <h2>Do it.</h2>
-</hgroup>
+@{
+    ViewBag.Title = "Join '" + ViewBag.BandName + "'";
+}
+
+<h1 class="five">Join '@ViewBag.Title'</h1>
+<h3>Enter the password to join the band.</h3>
 
 <p class="message-error">@ViewBag.ErrorMessage</p>
 
