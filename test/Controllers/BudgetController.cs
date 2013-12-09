@@ -271,7 +271,18 @@ namespace band.Controllers
 
         }
 
-        public ActionResult CreateMerchList(int bandId, test.Models.Budget.Merchandise m)
+        public ActionResult AddMerch(int bandId)
+        {
+            if (!BandUtil.Authenticate(bandId, this))
+            {
+                return View("Error");
+            }
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddMerch(int bandId, test.Models.Budget.Merchandise m)
         {
 
             if (!BandUtil.Authenticate(bandId, this))
