@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace test.Models.Budget
 {
@@ -27,7 +28,22 @@ namespace test.Models.Budget
         [Display(Name = "Size")]
         public SizeEnum MerchSize { get; set; }
 
+        public SelectList MerchSizeList { get; set; }
+
         public int BandId { get; set; }
+
+        public Merchandise()
+        {
+            MerchSizeList = GetSizeSelectList();
+        }
+
+        public static SelectList GetSizeSelectList()
+        {
+
+            var enumValues = Enum.GetValues(typeof(Merchandise.SizeEnum)).Cast<Merchandise.SizeEnum>().Select(e => new { Value = e.ToString(), Text = e.ToString() }).ToList();
+
+            return new SelectList(enumValues, "Value", "Text", "");
+        }
     }
 
     [Table("AccountPayables")]

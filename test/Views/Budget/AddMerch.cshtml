@@ -18,15 +18,15 @@
             @Html.TextBoxFor(m => m.Category)
         </li>
         <li>
-             @{
+@*             @{
                     List<SelectListItem> size = new List<SelectListItem>();
-                    size.Add(new SelectListItem { Text = "XSmall", Value = "XSmall", Selected = true});
-                    size.Add(new SelectListItem { Text = "Small", Value = "Small" });
-                    size.Add(new SelectListItem { Text = "Medium", Value = "Medium" });
+                    size.Add(new SelectListItem { Text = "XSmall", Value = "1", Selected = true});
+                    size.Add(new SelectListItem { Text = "Small", Value = "2" });
+                    size.Add(new SelectListItem { Text = "Medium", Value = "3" });
                     size.Add(new SelectListItem { Text = "Large", Value = "Large" });
                     size.Add(new SelectListItem { Text = "XLarge", Value = "XLarge" });
-                }               
-                @Html.DropDownListFor(m => m.MerchSize, size)
+                }  *@             
+                @Html.DropDownListFor(m => m.MerchSize, Model.MerchSizeList)
         </li>
     </ol>
         <input type="submit" value="Save" />
