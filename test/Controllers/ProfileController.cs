@@ -75,7 +75,9 @@ namespace band.Controllers
 
                 if (bio != null)
                 {
-                    return View(new BandBioModel(bio.Bio));
+                    BandBioModel unformatted = new BandBioModel();
+                    unformatted.Bio = bio.Bio;
+                    return View(unformatted);
                 }
 
                 return View();
