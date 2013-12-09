@@ -71,6 +71,13 @@ namespace band.Controllers
                     return View("Error");
                 }
 
+                BandBio bio = database.BandBios.Find(bandId);
+
+                if (bio != null)
+                {
+                    return View(new BandBioModel(bio.Bio));
+                }
+
                 return View();
             }
         }
