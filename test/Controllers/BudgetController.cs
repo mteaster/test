@@ -384,15 +384,24 @@ namespace band.Controllers
                 {
                     case "BAND":
                         BandContact b = database.BandContacts.Find(contactId);
-                        returnValue = b.Name;
+                        if (b != null)
+                        {
+                            returnValue = b.Name;
+                        }
                         break;
                     case "PEOPLE":
                         PeopleContact p = database.PeopleContacts.Find(contactId);
-                        returnValue = p.Name;
+                        if (p != null)
+                        {
+                            returnValue = p.Name;
+                        }
                         break;
                     case "VENUE":
                         VenueContact v = database.VenueContacts.Find(contactId);
-                        returnValue = v.Name;
+                        if (v != null)
+                        {
+                            returnValue = v.Name;
+                        }
                         break;
                 }
             }
