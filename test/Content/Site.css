@@ -906,7 +906,7 @@ table.pretty th
 	font-weight: bold;
 }
 
-table.pretty th hover
+table.pretty th:hover
 {
     background: blue;
 }
