@@ -895,6 +895,7 @@ table.event
     border-collapse: collapse;
     margin-top: 0.75em;
     margin-bottom: 0.75em;
+    width:100%;
 }
 
 table.event td

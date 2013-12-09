@@ -27,14 +27,25 @@
 }
 else
 {       
-    @foreach (var item in Model.Events)
+    foreach (var item in Model.Events)
     {
         string eventTime = item.EventTime.ToString("H:mm");
         
         <table class="event">
             <tr>                
-                <th>@eventTime</th>
+                <th style="width:10%">@eventTime</th>
                 <th>@item.EventTitle </th>
+            </tr>
+            <tr>
+                <td>@item.EventDescription</td>
+                <td />
+            </tr>
+            <tr>
+                <td><div>@Html.ActionLink("Edit", "EditEvent", new { bandId = ViewBag.BandId, eventId = item.EventId })</div>
+                    <div> / </div> 
+                    <div>@Html.ActionLink("Delete", "DeleteEvent", new { eventId = item.EventId })</div>
+                </td>
+                <td />
             </tr>
         </table>
     }
