@@ -62,7 +62,7 @@ namespace band.Controllers
             }
         }
 
-        public ActionResult Bio(int bandId)
+        public ActionResult EditBio(int bandId)
         {
             using (DatabaseContext database = new DatabaseContext())
             {
