@@ -192,7 +192,7 @@ namespace band.Controllers
                 database.TrackEntries.Remove(trackEntry);
                 database.SaveChanges();
 
-                TempData["SuccessMessage"] = trackEntry.TrackName + " deleted.";
+                TempData["TracksSuccessMessage"] = trackEntry.TrackName + " deleted.";
                 return RedirectToAction("Index", new { bandId = trackEntry.BandId });
             }
         }
