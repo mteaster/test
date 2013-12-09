@@ -914,7 +914,7 @@ table.pretty th
 
 table.pretty th:hover
 {
-    background: blue;
+    background-color: #E2E2E2;
 }
 
 table.event
