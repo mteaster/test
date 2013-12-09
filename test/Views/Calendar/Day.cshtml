@@ -29,15 +29,22 @@ else
 {       
     foreach (var item in Model.Events)
     {
-        string eventTime = item.EventTime.ToString("H:mm");
+        string eventTime = item.EventTime.ToString("t");
         
         <table class="event">
             <tr>                
                 <th style="width:10%; text-align:left;">@eventTime</th>
-                <th style="width:90%; text-align:center;">@item.EventTitle </th>
+
+                <th />
 
             </tr>
+            <tr>
+                <td style="width:100%; text-align:center; font-weight:bold;">@item.EventTitle </td>
+            </tr>
+
             <tr />
+            <tr />
+
             <tr>
                 <td style="width:100%">
                     @item.EventDescription

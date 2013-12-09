@@ -34,16 +34,16 @@ namespace band.Controllers
 
                 BandBio bio = database.BandBios.Find(bandId);
 
-                if (bio != null)
-                {
-                    return View(new BandBioModel(bio.Bio.Replace("\n", "<br />")));
-                }
-
                 ViewBag.BioSuccessMessage = TempData["BioSuccessMessage"];
                 ViewBag.BioErrorMessage = TempData["BioErrorMessage"];
 
                 ViewBag.TracksSuccessMessage = TempData["TracksSuccessMessage"];
                 ViewBag.TracksErrorMessage = TempData["TracksErrorMessage"];
+
+                if (bio != null)
+                {
+                    return View(new BandBioModel(bio.Bio.Replace("\n", "<br />")));
+                }
 
                 return View();
             }
@@ -175,7 +175,7 @@ namespace band.Controllers
                     model.TrackImage.SaveAs(directory + trackEntry.TrackId + ".jpg");
                 }
 
-                TempData["SuccessMessage"] = model.TrackName + " uploaded.";
+                TempData["TracksSuccessMessage"] = model.TrackName + " uploaded.";
                 return RedirectToAction("Index", new { bandId = bandId });
             }
         }
