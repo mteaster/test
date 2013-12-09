@@ -52,19 +52,22 @@
         width: 100px;
         height: 100px;
         padding: 4px;
-        background: -webkit-linear-gradient(#808080, #290000); /* For Safari */
-        background: -o-linear-gradient(#808080, #290000); /* For Opera 11.1 to 12.0 */
-        background: -moz-linear-gradient(#808080, #290000); /* For Firefox 3.6 to 15 */
-        background: linear-gradient(#808080, #290000); /* Standard syntax (must be last)*/ 
+        background: -webkit-linear-gradient(white, lightgrey); /* For Safari */
+        background: -o-linear-gradient(white, lightgrey); /* For Opera 11.1 to 12.0 */
+        background: -moz-linear-gradient(white, lightgrey); /* For Firefox 3.6 to 15 */
+        background: linear-gradient(white, lightgrey); /* Standard syntax (must be last)*/ 
         border: 1px solid #b1b1b1;
     }
     #calendar-table td:hover
     {
-        background: #760000 !important;
+        background: -webkit-linear-gradient(bottom, #D9FFFF 27%, #63FFF7 98%); /* For Safari */
+        background: -o-linear-gradient(bottom, #D9FFFF 27%, #63FFF7 98%); /* For Opera 11.1 to 12.0 */
+        background: -moz-linear-gradient(bottom, #D9FFFF 27%, #63FFF7 98%); /* For Firefox 3.6 to 15 */
+        background: linear-gradient(to bottom, #D9FFFF 27%, #63FFF7 98%); /* Standard syntax (must be last)*/ 
     }
     #calendar-table td:active
     {
-        background: #9d0000 !important;
+        background: #6699FF !important;
     }
     #calendar-table td p
     {
@@ -72,7 +75,7 @@
     }
     #calendar-table td a:hover
     {
-        background-color: #1e1e1e;
+        background-color: white;
     }
     #calendar-table td a:active
     {
@@ -97,7 +100,11 @@
     }
     td.event
     {
-        background-color: #9EB2CB !important;
+        background: -webkit-linear-gradient(bottom, #BACFFF 27%, #63A1FF 98%); /* For Safari */
+        background: -o-linear-gradient(bottom, #BACFFF 27%, #63A1FF 98%); /* For Opera 11.1 to 12.0 */
+        background: -moz-linear-gradient(bottom, #BACFFF 27%, #63A1FF 98%); /* For Firefox 3.6 to 15 */
+        background: linear-gradient(to bottom, #BACFFF 27%, #63A1FF 98%); /* Standard syntax (must be last)*/ 
+
     }
     td.noday
     {
@@ -187,7 +194,10 @@
                 
                     if(hasEvent)
                     { 
-                            <td style="background:#9d0000;">
+                            <td style="background: -webkit-linear-gradient(bottom, #BACFFF 27%, #63A1FF 98%); /* For Safari */
+                                background: -o-linear-gradient(bottom, #BACFFF 27%, #63A1FF 98%%); /* For Opera 11.1 to 12.0 */
+                                background: -moz-linear-gradient(bottom, #BACFFF 27%, #63A1FF 98%); /* For Firefox 3.6 to 15 */
+                                background: linear-gradient(to bottom, #BACFFF 27%, #63A1FF 98%); /* Standard syntax (must be last)*/ ">
                                 @Html.ActionLink(@currentDay.ToString(), "Day", new { bandId = ViewBag.bandId, day = currentDay, month = Model.CurrentMonth, year = Model.CurrentMonthYear })
                             </td>
                     }
