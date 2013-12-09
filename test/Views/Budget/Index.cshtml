@@ -6,7 +6,7 @@
     }
    
     function differenceColor() {
-        var str = '@(ViewBag.DifferenceTotal)';
+        var str = document.getElementById("difference").innerText;
         if (str >= 0)
         {
             var result = str.fontcolor("green");
@@ -55,7 +55,7 @@
 }
 <br />
 <br />
-Total AR = @ViewBag.TotalAR | Total AP = @ViewBag.TotalAP | <span id = "difference" onload="differenceColor()">Difference = @ViewBag.TotalDifference</span>
+Total AR = @ViewBag.TotalAR | Total AP = @ViewBag.TotalAP | Difference = <span id = "difference" onload="differenceColor()">@ViewBag.TotalDifference</span>
 <br />
 <br />
 <h4>Accounts Payable</h4>
