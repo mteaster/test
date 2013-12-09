@@ -29,7 +29,6 @@ else
     @if (ViewBag.InBand)
     {
         @Html.ActionLink("Edit bio", "EditBio", "Profile", new { bandId = ViewBag.BandId }, new { @class = "fiveblock" } )
-        <br />
     }
 
     @if (Model == null || Model.Bio.IsEmpty())
@@ -54,7 +53,6 @@ else
         @if (ViewBag.InBand)
         {
             @Html.ActionLink("Upload a track", "UploadTrack", "Profile", new { bandId = ViewBag.BandId }, new { @class = "fiveblock" })
-            <br />
         }
         
         <span ng-show="ready && empty">No tracks for this band</span>
