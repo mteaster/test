@@ -5,6 +5,7 @@ using test.Stuff;
 using System.Linq;
 using System;
 using test.Models.Budget;
+using System.Data;
 
 namespace band.Controllers
 {
@@ -311,6 +312,20 @@ namespace band.Controllers
             }
 
             return RedirectToAction("AccountReceivable", new { bandId = bandId });
+        }
+
+        public ActionResult UpdateAccountPayable(int id, bool newValue)
+        {
+
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                AccountPayables original = database.AccountPayables.Find(id);
+                original.Paid = newValue;
+                database.Entry(original).State = EntityState.Modified;
+                database.SaveChanges();
+            }
+
+            return Json(true);
         }
     }
 }
