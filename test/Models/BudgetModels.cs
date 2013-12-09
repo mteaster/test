@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace test.Models.Budget
 {
@@ -22,12 +23,9 @@ namespace test.Models.Budget
         [Display(Name = "Category")]
         public string Category { get; set; }
 
-        public enum SizeEnum { XSmall, Small, Medium, Large, XLarge }
-
-        [Display(Name = "Size")]
-        public SizeEnum MerchSize { get; set; }
 
         public int BandId { get; set; }
+
     }
 
     [Table("AccountPayables")]

@@ -17,17 +17,6 @@
             @Html.LabelFor(m => m.Category)
             @Html.TextBoxFor(m => m.Category)
         </li>
-        <li>
-             @{
-                    List<SelectListItem> size = new List<SelectListItem>();
-                    size.Add(new SelectListItem { Text = "XSmall", Value = "XSmall", Selected = true});
-                    size.Add(new SelectListItem { Text = "Small", Value = "Small" });
-                    size.Add(new SelectListItem { Text = "Medium", Value = "Medium" });
-                    size.Add(new SelectListItem { Text = "Large", Value = "Large" });
-                    size.Add(new SelectListItem { Text = "XLarge", Value = "XLarge" });
-                }               
-                @Html.DropDownListFor(m => m.Size, size)
-        </li>
     </ol>
         <input type="submit" value="Save" />
 }
