@@ -4,7 +4,7 @@
     ViewBag.Title = "AddMerch";
 }
 
-@using (Html.BeginForm("CreateMerchList", "Budget", new { bandId = ViewBag.BandId }))
+@using (Html.BeginForm("AddMerch", "Budget", new { bandId = ViewBag.BandId }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
