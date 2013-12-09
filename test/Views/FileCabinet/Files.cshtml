@@ -15,8 +15,10 @@
 @Html.ActionLink("Upload", "UploadFile", new { groupId = ViewBag.GroupId })
 @Html.ActionLink("Back to Groups", "Index", new { bandId = ViewBag.BandId })
 
-<div ng-app="sortable" ng-controller="SortableController" ng-init="init('/FileCabinet/GetFiles/@ViewBag.GroupId')">
-    <table ng-cloak class="pretty" border="0" cellpadding="0" cellspacing="0">
+<div ng-app="super" ng-controller="SortableController" ng-cloak ng-init="init('/FileCabinet/GetFiles/@ViewBag.GroupId')">
+    <span ng-show="ready && empty">No files found</span>
+
+    <table ng-show="ready && !empty" class="pretty" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <th ng-click="sort('FileName')">Name</th>
             <th ng-click="sort('FileDescription')">Description</th>
@@ -44,6 +46,6 @@
 @section Scripts
 {
     <script type="text/javascript" src="@Url.Content("/Scripts/angular.min.js")"></script>
-    <script type="text/javascript" src="@Url.Content("/Scripts/sortable.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/Scripts/super.js")"></script>
 }
 
