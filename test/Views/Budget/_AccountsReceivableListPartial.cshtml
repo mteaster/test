@@ -60,7 +60,7 @@
                 <td>
                     @if (!string.IsNullOrEmpty(accountReceivable.AssociatedPersonName))
                     {
-                    @Html.ActionLink(accountReceivable.AssociatedPersonName, "EditContact", "Rolodex", new {bandId = ViewBag.BandId, contactId = accountReceivable.AssociatedPersonContactId, type = test.Models.Rolodex.ContactType.People})
+                    @Html.ActionLink(accountReceivable.AssociatedPersonName, "EditContact", "Rolodex", new { bandId = ViewBag.BandId, contactId = accountReceivable.AssociatedPersonContactId, type = test.Models.Rolodex.ContactType.People }, new { })
                     }
                     </td>
                 <td>

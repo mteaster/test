@@ -308,8 +308,6 @@ namespace band.Controllers
                 return View("Error");
             }
 
-            if (ModelState.IsValid)
-            {
                 using (DatabaseContext database = new DatabaseContext())
                 {
                     ap.BandId = bandId;
@@ -318,9 +316,6 @@ namespace band.Controllers
                 }
 
                 return RedirectToAction("Index", "Budget", new { BandId = bandId });
-            }
-
-            return RedirectToAction("AccountPayable", new { bandId = bandId });
         }
 
         public ActionResult CreateAccountReceivable(int bandId, test.Models.Budget.AccountReceivables ar)
