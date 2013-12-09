@@ -23,6 +23,8 @@ namespace test.Models.Budget
         [Display(Name = "Category")]
         public string Category { get; set; }
 
+        [Display(Name = "Size")]
+        public string Size { get; set; }
 
         public int BandId { get; set; }
 

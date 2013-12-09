@@ -119,7 +119,7 @@ namespace band.Controllers
             {
                 var mList = from p in db.Merchandise
                              where p.BandId == bandId
-                             select new { p.MerchandiseId, p.Name, p.Category, p.BandId};
+                             select new { p.MerchandiseId, p.Name, p.Size, p.Category, p.BandId};
 
                 foreach (var m in mList)
                 {
@@ -127,6 +127,7 @@ namespace band.Controllers
 
                     tempM.MerchandiseId = m.MerchandiseId;
                     tempM.Name = m.Name;
+                    tempM.Size = m.Size;
                     tempM.Category = m.Category;
                     tempM.BandId = m.BandId;
 
