@@ -107,7 +107,7 @@ namespace band.Controllers
             return View(filters);
         }
 
-        public ActionResult MerchandiseList(int bandId)
+        public ActionResult MerchandiseList(int bandId, MerchFilters filters)
         {
             List<test.Models.Budget.Merchandise> merchandise = new List<test.Models.Budget.Merchandise>();
 
@@ -131,8 +131,16 @@ namespace band.Controllers
                     tempM.Category = m.Category;
                     tempM.BandId = m.BandId;
 
-
-                    merchandise.Add(tempM);
+                    if (string.IsNullOrEmpty(filters.Name) || tempM.Name.ToUpper().Contains(filters.Name.ToUpper()))
+                    {
+                        if (string.IsNullOrEmpty(filters.Category) || tempM.Category.ToUpper().Contains(filters.Category.ToUpper()))
+                        {
+                            if (string.IsNullOrEmpty(filters.Size) || tempM.Size.ToUpper().Contains(filters.Size.ToUpper()))
+                            {
+                                merchandise.Add(tempM);
+                            }
+                        }
+                    }
                 }
             }
 
@@ -268,6 +276,20 @@ namespace band.Controllers
             }
 
             return View();
+
+        }
+
+        [HttpPost]
+        public ActionResult MerchList(int bandId, MerchFilters filters)
+        {
+            if (!BandUtil.Authenticate(bandId, this))
+            {
+                return View("Error");
+            }
+
+            ViewBag.Filters = filters;
+
+            return View(filters);
 
         }
 

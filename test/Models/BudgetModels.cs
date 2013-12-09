@@ -30,6 +30,13 @@ namespace test.Models.Budget
 
     }
 
+    public class MerchFilters
+    {
+        public string Name { get; set; }
+        public string Category { get; set; }
+        public string Size { get; set; }
+    }
+
     [Table("AccountPayables")]
     public class AccountPayables
     {
