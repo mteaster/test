@@ -857,6 +857,17 @@ a.post-link
     padding: 0 3px 0 0;
 }
 
+span.member-display-name
+{
+    color: #000000;
+    font-size: 0.5em;
+}
+
+span.member-user-name
+{
+    font-weight: normal;
+    font-size: small;
+}
 
 /* online stuff */
 
