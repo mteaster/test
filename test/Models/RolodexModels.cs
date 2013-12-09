@@ -132,6 +132,10 @@ namespace test.Models.Rolodex
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
 
+        [Required]
+        [Display(Name = "Address")]
+        public string Address { get; set; }
+
         [Display(Name = "Email")]
         public string Email { get; set; }
 
