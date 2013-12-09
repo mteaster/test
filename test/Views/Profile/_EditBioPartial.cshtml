@@ -7,7 +7,7 @@
     <fieldset>
         <legend>Edit Bio Form</legend>
          
-        @Html.EditorFor(model => model.Bio, new { cols = "100%", style = "width:250px;" })
+        @Html.EditorFor(model => model.Bio, new { rows="100" } )
     
         <br />
         <input type="submit" value="Save" />
