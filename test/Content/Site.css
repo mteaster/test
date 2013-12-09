@@ -497,7 +497,7 @@ textarea
 {
     font-family: inherit;
     width: 100%;
-    resize: none;
+    resize: both;
     padding:3px;
 }
 
@@ -928,11 +928,6 @@ table.event td
     padding: 5px;
     text-align: left;
     vertical-align: top;
-}
-
-textarea.resize
-{
-    resize: both;
 }
 
 table.event th
