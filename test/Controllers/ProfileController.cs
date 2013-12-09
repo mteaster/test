@@ -175,7 +175,7 @@ namespace band.Controllers
                     model.TrackImage.SaveAs(directory + trackEntry.TrackId + ".jpg");
                 }
 
-                TempData["SuccessMessage"] = model.TrackName + " uploaded.";
+                TempData["TracksSuccessMessage"] = model.TrackName + " uploaded.";
                 return RedirectToAction("Index", new { bandId = bandId });
             }
         }
