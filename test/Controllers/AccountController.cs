@@ -142,7 +142,7 @@ namespace test.Controllers
         [HttpPost]
         public ActionResult UploadAvatar(HttpPostedFileBase file)
         {
-            if (file.ContentLength <= 0 || file.ContentLength > 1048576)
+            if (file == null || file.ContentLength <= 0 || file.ContentLength > 1048576)
             {
                 TempData["ErrorMessage"] = "Something was wrong with the avatar you uploaded.";
             }
