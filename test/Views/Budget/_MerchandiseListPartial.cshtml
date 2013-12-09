@@ -3,6 +3,14 @@
 @if (Model != null)
 {
 <table>
+    <thead>
+        <tr>
+            <th>Design Name</th>
+            <th>Category</th>
+            <th>Size</th>
+        </tr>
+    </thead>
+    <tbody>
     @foreach (test.Models.Budget.Merchandise merchlist in Model)
     {
         <tr>
@@ -11,5 +19,6 @@
             <td>@Html.DisplayFor(ModelItem => merchlist.Size)</td>
         </tr>
     }   
+    </tbody>
 </table>
 }
