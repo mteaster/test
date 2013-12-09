@@ -450,6 +450,7 @@
     <Content Include="Views\Band\SuperSearch.cshtml" />
     <Content Include="Views\Profile\Bio.cshtml" />
     <Content Include="Views\Budget\AddMerch.cshtml" />
+    <Content Include="Views\Budget\_MerchandiseListPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
