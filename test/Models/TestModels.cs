@@ -119,7 +119,7 @@ namespace test.Models.Test
         public BandBioModel() {}
         public BandBioModel(string bio)
         {
-            this.Bio = Regex.Replace(bio.Replace("\n", "<br />"), @"@link:(?<url>.*)\s",
+            this.Bio = Regex.Replace(bio.Replace("\n", "<br />"), @"@link:(?<url>.*)\b",
                                                 "<a href=\"${url}\">${url}</a>", RegexOptions.IgnoreCase);
         }
 
