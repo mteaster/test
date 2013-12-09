@@ -13,7 +13,7 @@ namespace test.Stuff
 {
     public class TestUtil
     {
-        public static const string alphanumeric = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        public const string alphanumeric = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
         public static int RandomBand()
         {
@@ -25,7 +25,7 @@ namespace test.Stuff
 
         public static void MakeAccount(string userName, string displayName)
         {
-            WebSecurity.CreateUserAndAccount(userName, "password", new { DisplayName = displayName })
+            WebSecurity.CreateUserAndAccount(userName, "password", new { DisplayName = displayName });
         }
 
         public static string RandomWord()
