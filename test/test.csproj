@@ -443,10 +443,11 @@
     <Content Include="Views\Band\_ChangeAvatarPartial.cshtml" />
     <Content Include="Views\Shared\_TestHeaderPartial.cshtml" />
     <Content Include="Views\Band\SuperSearch.cshtml" />
-    <Content Include="Views\Profile\Bio.cshtml" />
+    <Content Include="Views\Profile\EditBio.cshtml" />
     <Content Include="Views\Budget\AddMerch.cshtml" />
     <Content Include="Views\Budget\_MerchandiseListPartial.cshtml" />
     <Content Include="Views\Budget\EditMerch.cshtml" />
+    <Content Include="Views\Profile\_EditBioPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
