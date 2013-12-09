@@ -438,10 +438,6 @@
     <Content Include="Views\Budget\_AccountsPayableListPartial.cshtml" />
     <Content Include="Views\Budget\_AccountsReceivableListPartial.cshtml" />
     <Content Include="Views\Budget\MerchList.cshtml" />
-    <Content Include="Views\Test\_SearchBandPartial.cshtml" />
-    <Content Include="Views\Test\_SearchResultsPartial.cshtml" />
-    <Content Include="Views\Test\Index.cshtml" />
-    <Content Include="Views\Test\Band.cshtml" />
     <Content Include="Views\Budget\AccountPayable.cshtml" />
     <Content Include="Views\Profile\_UploadTrackPartial.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
