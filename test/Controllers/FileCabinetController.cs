@@ -249,10 +249,16 @@ namespace band.Content
                     return View("Error");
                 }
 
+                if (model.File == null)
+                {
+                    ViewBag.ErrorMessage = "I need a file.";
+                    return View();
+                }
+
                 if (model.File.ContentLength <= 0 || model.File.ContentLength > 1048576)
                 {
                     ViewBag.ErrorMessage = "The file size is too big.";
-                    return View("Error");
+                    return View();
                 }
 
                 string fileName = Path.GetFileName(model.File.FileName);
@@ -260,7 +266,7 @@ namespace band.Content
                 if (database.FileEntries.Where(f => f.GroupId == groupId && f.FileName == fileName).Any())
                 {
                     ViewBag.ErrorMessage = "A file with that name already exists.";
-                    return View("Error");
+                    return View();
                 }
 
                 FileEntry fileEntry = new FileEntry(fileName, bandId, groupId, WebSecurity.CurrentUserId, FileCabinetUtil.GetFileType(fileName),
