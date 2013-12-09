@@ -25,7 +25,7 @@ namespace test.Models.Budget
         public enum SizeEnum { XSmall, Small, Medium, Large, XLarge }
 
         [Display(Name = "Size")]
-        public SizeEnum Size { get; set; }
+        public SizeEnum MerchSize { get; set; }
 
         public int BandId { get; set; }
     }
