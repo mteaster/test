@@ -50,11 +50,25 @@
         <tr>
             <td>@Html.DisplayFor(ModelItem => accountReceivable.Amount)</td>
             <td>@accountReceivable.Date.ToShortDateString()</td>
-            <td>@Html.DisplayFor(ModelItem => accountReceivable.Category)</td>
-            <td>@Html.DisplayFor(ModelItem => accountReceivable.AssociatedBandContactId)</td>
-            <td>@Html.DisplayFor(ModelItem => accountReceivable.AssociatedPersonContactId)</td>
-            <td>@Html.DisplayFor(ModelItem => accountReceivable.AssociatedVenueContactId)</td>
-            <td>@Html.CheckBoxFor(ModelItem => accountReceivable.Paid, new { @id=accountPayable.AccountPayableId, @class="chks"})</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(accountReceivable.AssociatedBandName))
+                    {
+                    @Html.ActionLink(accountReceivable.AssociatedBandName, "EditContact", "Rolodex", new {bandId = ViewBag.BandId, contactId = accountReceivable.AssociatedBandContactId, type = test.Models.Rolodex.ContactType.Band})
+                    }
+                </td>
+                <td>
+                    @if (!string.IsNullOrEmpty(accountReceivable.AssociatedPersonName))
+                    {
+                    @Html.ActionLink(accountReceivable.AssociatedPersonName, "EditContact", "Rolodex", new {bandId = ViewBag.BandId, contactId = accountReceivable.AssociatedPersonContactId, type = test.Models.Rolodex.ContactType.People})
+                    }
+                    </td>
+                <td>
+                    @if (!string.IsNullOrEmpty(accountReceivable.AssociatedVenueName))
+                    {
+                    @Html.ActionLink(accountReceivable.AssociatedVenueName, "EditContact", "Rolodex", new {bandId = ViewBag.BandId, contactId = accountReceivable.AssociatedVenueContactId, type = test.Models.Rolodex.ContactType.Venue})
+                    }
+                    </td>
+                 <td>@Html.CheckBoxFor(ModelItem => accountReceivable.Paid, new { @id=accountReceivable.AccountReceivableId, @class="chks"})</td>
         </tr>
     }   
     </tbody>
