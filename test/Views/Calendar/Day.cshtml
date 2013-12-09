@@ -41,9 +41,8 @@ else
                 <td />
             </tr>
             <tr>
-                <td><div>@Html.ActionLink("Edit", "EditEvent", new { bandId = ViewBag.BandId, eventId = item.EventId })</div>
-                    <div> / </div> 
-                    <div>@Html.ActionLink("Delete", "DeleteEvent", new { eventId = item.EventId })</div>
+                <td>
+                    @Html.ActionLink("Edit", "EditEvent", new { bandId = ViewBag.BandId, eventId = item.EventId }) / @Html.ActionLink("Delete", "DeleteEvent", new { eventId = item.EventId })
                 </td>
                 <td />
             </tr>

@@ -917,6 +917,7 @@ table.pretty th
 table.event
 {
     background-color: #FFFFFF;
+    color: black;
     border: 1px solid #C3C3C3;
     border-collapse: collapse;
     margin-top: 0.75em;
