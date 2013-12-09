@@ -23,6 +23,8 @@
             <th>Design Name</th>
             <th>Category</th>
             <th>Size</th>
+            <th> </th>
+            <th> </th>
         </tr>
     </thead>
     <tbody>
@@ -32,6 +34,8 @@
             <td>@Html.DisplayFor(ModelItem => merchlist.Name)</td>
             <td>@Html.DisplayFor(ModelItem => merchlist.Category)</td>
             <td>@Html.DisplayFor(ModelItem => merchlist.Size)</td>
+            <td>@Html.ActionLink("Edit", "EditMerch", new {bandId = ViewBag.BandID, merchId = merchlist.MerchandiseId})</td>
+            <td>@Html.ActionLink("Delete", "DeleteMerch", new {bandId = ViewBag.BandID, merchId = merchlist.MerchandiseId, filters = ViewBag.Filters})</td>
         </tr>
     }   
     </tbody>

@@ -12,6 +12,10 @@
     @Html.Partial("_BandHeaderPartial")
 }
 
+
+@Html.ActionLink("Manage Accounts", "Index", new {bandId = ViewBag.BandId})
+@Html.ActionLink("Enter New Merch", "AddMerch", new {bandId = ViewBag.BandId})
+
 @using (Html.BeginForm("MerchList", "Budget", new { bandId = ViewBag.BandId}))
 {
     @Html.AntiForgeryToken()
@@ -29,8 +33,4 @@
     
 
 }
-
-@Html.ActionLink("Manage Accounts", "Index", new {bandId = ViewBag.BandId})
-@Html.ActionLink("Enter New Merch", "AddMerch", new {bandId = ViewBag.BandId})
-
 @{ Html.RenderAction("MerchandiseList", new {bandId = ViewBag.BandId, filters = ViewBag.Filters}); }

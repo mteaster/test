@@ -4,6 +4,11 @@
     ViewBag.Title = "AddMerch";
 }
 
+@section featured 
+{
+    @Html.Partial("_BandHeaderPartial")
+}
+
 @using (Html.BeginForm("AddMerch", "Budget", new { bandId = ViewBag.BandId }))
 {
     @Html.AntiForgeryToken()

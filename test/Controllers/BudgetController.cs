@@ -115,6 +115,9 @@ namespace band.Controllers
             {
                 return View("Error");
             }
+
+            ViewBag.Filters = filters;
+
             using (DatabaseContext db = new DatabaseContext())
             {
                 var mList = from p in db.Merchandise
@@ -127,8 +130,8 @@ namespace band.Controllers
 
                     tempM.MerchandiseId = m.MerchandiseId;
                     tempM.Name = string.IsNullOrEmpty(m.Name) ? "" : m.Name;
-                    tempM.Size = string.IsNullOrEmpty(m.Size) ? "" : m.Name;
-                    tempM.Category = string.IsNullOrEmpty(m.Category) ? "" : m.Name;
+                    tempM.Size = string.IsNullOrEmpty(m.Size) ? "" : m.Size;
+                    tempM.Category = string.IsNullOrEmpty(m.Category) ? "" : m.Category;
                     tempM.BandId = m.BandId;
 
                     if (string.IsNullOrEmpty(filters.Name) || tempM.Name.ToUpper().Contains(filters.Name.ToUpper()))
@@ -502,6 +505,59 @@ namespace band.Controllers
             }
 
             return returnValue;
+        }
+
+        public ActionResult EditMerch(int bandId, int merchId)
+        {
+            Merchandise merch = new Merchandise();
+            if (!BandUtil.Authenticate(bandId, this))
+            {
+                return View("Error");
+            }
+
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                merch = database.Merchandise.Find(merchId);
+            }
+
+            return View(merch);
+        }
+
+        [HttpPost]
+        public ActionResult EditMerch(int bandId, Merchandise merch)
+        {
+
+            if (!BandUtil.Authenticate(bandId, this))
+            {
+                return View("Error");
+            }
+
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                Merchandise original = database.Merchandise.Find(merch.MerchandiseId);
+                database.Entry(original).CurrentValues.SetValues(merch);
+                database.SaveChanges();
+            }
+            return RedirectToAction("MerchList", new { bandId = bandId });
+
+        }
+
+        public ActionResult DeleteMerch(int bandId, int merchId, MerchFilters filters)
+        {
+
+            if (!BandUtil.Authenticate(bandId, this))
+            {
+                return View("Error");
+            }
+
+            using (DatabaseContext database = new DatabaseContext())
+            {
+                Merchandise original = database.Merchandise.Find(merchId);
+                database.Merchandise.Remove(original);
+                database.SaveChanges();
+            }
+
+            return RedirectToAction("MerchList", new { bandId = bandId, filters = filters });
         }
 
     }
