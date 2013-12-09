@@ -39,6 +39,12 @@ namespace band.Controllers
                     return View(new BandBioModel(bio.Bio.Replace("\n", "<br />")));
                 }
 
+                ViewBag.BioSuccessMessage = TempData["BioSuccessMessage"];
+                ViewBag.BioErrorMessage = TempData["BioErrorMessage"];
+
+                ViewBag.TracksSuccessMessage = TempData["TracksSuccessMessage"];
+                ViewBag.TracksErrorMessage = TempData["TracksErrorMessage"];
+
                 return View();
             }
         }
